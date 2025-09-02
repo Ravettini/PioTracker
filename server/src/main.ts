@@ -14,9 +14,23 @@ async function bootstrap() {
   // Configuración de seguridad
   app.use(helmet());
   
-  // CORS
+  // CORS - Configuración para múltiples orígenes
+  const allowedOrigins = configService.get('cors.origin')
+    ? configService.get('cors.origin').split(',').map((o: string) => o.trim())
+    : ['http://localhost:3000'];
+
+  console.log(`🌐 CORS configurado para orígenes: ${allowedOrigins.join(', ')}`);
+
   app.enableCors({
-    origin: configService.get('cors.origin'),
+    origin: (origin, callback) => {
+      // Permitir peticiones sin origen (como Postman) o provenientes de orígenes permitidos
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      console.log(`🚫 CORS bloqueado: ${origin} no está permitido`);
+      console.log(`✅ Orígenes permitidos: ${allowedOrigins.join(', ')}`);
+      return callback(new Error(`CORS: ${origin} no está permitido`), false);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
