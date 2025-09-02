@@ -1,9 +1,20 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/store/auth-store';
 
+// Configuración dinámica de API para desarrollo y producción
+const getApiBaseUrl = () => {
+  // En desarrollo, usar localhost
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:3001/api/v1';
+  }
+  
+  // En producción, usar la URL del backend desplegado
+  return process.env.NEXT_PUBLIC_API_URL || 'https://pio-tracker-backend.railway.app/api/v1';
+};
+
 // Configuración base de Axios
 const api: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3001/api/v1',
+  baseURL: getApiBaseUrl(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
