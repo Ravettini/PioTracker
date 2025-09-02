@@ -1,9 +1,14 @@
 const { google } = require('googleapis');
 const readline = require('readline');
 
-// Configuración - REEMPLAZA CON TUS CREDENCIALES
-const CLIENT_ID = '152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
+// ⚠️ IMPORTANTE: Este archivo usa variables de entorno para las credenciales
+// Configura las siguientes variables en tu .env:
+// GOOGLE_OAUTH_CLIENT_ID=tu-client-id.apps.googleusercontent.com
+// GOOGLE_OAUTH_CLIENT_SECRET=tu-client-secret
+
+// Configuración - Usar variables de entorno para mayor seguridad
+const CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID || '152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com';
+const CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET || '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';
 const REDIRECT_URI = 'http://localhost:8080/api/v1/auth/google/callback';
 
 const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -87,7 +92,7 @@ async function getRefreshToken() {
 }
 
 // Verificar que las credenciales estén configuradas
-if (CLIENT_ID === '152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com') {
+if (!CLIENT_ID || CLIENT_ID.includes('TU_CLIENT_ID') || CLIENT_ID.includes('152204850788')) {
   console.log('❌ **ERROR: Configura primero tus credenciales**');
   console.log('\n📝 **PASO 0: Configurar credenciales**');
   console.log('1. Ve a https://console.cloud.google.com/');
