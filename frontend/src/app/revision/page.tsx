@@ -1,0 +1,490 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useIsAuthenticated, useIsAdmin } from '@/store/auth-store';
+import Layout from '@/components/layout/Layout';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Badge } from '@/components/ui/Badge';
+import { Input } from '@/components/ui/Input';
+import { Select, SelectOption } from '@/components/ui/Select';
+import { CargaConRelaciones, RevisionRequest } from '@/types';
+import { apiClient } from '@/lib/api';
+import { 
+  ArrowLeft, 
+  CheckCircle, 
+  XCircle, 
+  AlertTriangle,
+  Eye,
+  Filter,
+  RefreshCw,
+  Calendar,
+  BarChart3,
+  TrendingUp,
+  MessageSquare
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+
+export default function RevisionPage() {
+  const router = useRouter();
+  const isAuthenticated = useIsAuthenticated();
+  const isAdmin = useIsAdmin();
+  const [cargas, setCargas] = useState<CargaConRelaciones[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedCarga, setSelectedCarga] = useState<CargaConRelaciones | null>(null);
+  const [showRevisionModal, setShowRevisionModal] = useState(false);
+  const [revisionData, setRevisionData] = useState<RevisionRequest>({
+    estado: 'validado',
+    observaciones: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const loadCargasPendientes = async () => {
+    try {
+      setIsLoading(true);
+      console.log('🔄 Cargando cargas pendientes...');
+      
+      const response = await apiClient.cargas.getAll({ estado: 'pendiente' });
+      console.log('📊 Respuesta de cargas pendientes:', response);
+      
+      // El backend devuelve { cargas, total }, no { data: { cargas, total } }
+      const cargas = response.cargas || [];
+      console.log('📊 Cargas pendientes encontradas:', cargas.length);
+      console.log('📊 Estados de las cargas:', cargas.map((c: any) => ({ id: c.id, estado: c.estado })));
+      
+      setCargas(cargas);
+      console.log('✅ Estado de cargas actualizado');
+    } catch (error) {
+      console.error('❌ Error cargando cargas pendientes:', error);
+      toast.error('Error al cargar las cargas pendientes');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+
+    if (!isAdmin) {
+      router.push('/dashboard');
+      return;
+    }
+
+    loadCargasPendientes();
+  }, [isAuthenticated, isAdmin, router]);
+
+  // Debug: Monitorear cambios en el estado del modal
+  useEffect(() => {
+    console.log('🔍 Estado del modal cambiado:', { showRevisionModal, selectedCarga: !!selectedCarga });
+  }, [showRevisionModal, selectedCarga]);
+
+  const handleRevision = async () => {
+    if (!selectedCarga) return;
+
+    if (revisionData.estado === 'observado' && (!revisionData.observaciones || !revisionData.observaciones.trim())) {
+      toast.error('Las observaciones son obligatorias para cargas observadas');
+      return;
+    }
+
+    if (revisionData.estado === 'rechazado' && (!revisionData.observaciones || !revisionData.observaciones.trim())) {
+      toast.error('Las observaciones son obligatorias para cargas rechazadas');
+      return;
+    }
+
+    // Cerrar modal INMEDIATAMENTE
+    setShowRevisionModal(false);
+    setSelectedCarga(null);
+    setRevisionData({ estado: 'validado', observaciones: '' });
+
+    setIsSubmitting(true);
+    try {
+      console.log('🔄 Enviando revisión:', { cargaId: selectedCarga.id, revisionData });
+      
+      const response = await apiClient.cargas.revisar(selectedCarga.id, revisionData);
+      console.log('✅ Respuesta de revisión:', response);
+      
+      const estadoText = revisionData.estado === 'validado' ? 'validada' : 
+                        revisionData.estado === 'observado' ? 'observada' : 'rechazada';
+      
+      // Mostrar toast de éxito
+      toast.success(`Carga ${estadoText} exitosamente`);
+      
+      // Recargar lista de cargas pendientes
+      console.log('🔄 Recargando lista de cargas...');
+      await loadCargasPendientes();
+      console.log('✅ Lista recargada');
+      
+    } catch (error: any) {
+      console.error('❌ Error revisando carga:', error);
+      const errorMessage = error.response?.data?.message || 'Error al revisar la carga';
+      toast.error(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const openRevisionModal = (carga: CargaConRelaciones) => {
+    setSelectedCarga(carga);
+    setRevisionData({ estado: 'validado', observaciones: '' });
+    setShowRevisionModal(true);
+  };
+
+  const closeRevisionModal = () => {
+    setShowRevisionModal(false);
+    setSelectedCarga(null);
+    setRevisionData({ estado: 'validado', observaciones: '' });
+  };
+
+  // Función de prueba para cerrar modal
+  const testCloseModal = () => {
+    console.log('🧪 Probando cierre de modal...');
+    setShowRevisionModal(false);
+    setSelectedCarga(null);
+    setRevisionData({ estado: 'validado', observaciones: '' });
+    console.log('✅ Modal cerrado por prueba');
+  };
+
+  const getPeriodoDisplay = (periodo: string, periodicidad: string) => {
+    switch (periodicidad) {
+      case 'mensual':
+        try {
+          const date = new Date(periodo + '-01');
+          return format(date, 'MMMM yyyy', { locale: es });
+        } catch {
+          return periodo;
+        }
+      case 'trimestral':
+        return `Q${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+      case 'semestral':
+        return `S${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+      case 'anual':
+        return periodo;
+      default:
+        return periodo;
+    }
+  };
+
+  if (!isAuthenticated || !isAdmin) {
+    return null;
+  }
+
+  const estadoOptions: SelectOption[] = [
+    { value: 'validado', label: 'Validar' },
+    { value: 'observado', label: 'Observar' },
+    { value: 'rechazado', label: 'Rechazar' },
+  ];
+
+  return (
+    <Layout>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Button
+              variant="ghost"
+              onClick={() => router.back()}
+              className="p-2"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Revisión de Cargas
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Revisa y aprueba las cargas pendientes de validación
+              </p>
+            </div>
+          </div>
+          <Button
+            variant="outline"
+            onClick={loadCargasPendientes}
+            disabled={isLoading}
+          >
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Actualizar
+          </Button>
+        </div>
+
+        {/* Estadísticas */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-2 bg-yellow-100 rounded-lg">
+                  <AlertTriangle className="h-6 w-6 text-estado-pendiente" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Pendientes</p>
+                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <BarChart3 className="h-6 w-6 text-gcba-blue" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Total Cargas</p>
+                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center">
+                <div className="p-2 bg-green-100 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-estado-validado" />
+                </div>
+                <div className="ml-4">
+                  <p className="text-sm font-medium text-gray-600">Listas para Revisar</p>
+                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Lista de cargas pendientes */}
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              Cargas Pendientes de Revisión ({cargas.length})
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {isLoading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gcba-blue"></div>
+                <span className="ml-2 text-gray-600">Cargando...</span>
+              </div>
+            ) : cargas.length === 0 ? (
+              <div className="text-center py-8">
+                <CheckCircle className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No hay cargas pendientes
+                </h3>
+                <p className="text-gray-600">
+                  Todas las cargas han sido revisadas
+                </p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Indicador
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Ministerio
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Período
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Valor
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Responsable
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Fecha
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                        Acciones
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cargas.map((carga) => (
+                      <tr key={carga.id} className="border-b border-gray-100 hover:bg-gray-50">
+                        <td className="py-4 px-4">
+                          <div>
+                            <p className="font-medium text-gray-900">
+                              {carga.indicador.nombre}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              {carga.linea.titulo}
+                            </p>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Badge variant="outline">
+                            {carga.ministerio.sigla}
+                          </Badge>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center space-x-2">
+                            <Calendar className="h-4 w-4 text-gray-400" />
+                            <span className="text-sm text-gray-900">
+                              {getPeriodoDisplay(carga.periodo, carga.periodicidad)}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center space-x-2">
+                            <TrendingUp className="h-4 w-4 text-gray-400" />
+                            <span className="font-medium text-gray-900">
+                              {carga.valor}
+                            </span>
+                            <span className="text-sm text-gray-600">
+                              {carga.unidad}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">
+                              {carga.responsableNombre}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {carga.responsableEmail}
+                            </p>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="text-sm text-gray-600">
+                            {format(new Date(carga.creadoEn), 'dd/MM/yyyy HH:mm', { locale: es })}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex space-x-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => openRevisionModal(carga)}
+                            >
+                              <Eye className="h-4 w-4 mr-1" />
+                              Revisar
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Modal de revisión */}
+      {showRevisionModal && selectedCarga && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Revisar Carga
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={closeRevisionModal}
+                >
+                  <XCircle className="h-5 w-5" />
+                </Button>
+              </div>
+
+              {/* Detalles de la carga */}
+              <div className="mb-6 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Indicador</p>
+                    <p className="text-gray-900">{selectedCarga.indicador.nombre}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Ministerio</p>
+                    <p className="text-gray-900">{selectedCarga.ministerio.nombre}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Período</p>
+                    <p className="text-gray-900">
+                      {getPeriodoDisplay(selectedCarga.periodo, selectedCarga.periodicidad)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Valor</p>
+                    <p className="text-gray-900">
+                      {selectedCarga.valor} {selectedCarga.unidad}
+                    </p>
+                  </div>
+                </div>
+
+                {selectedCarga.observaciones && (
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Observaciones del Usuario</p>
+                    <p className="text-gray-900">{selectedCarga.observaciones}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Formulario de revisión */}
+              <div className="space-y-4">
+                <Select
+                  label="Decisión"
+                  options={estadoOptions}
+                  value={revisionData.estado}
+                  onChange={(e) => setRevisionData(prev => ({ ...prev, estado: e.target.value as any }))}
+                  required
+                />
+
+                {(revisionData.estado === 'observado' || revisionData.estado === 'rechazado') && (
+                  <Input
+                    label="Observaciones"
+                    placeholder="Explica el motivo de la observación o rechazo"
+                    value={revisionData.observaciones}
+                    onChange={(e) => setRevisionData(prev => ({ ...prev, observaciones: e.target.value }))}
+                    required
+                  />
+                )}
+
+                                <div className="flex justify-end space-x-3 pt-4">
+                  <Button
+                    variant="outline"
+                    onClick={testCloseModal}
+                    disabled={isSubmitting}
+                  >
+                    🧪 Test Cerrar
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={closeRevisionModal}
+                    disabled={isSubmitting}
+                  >
+                    Cancelar
+                  </Button>
+                  <Button
+                    onClick={handleRevision}
+                    disabled={isSubmitting}
+                    loading={isSubmitting}
+                  >
+                    {revisionData.estado === 'validado' && <CheckCircle className="h-4 w-4 mr-2" />}
+                    {revisionData.estado === 'observado' && <AlertTriangle className="h-4 w-4 mr-2" />}
+                    {revisionData.estado === 'rechazado' && <XCircle className="h-4 w-4 mr-2" />}
+                    {revisionData.estado === 'validado' ? 'Validar' : 
+                     revisionData.estado === 'observado' ? 'Observar' : 'Rechazar'}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </Layout>
+  );
+}

@@ -1,0 +1,68 @@
+{
+  "name": "pio-tracker",
+  "version": "1.0.0",
+  "description": "Sistema de seguimiento de indicadores PIO para GCBA",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "server",
+    "jobs"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:frontend && npm run install:server && npm run install:jobs",
+    "install:frontend": "cd frontend && npm install",
+    "install:server": "cd server && npm install",
+    "install:jobs": "cd jobs && npm install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:frontend\"",
+    "dev:server": "cd server && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:server && npm run build:frontend",
+    "build:server": "cd server && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "concurrently \"npm run start:server\" \"npm run start:frontend\"",
+    "start:server": "cd server && npm run start",
+    "start:frontend": "cd frontend && npm run start",
+    "db:setup": "cd server && npm run db:setup",
+    "db:migrate": "cd server && npm run db:migrate",
+    "db:seed": "cd server && npm run db:seed",
+    "db:reset": "cd server && npm run db:reset",
+    "test": "concurrently \"npm run test:server\" \"npm run test:frontend\"",
+    "test:server": "cd server && npm run test",
+    "test:frontend": "cd frontend && npm run test",
+    "lint": "concurrently \"npm run lint:server\" \"npm run lint:frontend\"",
+    "lint:server": "cd server && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "format": "concurrently \"npm run format:server\" \"npm run format:frontend\"",
+    "format:server": "cd server && npm run format",
+    "format:frontend": "cd frontend && npm run format",
+    "docker:up": "cd infra && docker-compose up -d",
+    "docker:down": "cd infra && docker-compose down",
+    "docker:logs": "cd infra && docker-compose logs -f",
+    "docker:build": "cd infra && docker-compose build",
+    "clean": "npm run clean:server && npm run clean:frontend",
+    "clean:server": "cd server && npm run clean",
+    "clean:frontend": "cd frontend && npm run clean"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gcba/pio-tracker.git"
+  },
+  "keywords": [
+    "pio",
+    "tracker",
+    "indicadores",
+    "gcba",
+    "nestjs",
+    "nextjs",
+    "typescript"
+  ],
+  "author": "GCBA",
+  "license": "MIT"
+}
