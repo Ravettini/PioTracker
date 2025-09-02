@@ -87,7 +87,7 @@ async function getRefreshToken() {
 }
 
 // Verificar que las credenciales estén configuradas
-if (CLIENT_ID === 'TU_CLIENT_ID.apps.googleusercontent.com') {
+if (CLIENT_ID === '152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com') {
   console.log('❌ **ERROR: Configura primero tus credenciales**');
   console.log('\n📝 **PASO 0: Configurar credenciales**');
   console.log('1. Ve a https://console.cloud.google.com/');
