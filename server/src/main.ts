@@ -20,6 +20,7 @@ async function bootstrap() {
     : ['http://localhost:3000'];
 
   console.log(`🌐 CORS configurado para orígenes: ${allowedOrigins.join(', ')}`);
+  console.log(`🔧 Configuración CORS aplicada correctamente`);
 
   app.enableCors({
     origin: (origin, callback) => {
