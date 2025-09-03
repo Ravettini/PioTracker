@@ -194,6 +194,30 @@ export const apiClient = {
     },
   },
 
+  // Analytics
+  analytics: {
+    getMinisterios: async () => {
+      const response = await api.get('/analytics/ministerios');
+      return response.data;
+    },
+    getCompromisos: async (ministerioId: string) => {
+      const response = await api.get(`/analytics/compromisos?ministerioId=${ministerioId}`);
+      return response.data;
+    },
+    getIndicadores: async (compromisoId: string) => {
+      const response = await api.get(`/analytics/indicadores?compromisoId=${compromisoId}`);
+      return response.data;
+    },
+    getDatos: async (filters: any) => {
+      const response = await api.get('/analytics/datos', { params: filters });
+      return response.data;
+    },
+    getResumen: async () => {
+      const response = await api.get('/analytics/resumen');
+      return response.data;
+    },
+  },
+
   // Health check
   health: async () => {
     const response = await api.get('/health');

@@ -1,111 +1,236 @@
 const XLSX = require('xlsx');
+const fs = require('fs');
 
-console.log('🔍 Análisis detallado del archivo Excel...');
+console.log('🔍 Analizando Excel para crear taxonomía de indicadores...');
 
-try {
-  // Leer el archivo Excel
-  const workbook = XLSX.readFile('Copia de Indicadores de cumplimiento PIOs 2024_25 (1).xlsx');
-  
-  console.log('\n📊 Hojas disponibles:');
-  workbook.SheetNames.forEach((sheetName, index) => {
-    console.log(`   ${index + 1}. ${sheetName}`);
-  });
-
-  // Analizar cada hoja en detalle
-  workbook.SheetNames.forEach((sheetName) => {
-    console.log(`\n🔍 === ANÁLISIS DE HOJA: "${sheetName}" ===`);
-    
-    const worksheet = workbook.Sheets[sheetName];
-    const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    
-    console.log(`📏 Total de filas: ${data.length}`);
-    
-    if (data.length === 0) {
-      console.log('   ❌ Hoja vacía');
+async function analyzeExcel() {
+  try {
+    const filePath = 'Copia de Indicadores de cumplimiento PIOs 2024_25 (1).xlsx';
+    if (!fs.existsSync(filePath)) {
+      console.error('❌ No se encontró el archivo Excel');
       return;
     }
 
-    // Mostrar las primeras 5 filas
-    console.log('\n📋 Primeras 5 filas:');
-    for (let i = 0; i < Math.min(5, data.length); i++) {
-      console.log(`   Fila ${i}:`, data[i]);
-    }
-
-    // Buscar headers que contengan meses
-    console.log('\n🔍 Buscando headers de meses...');
-    const headers = data[0] || [];
-    const monthHeaders = [];
+    console.log('✅ Archivo Excel encontrado');
     
-    headers.forEach((header, index) => {
-      if (header && typeof header === 'string') {
-        const lowerHeader = header.toLowerCase();
-        if (lowerHeader.includes('enero') || lowerHeader.includes('febrero') || 
-            lowerHeader.includes('marzo') || lowerHeader.includes('abril') ||
-            lowerHeader.includes('mayo') || lowerHeader.includes('junio') ||
-            lowerHeader.includes('julio') || lowerHeader.includes('agosto') ||
-            lowerHeader.includes('septiembre') || lowerHeader.includes('octubre') ||
-            lowerHeader.includes('noviembre') || lowerHeader.includes('diciembre') ||
-            lowerHeader.includes('ene') || lowerHeader.includes('feb') ||
-            lowerHeader.includes('mar') || lowerHeader.includes('abr') ||
-            lowerHeader.includes('may') || lowerHeader.includes('jun') ||
-            lowerHeader.includes('jul') || lowerHeader.includes('ago') ||
-            lowerHeader.includes('sep') || lowerHeader.includes('oct') ||
-            lowerHeader.includes('nov') || lowerHeader.includes('dic')) {
-          monthHeaders.push({ index, header });
-          console.log(`   ✅ Mes encontrado en columna ${index}: "${header}"`);
-        }
+    // Leer el archivo Excel
+    const workbook = XLSX.readFile(filePath);
+    const sheetNames = workbook.SheetNames;
+    
+    console.log(`📊 Hojas encontradas: ${sheetNames.length}`);
+    console.log('📋 Nombres de hojas:', sheetNames);
+    
+    const analysis = {
+      ministerios: [],
+      compromisos: [],
+      indicadores: [],
+      categorias: {
+        porcentajes: [],
+        cantidades: [],
+        ratios: [],
+        tendencias: [],
+        metas: [],
+        geograficos: []
+      },
+      estadisticas: {
+        totalMinisterios: 0,
+        totalCompromisos: 0,
+        totalIndicadores: 0,
+        tiposUnicos: new Set()
       }
-    });
+    };
 
-    if (monthHeaders.length === 0) {
-      console.log('   ❌ No se encontraron headers de meses');
-    } else {
-      console.log(`   📅 Total de meses encontrados: ${monthHeaders.length}`);
+    // Procesar cada hoja (ministerio)
+    for (const sheetName of sheetNames) {
+      console.log(`\n📋 Analizando hoja: ${sheetName}`);
       
-      // Analizar datos de meses en las primeras filas
-      console.log('\n📊 Análisis de datos mensuales:');
-      for (let rowIndex = 1; rowIndex < Math.min(10, data.length); rowIndex++) {
-        const row = data[rowIndex];
-        if (row && row.length > 0) {
-          console.log(`   Fila ${rowIndex}:`);
-          monthHeaders.forEach(({ index, header }) => {
-            const value = row[index];
-            if (value !== undefined && value !== null && value !== '') {
-              console.log(`     ${header}: ${value} (tipo: ${typeof value})`);
-            }
-          });
+      const worksheet = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      
+      if (data.length < 2) {
+        console.log(`⏭️ Saltando hoja ${sheetName}: menos de 2 filas`);
+        continue;
+      }
+
+      // Analizar estructura de datos
+      const headers = data[0];
+      console.log('📝 Headers:', headers);
+
+      // Buscar columnas relevantes
+      const compromisoIndex = headers.findIndex(h => 
+        h && h.toString().toLowerCase().includes('compromiso')
+      );
+      const indicadorIndex = headers.findIndex(h => 
+        h && h.toString().toLowerCase().includes('indicador')
+      );
+      const metaIndex = headers.findIndex(h => 
+        h && h.toString().toLowerCase().includes('meta')
+      );
+      const avanceIndex = headers.findIndex(h => 
+        h && h.toString().toLowerCase().includes('avance')
+      );
+
+      console.log('🔍 Índices encontrados:', {
+        compromiso: compromisoIndex,
+        indicador: indicadorIndex,
+        meta: metaIndex,
+        avance: avanceIndex
+      });
+
+      // Procesar filas de datos
+      for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        if (!row || row.length === 0) continue;
+
+        const compromiso = compromisoIndex >= 0 ? row[compromisoIndex] : null;
+        const indicador = indicadorIndex >= 0 ? row[indicadorIndex] : null;
+        const meta = metaIndex >= 0 ? row[metaIndex] : null;
+        const avance = avanceIndex >= 0 ? row[avanceIndex] : null;
+
+        if (compromiso && indicador) {
+          const compromisoObj = {
+            ministerio: sheetName,
+            titulo: compromiso.toString().trim(),
+            indicadores: []
+          };
+
+          const indicadorObj = {
+            ministerio: sheetName,
+            compromiso: compromiso.toString().trim(),
+            nombre: indicador.toString().trim(),
+            meta: meta,
+            avance: avance,
+            tipo: categorizarIndicador(indicador.toString().trim(), meta, avance)
+          };
+
+          // Agregar a análisis
+          if (!analysis.compromisos.find(c => c.titulo === compromisoObj.titulo && c.ministerio === sheetName)) {
+            analysis.compromisos.push(compromisoObj);
+          }
+
+          analysis.indicadores.push(indicadorObj);
+          analysis.estadisticas.tiposUnicos.add(indicadorObj.tipo);
         }
       }
+
+      // Agregar ministerio
+      analysis.ministerios.push({
+        nombre: sheetName,
+        compromisos: analysis.compromisos.filter(c => c.ministerio === sheetName).length
+      });
     }
 
-    // Buscar columnas de compromisos e indicadores
-    console.log('\n🔍 Buscando columnas de compromisos e indicadores...');
-    const compromisoHeaders = [];
-    const indicadorHeaders = [];
-    
-    headers.forEach((header, index) => {
-      if (header && typeof header === 'string') {
-        const lowerHeader = header.toLowerCase();
-        if (lowerHeader.includes('compromiso') || lowerHeader.includes('línea') || 
-            lowerHeader.includes('linea') || lowerHeader.includes('acción') ||
-            lowerHeader.includes('accion')) {
-          compromisoHeaders.push({ index, header });
-          console.log(`   ✅ Compromiso encontrado en columna ${index}: "${header}"`);
-        }
-        
-        if (lowerHeader.includes('indicador') || lowerHeader.includes('meta') ||
-            lowerHeader.includes('objetivo')) {
-          indicadorHeaders.push({ index, header });
-          console.log(`   ✅ Indicador encontrado en columna ${index}: "${header}"`);
+    // Calcular estadísticas
+    analysis.estadisticas.totalMinisterios = analysis.ministerios.length;
+    analysis.estadisticas.totalCompromisos = analysis.compromisos.length;
+    analysis.estadisticas.totalIndicadores = analysis.indicadores.length;
+
+    // Categorizar indicadores
+    analysis.indicadores.forEach(ind => {
+      switch (ind.tipo) {
+        case 'porcentaje':
+          analysis.categorias.porcentajes.push(ind);
+          break;
+        case 'cantidad':
+          analysis.categorias.cantidades.push(ind);
+          break;
+        case 'ratio':
+          analysis.categorias.ratios.push(ind);
+          break;
+        case 'tendencia':
+          analysis.categorias.tendencias.push(ind);
+          break;
+        case 'meta':
+          analysis.categorias.metas.push(ind);
+          break;
+        case 'geografico':
+          analysis.categorias.geograficos.push(ind);
+          break;
+      }
+    });
+
+    // Generar reporte
+    console.log('\n📊 REPORTE DE ANÁLISIS');
+    console.log('========================');
+    console.log(`📈 Total Ministerios: ${analysis.estadisticas.totalMinisterios}`);
+    console.log(`📋 Total Compromisos: ${analysis.estadisticas.totalCompromisos}`);
+    console.log(`📊 Total Indicadores: ${analysis.estadisticas.totalIndicadores}`);
+    console.log(`🏷️ Tipos únicos: ${Array.from(analysis.estadisticas.tiposUnicos).join(', ')}`);
+
+    console.log('\n📊 DISTRIBUCIÓN POR CATEGORÍAS:');
+    console.log(`📈 Porcentajes: ${analysis.categorias.porcentajes.length}`);
+    console.log(`🔢 Cantidades: ${analysis.categorias.cantidades.length}`);
+    console.log(`⚖️ Ratios: ${analysis.categorias.ratios.length}`);
+    console.log(`📈 Tendencias: ${analysis.categorias.tendencias.length}`);
+    console.log(`🎯 Metas: ${analysis.categorias.metas.length}`);
+    console.log(`🗺️ Geográficos: ${analysis.categorias.geograficos.length}`);
+
+    console.log('\n📋 MINISTERIOS ANALIZADOS:');
+    analysis.ministerios.forEach(min => {
+      console.log(`  - ${min.nombre}: ${min.compromisos} compromisos`);
+    });
+
+    console.log('\n🔍 EJEMPLOS POR CATEGORÍA:');
+    Object.entries(analysis.categorias).forEach(([categoria, indicadores]) => {
+      if (indicadores.length > 0) {
+        console.log(`\n${categoria.toUpperCase()}:`);
+        indicadores.slice(0, 3).forEach(ind => {
+          console.log(`  - ${ind.nombre} (${ind.ministerio})`);
+        });
+        if (indicadores.length > 3) {
+          console.log(`  ... y ${indicadores.length - 3} más`);
         }
       }
     });
 
-    console.log(`   📝 Compromisos: ${compromisoHeaders.length}, Indicadores: ${indicadorHeaders.length}`);
-  });
+    // Guardar análisis en archivo
+    fs.writeFileSync('analisis-indicadores.json', JSON.stringify(analysis, null, 2));
+    console.log('\n💾 Análisis guardado en: analisis-indicadores.json');
 
-} catch (error) {
-  console.error('❌ Error analizando el Excel:', error.message);
+    return analysis;
+
+  } catch (error) {
+    console.error('❌ Error analizando Excel:', error);
+    throw error;
+  }
 }
+
+function categorizarIndicador(nombre, meta, avance) {
+  const nombreLower = nombre.toLowerCase();
+  
+  // Palabras clave para categorización
+  const keywords = {
+    porcentaje: ['porcentaje', '%', 'tasa', 'cobertura', 'participación', 'efectividad'],
+    cantidad: ['cantidad', 'número', 'total', 'personas', 'beneficiarios', 'usuarios', 'obras'],
+    ratio: ['ratio', 'relación', 'proporción', 'índice', 'densidad'],
+    tendencia: ['evolución', 'crecimiento', 'reducción', 'tendencia', 'progreso'],
+    meta: ['meta', 'objetivo', 'target', 'cumplimiento'],
+    geografico: ['barrio', 'comuna', 'zona', 'distrito', 'territorial']
+  };
+
+  // Detectar tipo por palabras clave
+  for (const [tipo, palabras] of Object.entries(keywords)) {
+    if (palabras.some(palabra => nombreLower.includes(palabra))) {
+      return tipo;
+    }
+  }
+
+  // Detectar por valores numéricos
+  if (meta && typeof meta === 'number') {
+    if (meta <= 100 && meta > 0) {
+      return 'porcentaje';
+    }
+  }
+
+  // Detectar por contexto
+  if (nombreLower.includes('meta') || nombreLower.includes('objetivo')) {
+    return 'meta';
+  }
+
+  // Por defecto
+  return 'cantidad';
+}
+
+analyzeExcel().catch(console.error);
 
 

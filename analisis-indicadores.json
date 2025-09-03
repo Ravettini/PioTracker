@@ -1,0 +1,1662 @@
+{
+  "ministerios": [
+    {
+      "nombre": "Justicia",
+      "compromisos": 7
+    },
+    {
+      "nombre": "Jefatura de Gabinete",
+      "compromisos": 16
+    },
+    {
+      "nombre": "Educacion",
+      "compromisos": 8
+    },
+    {
+      "nombre": "Ente regulador de servicios púb",
+      "compromisos": 3
+    },
+    {
+      "nombre": "Seguridad",
+      "compromisos": 4
+    },
+    {
+      "nombre": "Vicejefatura",
+      "compromisos": 16
+    },
+    {
+      "nombre": "Espacio Publico",
+      "compromisos": 3
+    },
+    {
+      "nombre": "Hacienda y finanzas",
+      "compromisos": 3
+    },
+    {
+      "nombre": "Salud",
+      "compromisos": 5
+    },
+    {
+      "nombre": "MDHyH",
+      "compromisos": 11
+    },
+    {
+      "nombre": "compromisos ",
+      "compromisos": 0
+    }
+  ],
+  "compromisos": [
+    {
+      "ministerio": "Justicia",
+      "titulo": "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero que permita abordar la problemática de la violencia por razones de género, en la justicia local, de manera coordinada y unificada.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Buenos Aires el Registro de Deudores/as Alimentarios/as Morosos/as.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesoramiento para su desarrollo en otras jurisdicciones como iniciativa para el impulso de la autonomía de las mujeres en la toma de decisiones.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecretaría de la Mujer, el desarrollo de las Expo Empleo Barrial Edición Mujer.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situación de violencia por razones de género en el ámbito laboral, a través de las herramientas desplegadas por la Dirección General Relaciones del Trabajo en el marco del Convenio 190 de la Organización Internacional del Trabajo (OIT).",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Justicia",
+      "titulo": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Garantizar la especializaciòn en perspectiva de genero en el marco del programa \"Especializaciones\"",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Ley Micaela en los clubes. Participación en la redacción de la ley y garantizar el cumplimiento de la Ley Micaela específica para entidades deportivas en el ámbito de la CABA.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Promoción de espacios de fútbol mixto.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Realización de un relevamiento de comisiones de género en todos los clubes deportivos.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Creación de un protocolo unificado para el abordaje de situaciones de violencia de género y protección a las infancias y adolescencias.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Difundir la línea 144 en todos los partidos e infraestructura de clubes deportivos.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Fomentar la creación de espacios de deporte inclusivos para mujeres con discapacidad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Realización de la \"Maratón violeta: hombres y mujeres contra la violencia\" para la conmemoración del día internacional para la eliminación de la violencia contra la mujer.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Trabajar junto a la ASI proyectos, programas y acciones de seguridad informática preventiva y concientización.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA. \r\n.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "titulo": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Potenciar el “Club de Robótica para chicas”.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Educacion",
+      "titulo": "Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "titulo": "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "titulo": "B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "titulo": "C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad para los integrantes del organismo sin distinción de función",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Seguridad",
+      "titulo": "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Seguridad",
+      "titulo": "Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Seguridad",
+      "titulo": "Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Seguridad",
+      "titulo": "Realizar las derivaciones a los Centros Integrales de la Mujer (CIMs) a las víctimas que se les hace entrega de dispositivos electrónicos por motivos de violencia de género, que requieran asistencia.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "1. -Promover el acompañamiento a mujeres mayores.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilidad Trans dependiente de la Dirección de Convivencia en la Diversidad, trabajando en estrecha colaboración con diferentes actores públicos y privados para asegurar que se fomente una cultura laboral equitativa.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, con el propósito de promover la conciencia sobre la equidad y la buena convivencia en entornos gubernamentales yprivados.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, un plan plurianual de acción para la prevención, atención y acompañamiento integral de las víctimas de trata en la Ciudad",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "5. Promover acciones de sensibilización y educación sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "Promover mediante el Programa Mujeres Líderes la formación, intercambio y desarrollo de mujeres de mandos medios del Gobierno de la Ciudad de Buenos Aires, en articulación con mujeres del sector privado y de OSC, para fortalecer sus habilidades personales y profesionales para un desempeño efectivo en roles de liderazgo, potenciar vínculos y visibilizar perfiles internos.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad víctimas de violencia de género.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, embarazo, parto, post parto, climaterio, controles ginecológicos regulares).",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educación financiera, planificación patrimonial y liderazgo.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática para los equipos interdisciplinarios a cargo de la asistencia a víctimas de violencia de género",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "titulo": "1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de huerta en los nuevos refugios para mujeres víctimas de violencia por motivos de género de la Ciudad Autónoma de Buenos Aires.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "titulo": "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "titulo": "B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "titulo": "C) Promover charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "titulo": "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "titulo": "B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género en el ámbito laboral del GCABA (Resolución Firma Conjunta N° 1/MSGC/2019).",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "titulo": "C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos en la Resolución N° 2302/GCABA-MEFGC/2019 y por Disposición N° 1000/GCABA-DGCYC/2019",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Salud",
+      "titulo": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Salud",
+      "titulo": "2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cáncer de cuello uterino",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Salud",
+      "titulo": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Salud",
+      "titulo": "4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección General de Abordaje a las Violencias por Motivos de Género para asistencia a mujeres en situación de violencia por razones de genero",
+      "indicadores": []
+    },
+    {
+      "ministerio": "Salud",
+      "titulo": "5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de género y diversidad, a los fines de nutrir al Portal de Servicios para la Igualdad de Género (https://www.buenosaires.gob.ar/igualdaddegenero) y visibilizar toda la oferta de servicios existentes en la Ciudad para reducir las brechas de genero",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "D) Continuar con las líneas de atención telefónica 144 y 911.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "e) Ampliar el Convenio con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "H) Trabajar en conjunto con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "I) Articular con el Ministerio de Salud la inclusión del Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+      "indicadores": []
+    },
+    {
+      "ministerio": "MDHyH",
+      "titulo": "K) Articular con el Ministerio de Educación el fomento de trayectos formativos y de terminalidad educativa en la población asistida por violencia por razones de género",
+      "indicadores": []
+    }
+  ],
+  "indicadores": [
+    {
+      "ministerio": "Justicia",
+      "compromiso": "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.",
+      "nombre": "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+      "meta": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero que permita abordar la problemática de la violencia por razones de género, en la justicia local, de manera coordinada y unificada.",
+      "nombre": "Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores relevantes (poder judicial, legisladores, especialistas en género, organizaciones de la sociedad civil, etc)",
+      "meta": null,
+      "avance": 0,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Buenos Aires el Registro de Deudores/as Alimentarios/as Morosos/as.",
+      "nombre": "Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del registro de deudores alimentarios",
+      "meta": null,
+      "avance": 0,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesoramiento para su desarrollo en otras jurisdicciones como iniciativa para el impulso de la autonomía de las mujeres en la toma de decisiones.",
+      "nombre": "Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de paridad politica",
+      "meta": null,
+      "avance": "9-1-24. Encuentro entre la DGAPYE y la Secretaría de Desarrollo Social de la Municipalidad de Vicente Lopez.",
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecretaría de la Mujer, el desarrollo de las Expo Empleo Barrial Edición Mujer.",
+      "nombre": "Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar la Expo EMpleo Barrial Edicion Mujer",
+      "meta": null,
+      "avance": "No hubo",
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situación de violencia por razones de género en el ámbito laboral, a través de las herramientas desplegadas por la Dirección General Relaciones del Trabajo en el marco del Convenio 190 de la Organización Internacional del Trabajo (OIT).",
+      "nombre": "Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de género en el ámbito laboral que reciben asesoramiento por parte de la Secretaría de Trabajo y Empleo.",
+      "meta": null,
+      "avance": 1,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Justicia",
+      "compromiso": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES.",
+      "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+      "meta": null,
+      "avance": 0,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela.",
+      "nombre": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA.",
+      "nombre": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Garantizar la especializaciòn en perspectiva de genero en el marco del programa \"Especializaciones\"",
+      "nombre": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+      "nombre": "Tasa de paridad en la asignación de becas",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Ley Micaela en los clubes. Participación en la redacción de la ley y garantizar el cumplimiento de la Ley Micaela específica para entidades deportivas en el ámbito de la CABA.",
+      "nombre": "Cantidad de reuniones para la redacción de la Ley Micaela",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género",
+      "nombre": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Promoción de espacios de fútbol mixto.",
+      "nombre": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Realización de un relevamiento de comisiones de género en todos los clubes deportivos.",
+      "nombre": "Cantidad de reuniones de planificacion y armado de equipo para el relevamiento",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.",
+      "nombre": "Actividades de planificacion",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Creación de un protocolo unificado para el abordaje de situaciones de violencia de género y protección a las infancias y adolescencias.",
+      "nombre": "Cantidad de reuniones para la redaccion de un protocolo unificado",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Difundir la línea 144 en todos los partidos e infraestructura de clubes deportivos.",
+      "nombre": "Cantidad de convenios/articulciones/acuerdos firmados con clubes para la entrega de materiales y difusion de la linea 144",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Fomentar la creación de espacios de deporte inclusivos para mujeres con discapacidad.",
+      "nombre": "cantidad de capacitaciones para entrenadores/as sobre deporte inclusivo",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Realización de la \"Maratón violeta: hombres y mujeres contra la violencia\" para la conmemoración del día internacional para la eliminación de la violencia contra la mujer.",
+      "nombre": "Cantidad de reuniones de organizacion para la maraton",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Trabajar junto a la ASI proyectos, programas y acciones de seguridad informática preventiva y concientización.",
+      "nombre": "Participacion en actividades de concientizacion",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA. \r\n.",
+      "nombre": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+      "nombre": "contenidos de campaña de genero incorporados en boti",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+      "nombre": "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.",
+      "nombre": "Cantidad de casos derivados",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).",
+      "nombre": "Creación de las comisiones de Bienestar Digital y de Género y STEAM",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.",
+      "nombre": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación",
+      "nombre": "Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Potenciar el “Club de Robótica para chicas”.",
+      "nombre": "Cantidad de inscriptas en el programa",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.",
+      "nombre": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "Educacion",
+      "compromiso": "Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.",
+      "nombre": "Cantidad de mujeres mentoreadas anualmente",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "compromiso": "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+      "nombre": "cantidad de reuniones para la actualizacion de los lineamientos",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "compromiso": "B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+      "nombre": "Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Ente regulador de servicios púb",
+      "compromiso": "C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad para los integrantes del organismo sin distinción de función",
+      "nombre": "Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad destinadas a fiscalizadoras en calle.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Seguridad",
+      "compromiso": "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+      "nombre": "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Seguridad",
+      "compromiso": "Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.",
+      "nombre": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Seguridad",
+      "compromiso": "Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+      "nombre": "a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Seguridad",
+      "compromiso": "Realizar las derivaciones a los Centros Integrales de la Mujer (CIMs) a las víctimas que se les hace entrega de dispositivos electrónicos por motivos de violencia de género, que requieran asistencia.",
+      "nombre": "a) Cantidad de derivaciones realizadas a los CIMs de mujeres con dispositivos electrónicos por estar en situación de violencia de género que requieran asistencia sobre asignaciones de dispositivos por mes",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "1. -Promover el acompañamiento a mujeres mayores.",
+      "nombre": "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretaria",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.",
+      "nombre": "- cantidad de reuniones interinstitucionales de coordinación sobre políticas de género",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.",
+      "nombre": "cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron financiadas",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilidad Trans dependiente de la Dirección de Convivencia en la Diversidad, trabajando en estrecha colaboración con diferentes actores públicos y privados para asegurar que se fomente una cultura laboral equitativa.",
+      "nombre": "cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, con el propósito de promover la conciencia sobre la equidad y la buena convivencia en entornos gubernamentales yprivados.",
+      "nombre": "cantidad de encuentros realizados desde BA Convive",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, un plan plurianual de acción para la prevención, atención y acompañamiento integral de las víctimas de trata en la Ciudad",
+      "nombre": "publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de las victimas de trata de la ciudad",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+      "nombre": "Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "5. Promover acciones de sensibilización y educación sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+      "nombre": "Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "Promover mediante el Programa Mujeres Líderes la formación, intercambio y desarrollo de mujeres de mandos medios del Gobierno de la Ciudad de Buenos Aires, en articulación con mujeres del sector privado y de OSC, para fortalecer sus habilidades personales y profesionales para un desempeño efectivo en roles de liderazgo, potenciar vínculos y visibilizar perfiles internos.",
+      "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad víctimas de violencia de género.",
+      "nombre": "cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad victimas de violencia de genero capacitados/as",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, embarazo, parto, post parto, climaterio, controles ginecológicos regulares).",
+      "nombre": "cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos reproductivos y sexuales",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado.",
+      "nombre": "Cantidad de acciones realizadas para promover políticas de género en torno al ciudado",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.",
+      "nombre": "cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes programas",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educación financiera, planificación patrimonial y liderazgo.",
+      "nombre": "Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financiera, planificación patrimonial y liderazgo.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática para los equipos interdisciplinarios a cargo de la asistencia a víctimas de violencia de género",
+      "nombre": "Realizacion de tablero de acceso a mujeres con discapacidad",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Vicejefatura",
+      "compromiso": "1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de huerta en los nuevos refugios para mujeres víctimas de violencia por motivos de género de la Ciudad Autónoma de Buenos Aires.",
+      "nombre": "cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de huertas en los nuevos refugios",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "compromiso": "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+      "nombre": "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "compromiso": "B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+      "nombre": "Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Espacio Publico",
+      "compromiso": "C) Promover charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+      "nombre": "cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "compromiso": "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).",
+      "nombre": "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "compromiso": "B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género en el ámbito laboral del GCABA (Resolución Firma Conjunta N° 1/MSGC/2019).",
+      "nombre": "a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y procedimiento de Protocolo",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Hacienda y finanzas",
+      "compromiso": "C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos en la Resolución N° 2302/GCABA-MEFGC/2019 y por Disposición N° 1000/GCABA-DGCYC/2019",
+      "nombre": "a) cantidad de empresas que han solicitado el sello mujer",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Salud",
+      "compromiso": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.",
+      "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Salud",
+      "compromiso": "2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cáncer de cuello uterino",
+      "nombre": "Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Salud",
+      "compromiso": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.",
+      "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "Salud",
+      "compromiso": "4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección General de Abordaje a las Violencias por Motivos de Género para asistencia a mujeres en situación de violencia por razones de genero",
+      "nombre": "Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de violencia por razones de género.",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "Salud",
+      "compromiso": "5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de género y diversidad, a los fines de nutrir al Portal de Servicios para la Igualdad de Género (https://www.buenosaires.gob.ar/igualdaddegenero) y visibilizar toda la oferta de servicios existentes en la Ciudad para reducir las brechas de genero",
+      "nombre": "Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el portal.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+      "nombre": "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.",
+      "nombre": "Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a las violencias por razones de genero",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+      "nombre": "Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "D) Continuar con las líneas de atención telefónica 144 y 911.",
+      "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "e) Ampliar el Convenio con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+      "nombre": "Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+      "meta": null,
+      "avance": null,
+      "tipo": "porcentaje"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+      "nombre": "Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+      "nombre": "Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para priorizar los trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "H) Trabajar en conjunto con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+      "nombre": "Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "I) Articular con el Ministerio de Salud la inclusión del Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+      "nombre": "Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+      "nombre": "Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    },
+    {
+      "ministerio": "MDHyH",
+      "compromiso": "K) Articular con el Ministerio de Educación el fomento de trayectos formativos y de terminalidad educativa en la población asistida por violencia por razones de género",
+      "nombre": "Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos formativos y terminalidad educativao para la población asistida en materia de violencias por motivos de género.",
+      "meta": null,
+      "avance": null,
+      "tipo": "cantidad"
+    }
+  ],
+  "categorias": {
+    "porcentajes": [
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+        "nombre": "Tasa de paridad en la asignación de becas",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+        "nombre": "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.",
+        "nombre": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.",
+        "nombre": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      },
+      {
+        "ministerio": "Salud",
+        "compromiso": "4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección General de Abordaje a las Violencias por Motivos de Género para asistencia a mujeres en situación de violencia por razones de genero",
+        "nombre": "Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de violencia por razones de género.",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "e) Ampliar el Convenio con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+        "nombre": "Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+        "meta": null,
+        "avance": null,
+        "tipo": "porcentaje"
+      }
+    ],
+    "cantidades": [
+      {
+        "ministerio": "Justicia",
+        "compromiso": "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.",
+        "nombre": "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+        "meta": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero que permita abordar la problemática de la violencia por razones de género, en la justicia local, de manera coordinada y unificada.",
+        "nombre": "Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores relevantes (poder judicial, legisladores, especialistas en género, organizaciones de la sociedad civil, etc)",
+        "meta": null,
+        "avance": 0,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Buenos Aires el Registro de Deudores/as Alimentarios/as Morosos/as.",
+        "nombre": "Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del registro de deudores alimentarios",
+        "meta": null,
+        "avance": 0,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesoramiento para su desarrollo en otras jurisdicciones como iniciativa para el impulso de la autonomía de las mujeres en la toma de decisiones.",
+        "nombre": "Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de paridad politica",
+        "meta": null,
+        "avance": "9-1-24. Encuentro entre la DGAPYE y la Secretaría de Desarrollo Social de la Municipalidad de Vicente Lopez.",
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecretaría de la Mujer, el desarrollo de las Expo Empleo Barrial Edición Mujer.",
+        "nombre": "Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar la Expo EMpleo Barrial Edicion Mujer",
+        "meta": null,
+        "avance": "No hubo",
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situación de violencia por razones de género en el ámbito laboral, a través de las herramientas desplegadas por la Dirección General Relaciones del Trabajo en el marco del Convenio 190 de la Organización Internacional del Trabajo (OIT).",
+        "nombre": "Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de género en el ámbito laboral que reciben asesoramiento por parte de la Secretaría de Trabajo y Empleo.",
+        "meta": null,
+        "avance": 1,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Justicia",
+        "compromiso": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES.",
+        "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+        "meta": null,
+        "avance": 0,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela.",
+        "nombre": "Cantidad de trabajadores inscriptos en la capacitacion",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA.",
+        "nombre": "Cantidad de trabajadores inscriptos en la capacitacion",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Garantizar la especializaciòn en perspectiva de genero en el marco del programa \"Especializaciones\"",
+        "nombre": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Ley Micaela en los clubes. Participación en la redacción de la ley y garantizar el cumplimiento de la Ley Micaela específica para entidades deportivas en el ámbito de la CABA.",
+        "nombre": "Cantidad de reuniones para la redacción de la Ley Micaela",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género",
+        "nombre": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Promoción de espacios de fútbol mixto.",
+        "nombre": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Realización de un relevamiento de comisiones de género en todos los clubes deportivos.",
+        "nombre": "Cantidad de reuniones de planificacion y armado de equipo para el relevamiento",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.",
+        "nombre": "Actividades de planificacion",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Creación de un protocolo unificado para el abordaje de situaciones de violencia de género y protección a las infancias y adolescencias.",
+        "nombre": "Cantidad de reuniones para la redaccion de un protocolo unificado",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Difundir la línea 144 en todos los partidos e infraestructura de clubes deportivos.",
+        "nombre": "Cantidad de convenios/articulciones/acuerdos firmados con clubes para la entrega de materiales y difusion de la linea 144",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Fomentar la creación de espacios de deporte inclusivos para mujeres con discapacidad.",
+        "nombre": "cantidad de capacitaciones para entrenadores/as sobre deporte inclusivo",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Realización de la \"Maratón violeta: hombres y mujeres contra la violencia\" para la conmemoración del día internacional para la eliminación de la violencia contra la mujer.",
+        "nombre": "Cantidad de reuniones de organizacion para la maraton",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Trabajar junto a la ASI proyectos, programas y acciones de seguridad informática preventiva y concientización.",
+        "nombre": "Participacion en actividades de concientizacion",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA. \r\n.",
+        "nombre": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+        "nombre": "contenidos de campaña de genero incorporados en boti",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.",
+        "nombre": "Cantidad de casos derivados",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).",
+        "nombre": "Creación de las comisiones de Bienestar Digital y de Género y STEAM",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación",
+        "nombre": "Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Potenciar el “Club de Robótica para chicas”.",
+        "nombre": "Cantidad de inscriptas en el programa",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Educacion",
+        "compromiso": "Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.",
+        "nombre": "Cantidad de mujeres mentoreadas anualmente",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+        "nombre": "cantidad de reuniones para la actualizacion de los lineamientos",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+        "nombre": "Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad para los integrantes del organismo sin distinción de función",
+        "nombre": "Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad destinadas a fiscalizadoras en calle.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Seguridad",
+        "compromiso": "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+        "nombre": "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Seguridad",
+        "compromiso": "Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.",
+        "nombre": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Seguridad",
+        "compromiso": "Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+        "nombre": "a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Seguridad",
+        "compromiso": "Realizar las derivaciones a los Centros Integrales de la Mujer (CIMs) a las víctimas que se les hace entrega de dispositivos electrónicos por motivos de violencia de género, que requieran asistencia.",
+        "nombre": "a) Cantidad de derivaciones realizadas a los CIMs de mujeres con dispositivos electrónicos por estar en situación de violencia de género que requieran asistencia sobre asignaciones de dispositivos por mes",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. -Promover el acompañamiento a mujeres mayores.",
+        "nombre": "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretaria",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.",
+        "nombre": "- cantidad de reuniones interinstitucionales de coordinación sobre políticas de género",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.",
+        "nombre": "cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron financiadas",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilidad Trans dependiente de la Dirección de Convivencia en la Diversidad, trabajando en estrecha colaboración con diferentes actores públicos y privados para asegurar que se fomente una cultura laboral equitativa.",
+        "nombre": "cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, con el propósito de promover la conciencia sobre la equidad y la buena convivencia en entornos gubernamentales yprivados.",
+        "nombre": "cantidad de encuentros realizados desde BA Convive",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, un plan plurianual de acción para la prevención, atención y acompañamiento integral de las víctimas de trata en la Ciudad",
+        "nombre": "publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de las victimas de trata de la ciudad",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+        "nombre": "Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "5. Promover acciones de sensibilización y educación sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+        "nombre": "Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "Promover mediante el Programa Mujeres Líderes la formación, intercambio y desarrollo de mujeres de mandos medios del Gobierno de la Ciudad de Buenos Aires, en articulación con mujeres del sector privado y de OSC, para fortalecer sus habilidades personales y profesionales para un desempeño efectivo en roles de liderazgo, potenciar vínculos y visibilizar perfiles internos.",
+        "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad víctimas de violencia de género.",
+        "nombre": "cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad victimas de violencia de genero capacitados/as",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, embarazo, parto, post parto, climaterio, controles ginecológicos regulares).",
+        "nombre": "cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos reproductivos y sexuales",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado.",
+        "nombre": "Cantidad de acciones realizadas para promover políticas de género en torno al ciudado",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.",
+        "nombre": "cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes programas",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educación financiera, planificación patrimonial y liderazgo.",
+        "nombre": "Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financiera, planificación patrimonial y liderazgo.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática para los equipos interdisciplinarios a cargo de la asistencia a víctimas de violencia de género",
+        "nombre": "Realizacion de tablero de acceso a mujeres con discapacidad",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de huerta en los nuevos refugios para mujeres víctimas de violencia por motivos de género de la Ciudad Autónoma de Buenos Aires.",
+        "nombre": "cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de huertas en los nuevos refugios",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Espacio Publico",
+        "compromiso": "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+        "nombre": "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Espacio Publico",
+        "compromiso": "B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+        "nombre": "Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Espacio Publico",
+        "compromiso": "C) Promover charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+        "nombre": "cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).",
+        "nombre": "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género en el ámbito laboral del GCABA (Resolución Firma Conjunta N° 1/MSGC/2019).",
+        "nombre": "a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y procedimiento de Protocolo",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos en la Resolución N° 2302/GCABA-MEFGC/2019 y por Disposición N° 1000/GCABA-DGCYC/2019",
+        "nombre": "a) cantidad de empresas que han solicitado el sello mujer",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Salud",
+        "compromiso": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.",
+        "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Salud",
+        "compromiso": "2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cáncer de cuello uterino",
+        "nombre": "Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Salud",
+        "compromiso": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.",
+        "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "Salud",
+        "compromiso": "5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de género y diversidad, a los fines de nutrir al Portal de Servicios para la Igualdad de Género (https://www.buenosaires.gob.ar/igualdaddegenero) y visibilizar toda la oferta de servicios existentes en la Ciudad para reducir las brechas de genero",
+        "nombre": "Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el portal.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+        "nombre": "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.",
+        "nombre": "Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a las violencias por razones de genero",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+        "nombre": "Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "D) Continuar con las líneas de atención telefónica 144 y 911.",
+        "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+        "nombre": "Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+        "nombre": "Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para priorizar los trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "H) Trabajar en conjunto con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+        "nombre": "Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "I) Articular con el Ministerio de Salud la inclusión del Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+        "nombre": "Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+        "nombre": "Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      },
+      {
+        "ministerio": "MDHyH",
+        "compromiso": "K) Articular con el Ministerio de Educación el fomento de trayectos formativos y de terminalidad educativa en la población asistida por violencia por razones de género",
+        "nombre": "Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos formativos y terminalidad educativao para la población asistida en materia de violencias por motivos de género.",
+        "meta": null,
+        "avance": null,
+        "tipo": "cantidad"
+      }
+    ],
+    "ratios": [],
+    "tendencias": [],
+    "metas": [],
+    "geograficos": []
+  },
+  "estadisticas": {
+    "totalMinisterios": 11,
+    "totalCompromisos": 76,
+    "totalIndicadores": 76,
+    "tiposUnicos": {}
+  }
+}

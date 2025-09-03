@@ -349,6 +349,76 @@ export class GoogleSheetsService {
       throw new BadRequestException(`Error al crear hoja: ${error.message}`);
     }
   }
+
+  async getSheetData(sheetName?: string): Promise<any[]> {
+    try {
+      if (!this.sheets) {
+        throw new BadRequestException('Google Sheets no está configurado');
+      }
+
+      const sheetId = this.configService.get('google.sheetId');
+
+      this.logger.log(`Obteniendo datos de todas las hojas del Google Sheets`);
+
+      // Obtener información del spreadsheet para ver todas las hojas
+      const spreadsheet = await this.sheets.spreadsheets.get({
+        spreadsheetId: sheetId,
+      });
+
+      const sheets = spreadsheet.data.sheets || [];
+      let allData: any[] = [];
+
+      // Procesar cada hoja (cada ministerio)
+      for (const sheet of sheets) {
+        const sheetTitle = sheet.properties.title;
+        
+        // Saltar hojas que no son ministerios (como hojas de configuración)
+        if (sheetTitle.toLowerCase().includes('config') || 
+            sheetTitle.toLowerCase().includes('setup') ||
+            sheetTitle.toLowerCase().includes('fact_')) {
+          continue;
+        }
+
+        this.logger.log(`Procesando hoja: ${sheetTitle}`);
+
+        try {
+          // Obtener datos de esta hoja
+          const response = await this.sheets.spreadsheets.values.get({
+            spreadsheetId: sheetId,
+            range: `${sheetTitle}!A:Z`, // Obtener todas las columnas
+            valueRenderOption: 'UNFORMATTED_VALUE',
+          });
+
+          const values = response.data.values || [];
+          
+          if (values.length === 0) {
+            this.logger.warn(`No se encontraron datos en la hoja ${sheetTitle}`);
+            continue;
+          }
+
+          // Remover la primera fila (headers) si existe
+          const dataRows = values.length > 1 ? values.slice(1) : values;
+
+          // Agregar el nombre del ministerio a cada fila
+          const rowsWithMinisterio = dataRows.map(row => [...row, sheetTitle]);
+
+          allData = allData.concat(rowsWithMinisterio);
+
+        } catch (error) {
+          this.logger.error(`Error procesando hoja ${sheetTitle}:`, error);
+          // Continuar con la siguiente hoja
+          continue;
+        }
+      }
+
+      this.logger.log(`Obtenidos ${allData.length} filas de datos de todas las hojas del Google Sheets`);
+      return allData;
+
+    } catch (error) {
+      this.logger.error('Error obteniendo datos del Google Sheets:', error);
+      throw new BadRequestException(`Error obteniendo datos: ${error.message}`);
+    }
+  }
 }
 
 

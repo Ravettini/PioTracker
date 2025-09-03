@@ -10,6 +10,7 @@ import {
   LogOut,
   Menu,
   X,
+  TrendingUp,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -53,6 +54,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       href: '/mis-envios',
       icon: FileText,
       current: pathname === '/mis-envios',
+    },
+    {
+      name: 'Analytics',
+      href: '/analytics',
+      icon: TrendingUp,
+      current: pathname === '/analytics',
     },
     ...(isAdmin
       ? [
