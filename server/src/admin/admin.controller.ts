@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Put,
+  Delete,
   Body,
   Param,
   Query,
@@ -28,6 +29,7 @@ export class AdminController {
     const usuario = await this.adminService.createUsuario(createUsuarioDto, admin.id);
     
     return {
+      success: true,
       message: 'Usuario creado exitosamente',
       usuario: {
         id: usuario.id,
@@ -67,6 +69,7 @@ export class AdminController {
     // No retornar hash de contraseña
     const { hashClave, ...usuarioSinClave } = usuario;
     return {
+      success: true,
       message: 'Usuario actualizado exitosamente',
       usuario: usuarioSinClave,
     };
@@ -80,6 +83,7 @@ export class AdminController {
     const usuario = await this.adminService.toggleUsuarioStatus(id, admin.id);
     
     return {
+      success: true,
       message: `Usuario ${usuario.activo ? 'activado' : 'desactivado'} exitosamente`,
       usuario: {
         id: usuario.id,
@@ -98,8 +102,22 @@ export class AdminController {
     const result = await this.adminService.resetPassword(id, admin.id);
     
     return {
+      success: true,
       message: 'Contraseña reseteada exitosamente',
       passwordTemporal: result.passwordTemporal,
+    };
+  }
+
+  @Delete('usuarios/:id')
+  async deleteUsuario(
+    @Param('id') id: string,
+    @CurrentUser() admin: Usuario,
+  ) {
+    await this.adminService.deleteUsuario(id, admin.id);
+    
+    return {
+      success: true,
+      message: 'Usuario eliminado exitosamente',
     };
   }
 

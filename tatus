@@ -1,0 +1,14 @@
+warning: in the working copy of 'frontend/src/lib/api.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/frontend/src/lib/api.ts b/frontend/src/lib/api.ts[m
+[1mindex af2ff94..f5e8913 100644[m
+[1m--- a/frontend/src/lib/api.ts[m
+[1m+++ b/frontend/src/lib/api.ts[m
+[36m@@ -14,7 +14,7 @@[m [mconst getApiBaseUrl = () => {[m
+ [m
+ // Configuración base de Axios[m
+ const api: AxiosInstance = axios.create({[m
+[31m-  baseURL: getApiBaseUrl(),[m
+[32m+[m[32m  baseURL: getApiBaseUrl(),lve[m[41m [m
+   timeout: 10000,[m
+   headers: {[m
+     'Content-Type': 'application/json',[m

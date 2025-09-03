@@ -11,14 +11,18 @@ RUN npm install
 # Copiar código fuente
 COPY . .
 
-# Construir la aplicación
-RUN npm run build
+# Limpiar completamente el cache y archivos compilados
+RUN rm -rf .next && rm -rf node_modules/.cache && rm -rf .nuxt && rm -rf dist
+
+# Configurar variables de entorno para desarrollo
+ENV NODE_ENV=development
+ENV NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 
 # Exponer puerto
 EXPOSE 3000
 
-# Comando de inicio
-CMD ["npm", "start"]
+# Comando de inicio en modo desarrollo
+CMD ["npm", "run", "dev"]
 
 
 

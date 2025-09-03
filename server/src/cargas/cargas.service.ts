@@ -159,9 +159,10 @@ export class CargasService {
   async update(id: string, updateCargaDto: UpdateCargaDto, userId: string, userRol: string, userMinisterioId: string): Promise<Carga> {
     const carga = await this.findOne(id, userId, userRol, userMinisterioId);
 
-    // Solo se pueden editar borradores
-    if (carga.estado !== EstadoCarga.BORRADOR) {
-      throw new BadRequestException('Solo se pueden editar cargas en estado borrador');
+    // Solo se pueden editar borradores, o cargas pendientes si es admin
+    if (carga.estado !== EstadoCarga.BORRADOR && 
+        !(userRol === 'ADMIN' && carga.estado === EstadoCarga.PENDIENTE)) {
+      throw new BadRequestException('Solo se pueden editar cargas en estado borrador, o cargas pendientes si eres administrador');
     }
 
     // Verificar que el usuario sea el creador o admin

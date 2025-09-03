@@ -18,6 +18,15 @@ export class AdminService {
   ) {}
 
   async createUsuario(createUsuarioDto: CreateUsuarioDto, adminId: string): Promise<Usuario> {
+    console.log('🔍 DEBUG: Datos recibidos para crear usuario:', {
+      email: createUsuarioDto.email,
+      nombre: createUsuarioDto.nombre,
+      rol: createUsuarioDto.rol,
+      ministerioId: createUsuarioDto.ministerioId,
+      ministerioIdType: typeof createUsuarioDto.ministerioId,
+      ministerioIdLength: createUsuarioDto.ministerioId?.length
+    });
+
     // Verificar que el email no exista
     const existingUsuario = await this.usuarioRepository.findOne({
       where: { email: createUsuarioDto.email.toLowerCase() },
@@ -28,14 +37,17 @@ export class AdminService {
     }
 
     // Verificar que el ministerio existe si se especifica
-    if (createUsuarioDto.ministerioId) {
+    if (createUsuarioDto.ministerioId && createUsuarioDto.ministerioId.trim() !== '') {
       const ministerio = await this.ministerioRepository.findOne({
         where: { id: createUsuarioDto.ministerioId },
       });
 
       if (!ministerio) {
-        throw new BadRequestException('Ministerio no encontrado');
+        throw new BadRequestException(`Ministerio no encontrado: "${createUsuarioDto.ministerioId}"`);
       }
+    } else {
+      // Si es string vacío, convertirlo a null
+      createUsuarioDto.ministerioId = null;
     }
 
     // Generar contraseña temporal
@@ -153,6 +165,23 @@ export class AdminService {
       where: { activo: true },
       order: { nombre: 'ASC' },
     });
+  }
+
+  async deleteUsuario(id: string, adminId: string): Promise<void> {
+    const usuario = await this.findOne(id);
+    
+    // Verificar que no se elimine el último admin
+    if (usuario.rol === RolUsuario.ADMIN) {
+      const adminCount = await this.usuarioRepository.count({
+        where: { rol: RolUsuario.ADMIN, activo: true },
+      });
+      
+      if (adminCount <= 1) {
+        throw new BadRequestException('No se puede eliminar el último administrador del sistema');
+      }
+    }
+    
+    await this.usuarioRepository.remove(usuario);
   }
 
   private generateTemporaryPassword(): string {

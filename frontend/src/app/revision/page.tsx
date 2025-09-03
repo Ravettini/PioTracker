@@ -17,12 +17,14 @@ import {
   XCircle, 
   AlertTriangle,
   Eye,
+  Edit,
   Filter,
   RefreshCw,
   Calendar,
   BarChart3,
   TrendingUp,
-  MessageSquare
+  MessageSquare,
+  Save
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
@@ -36,11 +38,22 @@ export default function RevisionPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCarga, setSelectedCarga] = useState<CargaConRelaciones | null>(null);
   const [showRevisionModal, setShowRevisionModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [revisionData, setRevisionData] = useState<RevisionRequest>({
     estado: 'validado',
     observaciones: '',
   });
+  const [editData, setEditData] = useState({
+    valor: '',
+    unidad: '',
+    meta: '',
+    fuente: '',
+    responsableNombre: '',
+    responsableEmail: '',
+    observaciones: '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const loadCargasPendientes = async () => {
     try {
@@ -81,8 +94,8 @@ export default function RevisionPage() {
 
   // Debug: Monitorear cambios en el estado del modal
   useEffect(() => {
-    console.log('🔍 Estado del modal cambiado:', { showRevisionModal, selectedCarga: !!selectedCarga });
-  }, [showRevisionModal, selectedCarga]);
+    console.log('🔍 Estado del modal cambiado:', { showRevisionModal, showEditModal, selectedCarga: !!selectedCarga });
+  }, [showRevisionModal, showEditModal, selectedCarga]);
 
   const handleRevision = async () => {
     if (!selectedCarga) return;
@@ -129,16 +142,79 @@ export default function RevisionPage() {
     }
   };
 
+  const handleEdit = async () => {
+    if (!selectedCarga) return;
+
+    setIsEditing(true);
+    try {
+      console.log('🔄 Enviando edición:', { cargaId: selectedCarga.id, editData });
+      
+      const response = await apiClient.cargas.update(selectedCarga.id, {
+        valor: parseFloat(editData.valor),
+        unidad: editData.unidad,
+        meta: editData.meta ? parseFloat(editData.meta) : undefined,
+        fuente: editData.fuente,
+        responsableNombre: editData.responsableNombre,
+        responsableEmail: editData.responsableEmail,
+        observaciones: editData.observaciones || undefined,
+      });
+      
+      console.log('✅ Respuesta de edición:', response);
+      toast.success('Carga editada exitosamente');
+      
+      // Recargar lista de cargas pendientes
+      await loadCargasPendientes();
+      
+      // Cerrar modal de edición
+      closeEditModal();
+      
+    } catch (error: any) {
+      console.error('❌ Error editando carga:', error);
+      const errorMessage = error.response?.data?.message || 'Error al editar la carga';
+      toast.error(errorMessage);
+    } finally {
+      setIsEditing(false);
+    }
+  };
+
   const openRevisionModal = (carga: CargaConRelaciones) => {
     setSelectedCarga(carga);
     setRevisionData({ estado: 'validado', observaciones: '' });
     setShowRevisionModal(true);
   };
 
+  const openEditModal = (carga: CargaConRelaciones) => {
+    setSelectedCarga(carga);
+    setEditData({
+      valor: carga.valor.toString(),
+      unidad: carga.unidad,
+      meta: carga.meta ? carga.meta.toString() : '',
+      fuente: carga.fuente,
+      responsableNombre: carga.responsableNombre,
+      responsableEmail: carga.responsableEmail,
+      observaciones: carga.observaciones || '',
+    });
+    setShowEditModal(true);
+  };
+
   const closeRevisionModal = () => {
     setShowRevisionModal(false);
     setSelectedCarga(null);
     setRevisionData({ estado: 'validado', observaciones: '' });
+  };
+
+  const closeEditModal = () => {
+    setShowEditModal(false);
+    setSelectedCarga(null);
+    setEditData({
+      valor: '',
+      unidad: '',
+      meta: '',
+      fuente: '',
+      responsableNombre: '',
+      responsableEmail: '',
+      observaciones: '',
+    });
   };
 
   // Función de prueba para cerrar modal
@@ -370,6 +446,14 @@ export default function RevisionPage() {
                               <Eye className="h-4 w-4 mr-1" />
                               Revisar
                             </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => openEditModal(carga)}
+                            >
+                              <Edit className="h-4 w-4 mr-1" />
+                              Editar
+                            </Button>
                           </div>
                         </td>
                       </tr>
@@ -453,7 +537,7 @@ export default function RevisionPage() {
                   />
                 )}
 
-                                <div className="flex justify-end space-x-3 pt-4">
+                <div className="flex justify-end space-x-3 pt-4">
                   <Button
                     variant="outline"
                     onClick={testCloseModal}
@@ -478,6 +562,128 @@ export default function RevisionPage() {
                     {revisionData.estado === 'rechazado' && <XCircle className="h-4 w-4 mr-2" />}
                     {revisionData.estado === 'validado' ? 'Validar' : 
                      revisionData.estado === 'observado' ? 'Observar' : 'Rechazar'}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de edición */}
+      {showEditModal && selectedCarga && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900">
+                  Editar Carga
+                </h2>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={closeEditModal}
+                >
+                  <XCircle className="h-5 w-5" />
+                </Button>
+              </div>
+
+              {/* Información no editable */}
+              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                <h3 className="text-sm font-medium text-gray-700 mb-3">Información del Indicador</h3>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-600">Indicador:</p>
+                    <p className="font-medium text-gray-900">{selectedCarga.indicador.nombre}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Ministerio:</p>
+                    <p className="font-medium text-gray-900">{selectedCarga.ministerio.nombre}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Compromiso:</p>
+                    <p className="font-medium text-gray-900">{selectedCarga.linea.titulo}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Período:</p>
+                    <p className="font-medium text-gray-900">
+                      {getPeriodoDisplay(selectedCarga.periodo, selectedCarga.periodicidad)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Formulario de edición */}
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <Input
+                    label="Valor *"
+                    type="number"
+                    step="0.01"
+                    value={editData.valor}
+                    onChange={(e) => setEditData(prev => ({ ...prev, valor: e.target.value }))}
+                    required
+                  />
+                  <Input
+                    label="Unidad de Medida *"
+                    value={editData.unidad}
+                    onChange={(e) => setEditData(prev => ({ ...prev, unidad: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <Input
+                  label="Meta (Opcional)"
+                  type="number"
+                  step="0.01"
+                  value={editData.meta}
+                  onChange={(e) => setEditData(prev => ({ ...prev, meta: e.target.value }))}
+                />
+
+                <Input
+                  label="Fuente de los Datos *"
+                  value={editData.fuente}
+                  onChange={(e) => setEditData(prev => ({ ...prev, fuente: e.target.value }))}
+                  required
+                />
+
+                <div className="grid grid-cols-2 gap-4">
+                  <Input
+                    label="Nombre del Responsable *"
+                    value={editData.responsableNombre}
+                    onChange={(e) => setEditData(prev => ({ ...prev, responsableNombre: e.target.value }))}
+                    required
+                  />
+                  <Input
+                    label="Email del Responsable *"
+                    type="email"
+                    value={editData.responsableEmail}
+                    onChange={(e) => setEditData(prev => ({ ...prev, responsableEmail: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <Input
+                  label="Observaciones (Opcional)"
+                  value={editData.observaciones}
+                  onChange={(e) => setEditData(prev => ({ ...prev, observaciones: e.target.value }))}
+                />
+
+                <div className="flex justify-end space-x-3 pt-4">
+                  <Button
+                    variant="outline"
+                    onClick={closeEditModal}
+                    disabled={isEditing}
+                  >
+                    Cancelar
+                  </Button>
+                  <Button
+                    onClick={handleEdit}
+                    disabled={isEditing}
+                    loading={isEditing}
+                  >
+                    <Save className="h-4 w-4 mr-2" />
+                    Guardar Cambios
                   </Button>
                 </div>
               </div>

@@ -45,8 +45,7 @@ export default function CargaPage() {
   const [selectedMinisterio, setSelectedMinisterio] = useState<string>('');
   const [selectedLinea, setSelectedLinea] = useState<string>('');
   const [selectedIndicador, setSelectedIndicador] = useState<string>('');
-  const [periodicidad, setPeriodicidad] = useState<string>('mensual');
-  const [periodo, setPeriodo] = useState<string>('');
+  const [periodo, setPeriodo] = useState<string>('2025-2027');
   const [valor, setValor] = useState<string>('0.00');
   const [unidad, setUnidad] = useState<string>('');
   const [meta, setMeta] = useState<string>('0.00');
@@ -57,7 +56,43 @@ export default function CargaPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showNewCompromiso, setShowNewCompromiso] = useState(false);
   const [newCompromiso, setNewCompromiso] = useState<string>('');
+  const [showNewIndicador, setShowNewIndicador] = useState(false);
   const [newIndicador, setNewIndicador] = useState<string>('');
+
+  // Función para obtener el placeholder del período según el indicador
+  const getPeriodoPlaceholder = () => {
+    const indicador = indicadores.find(i => i.id === selectedIndicador);
+    if (!indicador) return 'Selecciona un indicador primero';
+    
+    switch (indicador.periodicidad) {
+      case 'mensual':
+        return 'YYYY-MM (ej: 2025-08)';
+      case 'trimestral':
+        return 'YYYYQn (ej: 2025Q1)';
+      case 'semestral':
+        return 'YYYYSn (ej: 2025S1)';
+      case 'anual':
+        return 'YYYY (ej: 2025)';
+      default:
+        return 'Formato según periodicidad';
+    }
+  };
+
+  // Función para validar el formato del período
+  const validarPeriodo = (periodo: string, periodicidad: string): boolean => {
+    switch (periodicidad) {
+      case 'mensual':
+        return /^\d{4}-\d{2}$/.test(periodo);
+      case 'trimestral':
+        return /^\d{4}Q[1-4]$/.test(periodo);
+      case 'semestral':
+        return /^\d{4}S[1-2]$/.test(periodo);
+      case 'anual':
+        return /^\d{4}$/.test(periodo);
+      default:
+        return false;
+    }
+  };
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -190,6 +225,18 @@ export default function CargaPage() {
       return;
     }
 
+    // Validar el formato del período según el indicador
+    const indicador = indicadores.find(i => i.id === selectedIndicador);
+    if (!indicador) {
+      toast.error('Indicador no encontrado');
+      return;
+    }
+
+    if (!validarPeriodo(periodo, indicador.periodicidad)) {
+      toast.error(`Formato de período inválido. Debe ser: ${getPeriodoPlaceholder()}`);
+      return;
+    }
+
     setIsLoading(true);
     try {
       // Crear la carga
@@ -225,7 +272,7 @@ export default function CargaPage() {
         setSelectedMinisterio('');
         setSelectedLinea('');
         setSelectedIndicador('');
-        setPeriodo('');
+        setPeriodo('2025-2027');
         setValor('0.00');
         setUnidad('');
         setMeta('0.00');
@@ -253,12 +300,11 @@ export default function CargaPage() {
     setSelectedLinea(e.target.value);
     setShowNewCompromiso(false); // Cerrar si se selecciona una línea existente
     setNewCompromiso(''); // Limpiar campos de nuevo compromiso
-    setNewIndicador(''); // Limpiar campos de nuevo indicador
   };
 
   const handleCreateNewCompromiso = async () => {
-    if (!newCompromiso.trim() || !newIndicador.trim()) {
-      toast.error('Por favor, completa todos los campos del nuevo compromiso.');
+    if (!newCompromiso.trim()) {
+      toast.error('Por favor, completa el nombre del nuevo compromiso.');
       return;
     }
 
@@ -283,7 +329,6 @@ export default function CargaPage() {
         setSelectedLinea(result.data.id); // Seleccionar el nuevo compromiso
         setShowNewCompromiso(false);
         setNewCompromiso('');
-        setNewIndicador('');
       } else {
         const errorData = await response.json();
         toast.error(errorData.message || 'Error al crear el nuevo compromiso.');
@@ -291,6 +336,47 @@ export default function CargaPage() {
     } catch (error) {
       console.error('Error creando nuevo compromiso:', error);
       toast.error('Error al crear el nuevo compromiso.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCreateNewIndicador = async () => {
+    if (!newIndicador.trim() || !selectedLinea) {
+      toast.error('Por favor, completa el nombre del nuevo indicador y asegúrate de tener un compromiso seleccionado.');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/catalogos/indicadores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          nombre: newIndicador,
+          lineaId: selectedLinea,
+          unidadDefecto: 'unidad',
+          periodicidad: 'anual',
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        toast.success('Nuevo indicador creado con éxito.');
+        setIndicadores(prev => [...prev, result.data]); // Actualizar la lista de indicadores
+        setSelectedIndicador(result.data.id); // Seleccionar el nuevo indicador
+        setShowNewIndicador(false);
+        setNewIndicador('');
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message || 'Error al crear el nuevo indicador.');
+      }
+    } catch (error) {
+      console.error('Error creando nuevo indicador:', error);
+      toast.error('Error al crear el nuevo indicador.');
     } finally {
       setIsLoading(false);
     }
@@ -384,34 +470,20 @@ export default function CargaPage() {
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                           </div>
-                          <div>
-                            <label htmlFor="newIndicador" className="block text-sm font-medium text-gray-700 mb-1">
-                              Nuevo Indicador
-                            </label>
-                            <input
-                              type="text"
-                              id="newIndicador"
-                              value={newIndicador}
-                              onChange={(e) => setNewIndicador(e.target.value)}
-                              placeholder="Escribe el nuevo indicador..."
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            />
-                          </div>
                           <div className="flex gap-2">
                             <button
                               type="button"
                               onClick={handleCreateNewCompromiso}
-                              disabled={!newCompromiso.trim() || !newIndicador.trim()}
+                              disabled={!newCompromiso.trim()}
                               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                             >
-                              Crear Compromiso + Indicador
+                              Crear Compromiso
                             </button>
                             <button
                               type="button"
                               onClick={() => {
                                 setShowNewCompromiso(false);
                                 setNewCompromiso('');
-                                setNewIndicador('');
                               }}
                               className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 text-sm"
                             >
@@ -424,51 +496,85 @@ export default function CargaPage() {
                   </div>
                 </div>
 
-                {/* Indicador */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Indicador *
-                  </label>
-                  <Select
-                    value={selectedIndicador}
-                    onChange={(e) => setSelectedIndicador(e.target.value)}
-                    options={indicadores.map(i => ({ value: i.id, label: i.nombre }))}
-                    placeholder="Selecciona un indicador"
-                    required
-                  />
-                </div>
-
-                {/* Periodicidad */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Periodicidad *
-                  </label>
-                  <Select
-                    value={periodicidad}
-                    onChange={(e) => setPeriodicidad(e.target.value)}
-                    options={[
-                      { value: 'mensual', label: 'Mensual' },
-                      { value: 'trimestral', label: 'Trimestral' },
-                      { value: 'semestral', label: 'Semestral' },
-                      { value: 'anual', label: 'Anual' }
-                    ]}
-                    required
-                  />
-                </div>
+                                 {/* Indicador */}
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                     Indicador *
+                   </label>
+                   <Select
+                     value={selectedIndicador}
+                     onChange={(e) => setSelectedIndicador(e.target.value)}
+                     options={indicadores.map(i => ({ value: i.id, label: i.nombre }))}
+                     placeholder="Selecciona un indicador"
+                     required
+                   />
+                   
+                   {/* Opción para crear nuevo indicador */}
+                   <div className="mt-2">
+                     <button
+                       type="button"
+                       onClick={() => setShowNewIndicador(!showNewIndicador)}
+                       className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                     >
+                       {showNewIndicador ? '−' : '+'} Crear nuevo indicador
+                     </button>
+                     
+                     {showNewIndicador && (
+                       <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                         <div className="space-y-3">
+                           <div>
+                             <label htmlFor="newIndicador" className="block text-sm font-medium text-gray-700 mb-1">
+                               Nuevo Indicador
+                             </label>
+                             <input
+                               type="text"
+                               id="newIndicador"
+                               value={newIndicador}
+                               onChange={(e) => setNewIndicador(e.target.value)}
+                               placeholder="Escribe el nuevo indicador..."
+                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                             />
+                           </div>
+                           <div className="flex gap-2">
+                             <button
+                               type="button"
+                               onClick={handleCreateNewIndicador}
+                               disabled={!newIndicador.trim() || !selectedLinea}
+                               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                             >
+                               Crear Indicador
+                             </button>
+                             <button
+                               type="button"
+                               onClick={() => {
+                                 setShowNewIndicador(false);
+                                 setNewIndicador('');
+                               }}
+                               className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 text-sm"
+                             >
+                               Cancelar
+                             </button>
+                           </div>
+                         </div>
+                       </div>
+                     )}
+                   </div>
+                 </div>
 
                 {/* Período */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Período *
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="YYYY-MM (ej: 2025-08)"
+                  <Select
                     value={periodo}
                     onChange={(e) => setPeriodo(e.target.value)}
+                    options={[{ value: '2025-2027', label: '2025-2027' }]}
+                    placeholder="Selecciona un período"
+                    required
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Formato específico según la periodicidad seleccionada
+                    Formato específico según la periodicidad del indicador seleccionado
                   </p>
                 </div>
               </CardContent>

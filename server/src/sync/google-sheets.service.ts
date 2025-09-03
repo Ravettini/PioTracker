@@ -154,48 +154,86 @@ export class GoogleSheetsService {
       const ministerioSheetName = this.sanitizeSheetName(cargaData.ministerio.nombre);
       this.logger.log(`📊 Nombre de hoja sanitizado: "${ministerioSheetName}"`);
       
-      const payload = {
-        indicador_id: cargaData.indicador.id,
-        indicador_nombre: cargaData.indicador.nombre,
-        periodo: cargaData.periodo,
-        ministerio_id: cargaData.ministerio.id,
-        ministerio_nombre: cargaData.ministerio.nombre,
-        linea_id: cargaData.linea.id,
-        linea_titulo: cargaData.linea.titulo,
-        valor: cargaData.valor,
-        unidad: cargaData.unidad,
-        meta: cargaData.meta,
-        fuente: cargaData.fuente,
-        responsable_nombre: cargaData.responsableNombre,
-        responsable_email: cargaData.responsableEmail,
-        observaciones: cargaData.observaciones,
-        estado: cargaData.estado,
-        publicado: true,
-        creado_en: cargaData.creadoEn,
-        actualizado_en: cargaData.actualizadoEn,
-        periodicidad: cargaData.periodicidad,
-        usuario_creador: cargaData.creadoPorUsuario?.nombre || 'Sistema',
-      };
-
-      this.logger.log(`📋 Payload preparado:`, payload);
-
       // Crear o usar la hoja del ministerio
       this.logger.log(`🔧 Verificando/creando hoja "${ministerioSheetName}"`);
       await this.ensureSheetExists(ministerioSheetName);
       
-      this.logger.log(`📝 Insertando datos en hoja "${ministerioSheetName}"`);
-      const result = await this.upsertFactRow(payload, ministerioSheetName);
-      
-      if (result.success) {
-        this.logger.log(`✅ Carga ${cargaId} publicada exitosamente en hoja "${ministerioSheetName}"`);
-        return {
-          success: true,
-          message: `Carga publicada exitosamente en hoja "${ministerioSheetName}"`,
-        };
-      } else {
-        this.logger.error(`❌ Error al publicar carga ${cargaId}: ${result.message}`);
-        throw new Error('Error al publicar carga');
+      // Preparar los datos en el formato correcto para la hoja
+      const rowData = [
+        cargaData.indicador.id,                    // A: Indicador ID
+        cargaData.indicador.nombre,                // B: Indicador Nombre
+        cargaData.periodo,                        // C: Período
+        cargaData.ministerio.id,                   // D: Ministerio ID
+        cargaData.ministerio.nombre,               // E: Ministerio Nombre
+        cargaData.linea.id,                        // F: Línea ID
+        cargaData.linea.titulo,                    // G: Línea Título
+        cargaData.valor,                           // H: Valor
+        cargaData.unidad,                          // I: Unidad
+        cargaData.meta || '',                      // J: Meta
+        cargaData.fuente,                          // K: Fuente
+        cargaData.responsableNombre,               // L: Responsable Nombre
+        cargaData.responsableEmail,                // M: Responsable Email
+        cargaData.observaciones || '',             // N: Observaciones
+        cargaData.estado,                          // O: Estado
+        cargaData.publicado ? 'Sí' : 'No',        // P: Publicado
+        cargaData.creadoEn,                        // Q: Creado En
+        cargaData.actualizadoEn,                   // R: Actualizado En
+      ];
+
+      this.logger.log(`📋 Datos preparados:`, rowData);
+
+      // Buscar si ya existe una fila con la misma combinación
+      const searchResult = await this.sheets.spreadsheets.values.get({
+        spreadsheetId: this.configService.get('google.sheetId'),
+        range: `${ministerioSheetName}!A:R`,
+        valueRenderOption: 'UNFORMATTED_VALUE',
+      });
+
+      const values = searchResult.data.values || [];
+      let rowIndex = -1;
+
+      // Buscar fila existente (Indicador ID, Período, Ministerio ID)
+      for (let i = 0; i < values.length; i++) {
+        if (values[i][0] === cargaData.indicador.id && 
+            values[i][2] === cargaData.periodo && 
+            values[i][3] === cargaData.ministerio.id) {
+          rowIndex = i + 1; // +1 porque las filas de Google Sheets empiezan en 1
+          break;
+        }
       }
+
+      if (rowIndex > 0) {
+        // Actualizar fila existente
+        await this.sheets.spreadsheets.values.update({
+          spreadsheetId: this.configService.get('google.sheetId'),
+          range: `${ministerioSheetName}!A${rowIndex}:R${rowIndex}`,
+          valueInputOption: 'RAW',
+          requestBody: {
+            values: [rowData],
+          },
+        });
+
+        this.logger.log(`✅ Fila actualizada en ${ministerioSheetName}:${rowIndex}`);
+      } else {
+        // Insertar nueva fila
+        await this.sheets.spreadsheets.values.append({
+          spreadsheetId: this.configService.get('google.sheetId'),
+          range: `${ministerioSheetName}!A:R`,
+          valueInputOption: 'RAW',
+          insertDataOption: 'INSERT_ROWS',
+          requestBody: {
+            values: [rowData],
+          },
+        });
+
+        this.logger.log(`✅ Nueva fila insertada en ${ministerioSheetName}`);
+      }
+      
+      this.logger.log(`✅ Carga ${cargaId} publicada exitosamente en hoja "${ministerioSheetName}"`);
+      return {
+        success: true,
+        message: `Carga publicada exitosamente en hoja "${ministerioSheetName}"`,
+      };
     } catch (error) {
       this.logger.error(`❌ Error al publicar carga ${cargaId}:`, error);
       throw new BadRequestException(`Error al publicar carga: ${error.message}`);
@@ -278,8 +316,6 @@ export class GoogleSheetsService {
           'Indicador ID',
           'Indicador Nombre',
           'Período',
-          'Año',
-          'Mes',
           'Ministerio ID',
           'Ministerio Nombre',
           'Línea ID',
@@ -287,7 +323,6 @@ export class GoogleSheetsService {
           'Valor',
           'Unidad',
           'Meta',
-          'Porcentaje Cumplimiento',
           'Fuente',
           'Responsable Nombre',
           'Responsable Email',
@@ -296,14 +331,11 @@ export class GoogleSheetsService {
           'Publicado',
           'Creado En',
           'Actualizado En',
-          'Periodicidad',
-          'Fecha Carga',
-          'Usuario Creador',
         ];
 
         await this.sheets.spreadsheets.values.update({
           spreadsheetId: sheetId,
-          range: `${sheetName}!A1:X1`,
+          range: `${sheetName}!A1:R1`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [headers],

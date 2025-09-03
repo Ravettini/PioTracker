@@ -157,11 +157,15 @@ export const apiClient = {
       return response.data;
     },
     toggleUsuarioStatus: async (id: string) => {
-      const response = await api.patch(`/admin/usuarios/${id}/toggle-status`);
+      const response = await api.put(`/admin/usuarios/${id}/toggle-status`);
       return response.data;
     },
     resetPassword: async (id: string) => {
-      const response = await api.post(`/admin/usuarios/${id}/reset-password`);
+      const response = await api.put(`/admin/usuarios/${id}/reset-password`);
+      return response.data;
+    },
+    deleteUsuario: async (id: string) => {
+      const response = await api.delete(`/admin/usuarios/${id}`);
       return response.data;
     },
     getMinisterios: async () => {
