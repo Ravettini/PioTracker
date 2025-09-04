@@ -2,7 +2,9 @@ import { Controller, Get, Query, Post, Body } from '@nestjs/common';
 import { CatalogosService } from './catalogos.service';
 import { Linea } from '../db/entities/linea.entity';
 import { Ministerio } from '../db/entities/ministerio.entity';
+import { Indicador } from '../db/entities/indicador.entity';
 import { CreateLineaDto } from './dto/create-linea.dto';
+import { CreateIndicadorDto, Periodicidad } from './dto/create-indicador.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
@@ -15,6 +17,7 @@ export class CatalogosController {
     private readonly catalogosService: CatalogosService,
     @InjectRepository(Linea) private readonly lineaRepository: Repository<Linea>,
     @InjectRepository(Ministerio) private readonly ministerioRepository: Repository<Ministerio>,
+    @InjectRepository(Indicador) private readonly indicadorRepository: Repository<Indicador>,
   ) {}
 
   @Get('ministerios')
@@ -95,9 +98,72 @@ export class CatalogosController {
     return await this.catalogosService.getIndicadores(lineaId);
   }
 
+  @Post('indicadores')
+  async createIndicador(@Body() createIndicadorDto: CreateIndicadorDto) {
+    try {
+      // Verificar que la línea existe
+      const linea = await this.lineaRepository.findOne({
+        where: { id: createIndicadorDto.lineaId, activo: true }
+      });
+
+      if (!linea) {
+        throw new NotFoundException('Línea no encontrada');
+      }
+
+      // Generar ID único para el indicador
+      const indicadorId = this.generateIndicadorId(createIndicadorDto.nombre);
+      
+      // Verificar que el ID no exista
+      const existingIndicador = await this.indicadorRepository.findOne({
+        where: { id: indicadorId }
+      });
+
+      if (existingIndicador) {
+        // Si existe, generar un ID único
+        const uniqueId = `${indicadorId}_${Date.now()}`;
+        createIndicadorDto['id'] = uniqueId;
+      } else {
+        createIndicadorDto['id'] = indicadorId;
+      }
+
+      const indicador = this.indicadorRepository.create({
+        ...createIndicadorDto,
+        activo: true,
+        periodicidad: createIndicadorDto.periodicidad || Periodicidad.MENSUAL
+      });
+
+      const savedIndicador = await this.indicadorRepository.save(indicador);
+
+      this.logger.log(`Nuevo indicador creado: ${savedIndicador.nombre} para línea ${linea.titulo}`);
+
+      return {
+        success: true,
+        data: savedIndicador,
+        message: 'Indicador creado exitosamente'
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      this.logger.error('Error creando indicador:', error);
+      throw new InternalServerErrorException('Error creando indicador');
+    }
+  }
+
   private generateShortId(titulo: string): string {
     const words = titulo.split(' ').filter(word => word.length > 0);
     if (words.length === 0) return 'LIN';
+    
+    if (words.length === 1) {
+      return words[0].substring(0, 3).toUpperCase();
+    }
+    
+    return words.map(word => word.charAt(0)).join('').toUpperCase();
+  }
+
+  private generateIndicadorId(nombre: string): string {
+    const words = nombre.split(' ').filter(word => word.length > 0);
+    if (words.length === 0) return 'IND';
     
     if (words.length === 1) {
       return words[0].substring(0, 3).toUpperCase();

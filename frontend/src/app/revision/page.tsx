@@ -258,10 +258,10 @@ export default function RevisionPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button
               variant="ghost"
               onClick={() => router.back()}
@@ -270,10 +270,10 @@ export default function RevisionPage() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                 Revisión de Cargas
               </h1>
-              <p className="text-gray-600 mt-2">
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
                 Revisa y aprueba las cargas pendientes de validación
               </p>
             </div>
@@ -282,6 +282,7 @@ export default function RevisionPage() {
             variant="outline"
             onClick={loadCargasPendientes}
             disabled={isLoading}
+            className="w-full md:w-auto"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
             Actualizar
@@ -289,44 +290,44 @@ export default function RevisionPage() {
         </div>
 
         {/* Estadísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <AlertTriangle className="h-6 w-6 text-estado-pendiente" />
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 items-center justify-center py-2 md:py-8">
+          <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+            <CardContent className="p-6 pt-15 p-6 w-full text-center">
+              <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                <div className="p-2 md:p-3 bg-yellow-100 rounded-lg">
+                  <AlertTriangle className="h-5 w-5 md:h-6 md:w-6 text-estado-pendiente" />
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Pendientes</p>
-                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <BarChart3 className="h-6 w-6 text-gcba-blue" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Cargas</p>
-                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
+                <div>
+                  <p className="text-xs md:text-sm font-medium text-gray-600">Pendientes</p>
+                  <p className="text-lg md:text-2xl font-bold text-gray-900">{cargas.length}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <CheckCircle className="h-6 w-6 text-estado-validado" />
+          <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+            <CardContent className="p-6 pt-15 p-6 w-full text-center">
+              <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                <div className="p-2 md:p-3 bg-blue-100 rounded-lg">
+                  <BarChart3 className="h-5 w-5 md:h-6 md:w-6 text-gcba-blue" />
                 </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Listas para Revisar</p>
-                  <p className="text-2xl font-bold text-gray-900">{cargas.length}</p>
+                <div>
+                  <p className="text-xs md:text-sm font-medium text-gray-600">Total Cargas</p>
+                  <p className="text-lg md:text-2xl font-bold text-gray-900">{cargas.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="flex justify-center items-center hover:shadow-md transition-shadow col-span-2 lg:col-span-1">
+            <CardContent className="p-6 pt-15 p-6 w-full text-center">
+              <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                <div className="p-2 md:p-3 bg-green-100 rounded-lg">
+                  <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-estado-validado" />
+                </div>
+                <div>
+                  <p className="text-xs md:text-sm font-medium text-gray-600">Listas para Revisar</p>
+                  <p className="text-lg md:text-2xl font-bold text-gray-900">{cargas.length}</p>
                 </div>
               </div>
             </CardContent>

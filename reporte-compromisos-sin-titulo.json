@@ -1,0 +1,1782 @@
+{
+  "fecha": "2025-09-04T15:11:01.721Z",
+  "totalMinisterios": 16,
+  "exitosos": 16,
+  "fallidos": 0,
+  "resultados": [
+    {
+      "ministerio": {
+        "id": "CUL",
+        "nombre": "Cultura",
+        "sigla": "CUL",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "CUL-PAT",
+            "titulo": "Patrimonio Cultural",
+            "ministerioId": "CUL",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "CUL-ART",
+            "titulo": "Artes y Espectáculos",
+            "ministerioId": "CUL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CUL-EVENTOS",
+                "nombre": "Eventos Culturales Realizados",
+                "lineaId": "CUL-ART",
+                "unidadDefecto": "eventos",
+                "periodicidad": "trimestral",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998653205",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "CUL",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "DES",
+        "nombre": "Desarrollo Económico y Social",
+        "sigla": "DES",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "DES-EMP",
+            "titulo": "Empleo y Desarrollo Productivo",
+            "ministerioId": "DES",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "EMP-TASA",
+                "nombre": "Tasa de Empleo",
+                "lineaId": "DES-EMP",
+                "unidadDefecto": "%",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": "100"
+              },
+              {
+                "id": "EMP-PUESTOS",
+                "nombre": "Puestos de Trabajo Creados",
+                "lineaId": "DES-EMP",
+                "unidadDefecto": "puestos",
+                "periodicidad": "trimestral",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "DES-IND",
+            "titulo": "Industria y Tecnología",
+            "ministerioId": "DES",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "ME",
+            "titulo": "Mujeres empresarias",
+            "ministerioId": "DES",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "DES-COM",
+            "titulo": "Comercio y Servicios",
+            "ministerioId": "DES",
+            "activo": true,
+            "indicadores": []
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998653739",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "DES",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "EDU",
+        "nombre": "Educacion",
+        "sigla": "EDU",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "CTEADB",
+            "titulo": "Continuar teniendo el apoyo de BOTI",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "CGLADBP",
+            "titulo": "Continuar garantizando la asignación de becas paritarias",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "CST",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDCC",
+                "nombre": "Cantidad de clubes creados",
+                "lineaId": "CST",
+                "unidadDefecto": "clubes",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDCD",
+                "nombre": "Cantidad de casos derivados",
+                "lineaId": "CST",
+                "unidadDefecto": "casos",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CCDE2CDFP",
+                "nombre": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional",
+                "lineaId": "CST",
+                "unidadDefecto": "cursos",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "GECDMEECTT-(%DMSETDC",
+                "nombre": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+                "lineaId": "CST",
+                "unidadDefecto": "%",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "AIDCYF",
+            "titulo": "Articular instancias de capacitación y formación",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "ACLDGDADLVPMDG",
+            "titulo": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "CDUPU",
+            "titulo": "Creación de un protocolo unificado",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "CDUIDR",
+            "titulo": "Confección de un Informe de relevamiento",
+            "ministerioId": "EDU",
+            "activo": true,
+            "indicadores": []
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998654267",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "EDU",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "ERDSP",
+        "nombre": "Ente regulador de servicios púb",
+        "sigla": "ERDSP",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "AALLPLIASDVPRDGIDGYDEEMDLRN1",
+            "titulo": "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de gén",
+            "ministerioId": "ERDSP",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "PDNLPLIASDVPRDGIDGYDEEMDLRN1",
+                "nombre": "publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de",
+                "lineaId": "AALLPLIASDVPRDGIDGYDEEMDLRN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDRPLADLL",
+                "nombre": "cantidad de reuniones para la actualizacion de los lineamientos",
+                "lineaId": "AALLPLIASDVPRDGIDGYDEEMDLRN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "CIADPYDDLRYSDEMDVPRDGELCPLIDOSDDF",
+            "titulo": "C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia d",
+            "ministerioId": "ERDSP",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDADPYDDLRYSDEMDVPRDGELCDAFEC",
+                "nombre": "Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia d",
+                "lineaId": "CIADPYDDLRYSDEMDVPRDGELCPLIDOSDDF",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "BPLIDLEPDSPDLCDBAAPP",
+            "titulo": "B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Bueno",
+            "ministerioId": "ERDSP",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDEPDSPDLCDBAIAPP",
+                "nombre": "Cantidad de empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires incorporadas al ",
+                "lineaId": "BPLIDLEPDSPDLCDBAAPP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDARPPLIDLEPDSPDLCDBAAPP",
+                "nombre": "Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servi",
+                "lineaId": "BPLIDLEPDSPDLCDBAAPP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998654804",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "ERDSP",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "EP",
+        "nombre": "Espacio Publico",
+        "sigla": "EP",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "APLIDLECLVPCDEPYLHUELCDBAAPP",
+            "titulo": "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio",
+            "ministerioId": "EP",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDARPPLIDLECLVPCDEPYLHUELCDBAAPP",
+                "nombre": "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vige",
+                "lineaId": "APLIDLECLVPCDEPYLHUELCDBAAPP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDEDECIAPP",
+                "nombre": "Cantidad de empresas de estas características incorporadas al Programa PARES",
+                "lineaId": "APLIDLECLVPCDEPYLHUELCDBAAPP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "BCCLIDPDPAVASPDRAFE2ATDCPN1",
+            "titulo": "B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio púb",
+            "ministerioId": "EP",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CYTDAQGLCDLIDPDPAVASPDRAFE2ATDCPN1",
+                "nombre": "Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promo",
+                "lineaId": "BCCLIDPDPAVASPDRAFE2ATDCPN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDCYCSGAL1CVAMDEPEHUPLREDMRS",
+                "nombre": "cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de ",
+                "lineaId": "BCCLIDPDPAVASPDRAFE2ATDCPN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "PDCCEG",
+                "nombre": "Porcentaje de cooperativas capacitadas en género",
+                "lineaId": "BCCLIDPDPAVASPDRAFE2ATDCPN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998655329",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "EP",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "HYF",
+        "nombre": "Hacienda y finanzas",
+        "sigla": "HYF",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "BEEMDLL6PAADLNQREAYPDPDAELCDVPMDGEEÁLDG(FCN1",
+            "titulo": "B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y ",
+            "ministerioId": "HYF",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "BPDPA",
+                "nombre": "b) publicacion del Protocolo actualizado",
+                "lineaId": "BEEMDLL6PAADLNQREAYPDPDAELCDVPMDGEEÁLDG(FCN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "ACDRPRLADLNQREAYPDP",
+                "nombre": "a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y",
+                "lineaId": "BEEMDLL6PAADLNQREAYPDPDAELCDVPMDGEEÁLDG(FCN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "ACESDLEFADTLPCPDGYDIEEP(6",
+            "titulo": "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva ",
+            "ministerioId": "HYF",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "BPDPDGAAPCPDGYD",
+                "nombre": "b) porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad",
+                "lineaId": "ACESDLEFADTLPCPDGYDIEEP(6",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "ACDPCPDGYDIEEP",
+                "nombre": "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto",
+                "lineaId": "ACESDLEFADTLPCPDGYDIEEP(6",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "CCTELPYEODSEMALEPDGQCCLRDELRN2YPDN1",
+            "titulo": "C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas pro",
+            "ministerioId": "HYF",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CSYCDLRDCESDS",
+                "nombre": "c) seguimiento y control de los requisitos de cada empresa solicitante del sello",
+                "lineaId": "CCTELPYEODSEMALEPDGQCCLRDELRN2YPDN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "BCDADPDS\"M",
+                "nombre": "b) cantidad de actividades de promocion del sello \"empresa mujer\"",
+                "lineaId": "CCTELPYEODSEMALEPDGQCCLRDELRN2YPDN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "ACDEQHSESM",
+                "nombre": "a) cantidad de empresas que han solicitado el sello mujer",
+                "lineaId": "CCTELPYEODSEMALEPDGQCCLRDELRN2YPDN1",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998655851",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "HYF",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "JDG",
+        "nombre": "Jefatura de Gabinete",
+        "sigla": "JDG",
+        "activo": true,
+        "lineas": []
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998656386",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "JDG",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "JUS",
+        "nombre": "Justicia",
+        "sigla": "JUS",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "BICPALTDCYLCDUFQPALPDLVPRDGELJLDMCYU",
+            "titulo": "B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero ",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "PDADRDUADDLSAQIEDLCDTECDTDCYUPPLIDUFU",
+                "nombre": "Porcentaje de avance de realización de un Análisis Diagnóstico de la situación actual que incluya ev",
+                "lineaId": "BICPALTDCYLCDUFQPALPDLVPRDGELJLDMCYU",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDRYEFEALACCOAR(JLEEGODLSCE",
+                "nombre": "Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores r",
+                "lineaId": "BICPALTDCYLCDUFQPALPDLVPRDGELJLDMCYU",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "APEAYPJPGPVDVDGVSYTDPATDLSDJ",
+            "titulo": "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de géne",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDCAASTDVDDAJEFDLTDV(STDP",
+                "nombre": "Cantidad de casos atendidos anualmente según tipo de violencia: Distribución de asesoría jurídica en",
+                "lineaId": "APEAYPJPGPVDVDGVSYTDPATDLSDJ",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDMAATDVDVDGVSYTDPQAASJG",
+                "nombre": "Cantidad de mujeres/usuarios atendidos anualmente. Total de víctimas de violencia de género, violenc",
+                "lineaId": "APEAYPJPGPVDVDGVSYTDPATDLSDJ",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CYTDARPPEAYPPG",
+                "nombre": "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+                "lineaId": "APEAYPJPGPVDVDGVSYTDPATDLSDJ",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "GSATDLSDTYEALASALIP",
+            "titulo": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciati",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDASIADLADLIP",
+                "nombre": "Cantidad de asociaciones sindicales informadas anualmente de los alcances de la iniciatva PARES",
+                "lineaId": "GSATDLSDTYEALASALIP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDDSCAEDDDLIP",
+                "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+                "lineaId": "GSATDLSDTYEALASALIP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDDSCAEDDDLIP_1756998162396",
+                "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+                "lineaId": "GSATDLSDTYEALASALIP",
+                "unidadDefecto": "delegadas",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "FCCEABPLSDTYEAPESDVPRDGEEÁLATDLHDPLDGRDTEEMDC1DLOIDT(",
+            "titulo": "F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situa",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDPAPMTDPESDVPRDGEEÁLQRAPPDLSDTYE",
+                "nombre": "Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de ",
+                "lineaId": "FCCEABPLSDTYEAPESDVPRDGEEÁLATDLHDPLDGRDTEEMDC1DLOIDT(",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "EACLDGDAEDLMDDLSDLMEDDLEEBEM",
+            "titulo": "E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecre",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMPELEEBEM",
+                "nombre": "Cantidad de mujeres participantes en la Expo Empleo Barrial Edicion Mujer",
+                "lineaId": "EACLDGDAEDLMDDLSDLMEDDLEEBEM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDMQOECRDLPDLEEBEM",
+                "nombre": "Cantidad de mujeres que obtuvieron empleo como resultado de la participación de la Expo Empleo Barri",
+                "lineaId": "EACLDGDAEDLMDDLSDLMEDDLEEBEM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "FDRDLEEBEM",
+                "nombre": "Fecha de realizacion de la Expo Empleo Barrial Edicion Mujer",
+                "lineaId": "EACLDGDAEDLMDDLSDLMEDDLEEBEM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "ADEACLDDAEDLMPDLEEBEM",
+                "nombre": "Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar",
+                "lineaId": "EACLDGDAEDLMDDLSDLMEDDLEEBEM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "DDEÍDPPLRPSIYEAPSDEOJCIPEIDLADLMELTDD",
+            "titulo": "D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesorami",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDATCOJPEDDÍDPP",
+                "nombre": "Cantidad de actividades técnicas con otras jurisdicciones para el desarrollo del índice de paridad p",
+                "lineaId": "DDEÍDPPLRPSIYEAPSDEOJCIPEIDLADLMELTDD",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDADFCFDOJPILADLMELTDD",
+                "nombre": "Cantidad de actividades de formacion con funcionarios de otras juridicciones para impulsar la autono",
+                "lineaId": "DDEÍDPPLRPSIYEAPSDEOJCIPEIDLADLMELTDD",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDEVCOJPDEIDPP",
+                "nombre": "Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de par",
+                "lineaId": "DDEÍDPPLRPSIYEAPSDEOJCIPEIDLADLMELTDD",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "CTELMDLLN2QCEEÁDLCADBAERDDAM",
+            "titulo": "C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Bueno",
+            "ministerioId": "JUS",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDEFEARPTELMDRDDA",
+                "nombre": "Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del regist",
+                "lineaId": "CTELMDLLN2QCEEÁDLCADBAERDDAM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998656925",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "JUS",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "MDH",
+        "nombre": "MDHyH",
+        "sigla": "MDH",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "JRYAIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+            "titulo": "J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMAEMDVPMDGQPDTFYDTEPSETDMAELC",
+                "nombre": "Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  tray",
+                "lineaId": "JRYAIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDIDRDIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "nombre": "Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social c",
+                "lineaId": "JRYAIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "PDNPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "nombre": "Publicacion del nuevo protocolo de intervención y abordaje social con perspectiva de género en el ma",
+                "lineaId": "JRYAIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDADACLEMDEPEFDTFYTEPLPAEMDVPMDG",
+                "nombre": "Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos ",
+                "lineaId": "JRYAIDPDIYASCPDGEEMDLPHDIDLBPDLCACDIDLVDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "ASLIEMDAAMESDV",
+            "titulo": "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDRRELAIELCDEH",
+                "nombre": "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+                "lineaId": "ASLIEMDAAMESDV",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDUHQPSLIEMDAAMESDV",
+                "nombre": "Creacion/implementacion de una herramienta que permita sistematizar la informacion en materia de asi",
+                "lineaId": "ASLIEMDAAMESDV",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "BGLCDPDAALVPRDG",
+            "titulo": "B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDAQIPMPGLCDPDAALVPRDG",
+                "nombre": "Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a",
+                "lineaId": "BGLCDPDAALVPRDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "CGEDCELDDAAMESDCP",
+            "titulo": "C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de co",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDEDCIELDDAAMESDCP",
+                "nombre": "Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situa",
+                "lineaId": "CGEDCELDDAAMESDCP",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "DCCLLDAT1Y9",
+            "titulo": "D) Continuar con las líneas de atención telefónica 144 y 911.",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDLRA1YDA9PM",
+                "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+                "lineaId": "DCCLLDAT1Y9",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "RRCEMPFPMLCELCIDLM",
+                "nombre": "Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integ",
+                "lineaId": "DCCLLDAT1Y9",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDEDMDELC",
+                "nombre": "Cantidad de enlaces del MPF dispuestos en los CIMs",
+                "lineaId": "DCCLLDAT1Y9",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDLRA1YDA9PM_1756998160748",
+                "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+                "lineaId": "DCCLLDAT1Y9",
+                "unidadDefecto": "llamadas",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "FGLCDLPDBECPDGDLDGDPSEA",
+            "titulo": "F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género ",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "PDBECPDGDLDGDPSEA",
+                "nombre": "Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Política",
+                "lineaId": "FGLCDLPDBECPDGDLDGDPSEA",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+            "titulo": "G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos fo",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDADACLSDDDPHPPLTFDEYEPLPAEMDVPMDG",
+                "nombre": "Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para pr",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDMAEMDVPMDGQPDTFDEYECDMSETDMA",
+                "nombre": "Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  tray",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDRCEMDSPLFDPDIAUC",
+                "nombre": "Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a u",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "PDPPMDAA",
+                "nombre": "Publicacion de Protocolo por medio de acto administrativo",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDARCEMDSPIEPDATDLVPMDGELCDSYAC(DLRSDLC",
+                "nombre": "Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territor",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDCDLRSDLCQHIEPDATDLVPMDG",
+                "nombre": "Cantidad de Cesacs de la region sur de la ciudad que han incluido el Plan de Abordaje territorial de",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDMAELCDLRSDLCATDPDATDLVPMDG",
+                "nombre": "Cantidad de mujeres asistidas en los Cesac de la region sur de la ciudad a traves del Plan de aborda",
+                "lineaId": "GACLSDDDPHLPETFDEYEPLPAEMDVPMDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "PCYCSG",
+            "titulo": "Promover charlas y capacitaciones sobre género",
+            "ministerioId": "MDH",
+            "activo": true,
+            "indicadores": []
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998657467",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "MDH",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "MED",
+        "nombre": "Medio Ambiente",
+        "sigla": "MED",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "MED-ESP",
+            "titulo": "Espacios Verdes",
+            "ministerioId": "MED",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "MED-ESPACIOS",
+                "nombre": "Metros Cuadrados de Espacios Verdes por Habitante",
+                "lineaId": "MED-ESP",
+                "unidadDefecto": "m²/hab",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "MED-RES",
+            "titulo": "Residuos y Reciclaje",
+            "ministerioId": "MED",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "MED-RECICLAJE",
+                "nombre": "Porcentaje de Residuos Reciclados",
+                "lineaId": "MED-RES",
+                "unidadDefecto": "%",
+                "periodicidad": "trimestral",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": "100"
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998657997",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "MED",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "SAL",
+        "nombre": "Salud",
+        "sigla": "SAL",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "1DUPPCSSSCHPLPYPDLS",
+            "titulo": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y",
+            "ministerioId": "SAL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDCDSSRELCDS_1756998161291",
+                "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud",
+                "lineaId": "1DUPPCSSSCHPLPYPDLS",
+                "unidadDefecto": "consejerías",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDCDSSRELCDS",
+                "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud.",
+                "lineaId": "1DUPPCSSSCHPLPYPDLS",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDTDCOCSMRAEAP",
+                "nombre": "Cantidad de turnos de colocacion o consulta sobre MAC realizados anualmente en atención primaria.",
+                "lineaId": "1DUPPCSSSCHPLPYPDLS",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "3IEPEADTEPDM",
+            "titulo": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.",
+            "ministerioId": "SAL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CTDMOAELEPDSDLRC",
+                "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA",
+                "lineaId": "3IEPEADTEPDM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "PDVCRAAA",
+                "nombre": "Porcentaje/cantidad de variación con respecto al año anterior",
+                "lineaId": "3IEPEADTEPDM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CTDMOAELEPDSDLRC_1756998161842",
+                "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA",
+                "lineaId": "3IEPEADTEPDM",
+                "unidadDefecto": "turnos",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "4GMDAEDDSDLCYLDGDAALVPMDGPAAMESDVPRDG",
+            "titulo": "4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección Genera",
+            "ministerioId": "SAL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "PDTDSASTDSPPVDVPRDG",
+                "nombre": "Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de viol",
+                "lineaId": "4GMDAEDDSDLCYLDGDAALVPMDGPAAMESDVPRDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "5BLIRAEAYPPCPDGYDALFDNAPDSPLIDG(YVTLODSEELCPRLBDG",
+            "titulo": "5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de gé",
+            "ministerioId": "SAL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDEAYPDMDSPAEEP",
+                "nombre": "Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el por",
+                "lineaId": "5BLIRAEAYPPCPDGYDALFDNAPDSPLIDG(YVTLODSEELCPRLBDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "2PEDDOTIPLPDCDCU",
+            "titulo": "2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cánc",
+            "ministerioId": "SAL",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDM(2Y6AQSRUEDPEEUA",
+                "nombre": "Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.",
+                "lineaId": "2PEDDOTIPLPDCDCU",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998658534",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "SAL",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "SEG",
+        "nombre": "Seguridad",
+        "sigla": "SEG",
+        "activo": true,
+        "lineas": []
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998659081",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "SEG",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "TRA",
+        "nombre": "Transporte y Obras Públicas",
+        "sigla": "TRA",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "TRA-MET",
+            "titulo": "Metrobús y Transporte Público",
+            "ministerioId": "TRA",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "TRA-KM",
+                "nombre": "Kilómetros de Metrobús Operativos",
+                "lineaId": "TRA-MET",
+                "unidadDefecto": "km",
+                "periodicidad": "semestral",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              },
+              {
+                "id": "TRA-PASAJEROS",
+                "nombre": "Pasajeros Transportados por Día",
+                "lineaId": "TRA-MET",
+                "unidadDefecto": "pasajeros/día",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "TRA-INF",
+            "titulo": "Infraestructura Vial",
+            "ministerioId": "TRA",
+            "activo": true,
+            "indicadores": []
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998659614",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "TRA",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "TUR",
+        "nombre": "Turismo",
+        "sigla": "TUR",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "TUR-ATR",
+            "titulo": "Atractivos Turísticos",
+            "ministerioId": "TUR",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "TUR-VISITANTES",
+                "nombre": "Visitantes a Atractivos Turísticos",
+                "lineaId": "TUR-ATR",
+                "unidadDefecto": "visitantes",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": "0",
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "TUR-EVE",
+            "titulo": "Eventos y Promoción",
+            "ministerioId": "TUR",
+            "activo": true,
+            "indicadores": []
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998660142",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "TUR",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "VIC",
+        "nombre": "Vicejefatura",
+        "sigla": "VIC",
+        "activo": true,
+        "lineas": [
+          {
+            "id": "1-LIDOEEÁLATDPDETDDLDDCELDTEECCDAPYPPAQSFUCLE",
+            "titulo": "1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilid",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDNCREEPDET",
+                "nombre": "cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans",
+                "lineaId": "1-LIDOEEÁLATDPDETDDLDDCELDTEECCDAPYPPAQSFUCLE",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "2FLPTALPDALAEDLM",
+            "titulo": "2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDPTALPDLAEDLMQFF",
+                "nombre": "cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron ",
+                "lineaId": "2FLPTALPDALAEDLM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "1-EAAMM",
+            "titulo": "1. -Promover el acompañamiento a mujeres mayores.",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMMQHPDLDPDLS",
+                "nombre": "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretar",
+                "lineaId": "1-EAAMM",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "PADSYE",
+            "titulo": "Promover acciones de sensibilización y educación",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "ADMDDDEP",
+            "titulo": "Ajuste de manual de diseño de espacios públicos",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": []
+          },
+          {
+            "id": "2PLCAMCDEDRYS(EPPPCCGR",
+            "titulo": "2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, e",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMCDQHPDIDFEDRYS",
+                "nombre": "cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos rep",
+                "lineaId": "2PLCAMCDEDRYS(EPPPCCGR",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "1CALEIACDLAANAYMCDVDVDG",
+            "titulo": "1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y muje",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDIDEIACDLAANAYMCDVDVDGC",
+                "nombre": "cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescente",
+                "lineaId": "1CALEIACDLAANAYMCDVDVDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+            "titulo": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buen",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDPEEPMLDE2",
+                "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+                "lineaId": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDADSYERSLVDGDACMECCLDGDADLVPRDGDDMDDHYH",
+                "nombre": "Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigida",
+                "lineaId": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "MATDLCSDLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+                "nombre": "Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el ",
+                "lineaId": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              },
+              {
+                "id": "CDPEEPMLDE2_1756998162956",
+                "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+                "lineaId": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+                "unidadDefecto": "participantes",
+                "periodicidad": "anual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "1BATMLCYPPEADEDHELNRPMVDVPMDGDLCADBA",
+            "titulo": "1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDEDIDCT/CPEADHELNR",
+                "nombre": "cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de hue",
+                "lineaId": "1BATMLCYPPEADEDHELNRPMVDVPMDGDLCADBA",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "6PUTDAAMCDJCLCELTPLEIACDLAAVDVDG",
+            "titulo": "6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "RDTDAAMCD",
+                "nombre": "Realizacion de tablero de acceso a mujeres con discapacidad",
+                "lineaId": "6PUTDAAMCDJCLCELTPLEIACDLAAVDVDG",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "5PLEDMCDLQILCEEFPPYL",
+            "titulo": "5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educació",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMCDPDEDCEEFPPYL",
+                "nombre": "Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financie",
+                "lineaId": "5PLEDMCDLQILCEEFPPYL",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "4PEAAMMCDYES",
+            "titulo": "4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDMMCDYESAATDLDP",
+                "nombre": "cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes pro",
+                "lineaId": "4PEAAMMCDYES",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "3PPDGEADACCRCYA",
+            "titulo": "3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDARPPPDGETAC",
+                "nombre": "Cantidad de acciones realizadas para promover políticas de género en torno al ciudado",
+                "lineaId": "3PPDGEADACCRCYA",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "3EATDCDLCLTDPDLCDBAUPPDAPLPAYAIDLVDTELC",
+            "titulo": "3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, u",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "PDPPDAPLPAYAIDLVDTDLC",
+                "nombre": "publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de ",
+                "lineaId": "3EATDCDLCLTDPDLCDBAUPPDAPLPAYAIDLVDTELC",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "2-LRYEDATDEEEEPBCEPDPLCSLEYLBCEEGY",
+            "titulo": "2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, ",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "CDERDBC",
+                "nombre": "cantidad de encuentros realizados desde BA Convive",
+                "lineaId": "2-LRYEDATDEEEEPBCEPDPLCSLEYLBCEEGY",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          },
+          {
+            "id": "1CYCLPDGDLCDBA",
+            "titulo": "1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.",
+            "ministerioId": "VIC",
+            "activo": true,
+            "indicadores": [
+              {
+                "id": "-CDRIDCSPDG",
+                "nombre": "- cantidad de reuniones interinstitucionales de coordinación sobre políticas de género",
+                "lineaId": "1CYCLPDGDLCDBA",
+                "unidadDefecto": "unidad",
+                "periodicidad": "mensual",
+                "activo": true,
+                "valorMin": null,
+                "valorMax": null
+              }
+            ]
+          }
+        ]
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998660670",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "VIC",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    },
+    {
+      "ministerio": {
+        "id": "COM",
+        "nombre": "compromisos ",
+        "sigla": "COM",
+        "activo": true,
+        "lineas": []
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CST_1756998661201",
+            "titulo": "Compromiso sin título",
+            "ministerioId": "COM",
+            "activo": true
+          },
+          "message": "Línea creada exitosamente"
+        }
+      }
+    }
+  ]
+}

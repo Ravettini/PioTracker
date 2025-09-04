@@ -1,0 +1,1279 @@
+### Ministerio: Educacion
+#### Compromiso: Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.
+- Indicador: Cantidad de casos derivados
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 4 casos derivados
+
+### Ministerio: Educacion
+#### Compromiso: Compromiso sin título
+- Indicador: Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Status al 4/11: Total inscriptos 5.062. 60 % de los inscriptos confirmaron vacante 3.055. 42% de los confirmados son mujeres.
+
+- Indicador: Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.
+  - Valor: 110
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 110 vacantes
+
+- Indicador: Cantidad de clubes creados
+  - Valor: 14
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Educacion
+#### Compromiso: Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.
+- Indicador: Cantidad de mujeres mentoreadas anualmente
+  - Valor: 511
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 511 participantes
+
+### Ministerio: Educacion
+#### Compromiso: Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.
+- Indicador: Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Status al 4/11. Total inscriptos 29.950. El 56 % de los inscriptos aprobaron el examen (16.735). 11.188 confirmaron vacante (39% mujeres).
+
+### Ministerio: Educacion
+#### Compromiso: Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.
+- Indicador: % de mujeres sobre la matrícula del  curso "Cuidador/a de niños y niñas en el ámbito de la vida familiar"
+  - Valor: 0.82
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Educacion
+#### Compromiso: Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.
+- Indicador: % de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas
+  - Valor: 250
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 250 participantes
+
+### Ministerio: Educacion
+#### Compromiso: Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).
+- Indicador: Creación de las comisiones de Bienestar Digital y de Género y STEAM
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Ambas comisiones creadas
+
+### Ministerio: Educacion
+#### Compromiso: Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación
+- Indicador: Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.
+  - Valor: 300
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 300 participantes
+
+### Ministerio: Educacion
+#### Compromiso: Potenciar el “Club de Robótica para chicas”.
+- Indicador: Cantidad de inscriptas en el programa
+  - Valor: 1000
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 1000 inscriptas
+
+### Ministerio: Ente regulador de servicios púb
+#### Compromiso: A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.
+- Indicador: cantidad de reuniones para la actualizacion de los lineamientos
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Ente regulador de servicios púb
+#### Compromiso: B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.
+- Indicador: Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Ver anexo
+
+### Ministerio: Ente regulador de servicios púb
+#### Compromiso: C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad para los integrantes del organismo sin distinción de función
+- Indicador: Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad destinadas a fiscalizadoras en calle.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Ente regulador de servicios púb
+#### Compromiso: Compromiso sin título
+- Indicador: publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de genero, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires incorporadas al Programa PARES.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Ver anexo
+
+### Ministerio: Espacio Publico
+#### Compromiso: A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES
+- Indicador: Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES
+  - Valor: 5
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Tras la firma de Acta Acuerdo "Plan de Igualdad de Oportunidades y de trato entre mujeres y varones" concretada el 5/12/2024, nos dispusimos a informarle a los equipos de legales de cada una de las reparticiones dependientes de la Subsecretaría de Higiene sobre la existencia del Programa PARES para que procedan a invitar a inscribirse a cada empresa con la que trabajan. Al día de hoy, nos hemos reunido con el equipo de legales de la Dirección General de Limpieza quienes se comprometieron a evaluar la mejor vía para notificar a las empresas que mantienen licitaciones con esta área. En el transcurso de esta semana procederemos a reunirnos con la Dirección General de Reciclado y el Ente de Higiene Urbana para alcanzar el mismo objetivo antes de que finalice el año.
+
+### Ministerio: Espacio Publico
+#### Compromiso: B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.
+- Indicador: Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.
+  - Valor: 2024
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Promotoras Ambientales: las acciones realizadas entre enero y diciembre de 2024 impactaron a un total de 70.021 vecinos/as en la ciudad: 113 charlas a empresas, instituciones y organismos públicos (4.108 personas alcanzadas). 170 talleres de reutilización en plazas, puntos verdes y organizaciones de la sociedad civil (5.296 personas alcanzadas). 135 charlas y talleres en escuelas (4.429 personas impactadas). 23 jornadas especiales y eventos (2.678 personas alcanzadas). 403 acciones de concientización al paso (15.010 personas alcanzadas). También se realizó Concientización puerta a puerta en segmentos residenciales y pequeños comercios (relevamiento de territorio). A la fecha el alcance es de 38.500 contactos. 
+ Total de acciones: 844 (31.521 personas alcanzadas)
+
+### Ministerio: Espacio Publico
+#### Compromiso: C) Promover charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.
+- Indicador: cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.
+  - Valor: 116
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Con el apoyo de la fundación Delterra, 116 Promotoras Ambientales pudieron capacitarse en la Universidad Austral durante todo 2024. Dentro del temario preparado especialmente para estas mujeres de cooperativas de recuperadores urbanos, se encuentra el PROTOCOLO DE VIOLENCIA DE GÉNERO, donde se explica el marco conceptual, la legislación sobre género vigente en CABA y en PROVINCIA. También, se exponen situaciones a modo de ejemplo para entender qué hacer, cómo reaccionar, a quién llamar, cuál es el procedimiento que deben seguir si quieren denunciar, y sobre todo poder entender a qué se considera violencia de género para que su caso sea detectado a tiempo.
+
+### Ministerio: Espacio Publico
+#### Compromiso: Compromiso sin título
+- Indicador: Cantidad de empresas de estas características incorporadas al Programa PARES
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Ninguna
+
+- Indicador: Porcentaje de cooperativas capacitadas en género
+  - Valor: 100
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 100%: las promotoras de las 12 cooperativas fueron alcanzadas con estas clases.
+
+### Ministerio: Hacienda y finanzas
+#### Compromiso: A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).
+- Indicador: a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Hacienda y finanzas
+#### Compromiso: B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género en el ámbito laboral del GCABA (Resolución Firma Conjunta N° 1/MSGC/2019).
+- Indicador: a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y procedimiento de Protocolo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Hacienda y finanzas
+#### Compromiso: C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos en la Resolución N° 2302/GCABA-MEFGC/2019 y por Disposición N° 1000/GCABA-DGCYC/2019
+- Indicador: a) cantidad de empresas que han solicitado el sello mujer
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Hacienda y finanzas
+#### Compromiso: Compromiso sin título
+- Indicador: b) porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: b) publicacion del Protocolo actualizado
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: b) cantidad de actividades de promocion del sello "empresa mujer"
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: c) seguimiento y control de los requisitos de cada empresa solicitante del sello
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género
+- Indicador: Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA.
+- Indicador: Cantidad de trabajadores inscriptos en la capacitacion
+  - Valor: 301
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Compromiso sin título
+- Indicador: Cantidad de trabajadores que completaron la capacitación
+  - Valor: 3247
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)
+  - Valor: 5
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Autogestionado: 5 - Presencia: 25 - Virtual con Tutoría: 14
+
+- Indicador: Cantidad de trabajadores que completaron la capacitación
+  - Valor: 97
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Cantidad de capacitaciones brindadas
+  - Valor: 28
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Cantidad de personas inscriptas en especializacion/es de perspectiva de género
+  - Valor: 2778
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Cantidad de personas que aprobaron la especializacion/es en perspectiva de género
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de mujeres con becas que finalizaron las formaciones
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Porcentaje de entidades deportivas capacitadas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de personas provenientes de clubes deportivos de la ciudad capacitadas en Ley Micaela
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Fecha de publicacion del manual
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Número de materiales promocionales producidos
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: cantidad de nuevos espacios de futbol mixto
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de nuevas personas inscriptas a futbol mixto
+  - Valor: 1803
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Porcentaje de participación de mujeres en las actividades de fútbol mixto:
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de actividades de relevamiento realizadas
+  - Valor: 1
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Porcentaje de clubes con comisiones de género establecidas:
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Elaboracion de cronograma de relevamiento
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Número de entidades deportivas relevadas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Porcentaje de entidades con protocolos de actuación existentes:
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Fecha de publicacion del Informe
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Fecha de Publicacion del protocolo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de actividades de Difusión del protocolo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de partidos de futbol en los que se difunde la linea 144
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Acciones de concientizacion sobre el deporte inclusivo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: cantidad de alianzas con organizaciones para promover el deporte inclusivo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de nuevos espacios de deporte inclusivo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: fecha de lanzamiento de la inscripcion para participar en la maraton
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: fecha de realizacion de la maraton
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de participantes inscriptos por género
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: cantidad de materiales de sensibilización distribuidos durante el evento
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: tiempo promedio de respuestaa incidentes de seguridad
+  - Valor: 1538
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: aplicaciones de GCBA analizadas
+  - Valor: 484
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.
+- Indicador: Actividades de planificacion
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Continuar garantizando la asignación de becas paritarias para las formaciones
+- Indicador: Tasa de paridad en la asignación de becas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA. 
+.
+- Indicador: Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti
+  - Valor: 479
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Creación de un protocolo unificado para el abordaje de situaciones de violencia de género y protección a las infancias y adolescencias.
+- Indicador: Cantidad de reuniones para la redaccion de un protocolo unificado
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Difundir la línea 144 en todos los partidos e infraestructura de clubes deportivos.
+- Indicador: Cantidad de convenios/articulciones/acuerdos firmados con clubes para la entrega de materiales y difusion de la linea 144
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Fomentar la creación de espacios de deporte inclusivos para mujeres con discapacidad.
+- Indicador: cantidad de capacitaciones para entrenadores/as sobre deporte inclusivo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela.
+- Indicador: Cantidad de trabajadores inscriptos en la capacitacion
+  - Valor: 5916
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Garantizar la especializaciòn en perspectiva de genero en el marco del programa "Especializaciones"
+- Indicador: Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024
+  - Valor: 3
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Ley Micaela en los clubes. Participación en la redacción de la ley y garantizar el cumplimiento de la Ley Micaela específica para entidades deportivas en el ámbito de la CABA.
+- Indicador: Cantidad de reuniones para la redacción de la Ley Micaela
+  - Valor: 6
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Promoción de espacios de fútbol mixto.
+- Indicador: Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades
+  - Valor: 1
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA
+- Indicador: contenidos de campaña de genero incorporados en boti
+  - Valor: 5
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Realización de la "Maratón violeta: hombres y mujeres contra la violencia" para la conmemoración del día internacional para la eliminación de la violencia contra la mujer.
+- Indicador: Cantidad de reuniones de organizacion para la maraton
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Realización de un relevamiento de comisiones de género en todos los clubes deportivos.
+- Indicador: Cantidad de reuniones de planificacion y armado de equipo para el relevamiento
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Jefatura de Gabinete
+#### Compromiso: Trabajar junto a la ASI proyectos, programas y acciones de seguridad informática preventiva y concientización.
+- Indicador: Participacion en actividades de concientizacion
+  - Valor: 2
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Justicia
+#### Compromiso: A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.
+- Indicador: Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Justicia
+#### Compromiso: B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero que permita abordar la problemática de la violencia por razones de género, en la justicia local, de manera coordinada y unificada.
+- Indicador: Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores relevantes (poder judicial, legisladores, especialistas en género, organizaciones de la sociedad civil, etc)
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: se esta llevando a cabo un trabajo conjunto con Unidos por la Justicia (UNIJUS). El informe preliminar propone la creación de una jurisdicción especializada en violencia doméstica, sexual e institucional en la Ciudad Autónoma de Buenos Aires, con el objetivo de unificar competencia civil y penal en el tratamiento de la temática de violencia, promoviendo la eficiencia de los recursos judiciales y garantizando un acceso más inclusivo y eficiente a la justicia.
+
+### Ministerio: Justicia
+#### Compromiso: C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Buenos Aires el Registro de Deudores/as Alimentarios/as Morosos/as.
+- Indicador: Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del registro de deudores alimentarios
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Justicia
+#### Compromiso: Compromiso sin título
+- Indicador: Cantidad de mujeres/usuarios atendidos anualmente. Total de víctimas de violencia de género, violencia sexual y trata de personas que acceden al servicio jurídico gratuito.
+  - Valor: 44
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Cantidad de casos atendidos anualmente según tipo de violencia: Distribución de asesoría jurídica en función de los tipos de violencia (género, sexual, trata de personas).
+  - Valor: 19
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 19 género / 25 sexual
+
+- Indicador: Porcentaje de avance de realización de un Análisis Diagnóstico de la situación actual que incluya evaluación de la carga de trabajo en caso de transferencia de competencias y una propuesta para la implementación de un fuero unificado.
+  - Valor: 1
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Resumen del informe
+1. Objetivo principal: Unificar competencias civiles y penales en un único proceso judicial para simplificar trámites y evitar la revictimización.
+2. Ámbitos de intervención: - Violencia doméstica: Conflictos intrafamiliares con daño físico, psicológico, sexual o económico. - Violencia sexual: Vulneración de la autonomía sexual mediante coerción o intimidación. - Violencia institucional Abusos en contextos institucionales hacia personas en situación de vulnerabilidad, como niños, adultos mayores y personas con discapacidad.
+3. Diseño institucional: Tribunales colegiados, equipos interdisciplinarios, procesos orales y un enfoque interseccional y de género.
+4. Implementación: Se plantean cuatro escenarios de implementación, desde el uso de recursos actuales hasta la transferencia de competencias con concursos específicos.
+El informe presenta además estadísticas de carga de trabajo, perfil de funcionarios y propuesta de estructura organizacional.
+La entrega del informe final se estima para el 10-12-24.
+
+- Indicador: Cantidad de actividades de formacion con funcionarios de otras juridicciones para impulsar la autonomia de las mujeres en la toma de desiciones
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de actividades técnicas con otras jurisdicciones para el desarrollo del índice de paridad política
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Fecha de realizacion de la Expo Empleo Barrial Edicion Mujer
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de mujeres participantes en la Expo Empleo Barrial Edicion Mujer
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de mujeres que obtuvieron empleo como resultado de la participación de la Expo Empleo Barrial Edición Mujer
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cantidad de asociaciones sindicales informadas anualmente de los alcances de la iniciatva PARES
+  - Valor: 65
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Justicia
+#### Compromiso: D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesoramiento para su desarrollo en otras jurisdicciones como iniciativa para el impulso de la autonomía de las mujeres en la toma de decisiones.
+- Indicador: Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de paridad politica
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Justicia
+#### Compromiso: E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecretaría de la Mujer, el desarrollo de las Expo Empleo Barrial Edición Mujer.
+- Indicador: Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar la Expo EMpleo Barrial Edicion Mujer
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Justicia
+#### Compromiso: F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situación de violencia por razones de género en el ámbito laboral, a través de las herramientas desplegadas por la Dirección General Relaciones del Trabajo en el marco del Convenio 190 de la Organización Internacional del Trabajo (OIT).
+- Indicador: Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de género en el ámbito laboral que reciben asesoramiento por parte de la Secretaría de Trabajo y Empleo.
+  - Valor: 43
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Justicia
+#### Compromiso: G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES.
+- Indicador: Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES
+  - Valor: 465
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: MDHyH
+#### Compromiso: A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.
+- Indicador: Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta
+  - Valor: 15
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de reuniones: 15 (quince) entre GODI, DGAVMG y equipos
+
+### Ministerio: MDHyH
+#### Compromiso: B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.
+- Indicador: Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a las violencias por razones de genero
+  - Valor: 35
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: - Se realizaron TREINTA Y CINCO (35) reuniones de articulación intra e interinstitucionales e
+ intersectoriales, en modalidades virtual y presencial con Organizaciones de la Sociedad Civil y Referentxs Territoriales.
+ - Se concretaron TRECE (13) jornadas de Difusión en los Barrios Mugica, Piletones, C.H. Soldati, Zavaleta, 20, 15 y Ricciardelli en conjunto con el MPF CABA, UPE BARRIO MUGICA, Corporación Buenos Aires Sur, DG. de Políticas Alimentarias, G.O. de Promoción Social y Desarrollo Institucional, Cesac N° 25, Cesac N° 30, Punto Violeta, entre otros.
+ - Participamos de las Jornadas del #8M en forma conjunta con nuestro equipo MPF en el Barrio Piletones y del #25N en la Jornada “Mujeres al Encuentro”, coordinando la mesa de discusión “Violencia por motivos de género en contextos urbanos”.
+ - Durante el último cuatrimestre se realizaron OCHO (08) recorridas mensuales, en cada uno de los barrios donde tenemos asiento.
+ - Se realizaron VEINTIOCHO (28) entrevistas laborales para completar los equipos, durante el último cuatrimestre del año. Se seleccionó y capacitó a las nuevas profesionales incorporadas.
+
+### Ministerio: MDHyH
+#### Compromiso: C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.
+- Indicador: Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: MDHyH
+#### Compromiso: Compromiso sin título
+- Indicador: Creacion/implementacion de una herramienta que permita sistematizar la informacion en materia de asistencia a mujeres en situacion de violencia
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Primer etapa de CRM realizada. 
+ Cantidad de capacitaciones para su implementación: 4 (cuatro)
+ Manual de usuario confeccionado.
+ Prueba piloto en 2025
+
+- Indicador: Cantidad de entrevistas de admisión. Cantidad de prestaciones realizadas. (Indicador propuesto)
+  - Valor: 210
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de entrevistas de admisión: 210 (entre enero y noviembre 2024). 
+ Cantidad de prestaciones realizadas: 22.276 (entre enero y noviembre 2024 en los casos activos)
+
+- Indicador: Cantidad de mujeres asistidas en situación de consumo en dispositivos donde se garanticen espacio de cuidados. (Indicador propuesto)
+  - Valor: 128
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 128 mujeres asistidas
+
+- Indicador: Cantidad de enlaces del MPF dispuestos en los CIMs
+  - Valor: 1
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 1 (CIM 15 - Zona Norte)
+
+- Indicador: Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  trayectos formativos, de empleabilidad y emprendedurismo. Cantidad de mujeres sobre el total de mujeres asistidas
+  - Valor: 10
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de mujeres capacitadas en TOL: 10 (diez) en CIM 9 y 11(once) en CIM Aberastury
+ Cantidad de mujeres capacitadas en Herramientas para emprendedoras: 8 (mujeres) en CIM 9 y 11 (once) en CIM Aberastury
+ Cantidad de mujeres derivadas para intermediación laboral: 60 (sesenta)
+ Cantidad de mujeres con contratación efectiva: 2 (dos)
+ Cantidad de mujeres en visita guiada: 10 (diez)
+ Cantidad de mujeres que participaron en "Ferias de la ciudad": 3 (tres)
+ Cantidad de mujeres que participaron en "Ferias del MDHyH": 3 (tres)
+ Cantidad de mujeres que participaron de ronda de vinculación empresarial: 1 (una)
+
+- Indicador: Publicacion de Protocolo por medio de acto administrativo
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: No se realizó este año, se priorizó el ingreso el Plan Territorial a los CeSAC.
+
+- Indicador: Cantidad de Cesacs de la region sur de la ciudad que han incluido el Plan de Abordaje territorial de las violencias por motivos de genero
+  - Valor: 3
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de CeSACs: 3 (tres) (CeSAC N°30 Zavaleta, CeSAC N° 3 Lugano IyII y CeSAC N° 5 Barrio 15).
+
+- Indicador: Cantidad de mujeres asistidas en los Cesac de la region sur de la ciudad a traves del Plan de abordaje territorial de las violencias por motivos de género
+  - Valor: 3
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+- Indicador: Publicacion del nuevo protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: La UPE sí formalizó un protocolo, supervisado por nuestra área.
+
+- Indicador: Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  trayectos formativos y de terminalidad educativa por sobre el total de mujeres asistidas en los CIMs
+  - Valor: 7
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de mujeres con derivación asertiva para terminalidad educativa: 7
+
+### Ministerio: MDHyH
+#### Compromiso: D) Continuar con las líneas de atención telefónica 144 y 911.
+- Indicador: Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes
+  - Valor: 43.765
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de llamadas a la línea: 43.765
+ Cantidad de casos de violencia de género: 4091
+ Cantidad de derivaciones de casos de VDG a línea 911: 731
+ (Enero a Noviembre 2024)
+
+### Ministerio: MDHyH
+#### Compromiso: F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.
+- Indicador: Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.
+  - Valor: 2024
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Publicación semestral. Diciembre 2024. En curso
+
+### Ministerio: MDHyH
+#### Compromiso: G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.
+- Indicador: Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para priorizar los trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.
+  - Valor: 10
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de reuniones "Vertical Trabajo" (subse Potencial Humano + Subse Fortalecimiento): 10 (diez) 
+ Cantidad de reuniones entre equipos de ambas áreas: 12 (doce)
+ Implementación de Formularios de derivación para Intermediación Laboral
+ Cantidad de capacitaciones en CIM de "TOL: Taller de Orientación Laboral": 2 (dos) en CIM Aberastury y CIM 9
+ Cantidad de formaciones para emprendedoras: 2 (dos) en CIM Aberastury y CIM 9 (8 encuentros semanales + salida)
+ Visita guiada a "Vivera Organica" + Cooperativa Enredo con emprendedoras de CIM
+
+### Ministerio: MDHyH
+#### Compromiso: H) Trabajar en conjunto con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.
+- Indicador: Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.
+  - Valor: 2
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: MDHyH
+#### Compromiso: I) Articular con el Ministerio de Salud la inclusión del Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.
+- Indicador: Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 4 reuniones
+
+### Ministerio: MDHyH
+#### Compromiso: J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.
+- Indicador: Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.
+  - Valor: 2
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: MDHyH
+#### Compromiso: K) Articular con el Ministerio de Educación el fomento de trayectos formativos y de terminalidad educativa en la población asistida por violencia por razones de género
+- Indicador: Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos formativos y terminalidad educativao para la población asistida en materia de violencias por motivos de género.
+  - Valor: 4
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de reuniones con equipos para articulación: 4 (cuatro)
+ Implementación de GoogleForm compartido por áreas para sistematización de datos
+
+### Ministerio: MDHyH
+#### Compromiso: e) Ampliar el Convenio con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.
+- Indicador: Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.
+  - Valor: 2
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Salud
+#### Compromiso: 1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.
+- Indicador: Cantidad de consejerías de salud sexual realizadas en los centros de salud.
+  - Valor: 77497
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 77497 (2023)
+
+### Ministerio: Salud
+#### Compromiso: 2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cáncer de cuello uterino
+- Indicador: Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: en construcción
+
+### Ministerio: Salud
+#### Compromiso: 3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.
+- Indicador: Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA.
+  - Valor: 44331
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 44331 (2023)
+
+### Ministerio: Salud
+#### Compromiso: 4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección General de Abordaje a las Violencias por Motivos de Género para asistencia a mujeres en situación de violencia por razones de genero
+- Indicador: Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de violencia por razones de género.
+  - Valor: 390
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 390 (76%) (2023)
+
+### Ministerio: Salud
+#### Compromiso: 5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de género y diversidad, a los fines de nutrir al Portal de Servicios para la Igualdad de Género (https://www.buenosaires.gob.ar/igualdaddegenero) y visibilizar toda la oferta de servicios existentes en la Ciudad para reducir las brechas de genero
+- Indicador: Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el portal.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: A completar por Subsecretaria de la Mujer
+
+### Ministerio: Salud
+#### Compromiso: Compromiso sin título
+- Indicador: Cantidad de turnos de colocacion o consulta sobre MAC realizados anualmente en atención primaria.
+  - Valor: 16698
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: 16698 (2023)
+
+- Indicador: Porcentaje/cantidad de variación con respecto al año anterior
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: -
+
+### Ministerio: Seguridad
+#### Compromiso: Compromiso sin título
+- Indicador: b) Aprobación de la Resolución conjunta
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Seguridad
+#### Compromiso: Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.
+- Indicador: a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa
+  - Valor: 1
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Seguridad
+#### Compromiso: Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.
+- Indicador: a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Publicado en Junio
+
+### Ministerio: Seguridad
+#### Compromiso: Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.
+- Indicador: a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)
+  - Valor: 203
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Seguridad
+#### Compromiso: Realizar las derivaciones a los Centros Integrales de la Mujer (CIMs) a las víctimas que se les hace entrega de dispositivos electrónicos por motivos de violencia de género, que requieran asistencia.
+- Indicador: a) Cantidad de derivaciones realizadas a los CIMs de mujeres con dispositivos electrónicos por estar en situación de violencia de género que requieran asistencia sobre asignaciones de dispositivos por mes
+  - Valor: 61
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: Vicejefatura
+#### Compromiso: 1. -Promover el acompañamiento a mujeres mayores.
+- Indicador: Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretaria
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilidad Trans dependiente de la Dirección de Convivencia en la Diversidad, trabajando en estrecha colaboración con diferentes actores públicos y privados para asegurar que se fomente una cultura laboral equitativa.
+- Indicador: cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: Cantidad de espacios de promocion de derechos / capacitacion realizados
+
+### Ministerio: Vicejefatura
+#### Compromiso: 1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de huerta en los nuevos refugios para mujeres víctimas de violencia por motivos de género de la Ciudad Autónoma de Buenos Aires.
+- Indicador: cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de huertas en los nuevos refugios
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad víctimas de violencia de género.
+- Indicador: cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad victimas de violencia de genero capacitados/as
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.
+- Indicador: - cantidad de reuniones interinstitucionales de coordinación sobre políticas de género
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, con el propósito de promover la conciencia sobre la equidad y la buena convivencia en entornos gubernamentales yprivados.
+- Indicador: cantidad de encuentros realizados desde BA Convive
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.
+- Indicador: cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron financiadas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, embarazo, parto, post parto, climaterio, controles ginecológicos regulares).
+- Indicador: cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos reproductivos y sexuales
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, un plan plurianual de acción para la prevención, atención y acompañamiento integral de las víctimas de trata en la Ciudad
+- Indicador: publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de las victimas de trata de la ciudad
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado.
+- Indicador: Cantidad de acciones realizadas para promover políticas de género en torno al ciudado
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.
+- Indicador: Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.
+- Indicador: cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes programas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 5. Promover acciones de sensibilización y educación sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.
+- Indicador: Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educación financiera, planificación patrimonial y liderazgo.
+- Indicador: Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financiera, planificación patrimonial y liderazgo.
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: 6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática para los equipos interdisciplinarios a cargo de la asistencia a víctimas de violencia de género
+- Indicador: Realizacion de tablero de acceso a mujeres con discapacidad
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: Vicejefatura
+#### Compromiso: Promover mediante el Programa Mujeres Líderes la formación, intercambio y desarrollo de mujeres de mandos medios del Gobierno de la Ciudad de Buenos Aires, en articulación con mujeres del sector privado y de OSC, para fortalecer sus habilidades personales y profesionales para un desempeño efectivo en roles de liderazgo, potenciar vínculos y visibilizar perfiles internos.
+- Indicador: cantidad de participantes en el Programa Mujeres Líderes de edicion 2024
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 11
+- Indicador: Desarrollo Humano y Habitat
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 16
+- Indicador: Jefatura de gabinete
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Vicejefatura
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 3
+- Indicador: Ente regulador
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Hacienda y Finanzas
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Espacio Público e Higiene Urbana
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 4
+- Indicador: Seguridad
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 5
+- Indicador: Salud
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 7
+- Indicador: Justicia
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+### Ministerio: compromisos 
+#### Compromiso: 9
+- Indicador: Educacion
+  - Valor: 77
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+
+### Ministerio: compromisos 
+#### Compromiso: Compromiso sin título
+- Indicador: Desarrollo Economico
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Infraestructura
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan
+
+- Indicador: Cultura
+  - Valor: 
+  - Unidad de medida: 
+  - Meta: 
+  - Fuente de los datos: Excel Original
+  - Observaciones: nan

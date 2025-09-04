@@ -206,15 +206,15 @@ export default function SyncPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <Settings className="h-8 w-8 text-gcba-blue" />
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-2 md:gap-3">
+              <Settings className="h-6 w-6 md:h-8 md:w-8 text-gcba-blue" />
               Sincronización
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
               Gestiona la sincronización de datos con Google Sheets e importa desde Excel
             </p>
           </div>
@@ -223,29 +223,29 @@ export default function SyncPage() {
         {/* Estado de sincronización */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
               Estado de Sincronización
               {getStatusIcon()}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">Última Sincronización</p>
-                <p className="text-lg font-semibold">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="text-center p-3 md:p-4 bg-gray-50 rounded-lg">
+                <p className="text-xs md:text-sm text-gray-600">Última Sincronización</p>
+                <p className="text-base md:text-lg font-semibold">
                   {syncStatus.lastSync 
                     ? new Date(syncStatus.lastSync).toLocaleString('es-AR')
                     : 'Nunca'
                   }
                 </p>
               </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">Total de Registros</p>
-                <p className="text-lg font-semibold">{syncStatus.totalRecords}</p>
+              <div className="text-center p-3 md:p-4 bg-gray-50 rounded-lg">
+                <p className="text-xs md:text-sm text-gray-600">Total de Registros</p>
+                <p className="text-base md:text-lg font-semibold">{syncStatus.totalRecords}</p>
               </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">Registros Sincronizados</p>
-                <p className="text-lg font-semibold">{syncStatus.syncedRecords}</p>
+              <div className="text-center p-3 md:p-4 bg-gray-50 rounded-lg">
+                <p className="text-xs md:text-sm text-gray-600">Registros Sincronizados</p>
+                <p className="text-base md:text-lg font-semibold">{syncStatus.syncedRecords}</p>
               </div>
             </div>
             
@@ -261,24 +261,24 @@ export default function SyncPage() {
         {sheetsInfo && (
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
                 <FileSpreadsheet className="h-6 w-6 text-green-600" />
                 Google Sheets
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
                   <div>
                     <p className="text-sm text-gray-600">ID de la Planilla</p>
-                    <p className="font-mono text-sm bg-gray-100 p-2 rounded">
+                    <p className="font-mono text-xs md:text-sm bg-gray-100 p-2 rounded">
                       {sheetsInfo.spreadsheetId}
                     </p>
                   </div>
                   <Button
                     variant="outline"
                     onClick={() => window.open(sheetsInfo.url, '_blank')}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 w-full sm:w-auto"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Abrir en Sheets
@@ -303,11 +303,11 @@ export default function SyncPage() {
         )}
 
         {/* Acciones de sincronización */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Sincronización con Google Sheets */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
                 <RefreshCw className="h-6 w-6 text-blue-600" />
                 Sincronizar con Google Sheets
               </CardTitle>
@@ -330,7 +330,7 @@ export default function SyncPage() {
           {/* Importación desde Excel */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
                 <Upload className="h-6 w-6 text-green-600" />
                 Importar desde Excel
               </CardTitle>

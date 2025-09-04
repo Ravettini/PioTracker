@@ -186,32 +186,39 @@ export class AnalyticsService {
         return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
       }
 
+      this.logger.log(`Datos obtenidos del Google Sheets: ${sheetData.length} filas`);
+
       // Filtrar por indicadorId y períodos
+      // La estructura del Google Sheets es: [Indicador ID, Indicador Nombre, Período, Ministerio ID, Ministerio Nombre, Línea ID, Línea Título, Valor, Unidad, Meta, Fuente, Responsable Nombre, Responsable Email, Observaciones, Estado, Publicado, Creado En, Actualizado En, Ministerio]
       let filteredData = sheetData.filter(row => row[0] === indicadorId); // Indicador ID está en la columna A
       
+      this.logger.log(`Datos filtrados por indicador ${indicadorId}: ${filteredData.length} filas`);
+      
       if (periodoDesde) {
-        filteredData = filteredData.filter(row => row[1] >= periodoDesde); // Período está en la columna B
+        filteredData = filteredData.filter(row => row[2] >= periodoDesde); // Período está en la columna C
       }
       
       if (periodoHasta) {
-        filteredData = filteredData.filter(row => row[1] <= periodoHasta); // Período está en la columna B
+        filteredData = filteredData.filter(row => row[2] <= periodoHasta); // Período está en la columna C
       }
 
       // Ordenar por período
-      filteredData.sort((a, b) => a[1].localeCompare(b[1])); // Período está en la columna B
+      filteredData.sort((a, b) => a[2].localeCompare(b[2])); // Período está en la columna C
 
-      // Mapear a formato requerido según la estructura del Google Sheets
+      this.logger.log(`Datos finales procesados: ${filteredData.length} filas`);
+
+      // Mapear a formato requerido según la estructura correcta del Google Sheets
       return filteredData.map(row => ({
-        periodo: row[1], // Período (columna B)
-        valor: parseFloat(row[6]) || 0, // Valor (columna G)
-        meta: row[8] ? parseFloat(row[8]) : null, // Meta (columna I)
-        unidad: row[7], // Unidad (columna H)
-        fuente: row[9], // Fuente (columna J)
-        responsable: row[10], // Responsable Nombre (columna K)
-        estado: row[13], // Estado (columna N)
-        publicado: row[14] === 'Sí', // Publicado (columna O)
-        creadoEn: row[15], // Creado En (columna P)
-        actualizadoEn: row[16], // Actualizado En (columna Q)
+        periodo: row[2], // Período (columna C)
+        valor: parseFloat(row[7]) || 0, // Valor (columna H)
+        meta: row[9] ? parseFloat(row[9]) : null, // Meta (columna J)
+        unidad: row[8], // Unidad (columna I)
+        fuente: row[10], // Fuente (columna K)
+        responsable: row[11], // Responsable Nombre (columna L)
+        estado: row[14], // Estado (columna O)
+        publicado: row[15] === 'Sí', // Publicado (columna P)
+        creadoEn: row[16], // Creado En (columna Q)
+        actualizadoEn: row[17], // Actualizado En (columna R)
       }));
 
     } catch (error) {

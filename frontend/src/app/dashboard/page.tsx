@@ -76,25 +76,32 @@ export default function DashboardPage() {
     );
   }
 
-  return (
+    return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header del dashboard */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="text-center md:text-left">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
               Bienvenido, {user?.nombre}
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
               Panel de control del sistema PIO Tracker
             </p>
           </div>
-          <div className="flex space-x-3">
-            <Button onClick={() => router.push('/carga')}>
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+            <Button 
+              onClick={() => router.push('/carga')}
+              className="w-full sm:w-auto"
+            >
               Nueva Carga
             </Button>
             {isAdmin && (
-              <Button variant="outline" onClick={() => router.push('/admin/usuarios')}>
+              <Button 
+                variant="outline" 
+                onClick={() => router.push('/admin/usuarios')}
+                className="w-full sm:w-auto"
+              >
                 Administración
               </Button>
             )}
@@ -103,16 +110,16 @@ export default function DashboardPage() {
 
         {/* Estadísticas principales */}
         {stats && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
-            <Card className="flex justify-center">
-              <CardContent className="p-6 w-full">
-                <div className="flex items-center justify-center">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <FileText className="h-6 w-6 text-gcba-blue" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 items-center justify-center py-2 md:py-8">
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-blue-100 rounded-lg">
+                    <FileText className="h-5 w-5 md:h-8 md:w-8 text-gcba-blue" />
                   </div>
-                  <div className="ml-4 text-center">
-                    <p className="text-sm font-medium text-gray-600">Total Cargas</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Cargas</p>
+                    <p className="text-xl md:text-3xl font-bold text-gray-900">
                       {stats.totalCargas}
                     </p>
                   </div>
@@ -120,43 +127,43 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="flex justify-center">
-              <CardContent className="p-6 w-full">
-                <div className="flex items-center justify-center">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <Clock className="h-6 w-6 text-estado-pendiente" />
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-yellow-100 rounded-lg">
+                    <Clock className="h-5 w-5 md:h-8 md:w-8 text-estado-pendiente" />
                   </div>
-                  <div className="ml-4 text-center">
-                    <p className="text-sm font-medium text-gray-600">Pendientes</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.cargasPendientes}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="flex justify-center">
-              <CardContent className="p-6 w-full">
-                <div className="flex items-center justify-center">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircle className="h-6 w-6 text-estado-validado" />
-                  </div>
-                  <div className="ml-4 text-center">
-                    <p className="text-sm font-medium text-gray-600">Validadas</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.cargasValidadas}</p>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Pendientes</p>
+                    <p className="text-xl md:text-3xl font-bold text-gray-900">{stats.cargasPendientes}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="flex justify-center">
-              <CardContent className="p-6 w-full">
-                <div className="flex items-center justify-center">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <TrendingUp className="h-6 w-6 text-gcba-green" />
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-green-100 rounded-lg">
+                    <CheckCircle className="h-5 w-5 md:h-8 md:w-8 text-estado-validado" />
                   </div>
-                  <div className="ml-4 text-center">
-                    <p className="text-sm font-medium text-gray-600">Publicadas</p>
-                    <p className="text-2xl font-bold text-gray-900">{stats.cargasPublicadas}</p>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Validadas</p>
+                    <p className="text-xl md:text-3xl font-bold text-gray-900">{stats.cargasValidadas}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-purple-100 rounded-lg">
+                    <TrendingUp className="h-5 w-5 md:h-8 md:w-8 text-gcba-green" />
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Publicadas</p>
+                    <p className="text-xl md:text-3xl font-bold text-gray-900">{stats.cargasPublicadas}</p>
                   </div>
                 </div>
               </CardContent>
@@ -165,48 +172,48 @@ export default function DashboardPage() {
         )}
 
         {/* Acciones rápidas */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Acciones Rápidas</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Acciones Rápidas</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 md:space-y-4">
               <Button
                 onClick={() => router.push('/carga')}
-                className="w-full justify-start"
+                className="w-full justify-start h-12 md:h-10"
                 variant="outline"
               >
                 <FileText className="mr-3 h-5 w-5" />
-                Crear Nueva Carga
+                <span className="text-sm md:text-base">Crear Nueva Carga</span>
               </Button>
               
               <Button
                 onClick={() => router.push('/mis-envios')}
-                className="w-full justify-start"
+                className="w-full justify-start h-12 md:h-10"
                 variant="outline"
               >
                 <BarChart3 className="mr-3 h-5 w-5" />
-                Ver Mis Envíos
+                <span className="text-sm md:text-base">Ver Mis Envíos</span>
               </Button>
 
               {isAdmin && (
                 <>
                   <Button
                     onClick={() => router.push('/revision')}
-                    className="w-full justify-start"
+                    className="w-full justify-start h-12 md:h-10"
                     variant="outline"
                   >
                     <CheckCircle className="mr-3 h-5 w-5" />
-                    Revisar Cargas
+                    <span className="text-sm md:text-base">Revisar Cargas</span>
                   </Button>
                   
                   <Button
                     onClick={() => router.push('/admin/usuarios')}
-                    className="w-full justify-start"
+                    className="w-full justify-start h-12 md:h-10"
                     variant="outline"
                   >
                     <Users className="mr-3 h-5 w-5" />
-                    Gestionar Usuarios
+                    <span className="text-sm md:text-base">Gestionar Usuarios</span>
                   </Button>
                 </>
               )}
@@ -215,9 +222,9 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Estado del Sistema</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Estado del Sistema</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 md:space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-600">Base de Datos</span>
                 <Badge variant="success">Conectado</Badge>
@@ -238,7 +245,7 @@ export default function DashboardPage() {
                   onClick={() => router.push('/admin/sync')}
                   variant="outline"
                   size="sm"
-                  className="w-full"
+                  className="w-full h-10"
                 >
                   Ver Estado de Sync
                 </Button>

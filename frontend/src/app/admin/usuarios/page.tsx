@@ -386,10 +386,10 @@ export default function AdminUsuariosPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button
               variant="ghost"
               onClick={() => router.back()}
@@ -398,15 +398,18 @@ export default function AdminUsuariosPage() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                 Administración de Usuarios
               </h1>
-              <p className="text-gray-600 mt-2">
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
                 Gestiona los usuarios del sistema
               </p>
             </div>
           </div>
-          <Button onClick={() => setShowCreateModal(true)}>
+          <Button 
+            onClick={() => setShowCreateModal(true)}
+            className="w-full md:w-auto"
+          >
             <UserPlus className="h-4 w-4 mr-2" />
             Nuevo Usuario
           </Button>
@@ -415,7 +418,7 @@ export default function AdminUsuariosPage() {
         {/* Filtros */}
         <Card>
           <CardHeader>
-            <CardTitle>Filtros</CardTitle>
+            <CardTitle className="text-lg md:text-xl">Filtros</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -440,7 +443,7 @@ export default function AdminUsuariosPage() {
                 onChange={(e) => setFilterMinisterio(e.target.value)}
               />
               
-              <div className="flex items-end space-x-2">
+              <div className="flex flex-col sm:flex-row items-end space-y-2 sm:space-y-0 sm:space-x-2">
                 <Button
                   variant="outline"
                   onClick={() => {
@@ -449,12 +452,14 @@ export default function AdminUsuariosPage() {
                     setFilterMinisterio('');
                   }}
                   size="sm"
+                  className="w-full sm:w-auto"
                 >
                   Limpiar
                 </Button>
                 <Button
                   onClick={loadData}
                   size="sm"
+                  className="w-full sm:w-auto"
                 >
                   <RefreshCw className="h-4 w-4 mr-1" />
                   Actualizar
@@ -467,7 +472,7 @@ export default function AdminUsuariosPage() {
                  {/* Lista de usuarios */}
          <Card>
            <CardHeader>
-             <CardTitle>
+             <CardTitle className="text-lg md:text-xl">
                Usuarios ({filteredUsuarios.length})
              </CardTitle>
            </CardHeader>
@@ -486,144 +491,238 @@ export default function AdminUsuariosPage() {
                  <p className="text-gray-600 mb-4">
                    Comienza creando el primer usuario del sistema
                  </p>
-                 <Button onClick={() => setShowCreateModal(true)}>
+                 <Button 
+                   onClick={() => setShowCreateModal(true)}
+                   className="w-full sm:w-auto"
+                 >
                    <UserPlus className="h-4 w-4 mr-2" />
                    Crear Usuario
                  </Button>
                </div>
              ) : (
-               <div className="overflow-x-auto">
-                 <table className="w-full min-w-full">
-                   <thead>
-                     <tr className="border-b border-gray-200">
-                       <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
-                         Usuario
-                       </th>
-                       <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
-                         Rol
-                       </th>
-                       <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
-                         Estado
-                       </th>
-                       <th className="text-left py-3 px-2 font-medium text-gray-700 text-sm">
-                         Acciones
-                       </th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     {filteredUsuarios.map((usuario) => (
-                       <tr key={usuario.id} className="border-b border-gray-100 hover:bg-gray-50">
-                         <td className="py-3 px-2">
-                           <div>
-                             <p className="font-medium text-gray-900 text-sm">
-                               {usuario.nombre}
-                             </p>
-                             <p className="text-xs text-gray-600 flex items-center">
-                               <Mail className="h-3 w-3 mr-1" />
-                               {usuario.email}
-                             </p>
-                             <p className="text-xs text-gray-500 mt-1">
-                               {usuario.ministerioId ? (
-                                 <Badge variant="outline" className="text-xs">
-                                   {ministerios.find(m => m.id === usuario.ministerioId)?.sigla || usuario.ministerioId}
+                               <div className="overflow-x-auto max-w-full">
+                  <table className="w-full min-w-full max-w-4xl">
+                    <thead className="hidden md:table-header-group">
+                      <tr className="border-b border-gray-200">
+                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                          Usuario
+                        </th>
+                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                          Rol
+                        </th>
+                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                          Estado
+                        </th>
+                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                          Acciones
+                        </th>
+                      </tr>
+                    </thead>
+                                         <tbody>
+                       {filteredUsuarios.map((usuario) => (
+                         <tr key={usuario.id} className="border-b border-gray-100 hover:bg-gray-50">
+                           {/* Desktop view */}
+                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                             <div>
+                               <p className="font-medium text-gray-900 text-xs md:text-sm">
+                                 {usuario.nombre}
+                               </p>
+                               <p className="text-xs text-gray-600 flex items-center">
+                                 <Mail className="h-3 w-3 mr-1" />
+                                 {usuario.email}
+                               </p>
+                               <p className="text-xs text-gray-500 mt-1">
+                                 {usuario.ministerioId ? (
+                                   <Badge variant="outline" className="text-xs">
+                                     {ministerios.find(m => m.id === usuario.ministerioId)?.sigla || usuario.ministerioId}
+                                   </Badge>
+                                 ) : (
+                                   <span className="text-gray-400">No asignado</span>
+                                 )}
+                               </p>
+                             </div>
+                           </td>
+                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                             <Badge variant={usuario.rol === 'ADMIN' ? 'default' : 'outline'} className="text-xs">
+                               <Shield className="h-3 w-3 mr-1" />
+                               {usuario.rol === 'ADMIN' ? 'Administrador' : 'Usuario'}
+                             </Badge>
+                           </td>
+                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                             <div className="flex flex-col space-y-1">
+                               {usuario.activo ? (
+                                 <Badge variant="success" className="text-xs">
+                                   <UserCheck className="h-3 w-3 mr-1" />
+                                   Activo
                                  </Badge>
                                ) : (
-                                 <span className="text-gray-400">No asignado</span>
-                               )}
-                             </p>
-                           </div>
-                         </td>
-                         <td className="py-3 px-2">
-                           <Badge variant={usuario.rol === 'ADMIN' ? 'default' : 'secondary'} className="text-xs">
-                             {usuario.rol === 'ADMIN' ? (
-                               <Shield className="h-3 w-3 mr-1" />
-                             ) : (
-                               <UserCheck className="h-3 w-3 mr-1" />
-                             )}
-                             {usuario.rol}
-                           </Badge>
-                         </td>
-                         <td className="py-3 px-2">
-                           <div className="flex flex-col space-y-1">
-                             {usuario.activo ? (
-                               <Badge variant="success" className="text-xs">
-                                 <UserCheck className="h-3 w-3 mr-1" />
-                                 Activo
-                               </Badge>
-                             ) : (
-                               <Badge variant="destructive" className="text-xs">
-                                 <UserX className="h-3 w-3 mr-1" />
-                                 Inactivo
-                               </Badge>
-                             )}
-                             {usuario.claveTemporal && (
-                               <Badge variant="warning" className="text-xs">Clave Temporal</Badge>
-                             )}
-                             {usuario.ultimoLogin && (
-                               <div className="text-xs text-gray-500">
-                                 <Calendar className="h-3 w-3 inline mr-1" />
-                                 {format(new Date(usuario.ultimoLogin), 'dd/MM/yyyy', { locale: es })}
-                               </div>
-                             )}
-                           </div>
-                         </td>
-                         <td className="py-3 px-2">
-                           <div className="flex flex-wrap gap-1">
-                             <Button
-                               size="sm"
-                               variant="outline"
-                               onClick={() => openEditModal(usuario)}
-                               className="text-xs px-2 py-1 h-7"
-                             >
-                               <Edit className="h-3 w-3 mr-1" />
-                               Editar
-                             </Button>
-                             
-                             <Button
-                               size="sm"
-                               variant={usuario.activo ? 'destructive' : 'success'}
-                               onClick={() => handleToggleStatus(usuario.id)}
-                               className="text-xs px-2 py-1 h-7"
-                             >
-                               {usuario.activo ? (
-                                 <>
+                                 <Badge variant="destructive" className="text-xs">
                                    <UserX className="h-3 w-3 mr-1" />
-                                   Desactivar
-                                 </>
-                               ) : (
-                                 <>
-                                   <UserCheck className="h-3 w-3 mr-1" />
-                                   Activar
-                                 </>
+                                   Inactivo
+                                 </Badge>
                                )}
-                             </Button>
-                             
-                             <Button
-                               size="sm"
-                               variant="outline"
-                               onClick={() => handleResetPassword(usuario.id)}
-                               className="text-xs px-2 py-1 h-7"
-                             >
-                               <RefreshCw className="h-3 w-3 mr-1" />
-                               Reset
-                             </Button>
-                             
-                             <Button
-                               size="sm"
-                               variant="destructive"
-                               onClick={() => handleDeleteUsuario(usuario.id)}
-                               className="text-xs px-2 py-1 h-7"
-                             >
-                               <Trash2 className="h-3 w-3 mr-1" />
-                               Eliminar
-                             </Button>
-                           </div>
-                         </td>
-                       </tr>
-                     ))}
-                   </tbody>
-                 </table>
-               </div>
+                               {usuario.claveTemporal && (
+                                 <Badge variant="warning" className="text-xs">Clave Temporal</Badge>
+                               )}
+                             </div>
+                           </td>
+                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                             <div className="flex flex-col gap-1">
+                               <Button
+                                 size="sm"
+                                 variant="outline"
+                                 onClick={() => openEditModal(usuario)}
+                                 className="text-xs px-2 py-1 h-6 w-full"
+                               >
+                                 <Edit className="h-3 w-3 mr-1" />
+                                 Editar
+                               </Button>
+                               
+                               <Button
+                                 size="sm"
+                                 variant={usuario.activo ? 'destructive' : 'success'}
+                                 onClick={() => handleToggleStatus(usuario.id)}
+                                 className="text-xs px-2 py-1 h-6 w-full"
+                               >
+                                 {usuario.activo ? (
+                                   <>
+                                     <UserX className="h-3 w-3 mr-1" />
+                                     Desactivar
+                                   </>
+                                 ) : (
+                                   <>
+                                     <UserCheck className="h-3 w-3 mr-1" />
+                                     Activar
+                                   </>
+                                 )}
+                               </Button>
+                               
+                               <Button
+                                 size="sm"
+                                 variant="outline"
+                                 onClick={() => handleResetPassword(usuario.id)}
+                                 className="text-xs px-2 py-1 h-6 w-full"
+                               >
+                                 <RefreshCw className="h-3 w-3 mr-1" />
+                                 Reset
+                               </Button>
+                               
+                               <Button
+                                 size="sm"
+                                 variant="destructive"
+                                 onClick={() => handleDeleteUsuario(usuario.id)}
+                                 className="text-xs px-2 py-1 h-6 w-full"
+                               >
+                                 <Trash2 className="h-3 w-3 mr-1" />
+                                 Eliminar
+                               </Button>
+                             </div>
+                           </td>
+                           
+                           {/* Mobile view - Card layout */}
+                           <td className="md:hidden p-3">
+                             <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
+                               <div className="flex justify-between items-start">
+                                 <div className="flex-1">
+                                   <p className="font-medium text-gray-900 text-sm">
+                                     {usuario.nombre}
+                                   </p>
+                                   <p className="text-xs text-gray-600 flex items-center">
+                                     <Mail className="h-3 w-3 mr-1" />
+                                     {usuario.email}
+                                   </p>
+                                 </div>
+                                 <Badge variant={usuario.rol === 'ADMIN' ? 'default' : 'outline'} className="text-xs ml-2">
+                                   <Shield className="h-3 w-3 mr-1" />
+                                   {usuario.rol === 'ADMIN' ? 'Admin' : 'User'}
+                                 </Badge>
+                               </div>
+                               
+                               <div className="flex justify-between items-center">
+                                 <div>
+                                   {usuario.ministerioId ? (
+                                     <Badge variant="outline" className="text-xs">
+                                       {ministerios.find(m => m.id === usuario.ministerioId)?.sigla || usuario.ministerioId}
+                                     </Badge>
+                                   ) : (
+                                     <span className="text-gray-400 text-xs">No asignado</span>
+                                   )}
+                                 </div>
+                                 <div className="flex flex-col space-y-1">
+                                   {usuario.activo ? (
+                                     <Badge variant="success" className="text-xs">
+                                       <UserCheck className="h-3 w-3 mr-1" />
+                                       Activo
+                                     </Badge>
+                                   ) : (
+                                     <Badge variant="destructive" className="text-xs">
+                                       <UserX className="h-3 w-3 mr-1" />
+                                       Inactivo
+                                     </Badge>
+                                   )}
+                                   {usuario.claveTemporal && (
+                                     <Badge variant="warning" className="text-xs">Clave Temporal</Badge>
+                                   )}
+                                 </div>
+                               </div>
+                               
+                               <div className="pt-2 grid grid-cols-2 gap-1">
+                                 <Button
+                                   size="sm"
+                                   variant="outline"
+                                   onClick={() => openEditModal(usuario)}
+                                   className="text-xs px-1 py-1 h-6"
+                                 >
+                                   <Edit className="h-3 w-3 mr-1" />
+                                   Editar
+                                 </Button>
+                                 
+                                 <Button
+                                   size="sm"
+                                   variant={usuario.activo ? 'destructive' : 'success'}
+                                   onClick={() => handleToggleStatus(usuario.id)}
+                                   className="text-xs px-1 py-1 h-6"
+                                 >
+                                   {usuario.activo ? (
+                                     <>
+                                       <UserX className="h-3 w-3 mr-1" />
+                                       Desactivar
+                                     </>
+                                   ) : (
+                                     <>
+                                       <UserCheck className="h-3 w-3 mr-1" />
+                                       Activar
+                                     </>
+                                   )}
+                                 </Button>
+                                 
+                                 <Button
+                                   size="sm"
+                                   variant="outline"
+                                   onClick={() => handleResetPassword(usuario.id)}
+                                   className="text-xs px-1 py-1 h-6"
+                                 >
+                                   <RefreshCw className="h-3 w-3 mr-1" />
+                                   Reset
+                                 </Button>
+                                 
+                                 <Button
+                                   size="sm"
+                                   variant="destructive"
+                                   onClick={() => handleDeleteUsuario(usuario.id)}
+                                   className="text-xs px-1 py-1 h-6"
+                                 >
+                                   <Trash2 className="h-3 w-3 mr-1" />
+                                   Eliminar
+                                 </Button>
+                               </div>
+                             </div>
+                           </td>
+                         </tr>
+                       ))}
+                     </tbody>
+                  </table>
+                </div>
              )}
            </CardContent>
          </Card>

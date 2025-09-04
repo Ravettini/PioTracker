@@ -1,0 +1,3064 @@
+{
+  "fecha": "2025-09-04T16:29:19.094Z",
+  "totalCargas": 156,
+  "exitosas": 80,
+  "fallidas": 76,
+  "resultados": [
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.",
+        "indicador": "Cantidad de casos derivados",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "4 casos derivados"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "ff7cdfe0-18fb-4df3-a14c-3f864ac3ebbc",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:46.100Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Status al 4/11: Total inscriptos 5.062. 60 % de los inscriptos confirmaron vacante 3.055. 42% de los confirmados son mujeres."
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+        "valor": "110",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "110 vacantes"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de clubes creados",
+        "valor": "14",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.",
+        "indicador": "Cantidad de mujeres mentoreadas anualmente",
+        "valor": "511",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "511 participantes"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro."
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+        "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Status al 4/11. Total inscriptos 29.950. El 56 % de los inscriptos aprobaron el examen (16.735). 11.188 confirmaron vacante (39% mujeres)."
+      },
+      "resultado": {
+        "success": false,
+        "error": "Indicador no encontrado: Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.",
+        "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+        "valor": "0.82",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "Indicador no encontrado: % de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\""
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.",
+        "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+        "valor": "250",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "250 participantes"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad."
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).",
+        "indicador": "Creación de las comisiones de Bienestar Digital y de Género y STEAM",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Ambas comisiones creadas"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Indicador no encontrado: Creación de las comisiones de Bienestar Digital y de Género y STEAM"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación",
+        "indicador": "Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.",
+        "valor": "300",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "300 participantes"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Educacion",
+        "compromiso": "Potenciar el “Club de Robótica para chicas”.",
+        "indicador": "Cantidad de inscriptas en el programa",
+        "valor": "1000",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "1000 inscriptas"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: Potenciar el “Club de Robótica para chicas”."
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+        "indicador": "cantidad de reuniones para la actualizacion de los lineamientos",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "105e8b4d-9b41-4a8a-9d8a-bbac7f376a47",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:52.523Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "B) Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+        "indicador": "Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Ver anexo"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "57620f26-b0f5-4786-8f2a-a2d41facd885",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:53.120Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "C) Impulsar actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad para los integrantes del organismo sin distinción de función",
+        "indicador": "Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia de violencia por razones de género en la Ciudad destinadas a fiscalizadoras en calle.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "ce5ec353-5064-4296-9620-c9d2759c3695",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:53.771Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "Compromiso sin título",
+        "indicador": "publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de genero, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "6d31962a-df7f-40fc-96fa-1a7b097fdabf",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:54.394Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Ente regulador de servicios púb",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires incorporadas al Programa PARES.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Ver anexo"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "822497f7-2c2f-413b-ab6d-74f5d35ce2c9",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:55.021Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Espacio Publico",
+        "compromiso": "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+        "indicador": "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+        "valor": "5",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Tras la firma de Acta Acuerdo \"Plan de Igualdad de Oportunidades y de trato entre mujeres y varones\" concretada el 5/12/2024, nos dispusimos a informarle a los equipos de legales de cada una de las reparticiones dependientes de la Subsecretaría de Higiene sobre la existencia del Programa PARES para que procedan a invitar a inscribirse a cada empresa con la que trabajan. Al día de hoy, nos hemos reunido con el equipo de legales de la Dirección General de Limpieza quienes se comprometieron a evaluar la mejor vía para notificar a las empresas que mantienen licitaciones con esta área. En el transcurso de esta semana procederemos a reunirnos con la Dirección General de Reciclado y el Ente de Higiene Urbana para alcanzar el mismo objetivo antes de que finalice el año."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "da626766-6eef-4d77-addf-565ae6cfe202",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:55.664Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Espacio Publico",
+        "compromiso": "B) Continuar con la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+        "indicador": "Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promotoras ambientales vinculadas al servicio público de reciclado, acción formalizada en 2021 a través del Concurso Público N° 1-MEPHUGC/21.",
+        "valor": "2024",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Promotoras Ambientales: las acciones realizadas entre enero y diciembre de 2024 impactaron a un total de 70.021 vecinos/as en la ciudad: 113 charlas a empresas, instituciones y organismos públicos (4.108 personas alcanzadas). 170 talleres de reutilización en plazas, puntos verdes y organizaciones de la sociedad civil (5.296 personas alcanzadas). 135 charlas y talleres en escuelas (4.429 personas impactadas). 23 jornadas especiales y eventos (2.678 personas alcanzadas). 403 acciones de concientización al paso (15.010 personas alcanzadas). También se realizó Concientización puerta a puerta en segmentos residenciales y pequeños comercios (relevamiento de territorio). A la fecha el alcance es de 38.500 contactos."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "47f29754-b5c7-41c7-aacf-47414a93f732",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:56.281Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Espacio Publico",
+        "compromiso": "C) Promover charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+        "indicador": "cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana para la recolección exclusiva de materiales reciclables secos.",
+        "valor": "116",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Con el apoyo de la fundación Delterra, 116 Promotoras Ambientales pudieron capacitarse en la Universidad Austral durante todo 2024. Dentro del temario preparado especialmente para estas mujeres de cooperativas de recuperadores urbanos, se encuentra el PROTOCOLO DE VIOLENCIA DE GÉNERO, donde se explica el marco conceptual, la legislación sobre género vigente en CABA y en PROVINCIA. También, se exponen situaciones a modo de ejemplo para entender qué hacer, cómo reaccionar, a quién llamar, cuál es el procedimiento que deben seguir si quieren denunciar, y sobre todo poder entender a qué se considera violencia de género para que su caso sea detectado a tiempo."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "137fabd2-8583-46fa-b057-1b008cfc99b9",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:56.886Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Espacio Publico",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de empresas de estas características incorporadas al Programa PARES",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Ninguna"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "988dc23d-32d3-4cf4-8cba-1ce01fdec86e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:57.513Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Espacio Publico",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de cooperativas capacitadas en género",
+        "valor": "100",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "100%: las promotoras de las 12 cooperativas fueron alcanzadas con estas clases."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "261073f5-a9a9-4501-82b1-effc51adb4b3",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:58.116Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).",
+        "indicador": "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "35cbde62-e75f-4a06-b26b-d3c07fae2898",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:58.720Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "B) En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género en el ámbito laboral del GCABA (Resolución Firma Conjunta N° 1/MSGC/2019).",
+        "indicador": "a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y procedimiento de Protocolo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "70d9334c-4ae6-474d-a9cb-b94c3ee132c7",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:59.326Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "C) Continuar trabajando en la promoción y el otorgamiento del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos en la Resolución N° 2302/GCABA-MEFGC/2019 y por Disposición N° 1000/GCABA-DGCYC/2019",
+        "indicador": "a) cantidad de empresas que han solicitado el sello mujer",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "f1455b56-7030-4574-aa6c-1c715bc78e25",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:27:59.933Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "Compromiso sin título",
+        "indicador": "b) porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "e7096133-a87c-46e9-8871-95e43df434bc",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:00.540Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "Compromiso sin título",
+        "indicador": "b) publicacion del Protocolo actualizado",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "a8653153-57e4-4915-9277-a4cdc0272666",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:01.154Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "Compromiso sin título",
+        "indicador": "b) cantidad de actividades de promocion del sello \"empresa mujer\"",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "a0dbf5a3-25e3-49fa-a670-48ff45e8b47c",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:01.763Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Hacienda y finanzas",
+        "compromiso": "Compromiso sin título",
+        "indicador": "c) seguimiento y control de los requisitos de cada empresa solicitante del sello",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "affd9e2e-a1b1-45c2-9cc1-7f9472ff5ed2",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:02.385Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género",
+        "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA.",
+        "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+        "valor": "301",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de trabajadores que completaron la capacitación",
+        "valor": "3247",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)",
+        "valor": "5",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Autogestionado: 5 - Presencia: 25 - Virtual con Tutoría: 14"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de trabajadores que completaron la capacitación",
+        "valor": "97",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de capacitaciones brindadas",
+        "valor": "28",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de personas inscriptas en especializacion/es de perspectiva de género",
+        "valor": "2778",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de personas que aprobaron la especializacion/es en perspectiva de género",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de entidades deportivas capacitadas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de personas provenientes de clubes deportivos de la ciudad capacitadas en Ley Micaela",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Fecha de publicacion del manual",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Número de materiales promocionales producidos",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "cantidad de nuevos espacios de futbol mixto",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+        "valor": "1803",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de actividades de relevamiento realizadas",
+        "valor": "1",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Elaboracion de cronograma de relevamiento",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Número de entidades deportivas relevadas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Fecha de publicacion del Informe",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Fecha de Publicacion del protocolo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de actividades de Difusión del protocolo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de partidos de futbol en los que se difunde la linea 144",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "cantidad de alianzas con organizaciones para promover el deporte inclusivo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de nuevos espacios de deporte inclusivo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "fecha de lanzamiento de la inscripcion para participar en la maraton",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "fecha de realizacion de la maraton",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de participantes inscriptos por género",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "cantidad de materiales de sensibilización distribuidos durante el evento",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "tiempo promedio de respuestaa incidentes de seguridad",
+        "valor": "1538",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "dbabf6f2-c55f-4b36-9f48-d09d78fe87e5",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:23.546Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Compromiso sin título",
+        "indicador": "aplicaciones de GCBA analizadas",
+        "valor": "484",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.",
+        "indicador": "Actividades de planificacion",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+        "indicador": "Tasa de paridad en la asignación de becas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA.",
+        "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+        "valor": "479",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "d7311061-0b23-417e-9446-80ff14669d11",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:25.951Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Creación de un protocolo unificado para el abordaje de situaciones de violencia de género y protección a las infancias y adolescencias.",
+        "indicador": "Cantidad de reuniones para la redaccion de un protocolo unificado",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Difundir la línea 144 en todos los partidos e infraestructura de clubes deportivos.",
+        "indicador": "Cantidad de convenios/articulciones/acuerdos firmados con clubes para la entrega de materiales y difusion de la linea 144",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Fomentar la creación de espacios de deporte inclusivos para mujeres con discapacidad.",
+        "indicador": "cantidad de capacitaciones para entrenadores/as sobre deporte inclusivo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela.",
+        "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+        "valor": "5916",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Garantizar la especializaciòn en perspectiva de genero en el marco del programa \"Especializaciones\"",
+        "indicador": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+        "valor": "3",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Ley Micaela en los clubes. Participación en la redacción de la ley y garantizar el cumplimiento de la Ley Micaela específica para entidades deportivas en el ámbito de la CABA.",
+        "indicador": "Cantidad de reuniones para la redacción de la Ley Micaela",
+        "valor": "6",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Promoción de espacios de fútbol mixto.",
+        "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+        "valor": "1",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+        "indicador": "contenidos de campaña de genero incorporados en boti",
+        "valor": "5",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Realización de la \"Maratón violeta: hombres y mujeres contra la violencia\" para la conmemoración del día internacional para la eliminación de la violencia contra la mujer.",
+        "indicador": "Cantidad de reuniones de organizacion para la maraton",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Realización de un relevamiento de comisiones de género en todos los clubes deportivos.",
+        "indicador": "Cantidad de reuniones de planificacion y armado de equipo para el relevamiento",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Jefatura de Gabinete",
+        "compromiso": "Trabajar junto a la ASI proyectos, programas y acciones de seguridad informática preventiva y concientización.",
+        "indicador": "Participacion en actividades de concientizacion",
+        "valor": "2",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.",
+        "indicador": "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "642f4e47-3678-4efd-91d1-a7f45c661c28",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:33.031Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "B) Impulsar conversaciones para alcanzar la transferencia de competencias y la creación de un fuero que permita abordar la problemática de la violencia por razones de género, en la justicia local, de manera coordinada y unificada.",
+        "indicador": "Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores relevantes (poder judicial, legisladores, especialistas en género, organizaciones de la sociedad civil, etc)",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "se esta llevando a cabo un trabajo conjunto con Unidos por la Justicia (UNIJUS). El informe preliminar propone la creación de una jurisdicción especializada en violencia doméstica, sexual e institucional en la Ciudad Autónoma de Buenos Aires, con el objetivo de unificar competencia civil y penal en el tratamiento de la temática de violencia, promoviendo la eficiencia de los recursos judiciales y garantizando un acceso más inclusivo y eficiente a la justicia."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "dc7b1f26-aa84-4619-8930-31eff85cf7d0",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:33.619Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "C) Trabajar en la modificación de la Ley N° 269 que crea en el ámbito de la Ciudad Autónoma de Buenos Aires el Registro de Deudores/as Alimentarios/as Morosos/as.",
+        "indicador": "Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del registro de deudores alimentarios",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "2f366a35-b598-422d-897c-dde22961568f",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:34.215Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres/usuarios atendidos anualmente. Total de víctimas de violencia de género, violencia sexual y trata de personas que acceden al servicio jurídico gratuito.",
+        "valor": "44",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "eb520937-a174-48e0-bd74-94392ce7ba6e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:34.866Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de casos atendidos anualmente según tipo de violencia: Distribución de asesoría jurídica en función de los tipos de violencia (género, sexual, trata de personas).",
+        "valor": "19",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "19 género / 25 sexual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "817807a4-bfd4-4160-ba4d-bf3d6b3aa152",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:35.471Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje de avance de realización de un Análisis Diagnóstico de la situación actual que incluya evaluación de la carga de trabajo en caso de transferencia de competencias y una propuesta para la implementación de un fuero unificado.",
+        "valor": "1",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Resumen del informe"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "d940e9b1-7098-4f0a-bbb8-8e899ffc0013",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:36.072Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de actividades de formacion con funcionarios de otras juridicciones para impulsar la autonomia de las mujeres en la toma de desiciones",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "dcddb3d9-4e22-44fb-8208-64eabc2c282d",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:36.676Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de actividades técnicas con otras jurisdicciones para el desarrollo del índice de paridad política",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "3a0cc621-0ab6-4c9a-8c7c-70f44fbdac15",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:37.272Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Fecha de realizacion de la Expo Empleo Barrial Edicion Mujer",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "adb617dc-b42a-4598-8a64-041feb41d4a8",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:37.862Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres participantes en la Expo Empleo Barrial Edicion Mujer",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "16e0758f-4aef-4194-8cf3-8d58dc07da4a",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:38.464Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres que obtuvieron empleo como resultado de la participación de la Expo Empleo Barrial Edición Mujer",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "b6c52a19-624c-466b-8e5a-10b418113a73",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:39.053Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de asociaciones sindicales informadas anualmente de los alcances de la iniciatva PARES",
+        "valor": "65",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "fed01b78-b661-4fc9-bcc7-67df272a80c9",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:39.646Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "D) Difundir el Índice de Paridad Política, las recomendaciones para su implementación y el asesoramiento para su desarrollo en otras jurisdicciones como iniciativa para el impulso de la autonomía de las mujeres en la toma de decisiones.",
+        "indicador": "Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de paridad politica",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "48d503d9-d2c3-4ab0-b175-6d177aa32fb1",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:40.240Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "E) Articular con la Dirección General de Autonomía Económica de la Mujer, dependiente de la Subsecretaría de la Mujer, el desarrollo de las Expo Empleo Barrial Edición Mujer.",
+        "indicador": "Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar la Expo EMpleo Barrial Edicion Mujer",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "1aacdc32-3ebc-4257-a2d1-544b7b850d7a",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:40.841Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "F) Continuar con el asesoramiento brindado por la Secretaria de Trabajo y Empleo a personas en situación de violencia por razones de género en el ámbito laboral, a través de las herramientas desplegadas por la Dirección General Relaciones del Trabajo en el marco del Convenio 190 de la Organización Internacional del Trabajo (OIT).",
+        "indicador": "Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de género en el ámbito laboral que reciben asesoramiento por parte de la Secretaría de Trabajo y Empleo.",
+        "valor": "43",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "6eecda1d-5514-4fcb-a8a2-4b0bbfd18b97",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:41.430Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Justicia",
+        "compromiso": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES.",
+        "indicador": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+        "valor": "465",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "ce3020e6-4a9d-4cf9-867a-f18dfcf4f4ed",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:42.028Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+        "indicador": "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+        "valor": "15",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de reuniones: 15 (quince) entre GODI, DGAVMG y equipos"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "3b1ddfbc-d8b4-4668-9aec-ed601ba4736c",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:42.627Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "B) Garantizar la continuidad del Plan de Abordaje a las Violencias por razones de género.",
+        "indicador": "Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a las violencias por razones de genero",
+        "valor": "35",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "- Se realizaron TREINTA Y CINCO (35) reuniones de articulación intra e interinstitucionales e"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "aa9780d1-ee89-403c-8014-7ea5ede6093a",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:43.219Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "C) Garantizar espacios de cuidado en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+        "indicador": "Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situación de consumo problemático.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "935766da-f6e0-4458-85aa-0c3bd5dd6fdb",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:43.811Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Creacion/implementacion de una herramienta que permita sistematizar la informacion en materia de asistencia a mujeres en situacion de violencia",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Primer etapa de CRM realizada."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "d334197d-aceb-4119-a0f9-ccda440cc91f",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:44.409Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de entrevistas de admisión. Cantidad de prestaciones realizadas. (Indicador propuesto)",
+        "valor": "210",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de entrevistas de admisión: 210 (entre enero y noviembre 2024)."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "0a0574ba-194d-4a3e-ae33-bb8f334998ab",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:45.041Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres asistidas en situación de consumo en dispositivos donde se garanticen espacio de cuidados. (Indicador propuesto)",
+        "valor": "128",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "128 mujeres asistidas"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "93f71943-3477-400c-aa16-918cfc39e4dc",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:45.645Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de enlaces del MPF dispuestos en los CIMs",
+        "valor": "1",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "1 (CIM 15 - Zona Norte)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "9c54aff8-15b7-4f23-b8f7-9d79f5280c2b",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:46.242Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  trayectos formativos, de empleabilidad y emprendedurismo. Cantidad de mujeres sobre el total de mujeres asistidas",
+        "valor": "10",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de mujeres capacitadas en TOL: 10 (diez) en CIM 9 y 11(once) en CIM Aberastury"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "b3792640-0d43-4fa4-82f1-c1e601263739",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:46.841Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Publicacion de Protocolo por medio de acto administrativo",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "No se realizó este año, se priorizó el ingreso el Plan Territorial a los CeSAC."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "6911a37f-2a65-4342-a00a-bd951abbc278",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:47.436Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de Cesacs de la region sur de la ciudad que han incluido el Plan de Abordaje territorial de las violencias por motivos de genero",
+        "valor": "3",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de CeSACs: 3 (tres) (CeSAC N°30 Zavaleta, CeSAC N° 3 Lugano IyII y CeSAC N° 5 Barrio 15)."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "e61ae290-7d52-4a59-953c-ab1c07b4c2bb",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:48.016Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres asistidas en los Cesac de la region sur de la ciudad a traves del Plan de abordaje territorial de las violencias por motivos de género",
+        "valor": "3",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "10e8fbfd-4a1a-4413-91e1-17724181bb01",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:48.617Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Publicacion del nuevo protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "La UPE sí formalizó un protocolo, supervisado por nuestra área."
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "fab53660-5730-4ad7-8f7f-f25f8b89053f",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:49.211Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  trayectos formativos y de terminalidad educativa por sobre el total de mujeres asistidas en los CIMs",
+        "valor": "7",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de mujeres con derivación asertiva para terminalidad educativa: 7"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "D) Continuar con las líneas de atención telefónica 144 y 911.",
+        "indicador": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+        "valor": "43.765",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de llamadas a la línea: 43.765"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "79292645-29e9-4044-b32e-4a3cf3c31bd3",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:50.386Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "F) Garantizar la continuidad de la publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+        "indicador": "Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Políticas Sociales en Adicciones.",
+        "valor": "2024",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Publicación semestral. Diciembre 2024. En curso"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "ceae3e55-56a7-48cc-86ff-b7e3b79ec7eb",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:51.004Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "G) Articular con la Subsecretaría de Desarrollo del Potencial Humano la priorización en trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+        "indicador": "Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para priorizar los trayectos formativos, de empleabilidad y emprendedurismo para la población asistida en materia de violencias por motivos de género.",
+        "valor": "10",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de reuniones \"Vertical Trabajo\" (subse Potencial Humano + Subse Fortalecimiento): 10 (diez)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "94b95d83-13be-4dc1-a39e-6edd849d90f8",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:51.595Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "H) Trabajar en conjunto con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+        "indicador": "Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a unidades convivenciales.",
+        "valor": "2",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "2213eee7-58f2-473f-bf32-74b1d550d948",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:52.180Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "I) Articular con el Ministerio de Salud la inclusión del Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+        "indicador": "Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territorial de las Violencias por Motivos de Género en los Centros de Salud y Acción Comunitaria (CeSAC) de la región sur de la Ciudad.",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "4 reuniones"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "42b3c21a-b8be-4a71-a875-fb9dbf2d5778",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:52.773Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "J) Revisar y adecuar instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+        "indicador": "Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social con perspectiva de género en el marco de la política habitacional de integración de los barrios populares de la Ciudad a cargo del Instituto de la Vivienda de la Ciudad.",
+        "valor": "2",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "008ce01f-91c2-46fd-af41-e4b72e6dad7b",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:53.373Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "K) Articular con el Ministerio de Educación el fomento de trayectos formativos y de terminalidad educativa en la población asistida por violencia por razones de género",
+        "indicador": "Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos formativos y terminalidad educativao para la población asistida en materia de violencias por motivos de género.",
+        "valor": "4",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de reuniones con equipos para articulación: 4 (cuatro)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "5a86e3d6-8bad-45e7-8325-d0639a74fb6e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:53.973Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "MDHyH",
+        "compromiso": "e) Ampliar el Convenio con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+        "indicador": "Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integrales de la Mujer.",
+        "valor": "2",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "c809e7f6-3854-4e22-9266-4287cd9a0178",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:54.578Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.",
+        "indicador": "Cantidad de consejerías de salud sexual realizadas en los centros de salud.",
+        "valor": "77497",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "77497 (2023)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "e049dddf-6863-46c2-9b0a-b337eb4dabcc",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:55.186Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "2. Promover el desarrollo de operativos territoriales interministeriales para la prevención del cáncer de cuello uterino",
+        "indicador": "Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "en construcción"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "f7396e91-575a-4129-9631-ea752f49c4f8",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:55.796Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía.",
+        "indicador": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA.",
+        "valor": "44331",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "44331 (2023)"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "4. Generar mecanismos de articulación entre dispositivos de salud de la Ciudad y la Dirección General de Abordaje a las Violencias por Motivos de Género para asistencia a mujeres en situación de violencia por razones de genero",
+        "indicador": "Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de violencia por razones de género.",
+        "valor": "390",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "390 (76%) (2023)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "f8984ee6-495b-4b3c-b4e8-118b8420d109",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:56.979Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "5. Brindar la información relativa a eventos, actividades y políticas públicas con perspectiva de género y diversidad, a los fines de nutrir al Portal de Servicios para la Igualdad de Género (https://www.buenosaires.gob.ar/igualdaddegenero) y visibilizar toda la oferta de servicios existentes en la Ciudad para reducir las brechas de genero",
+        "indicador": "Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el portal.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "A completar por Subsecretaria de la Mujer"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "d653b302-8f8a-4a6a-a3dd-7ee416fc25b5",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:57.585Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cantidad de turnos de colocacion o consulta sobre MAC realizados anualmente en atención primaria.",
+        "valor": "16698",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "16698 (2023)"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "9b4c3979-6ce1-4af2-b723-abac516baf76",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:58.178Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Salud",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Porcentaje/cantidad de variación con respecto al año anterior",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "-"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "52146d5b-6904-4285-a454-8bbe0ac57a73",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:28:58.768Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Seguridad",
+        "compromiso": "Compromiso sin título",
+        "indicador": "b) Aprobación de la Resolución conjunta",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Seguridad",
+        "compromiso": "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+        "indicador": "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa",
+        "valor": "1",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad."
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Seguridad",
+        "compromiso": "Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+        "indicador": "a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Publicado en Junio"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Seguridad",
+        "compromiso": "Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.",
+        "indicador": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+        "valor": "203",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "a3beddcd-aede-4255-b93f-264b99e66a03",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:01.097Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Seguridad",
+        "compromiso": "Realizar las derivaciones a los Centros Integrales de la Mujer (CIMs) a las víctimas que se les hace entrega de dispositivos electrónicos por motivos de violencia de género, que requieran asistencia.",
+        "indicador": "a) Cantidad de derivaciones realizadas a los CIMs de mujeres con dispositivos electrónicos por estar en situación de violencia de género que requieran asistencia sobre asignaciones de dispositivos por mes",
+        "valor": "61",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "c2fc6561-cd5d-4b16-9376-f21fcdb5a6a4",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:01.677Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. -Promover el acompañamiento a mujeres mayores.",
+        "indicador": "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretaria",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "b546eb6c-4dd2-410a-923f-3d43d4eeef21",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:02.298Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. -Promover la igualdad de oportunidades en el ámbito laboral, a través del programa de Empleabilidad Trans dependiente de la Dirección de Convivencia en la Diversidad, trabajando en estrecha colaboración con diferentes actores públicos y privados para asegurar que se fomente una cultura laboral equitativa.",
+        "indicador": "cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "Cantidad de espacios de promocion de derechos / capacitacion realizados"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "8f2f75c2-a97a-4ef7-a9fc-87ba020537cb",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:02.941Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Brindar asistencia técnica mediante la capacitación y planificación para el armado de espacios de huerta en los nuevos refugios para mujeres víctimas de violencia por motivos de género de la Ciudad Autónoma de Buenos Aires.",
+        "indicador": "cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de huertas en los nuevos refugios",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "8612fbe3-b08b-4db9-82ea-03272e078815",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:03.539Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Capacitar a los equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad víctimas de violencia de género.",
+        "indicador": "cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescentes y mujeres con discapacidad victimas de violencia de genero capacitados/as",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "17051404-dbbd-4b46-b647-74a5652603ae",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:04.131Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "1. Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires.",
+        "indicador": "- cantidad de reuniones interinstitucionales de coordinación sobre políticas de género",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "2642b27a-a689-45a4-9472-45c0113b0a94",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:04.725Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. -Fomentar la reflexión y el diálogo a través de encuentros, enmarcados en el programa BAConvive, con el propósito de promover la conciencia sobre la equidad y la buena convivencia en entornos gubernamentales yprivados.",
+        "indicador": "cantidad de encuentros realizados desde BA Convive",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "c78fae93-c433-4621-9cbb-f4be853ce10b",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:05.333Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. Financiar las políticas tendientes a la promoción de a la autonomía económica de las mujeres.",
+        "indicador": "cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron financiadas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "e73f60a5-960c-4e3a-9e23-0be8e387673b",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:05.937Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "2. Promover la capacitación a mujeres con discapacidad en derechos reproductivos y sexuales. (ESI, embarazo, parto, post parto, climaterio, controles ginecológicos regulares).",
+        "indicador": "cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos reproductivos y sexuales",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "e9548bdd-5293-4f6d-aeed-0f1088d8afa4",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:06.533Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "3. Elaborar a través del Comité de lucha contra la trata de personas de la Ciudad de Buenos Aires, un plan plurianual de acción para la prevención, atención y acompañamiento integral de las víctimas de trata en la Ciudad",
+        "indicador": "publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de las victimas de trata de la ciudad",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "7e4c7dbe-25b6-4b61-9dfe-3c5159e7fd8e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:07.151Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "3. Promover políticas de género entorno al derecho al cuidado: cuidar, recibir cuidado y autocuidado.",
+        "indicador": "Cantidad de acciones realizadas para promover políticas de género en torno al ciudado",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "57f20e16-7252-4682-b1f2-5146bf6862ae",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:07.742Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+        "indicador": "Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires destinadas a promover la autonomía económica de las mujeres dentro de la comunidad migrantes de la Ciudad.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "9da87ebb-7e34-4daf-8866-7717d65a654f",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:08.347Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "4. Promover el acompañamiento a mujeres mayores con discapacidad y en soledad.",
+        "indicador": "cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes programas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "013226a5-f3d0-4966-b2a9-0373feb12f33",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:08.950Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "5. Promover acciones de sensibilización y educación sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+        "indicador": "Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigidas a comunidades migrantes, en conjunto con la Dirección General de Abordaje de las Violencias por Razones de Género dependiente del Ministerio de Desarrollo Humano y Hábitat.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "5dedbf52-3413-4e44-a720-9c176935505e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:09.550Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "5. Promover la empleabilidad de mujeres con discapacidad, lo que incluye la capacitación en educación financiera, planificación patrimonial y liderazgo.",
+        "indicador": "Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financiera, planificación patrimonial y liderazgo.",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "a4e6812f-9bae-4053-a5f1-344f67c64c48",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:10.148Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "6. Promover un tablero de acceso a mujeres con discapacidad junto con la capacitación en la temática para los equipos interdisciplinarios a cargo de la asistencia a víctimas de violencia de género",
+        "indicador": "Realizacion de tablero de acceso a mujeres con discapacidad",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "6a412656-e077-4dca-90ff-61f77fc5dc9c",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:10.757Z"
+          }
+        }
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "Vicejefatura",
+        "compromiso": "Promover mediante el Programa Mujeres Líderes la formación, intercambio y desarrollo de mujeres de mandos medios del Gobierno de la Ciudad de Buenos Aires, en articulación con mujeres del sector privado y de OSC, para fortalecer sus habilidades personales y profesionales para un desempeño efectivo en roles de liderazgo, potenciar vínculos y visibilizar perfiles internos.",
+        "indicador": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "11",
+        "indicador": "Desarrollo Humano y Habitat",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 11"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "16",
+        "indicador": "Jefatura de gabinete",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 16"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "16",
+        "indicador": "Vicejefatura",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 16"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "3",
+        "indicador": "Ente regulador",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 3"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "3",
+        "indicador": "Hacienda y Finanzas",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 3"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "3",
+        "indicador": "Espacio Público e Higiene Urbana",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 3"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "4",
+        "indicador": "Seguridad",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 4"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "5",
+        "indicador": "Salud",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 5"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "7",
+        "indicador": "Justicia",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 7"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "9",
+        "indicador": "Educacion",
+        "valor": "77",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": ""
+      },
+      "resultado": {
+        "success": false,
+        "error": "Compromiso/Línea no encontrado: 9"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Desarrollo Economico",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Infraestructura",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": false,
+        "error": "HTTP 400: Ya existe una carga pendiente para este indicador, período y ministerio"
+      }
+    },
+    {
+      "carga": {
+        "ministerio": "compromisos",
+        "compromiso": "Compromiso sin título",
+        "indicador": "Cultura",
+        "valor": "",
+        "unidad": "",
+        "meta": "",
+        "fuente": "Excel Original",
+        "observaciones": "nan"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "message": "Carga creada exitosamente",
+          "carga": {
+            "id": "3a2ab9a1-b8eb-4062-b6e1-ae2dc9b1a57e",
+            "estado": "pendiente",
+            "creadoEn": "2025-09-04T16:29:18.563Z"
+          }
+        }
+      }
+    }
+  ]
+}

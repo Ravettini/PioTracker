@@ -302,6 +302,9 @@ export class CargasService {
         whereConditions.ministerioId = userMinisterioId;
       }
 
+      // Filtrar solo cargas de 2024 para el dashboard
+      whereConditions.periodo = '2024';
+
       // Obtener total de cargas
       const totalCargas = await this.cargaRepository.count({ where: whereConditions });
 
@@ -361,6 +364,11 @@ export class CargasService {
   }
 
   private validarPeriodoPeriodicidad(periodo: string, periodicidad: string): void {
+    // Casos especiales: períodos fijos siempre son válidos
+    if (periodo === '2025-2027' || periodo === '2024') {
+      return;
+    }
+
     let esValido = false;
 
     switch (periodicidad) {

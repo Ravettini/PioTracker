@@ -13,13 +13,14 @@ export class IsValidPeriodo implements ValidatorConstraintInterface {
       /^\d{4}Q[1-4]$/,           // YYYYQn (trimestral)
       /^\d{4}S[1-2]$/,           // YYYYSn (semestral)
       /^\d{4}$/,                  // YYYY (anual)
+      /^\d{4}-\d{4}$/,           // YYYY-YYYY (período fijo 2025-2027)
     ];
 
     return periodosValidos.some(pattern => pattern.test(periodo));
   }
 
   defaultMessage(args: ValidationArguments) {
-    return 'El período debe tener un formato válido (YYYY-MM, YYYYQn, YYYYSn, YYYY)';
+    return 'El período debe tener un formato válido (YYYY-MM, YYYYQn, YYYYSn, YYYY, YYYY-YYYY)';
   }
 }
 

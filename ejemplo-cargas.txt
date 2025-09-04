@@ -1,0 +1,33 @@
+### Ministerio: Ministerio de Salud
+#### Compromiso: Mejorar la cobertura de vacunación
+- Indicador: Porcentaje de niños vacunados
+  - Valor: 85.5
+  - Unidad de medida: Porcentaje
+  - Meta: 90
+  - Fuente de los datos: Excel Original
+  - Observaciones: Se logró una mejora significativa en la cobertura de vacunación infantil, alcanzando el 85.5% de cobertura en el período 2025-2027.
+
+#### Compromiso: Reducir la mortalidad materna
+- Indicador: Tasa de mortalidad materna
+  - Valor: 2.3
+  - Unidad de medida: Por cada 100,000 nacimientos
+  - Meta: 2.0
+  - Fuente de los datos: Excel Original
+  - Observaciones: La tasa de mortalidad materna se mantiene estable en 2.3 por cada 100,000 nacimientos, ligeramente por encima de la meta establecida.
+
+### Ministerio: Ministerio de Educación
+#### Compromiso: Aumentar la tasa de alfabetización
+- Indicador: Tasa de alfabetización en adultos
+  - Valor: 98.2
+  - Unidad de medida: Porcentaje
+  - Meta: 99.0
+  - Fuente de los datos: Excel Original
+  - Observaciones: Se mantiene una alta tasa de alfabetización en adultos, alcanzando el 98.2% de la población objetivo.
+
+#### Compromiso: Mejorar la calidad educativa
+- Indicador: Promedio de calificaciones en evaluaciones nacionales
+  - Valor: 7.8
+  - Unidad de medida: Puntos (escala 1-10)
+  - Meta: 8.0
+  - Fuente de los datos: Excel Original
+  - Observaciones: El promedio de calificaciones en las evaluaciones nacionales muestra una mejora constante, alcanzando 7.8 puntos en la escala de 1 a 10.

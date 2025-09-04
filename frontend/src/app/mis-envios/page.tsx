@@ -144,20 +144,22 @@ export default function MisEnviosPage() {
     switch (carga.estado) {
       case 'borrador':
         return (
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
             <Button
               size="sm"
               variant="outline"
               onClick={() => router.push(`/carga/edit/${carga.id}`)}
+              className="w-full sm:w-auto text-xs"
             >
-              <Edit className="h-4 w-4 mr-1" />
+              <Edit className="h-3 w-3 md:h-4 md:w-4 mr-1" />
               Editar
             </Button>
             <Button
               size="sm"
               onClick={() => handleEnviar(carga.id)}
+              className="w-full sm:w-auto text-xs"
             >
-              <Send className="h-4 w-4 mr-1" />
+              <Send className="h-3 w-3 md:h-4 md:w-4 mr-1" />
               Enviar
             </Button>
             {canDelete && (
@@ -165,8 +167,9 @@ export default function MisEnviosPage() {
                 size="sm"
                 variant="destructive"
                 onClick={() => handleDelete(carga.id)}
+                className="w-full sm:w-auto text-xs"
               >
-                <Trash2 className="h-4 w-4 mr-1" />
+                <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                 Eliminar
               </Button>
             )}
@@ -174,15 +177,16 @@ export default function MisEnviosPage() {
         );
       case 'pendiente':
         return (
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
             <Badge variant="warning">En Revisión</Badge>
             {canDelete && (
               <Button
                 size="sm"
                 variant="destructive"
                 onClick={() => handleDelete(carga.id)}
+                className="w-full sm:w-auto text-xs"
               >
-                <Trash2 className="h-4 w-4 mr-1" />
+                <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                 Eliminar
               </Button>
             )}
@@ -190,7 +194,7 @@ export default function MisEnviosPage() {
         );
       case 'validado':
         return (
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
             <Badge variant="success">Validado</Badge>
             {!carga.publicado && (
               <Badge variant="outline">No Publicado</Badge>
@@ -199,14 +203,15 @@ export default function MisEnviosPage() {
         );
       case 'observado':
         return (
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
             <Badge variant="warning">Observado</Badge>
             <Button
               size="sm"
               variant="outline"
               onClick={() => router.push(`/carga/edit/${carga.id}`)}
+              className="w-full sm:w-auto text-xs"
             >
-              <Edit className="h-4 w-4 mr-1" />
+              <Edit className="h-3 w-3 md:h-4 md:w-4 mr-1" />
               Corregir
             </Button>
             {canDelete && (
@@ -214,8 +219,9 @@ export default function MisEnviosPage() {
                 size="sm"
                 variant="destructive"
                 onClick={() => handleDelete(carga.id)}
+                className="w-full sm:w-auto text-xs"
               >
-                <Trash2 className="h-4 w-4 mr-1" />
+                <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                 Eliminar
               </Button>
             )}
@@ -223,15 +229,16 @@ export default function MisEnviosPage() {
         );
       case 'rechazado':
         return (
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-2">
             <Badge variant="destructive">Rechazado</Badge>
             {canDelete && (
               <Button
                 size="sm"
                 variant="destructive"
                 onClick={() => handleDelete(carga.id)}
+                className="w-full sm:w-auto text-xs"
               >
-                <Trash2 className="h-4 w-4 mr-1" />
+                <Trash2 className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                 Eliminar
               </Button>
             )}
@@ -257,10 +264,10 @@ export default function MisEnviosPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button
               variant="ghost"
               onClick={() => router.back()}
@@ -269,15 +276,18 @@ export default function MisEnviosPage() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                 Mis Envíos
               </h1>
-              <p className="text-gray-600 mt-2">
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
                 Gestiona tus cargas de indicadores
               </p>
             </div>
           </div>
-          <Button onClick={() => router.push('/carga')}>
+          <Button 
+            onClick={() => router.push('/carga')}
+            className="w-full md:w-auto"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Nueva Carga
           </Button>
@@ -287,7 +297,7 @@ export default function MisEnviosPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Filtros</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Filtros</CardTitle>
               <Button
                 variant="ghost"
                 onClick={() => setShowFilters(!showFilters)}
@@ -307,17 +317,19 @@ export default function MisEnviosPage() {
                   onChange={(e) => handleFilterChange('estado', e.target.value)}
                 />
                 
-                <div className="flex items-end space-x-2">
+                <div className="flex flex-col sm:flex-row items-end space-y-2 sm:space-y-0 sm:space-x-2">
                   <Button
                     variant="outline"
                     onClick={clearFilters}
                     size="sm"
+                    className="w-full sm:w-auto"
                   >
                     Limpiar
                   </Button>
                   <Button
                     onClick={loadCargas}
                     size="sm"
+                    className="w-full sm:w-auto"
                   >
                     <RefreshCw className="h-4 w-4 mr-1" />
                     Aplicar
@@ -331,7 +343,7 @@ export default function MisEnviosPage() {
         {/* Lista de cargas */}
         <Card>
           <CardHeader>
-            <CardTitle>
+            <CardTitle className="text-lg md:text-xl">
               Cargas ({cargas.length})
             </CardTitle>
           </CardHeader>
@@ -350,32 +362,35 @@ export default function MisEnviosPage() {
                 <p className="text-gray-600 mb-4">
                   Comienza creando tu primera carga de indicadores
                 </p>
-                <Button onClick={() => router.push('/carga')}>
+                <Button 
+                  onClick={() => router.push('/carga')}
+                  className="w-full sm:w-auto"
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   Crear Carga
                 </Button>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
+              <div className="overflow-x-auto max-w-full">
+                <table className="w-full min-w-full max-w-4xl">
+                  <thead className="hidden md:table-header-group">
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Indicador
                       </th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Período
                       </th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Valor
                       </th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Estado
                       </th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Fecha
                       </th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
                         Acciones
                       </th>
                     </tr>
@@ -383,45 +398,82 @@ export default function MisEnviosPage() {
                   <tbody>
                     {cargas.map((carga) => (
                       <tr key={carga.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-4 px-4">
+                        {/* Desktop view */}
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
                           <div>
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-gray-900 text-xs md:text-sm">
                               {carga.indicador.nombre}
                             </p>
-                            <p className="text-sm text-gray-600">
-                              {carga.ministerio.sigla} - {carga.linea.titulo}
+                            <p className="text-xs text-gray-600">
+                              {carga.indicador.codigo || 'Sin código'}
                             </p>
                           </div>
                         </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-900">
-                              {getPeriodoDisplay(carga.periodo, carga.periodicidad)}
-                            </span>
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                          <Badge variant="outline" className="text-xs">
+                            {carga.periodo}
+                          </Badge>
+                        </td>
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                          <div>
+                            <p className="text-xs md:text-sm font-medium text-gray-900">
+                              {carga.valor} {carga.unidad}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              Meta: {carga.meta} {carga.unidad}
+                            </p>
                           </div>
                         </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-2">
-                            <TrendingUp className="h-4 w-4 text-gray-400" />
-                            <span className="font-medium text-gray-900">
-                              {carga.valor}
-                            </span>
-                            <span className="text-sm text-gray-600">
-                              {carga.unidad}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
                           {getEstadoBadge(carga.estado)}
                         </td>
-                        <td className="py-4 px-4">
-                          <div className="text-sm text-gray-600">
-                            {format(new Date(carga.creadoEn), 'dd/MM/yyyy HH:mm', { locale: es })}
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
+                          <div className="text-xs text-gray-600">
+                            <p>{format(new Date(carga.creadoEn), 'dd/MM/yyyy', { locale: es })}</p>
+                            <p>{format(new Date(carga.creadoEn), 'HH:mm', { locale: es })}</p>
                           </div>
                         </td>
-                        <td className="py-4 px-4">
+                        <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
                           {getActionsForEstado(carga)}
+                        </td>
+                        
+                        {/* Mobile view - Card layout */}
+                        <td className="md:hidden p-3">
+                          <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1">
+                                <p className="font-medium text-gray-900 text-sm">
+                                  {carga.indicador.nombre}
+                                </p>
+                                <p className="text-xs text-gray-600">
+                                  {carga.indicador.codigo || 'Sin código'}
+                                </p>
+                              </div>
+                              <Badge variant="outline" className="text-xs ml-2">
+                                {carga.periodo}
+                              </Badge>
+                            </div>
+                            
+                            <div className="flex justify-between items-center">
+                              <div>
+                                <p className="text-sm font-medium text-gray-900">
+                                  {carga.valor} {carga.unidad}
+                                </p>
+                                <p className="text-xs text-gray-600">
+                                  Meta: {carga.meta} {carga.unidad}
+                                </p>
+                              </div>
+                              {getEstadoBadge(carga.estado)}
+                            </div>
+                            
+                            <div className="text-xs text-gray-600">
+                              {format(new Date(carga.creadoEn), 'dd/MM/yyyy HH:mm', { locale: es })}
+                            </div>
+                            
+                            <div className="pt-2">
+                              {getActionsForEstado(carga)}
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     ))}

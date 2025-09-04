@@ -1,0 +1,34 @@
+{
+  "fecha": "2025-09-04T15:51:23.183Z",
+  "datos": {
+    "ministerio": "compromisos ",
+    "compromiso": "Compromiso sin título",
+    "indicador": "Desarrollo Economico",
+    "tipo": "cantidad",
+    "datos": {
+      "periodos": [],
+      "valores": []
+    },
+    "configuracion": {
+      "tipoGrafico": "column",
+      "colores": [
+        "#10B981"
+      ],
+      "opciones": {
+        "yAxis": {
+          "title": {
+            "text": "Cantidad"
+          }
+        }
+      }
+    }
+  },
+  "estructura": {
+    "tienePeriodos": true,
+    "tieneValores": true,
+    "tieneMetas": false,
+    "totalPeriodos": 0,
+    "totalValores": 0,
+    "totalMetas": 0
+  }
+}

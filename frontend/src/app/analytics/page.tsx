@@ -111,6 +111,7 @@ export default function AnalyticsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [selectedChartType, setSelectedChartType] = useState<string>('auto');
+  const [showChartGuide, setShowChartGuide] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -577,10 +578,10 @@ export default function AnalyticsPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Button
               variant="ghost"
               onClick={() => router.back()}
@@ -589,85 +590,86 @@ export default function AnalyticsPage() {
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                 Analytics y Gráficos
               </h1>
-              <p className="text-gray-600 mt-2">
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
                 Visualiza y analiza los indicadores de cumplimiento
               </p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              onClick={() => {
-                loadResumen();
-                if (selectedMinisterio) loadCompromisos(selectedMinisterio);
-                if (selectedCompromiso) loadIndicadores(selectedCompromiso);
-                if (selectedIndicador) loadAnalyticsData();
-              }}
-              disabled={isLoading}
-            >
-              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-              Actualizar
-            </Button>
-          </div>
+                     <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
+             <Button
+               variant="outline"
+               onClick={() => {
+                 loadResumen();
+                 if (selectedMinisterio) loadCompromisos(selectedMinisterio);
+                 if (selectedCompromiso) loadIndicadores(selectedCompromiso);
+                 if (selectedIndicador) loadAnalyticsData();
+               }}
+               disabled={isLoading}
+               className="w-full sm:w-auto"
+             >
+               <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+               Actualizar
+             </Button>
+           </div>
         </div>
 
         {/* Resumen KPIs */}
         {resumenData && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <BarChart3 className="h-6 w-6 text-blue-600" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 items-center justify-center py-2 md:py-8">
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-blue-100 rounded-lg">
+                    <BarChart3 className="h-5 w-5 md:h-6 md:w-6 text-blue-600" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Ministerios</p>
-                    <p className="text-2xl font-bold text-gray-900">{resumenData.totalMinisterios}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <TrendingUp className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Compromisos</p>
-                    <p className="text-2xl font-bold text-gray-900">{resumenData.totalCompromisos}</p>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Ministerios</p>
+                    <p className="text-lg md:text-2xl font-bold text-gray-900">{resumenData.totalMinisterios}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <BarChart3 className="h-6 w-6 text-purple-600" />
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-green-100 rounded-lg">
+                    <TrendingUp className="h-5 w-5 md:h-6 md:w-6 text-green-600" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Indicadores</p>
-                    <p className="text-2xl font-bold text-gray-900">{resumenData.totalIndicadores}</p>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Compromisos</p>
+                    <p className="text-lg md:text-2xl font-bold text-gray-900">{resumenData.totalCompromisos}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center">
-                  <div className="p-2 bg-yellow-100 rounded-lg">
-                    <TrendingUp className="h-6 w-6 text-yellow-600" />
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-purple-100 rounded-lg">
+                    <BarChart3 className="h-5 w-5 md:h-6 md:w-6 text-purple-600" />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Cumplimiento</p>
-                    <p className="text-2xl font-bold text-gray-900">{resumenData.porcentajeCumplimiento}%</p>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Indicadores</p>
+                    <p className="text-lg md:text-2xl font-bold text-gray-900">{resumenData.totalIndicadores}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="flex justify-center items-center hover:shadow-md transition-shadow">
+              <CardContent className="p-6 pt-15 p-6 w-full text-center">
+                <div className="flex flex-col items-center justify-center space-y-2 md:space-y-4">
+                  <div className="p-2 md:p-3 bg-yellow-100 rounded-lg">
+                    <TrendingUp className="h-5 w-5 md:h-6 md:w-6 text-yellow-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Cumplimiento</p>
+                    <p className="text-lg md:text-2xl font-bold text-gray-900">{resumenData.porcentajeCumplimiento}%</p>
                   </div>
                 </div>
               </CardContent>
@@ -791,7 +793,7 @@ export default function AnalyticsPage() {
         {/* Filtros */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
               <Filter className="h-5 w-5" />
               Filtros de Análisis
             </CardTitle>
@@ -843,16 +845,16 @@ export default function AnalyticsPage() {
         {analyticsData && (
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
                 <div>
-                  <CardTitle>
+                  <CardTitle className="text-lg md:text-xl">
                     {analyticsData.indicador}
                   </CardTitle>
                   <p className="text-sm text-gray-600">
                     {analyticsData.ministerio} - {analyticsData.compromiso}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                   <label className="text-sm font-medium text-gray-700">Tipo de Gráfico:</label>
                   <Select
                     value={selectedChartType}
@@ -866,7 +868,7 @@ export default function AnalyticsPage() {
                       { value: 'radar', label: 'Radar' },
                       { value: 'composed', label: 'Combinado' }
                     ]}
-                    className="w-40"
+                    className="w-full sm:w-40"
                   />
                 </div>
               </div>
@@ -878,16 +880,23 @@ export default function AnalyticsPage() {
                   <span className="ml-2 text-gray-600">Cargando datos...</span>
                 </div>
               ) : (
-                <div>
-                  {renderChart()}
-                  {renderChartGuide()}
-                  <div className="mt-4 flex justify-end">
-                    <Button variant="outline">
-                      <Download className="h-4 w-4 mr-2" />
-                      Exportar
-                    </Button>
-                  </div>
-                </div>
+                                 <div>
+                   {renderChart()}
+                   <div className="mt-4 flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                     <Button
+                       variant="outline"
+                       onClick={() => setShowChartGuide(!showChartGuide)}
+                       className="w-full sm:w-auto"
+                     >
+                       {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
+                     </Button>
+                     <Button variant="outline" className="w-full sm:w-auto">
+                       <Download className="h-4 w-4 mr-2" />
+                       Exportar
+                     </Button>
+                   </div>
+                   {showChartGuide && renderChartGuide()}
+                 </div>
               )}
             </CardContent>
           </Card>

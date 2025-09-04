@@ -45,7 +45,7 @@ export default function CargaPage() {
   const [selectedMinisterio, setSelectedMinisterio] = useState<string>('');
   const [selectedLinea, setSelectedLinea] = useState<string>('');
   const [selectedIndicador, setSelectedIndicador] = useState<string>('');
-  const [periodo, setPeriodo] = useState<string>('2025-2027');
+  const [periodo, setPeriodo] = useState<string>('2024');
   const [valor, setValor] = useState<string>('0.00');
   const [unidad, setUnidad] = useState<string>('');
   const [meta, setMeta] = useState<string>('0.00');
@@ -80,18 +80,8 @@ export default function CargaPage() {
 
   // Función para validar el formato del período
   const validarPeriodo = (periodo: string, periodicidad: string): boolean => {
-    switch (periodicidad) {
-      case 'mensual':
-        return /^\d{4}-\d{2}$/.test(periodo);
-      case 'trimestral':
-        return /^\d{4}Q[1-4]$/.test(periodo);
-      case 'semestral':
-        return /^\d{4}S[1-2]$/.test(periodo);
-      case 'anual':
-        return /^\d{4}$/.test(periodo);
-      default:
-        return false;
-    }
+    // Validar tanto "2024" como "2025-2027"
+    return periodo === '2024' || periodo === '2025-2027';
   };
 
   useEffect(() => {
@@ -233,7 +223,7 @@ export default function CargaPage() {
     }
 
     if (!validarPeriodo(periodo, indicador.periodicidad)) {
-      toast.error(`Formato de período inválido. Debe ser: ${getPeriodoPlaceholder()}`);
+              toast.error('El período debe ser "2024" o "2025-2027"');
       return;
     }
 
@@ -272,7 +262,7 @@ export default function CargaPage() {
         setSelectedMinisterio('');
         setSelectedLinea('');
         setSelectedIndicador('');
-        setPeriodo('2025-2027');
+        setPeriodo('2024');
         setValor('0.00');
         setUnidad('');
         setMeta('0.00');
@@ -569,7 +559,10 @@ export default function CargaPage() {
                   <Select
                     value={periodo}
                     onChange={(e) => setPeriodo(e.target.value)}
-                    options={[{ value: '2025-2027', label: '2025-2027' }]}
+                    options={[
+                  { value: '2024', label: '2024' },
+                  { value: '2025-2027', label: '2025-2027' }
+                ]}
                     placeholder="Selecciona un período"
                     required
                   />

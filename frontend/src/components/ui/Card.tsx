@@ -65,7 +65,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
 
 const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, children, ...props }, ref) => (
-    <div ref={ref} className={clsx('p-6 pt-0', className)} {...props}>
+            <div ref={ref} className={clsx('p-6 pt-15', className)} {...props}>
       {children}
     </div>
   )
@@ -75,7 +75,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   ({ className, children, ...props }, ref) => (
     <div
       ref={ref}
-      className={clsx('flex items-center p-6 pt-0', className)}
+              className={clsx('flex items-center p-6 pt-15', className)}
       {...props}
     >
       {children}
