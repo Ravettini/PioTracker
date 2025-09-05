@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
       {/* Título de la página */}
       <div className="flex-1 flex items-center justify-center lg:justify-start">
         <h1 className="text-xl font-semibold text-gray-900">
-          PIO Tracker
+                      SIPIO
         </h1>
       </div>
 

@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'PIO Tracker - Sistema de Seguimiento de Indicadores',
+  title: 'SIPIO - Sistema de Seguimiento de Indicadores',
   description: 'Sistema de seguimiento de indicadores PIO con sincronización a Google Sheets',
   keywords: 'PIO, indicadores, políticas públicas, GCBA, seguimiento',
   authors: [{ name: 'GCBA' }],

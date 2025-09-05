@@ -67,7 +67,7 @@ async function bootstrap() {
   const port = configService.get('port');
   await app.listen(port);
   
-  console.log(`🚀 PIO Tracker API ejecutándose en puerto ${port}`);
+  console.log(`🚀 SIPIO API ejecutándose en puerto ${port}`);
   console.log(`🌍 Ambiente: ${configService.get('nodeEnv')}`);
   console.log(`🔗 Health check: http://localhost:${port}/health`);
 }

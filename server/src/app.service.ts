@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'PIO Tracker API v1.0.0';
+    return 'SIPIO API v1.0.0';
   }
 }
 

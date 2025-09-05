@@ -86,7 +86,7 @@ export default function DashboardPage() {
               Bienvenido, {user?.nombre}
             </h1>
             <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
-              Panel de control del sistema PIO Tracker
+              Panel de control del sistema SIPIO
             </p>
           </div>
           <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">

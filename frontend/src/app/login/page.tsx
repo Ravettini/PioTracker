@@ -26,6 +26,8 @@ export default function LoginPage() {
   const router = useRouter();
   const { login, isAuthenticated } = useAuthStore();
 
+  console.log('GO INNOVACION CULTURAL');
+
   const {
     register,
     handleSubmit,
@@ -70,7 +72,7 @@ export default function LoginPage() {
             <BarChart3 className="h-8 w-8 text-white" />
           </div>
           <h2 className="mt-6 text-3xl font-bold text-gray-900">
-            PIO Tracker
+            SIPIO
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Sistema de Seguimiento de Indicadores
@@ -130,13 +132,7 @@ export default function LoginPage() {
             {/* Información adicional */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                Credenciales de prueba:
-              </p>
-              <p className="text-xs text-gray-500 mt-1">
-                Email: admin@pio.local
-              </p>
-              <p className="text-xs text-gray-500">
-                Contraseña: Cambiar.123
+                Sistema de Seguimiento de Indicadores PIO
               </p>
             </div>
           </CardContent>
@@ -145,7 +141,7 @@ export default function LoginPage() {
         {/* Footer */}
         <div className="text-center">
           <p className="text-xs text-gray-500">
-            © 2025 Gobierno de la Ciudad de Buenos Aires
+            © 2025 Gobierno de la Ciudad de Buenos Aires/GO INNOVACION CULTURAL
           </p>
         </div>
       </div>

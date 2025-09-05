@@ -1,7 +1,7 @@
 {
   "name": "pio-tracker-jobs",
   "version": "1.0.0",
-  "description": "Scripts de jobs para PIO Tracker",
+  "description": "Scripts de jobs para SIPIO",
   "private": true,
   "scripts": {
     "refresh-bi": "ts-node refresh-bi.ts",

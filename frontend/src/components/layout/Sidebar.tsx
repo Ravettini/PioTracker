@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   TrendingUp,
+  User,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -109,7 +110,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
               <BarChart3 className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-gray-900">PIO Tracker</h1>
+              <h1 className="text-lg font-semibold text-gray-900">SIPIO</h1>
               <p className="text-sm text-gray-500">Sistema de Seguimiento</p>
             </div>
           </div>
@@ -145,6 +146,18 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
                   </p>
                 )}
               </div>
+            </div>
+            
+            {/* Enlace al perfil */}
+            <div className="mt-4">
+              <Link
+                href="/perfil"
+                onClick={() => onClose()}
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              >
+                <User className="w-4 h-4" />
+                <span>Mi Perfil</span>
+              </Link>
             </div>
           </div>
         )}

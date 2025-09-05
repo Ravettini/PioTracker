@@ -1,7 +1,7 @@
 {
   "name": "pio-tracker-frontend",
   "version": "1.0.0",
-  "description": "Frontend Next.js para PIO Tracker",
+  "description": "Frontend Next.js para SIPIO",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",

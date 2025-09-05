@@ -501,19 +501,19 @@ export default function AdminUsuariosPage() {
                </div>
              ) : (
                                <div className="overflow-x-auto max-w-full">
-                  <table className="w-full min-w-full max-w-4xl">
+                  <table className="w-full min-w-full">
                     <thead className="hidden md:table-header-group">
                       <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                        <th className="text-left py-4 px-6 font-medium text-gray-700 text-sm">
                           Usuario
                         </th>
-                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                        <th className="text-left py-4 px-6 font-medium text-gray-700 text-sm">
                           Rol
                         </th>
-                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                        <th className="text-left py-4 px-6 font-medium text-gray-700 text-sm">
                           Estado
                         </th>
-                        <th className="text-left py-3 px-2 md:px-4 font-medium text-gray-700 text-xs md:text-sm">
+                        <th className="text-left py-4 px-6 font-medium text-gray-700 text-sm">
                           Acciones
                         </th>
                       </tr>
@@ -522,18 +522,18 @@ export default function AdminUsuariosPage() {
                        {filteredUsuarios.map((usuario) => (
                          <tr key={usuario.id} className="border-b border-gray-100 hover:bg-gray-50">
                            {/* Desktop view */}
-                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
-                             <div>
-                               <p className="font-medium text-gray-900 text-xs md:text-sm">
+                           <td className="hidden md:table-cell py-4 px-6">
+                             <div className="space-y-2">
+                               <p className="font-medium text-gray-900 text-sm">
                                  {usuario.nombre}
                                </p>
-                               <p className="text-xs text-gray-600 flex items-center">
-                                 <Mail className="h-3 w-3 mr-1" />
+                               <p className="text-sm text-gray-600 flex items-center">
+                                 <Mail className="h-4 w-4 mr-2" />
                                  {usuario.email}
                                </p>
-                               <p className="text-xs text-gray-500 mt-1">
+                               <p className="text-sm text-gray-500">
                                  {usuario.ministerioId ? (
-                                   <Badge variant="outline" className="text-xs">
+                                   <Badge variant="outline" className="text-sm">
                                      {ministerios.find(m => m.id === usuario.ministerioId)?.sigla || usuario.ministerioId}
                                    </Badge>
                                  ) : (
@@ -542,39 +542,39 @@ export default function AdminUsuariosPage() {
                                </p>
                              </div>
                            </td>
-                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
-                             <Badge variant={usuario.rol === 'ADMIN' ? 'default' : 'outline'} className="text-xs">
-                               <Shield className="h-3 w-3 mr-1" />
+                           <td className="hidden md:table-cell py-4 px-6">
+                             <Badge variant={usuario.rol === 'ADMIN' ? 'default' : 'outline'} className="text-sm">
+                               <Shield className="h-4 w-4 mr-2" />
                                {usuario.rol === 'ADMIN' ? 'Administrador' : 'Usuario'}
                              </Badge>
                            </td>
-                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
-                             <div className="flex flex-col space-y-1">
+                           <td className="hidden md:table-cell py-4 px-6">
+                             <div className="flex flex-col space-y-2">
                                {usuario.activo ? (
-                                 <Badge variant="success" className="text-xs">
-                                   <UserCheck className="h-3 w-3 mr-1" />
+                                 <Badge variant="success" className="text-sm">
+                                   <UserCheck className="h-4 w-4 mr-2" />
                                    Activo
                                  </Badge>
                                ) : (
-                                 <Badge variant="destructive" className="text-xs">
-                                   <UserX className="h-3 w-3 mr-1" />
+                                 <Badge variant="destructive" className="text-sm">
+                                   <UserX className="h-4 w-4 mr-2" />
                                    Inactivo
                                  </Badge>
                                )}
                                {usuario.claveTemporal && (
-                                 <Badge variant="warning" className="text-xs">Clave Temporal</Badge>
+                                 <Badge variant="warning" className="text-sm">Clave Temporal</Badge>
                                )}
                              </div>
                            </td>
-                           <td className="hidden md:table-cell py-3 md:py-4 px-2 md:px-4">
-                             <div className="flex flex-col gap-1">
+                           <td className="hidden md:table-cell py-4 px-6">
+                             <div className="flex flex-col gap-2">
                                <Button
                                  size="sm"
                                  variant="outline"
                                  onClick={() => openEditModal(usuario)}
-                                 className="text-xs px-2 py-1 h-6 w-full"
+                                 className="text-sm px-3 py-2 h-8"
                                >
-                                 <Edit className="h-3 w-3 mr-1" />
+                                 <Edit className="h-4 w-4 mr-2" />
                                  Editar
                                </Button>
                                
@@ -582,16 +582,16 @@ export default function AdminUsuariosPage() {
                                  size="sm"
                                  variant={usuario.activo ? 'destructive' : 'success'}
                                  onClick={() => handleToggleStatus(usuario.id)}
-                                 className="text-xs px-2 py-1 h-6 w-full"
+                                 className="text-sm px-3 py-2 h-8"
                                >
                                  {usuario.activo ? (
                                    <>
-                                     <UserX className="h-3 w-3 mr-1" />
+                                     <UserX className="h-4 w-4 mr-2" />
                                      Desactivar
                                    </>
                                  ) : (
                                    <>
-                                     <UserCheck className="h-3 w-3 mr-1" />
+                                     <UserCheck className="h-4 w-4 mr-2" />
                                      Activar
                                    </>
                                  )}
@@ -601,9 +601,9 @@ export default function AdminUsuariosPage() {
                                  size="sm"
                                  variant="outline"
                                  onClick={() => handleResetPassword(usuario.id)}
-                                 className="text-xs px-2 py-1 h-6 w-full"
+                                 className="text-sm px-3 py-2 h-8"
                                >
-                                 <RefreshCw className="h-3 w-3 mr-1" />
+                                 <RefreshCw className="h-4 w-4 mr-2" />
                                  Reset
                                </Button>
                                
@@ -611,9 +611,9 @@ export default function AdminUsuariosPage() {
                                  size="sm"
                                  variant="destructive"
                                  onClick={() => handleDeleteUsuario(usuario.id)}
-                                 className="text-xs px-2 py-1 h-6 w-full"
+                                 className="text-sm px-3 py-2 h-8"
                                >
-                                 <Trash2 className="h-3 w-3 mr-1" />
+                                 <Trash2 className="h-4 w-4 mr-2" />
                                  Eliminar
                                </Button>
                              </div>

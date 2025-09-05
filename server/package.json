@@ -1,7 +1,7 @@
 {
   "name": "pio-tracker-server",
   "version": "1.0.0",
-  "description": "Backend del sistema PIO Tracker",
+  "description": "Backend del sistema SIPIO",
   "author": "GCBA",
   "private": true,
   "license": "UNLICENSED",
