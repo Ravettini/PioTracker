@@ -4,7 +4,7 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
-    domains: ['localhost', 'pio-sigepi-backend.onrender.com'],
+    domains: ['localhost', 'sigepi-backend.onrender.com'],
   },
   async rewrites() {
     // Solo en desarrollo local
