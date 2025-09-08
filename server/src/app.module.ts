@@ -15,7 +15,6 @@ import { CatalogosModule } from './catalogos/catalogos.module';
 import { CargasModule } from './cargas/cargas.module';
 import { SyncModule } from './sync/sync.module';
 import { AuditModule } from './audit/audit.module';
-import { CommonModule } from './common/common.module';
 import { DatabaseModule } from './db/database.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 
@@ -48,7 +47,6 @@ import { AuditInterceptor } from './audit/interceptors/audit.interceptor';
     CargasModule,
     SyncModule,
     AuditModule,
-    CommonModule,
     AnalyticsModule,
   ],
   

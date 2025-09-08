@@ -174,6 +174,7 @@ export default function SyncPage() {
     }
   };
 
+
   const getStatusIcon = () => {
     switch (syncStatus.status) {
       case 'syncing':
@@ -436,6 +437,7 @@ export default function SyncPage() {
             </div>
           </CardContent>
         </Card>
+
       </div>
     </Layout>
   );

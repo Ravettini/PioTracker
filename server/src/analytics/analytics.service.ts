@@ -9,7 +9,6 @@ import { Indicador } from '../db/entities/indicador.entity';
 import { Carga } from '../db/entities/carga.entity';
 import { Usuario } from '../db/entities/usuario.entity';
 import { AnalyticsQueryDto } from './dto/analytics-query.dto';
-import { GoogleSheetsService } from '../sync/google-sheets.service';
 
 export interface AnalyticsResponse {
   ministerio: string;
@@ -51,7 +50,6 @@ export class AnalyticsService {
     @InjectRepository(Carga)
     private cargaRepository: Repository<Carga>,
     private configService: ConfigService,
-    private googleSheetsService: GoogleSheetsService,
   ) {}
 
   async getMinisterios(user: Usuario) {
@@ -175,58 +173,8 @@ export class AnalyticsService {
   }
 
   private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
-    try {
-      this.logger.log(`Obteniendo datos del Google Sheets para indicador: ${indicadorId}`);
-
-      // Usar el GoogleSheetsService existente para obtener datos
-      const sheetData = await this.googleSheetsService.getSheetData();
-      
-      if (!sheetData || !Array.isArray(sheetData)) {
-        this.logger.warn('No se pudieron obtener datos del Google Sheets');
-        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
-      }
-
-      this.logger.log(`Datos obtenidos del Google Sheets: ${sheetData.length} filas`);
-
-      // Filtrar por indicadorId y períodos
-      // La estructura del Google Sheets es: [Indicador ID, Indicador Nombre, Período, Ministerio ID, Ministerio Nombre, Línea ID, Línea Título, Valor, Unidad, Meta, Fuente, Responsable Nombre, Responsable Email, Observaciones, Estado, Publicado, Creado En, Actualizado En, Ministerio]
-      let filteredData = sheetData.filter(row => row[0] === indicadorId); // Indicador ID está en la columna A
-      
-      this.logger.log(`Datos filtrados por indicador ${indicadorId}: ${filteredData.length} filas`);
-      
-      if (periodoDesde) {
-        filteredData = filteredData.filter(row => row[2] >= periodoDesde); // Período está en la columna C
-      }
-      
-      if (periodoHasta) {
-        filteredData = filteredData.filter(row => row[2] <= periodoHasta); // Período está en la columna C
-      }
-
-      // Ordenar por período
-      filteredData.sort((a, b) => a[2].localeCompare(b[2])); // Período está en la columna C
-
-      this.logger.log(`Datos finales procesados: ${filteredData.length} filas`);
-
-      // Mapear a formato requerido según la estructura correcta del Google Sheets
-      return filteredData.map(row => ({
-        periodo: row[2], // Período (columna C)
-        valor: parseFloat(row[7]) || 0, // Valor (columna H)
-        meta: row[9] ? parseFloat(row[9]) : null, // Meta (columna J)
-        unidad: row[8], // Unidad (columna I)
-        fuente: row[10], // Fuente (columna K)
-        responsable: row[11], // Responsable Nombre (columna L)
-        estado: row[14], // Estado (columna O)
-        publicado: row[15] === 'Sí', // Publicado (columna P)
-        creadoEn: row[16], // Creado En (columna Q)
-        actualizadoEn: row[17], // Actualizado En (columna R)
-      }));
-
-    } catch (error) {
-      this.logger.error('Error obteniendo datos del Google Sheets:', error);
-      // Fallback: obtener datos de la base de datos local
-      this.logger.log('Usando datos de la base de datos local como fallback');
-      return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
-    }
+    // Simplificado: solo usar base de datos local
+    return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
   }
 
   private async getDataFromLocalDatabase(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {

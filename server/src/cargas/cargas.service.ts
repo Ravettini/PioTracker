@@ -8,7 +8,6 @@ import { Indicador } from '../db/entities/indicador.entity';
 import { CreateCargaDto } from './dto/create-carga.dto';
 import { UpdateCargaDto } from './dto/update-carga.dto';
 import { RevisionDto } from './dto/revision.dto';
-import { GoogleSheetsService } from '../sync/google-sheets.service';
 
 @Injectable()
 export class CargasService {
@@ -21,7 +20,6 @@ export class CargasService {
     private usuarioRepository: Repository<Usuario>,
     @InjectRepository(Indicador)
     private indicadorRepository: Repository<Indicador>,
-    private googleSheetsService: GoogleSheetsService,
   ) {}
 
   async create(createCargaDto: CreateCargaDto, userId: string): Promise<Carga> {
@@ -74,17 +72,6 @@ export class CargasService {
     });
 
     const cargaGuardada = await this.cargaRepository.save(carga);
-
-    // Intentar publicar en Google Sheets inmediatamente
-    try {
-      await this.googleSheetsService.publishCarga(cargaGuardada.id, cargaGuardada);
-      cargaGuardada.publicado = true;
-      await this.cargaRepository.save(cargaGuardada);
-      this.logger.log(`Carga ${cargaGuardada.id} publicada exitosamente en Google Sheets`);
-    } catch (error) {
-      this.logger.error(`Error al publicar carga ${cargaGuardada.id} en Google Sheets:`, error);
-      // No fallar la operación si Google Sheets falla
-    }
 
     return cargaGuardada;
   }
@@ -206,20 +193,6 @@ export class CargasService {
     // Guardar la carga
     const cargaGuardada = await this.cargaRepository.save(carga);
 
-    // Publicar en Google Sheets
-    try {
-      await this.googleSheetsService.publishCarga(cargaGuardada.id, cargaGuardada);
-      
-      // Marcar como publicado en la base de datos
-      cargaGuardada.publicado = true;
-      await this.cargaRepository.save(cargaGuardada);
-      
-      this.logger.log(`Carga ${cargaGuardada.id} publicada exitosamente en Google Sheets`);
-    } catch (error) {
-      this.logger.error(`Error al publicar carga ${cargaGuardada.id} en Google Sheets:`, error);
-      // No fallar la operación si Google Sheets falla
-    }
-
     return cargaGuardada;
   }
 
@@ -271,21 +244,6 @@ export class CargasService {
     this.logger.log(`✅ Carga ${id} actualizada a estado: ${cargaActualizada.estado}`);
 
     // Publicar en Google Sheets solo si se valida
-    if (revisionDto.estado === EstadoCarga.VALIDADO) {
-      this.logger.log(`📊 Iniciando publicación en Google Sheets para carga ${cargaActualizada.id}`);
-      try {
-        await this.googleSheetsService.publishCarga(cargaActualizada.id, cargaActualizada);
-        cargaActualizada.publicado = true;
-        await this.cargaRepository.save(cargaActualizada);
-        this.logger.log(`📊 Carga ${cargaActualizada.id} publicada exitosamente en Google Sheets`);
-      } catch (error) {
-        this.logger.error(`❌ Error al publicar carga ${cargaActualizada.id} en Google Sheets:`, error);
-        // No fallar la operación si Google Sheets falla
-      }
-    } else {
-      this.logger.log(`⏭️ No se publica en Google Sheets (estado: ${revisionDto.estado})`);
-    }
-
     this.logger.log(`🏁 FIN: Revisión de carga ${id} completada`);
     return cargaActualizada;
   }

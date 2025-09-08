@@ -8,7 +8,6 @@ import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Indicador } from '../db/entities/indicador.entity';
 import { Carga } from '../db/entities/carga.entity';
-import { GoogleSheetsService } from '../sync/google-sheets.service';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ import { GoogleSheetsService } from '../sync/google-sheets.service';
     ConfigModule,
   ],
   controllers: [AnalyticsController],
-  providers: [AnalyticsService, GoogleSheetsService],
+  providers: [AnalyticsService],
   exports: [AnalyticsService],
 })
 export class AnalyticsModule {}

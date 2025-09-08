@@ -8,14 +8,13 @@ import { Usuario } from '../db/entities/usuario.entity';
 import { Indicador } from '../db/entities/indicador.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Ministerio } from '../db/entities/ministerio.entity';
-import { GoogleSheetsService } from '../sync/google-sheets.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Carga, Usuario, Indicador, Linea, Ministerio]),
   ],
   controllers: [CargasController],
-  providers: [CargasService, GoogleSheetsService],
+  providers: [CargasService],
   exports: [CargasService],
 })
 export class CargasModule {}

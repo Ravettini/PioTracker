@@ -1,6 +1,7 @@
 import {
   Controller,
   Post,
+  Get,
   UploadedFile,
   UseInterceptors,
   HttpCode,
@@ -14,7 +15,9 @@ import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('sync')
 export class SyncController {
-  constructor(private readonly syncService: SyncService) {}
+  constructor(
+    private readonly syncService: SyncService,
+  ) {}
 
   @Post('import-excel')
   @Public()
