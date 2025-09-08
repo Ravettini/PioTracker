@@ -580,3 +580,10 @@ function canDelete(): boolean {
   // Solo se puede eliminar si está en borrador y no ha sido enviada
   return true; // Implementar lógica según reglas de negocio
 }
+
+// Función requerida para Next.js con output: 'export'
+export async function generateStaticParams() {
+  // Para páginas dinámicas con output: 'export', necesitamos retornar un array vacío
+  // ya que no podemos pre-generar todas las rutas posibles
+  return [];
+}
