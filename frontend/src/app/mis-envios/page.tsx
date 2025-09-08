@@ -405,7 +405,7 @@ export default function MisEnviosPage() {
                               {carga.indicador.nombre}
                             </p>
                             <p className="text-xs text-gray-600">
-                              {carga.indicador.codigo || 'Sin código'}
+                              {carga.indicador.id || 'Sin código'}
                             </p>
                           </div>
                         </td>
