@@ -1,0 +1,12 @@
+# Render configuration for PIO SIGEPI Frontend
+# This file is used by Render to configure the frontend service
+
+# Build command
+build: cd frontend && npm install && npm run build
+
+# Static publish path
+staticPublishPath: frontend/out
+
+# Environment variables
+env:
+  NEXT_PUBLIC_API_URL: $NEXT_PUBLIC_API_URL
