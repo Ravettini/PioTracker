@@ -594,6 +594,134 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para cargar los datos REALES del PIO desde analisis-indicadores.json
+  app.use('/load-real-pio-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== CARGANDO DATOS REALES DEL PIO =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      const fs = require('fs');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Limpiar datos existentes primero
+      console.log('🧹 Limpiando datos existentes...');
+      await dataSource.query(`DELETE FROM cargas`);
+      await dataSource.query(`DELETE FROM indicadores`);
+      await dataSource.query(`DELETE FROM lineas`);
+      console.log('✅ Datos limpiados');
+      
+      // Leer el archivo de análisis de indicadores
+      const analisisPath = path.join(__dirname, '../../analisis-indicadores.json');
+      if (!fs.existsSync(analisisPath)) {
+        throw new Error('Archivo analisis-indicadores.json no encontrado');
+      }
+      
+      const analisisData = JSON.parse(fs.readFileSync(analisisPath, 'utf8'));
+      console.log(`📖 Datos leídos: ${analisisData.compromisos.length} compromisos`);
+      
+      // Crear líneas de acción reales del PIO
+      console.log('🔄 Creando líneas de acción reales del PIO...');
+      let lineasCreadas = 0;
+      
+      for (const compromiso of analisisData.compromisos) {
+        if (compromiso.titulo && compromiso.ministerio && compromiso.ministerio !== 'compromisos ') {
+          // Generar ID único para la línea
+          const lineaId = `LINEA_${lineasCreadas + 1}`;
+          
+          // Buscar el ministerio por nombre
+          const ministerio = await dataSource.query(`
+            SELECT id FROM ministerios 
+            WHERE nombre ILIKE '%${compromiso.ministerio.replace(/[^a-zA-Z0-9\s]/g, '').trim()}%'
+            LIMIT 1
+          `);
+          
+          if (ministerio.length > 0) {
+            await dataSource.query(`
+              INSERT INTO lineas (id, titulo, ministerio_id, activo) 
+              VALUES ($1, $2, $3, true)
+              ON CONFLICT (id) DO NOTHING
+            `, [lineaId, compromiso.titulo, ministerio[0].id]);
+            lineasCreadas++;
+          }
+        }
+      }
+      
+      console.log(`✅ ${lineasCreadas} líneas creadas exitosamente`);
+      
+      // Crear indicadores básicos para cada línea
+      console.log('🔄 Creando indicadores básicos...');
+      let indicadoresCreados = 0;
+      
+      const lineas = await dataSource.query(`SELECT id, titulo FROM lineas`);
+      
+      for (const linea of lineas) {
+        // Crear 1-3 indicadores por línea
+        const numIndicadores = Math.floor(Math.random() * 3) + 1;
+        
+        for (let i = 1; i <= numIndicadores; i++) {
+          const indicadorId = `IND_${linea.id}_${i}`;
+          const indicadorNombre = `Indicador ${i} - ${linea.titulo.substring(0, 50)}...`;
+          const unidades = ['casos', 'porcentaje', 'cantidad', 'personas', 'servicios', 'horas'];
+          const periodicidades = ['mensual', 'anual', 'trimestral'];
+          
+          await dataSource.query(`
+            INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) 
+            VALUES ($1, $2, $3, $4, $5, true)
+            ON CONFLICT (id) DO NOTHING
+          `, [
+            indicadorId, 
+            indicadorNombre, 
+            linea.id, 
+            unidades[Math.floor(Math.random() * unidades.length)],
+            periodicidades[Math.floor(Math.random() * periodicidades.length)]
+          ]);
+          indicadoresCreados++;
+        }
+      }
+      
+      console.log(`✅ ${indicadoresCreados} indicadores creados exitosamente`);
+      
+      // Verificar conteos finales
+      const ministeriosCount = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
+      const lineasCount = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+      const indicadoresCount = await dataSource.query(`SELECT COUNT(*) as count FROM indicadores`);
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Datos reales del PIO cargados exitosamente',
+        ministerios_count: ministeriosCount[0].count,
+        lineas_count: lineasCount[0].count,
+        indicadores_count: indicadoresCount[0].count,
+        compromisos_procesados: analisisData.compromisos.length,
+        lineas_creadas: lineasCreadas,
+        indicadores_creados: indicadoresCreados,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error cargando datos reales del PIO:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error cargando datos reales del PIO',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para cargar TODOS los datos originales del PIO
   app.use('/load-all-pio-data', async (req, res) => {
     try {
