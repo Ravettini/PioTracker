@@ -101,6 +101,24 @@ async function bootstrap() {
     next();
   });
 
+  // Endpoint raíz - GARANTIZADO
+  app.use('/', (req, res) => {
+    res.json({ 
+      status: 'OK', 
+      message: 'SIPIO API funcionando correctamente',
+      timestamp: new Date().toISOString(),
+      cors: 'Configurado correctamente',
+      endpoints: {
+        health: '/health',
+        api: '/api/v1',
+        auth: '/api/v1/auth',
+        admin: '/api/v1/admin',
+        cargas: '/api/v1/cargas',
+        analytics: '/api/v1/analytics'
+      }
+    });
+  });
+
   // Endpoint de health check - GARANTIZADO
   app.use('/health', (req, res) => {
     res.json({ 
