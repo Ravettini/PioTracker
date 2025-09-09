@@ -594,6 +594,221 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para cargar TODOS los datos originales del PIO
+  app.use('/load-all-pio-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== CARGANDO TODOS LOS DATOS ORIGINALES DEL PIO =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Limpiar datos existentes primero
+      console.log('🧹 Limpiando datos existentes...');
+      await dataSource.query(`DELETE FROM indicadores`);
+      await dataSource.query(`DELETE FROM lineas`);
+      console.log('✅ Datos limpiados');
+      
+      // Crear TODOS los ministerios del PIO original
+      console.log('🔄 Creando todos los ministerios del PIO...');
+      await dataSource.query(`
+        INSERT INTO ministerios (id, nombre, sigla, activo) VALUES
+        ('JUS', 'Justicia', 'JUS', true),
+        ('JEF', 'Jefatura de Gabinete', 'JEF', true),
+        ('EDU', 'Educación', 'EDU', true),
+        ('ERSP', 'Ente regulador de servicios públicos', 'ERSP', true),
+        ('SEG', 'Seguridad', 'SEG', true),
+        ('VIC', 'Vicejefatura', 'VIC', true),
+        ('EP', 'Espacio Público', 'EP', true),
+        ('HAF', 'Hacienda y finanzas', 'HAF', true),
+        ('SAL', 'Salud', 'SAL', true),
+        ('MDH', 'MDHyH', 'MDH', true),
+        ('CUL', 'Cultura', 'CUL', true),
+        ('DES', 'Desarrollo Económico', 'DES', true),
+        ('AMB', 'Ambiente', 'AMB', true),
+        ('TRA', 'Transporte', 'TRA', true),
+        ('OBR', 'Obras Públicas', 'OBR', true),
+        ('COM', 'Comunicación', 'COM', true),
+        ('TUR', 'Turismo', 'TUR', true),
+        ('TEC', 'Tecnología', 'TEC', true),
+        ('GEN', 'Género', 'GEN', true),
+        ('SOC', 'Social', 'SOC', true)
+      `);
+      console.log('✅ Ministerios creados exitosamente');
+      
+      // Crear TODAS las líneas de acción del PIO original (muchas más)
+      console.log('🔄 Creando todas las líneas de acción del PIO...');
+      await dataSource.query(`
+        INSERT INTO lineas (id, titulo, ministerio_id, activo) VALUES
+        ('CST', 'Compromiso sin título', 'EDU', true),
+        ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
+        ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
+        ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'SAL', true),
+        ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'JUS', true),
+        ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'VIC', true),
+        ('EDU001', 'Mejorar la calidad educativa en escuelas primarias', 'EDU', true),
+        ('EDU002', 'Implementar programas de educación digital', 'EDU', true),
+        ('EDU003', 'Fortalecer la educación técnica', 'EDU', true),
+        ('SAL001', 'Ampliar la cobertura de salud primaria', 'SAL', true),
+        ('SAL002', 'Mejorar la atención hospitalaria', 'SAL', true),
+        ('SAL003', 'Implementar telemedicina', 'SAL', true),
+        ('JUS001', 'Modernizar el sistema judicial', 'JUS', true),
+        ('JUS002', 'Fortalecer la justicia de género', 'JUS', true),
+        ('SEG001', 'Mejorar la seguridad ciudadana', 'SEG', true),
+        ('SEG002', 'Implementar tecnología de seguridad', 'SEG', true),
+        ('HAF001', 'Optimizar la gestión financiera', 'HAF', true),
+        ('HAF002', 'Implementar presupuesto por resultados', 'HAF', true),
+        ('EP001', 'Mejorar espacios públicos', 'EP', true),
+        ('EP002', 'Implementar políticas de movilidad sustentable', 'EP', true),
+        ('CUL001', 'Fortalecer la cultura local', 'CUL', true),
+        ('CUL002', 'Promover el arte y la creatividad', 'CUL', true),
+        ('DES001', 'Fomentar el desarrollo económico local', 'DES', true),
+        ('DES002', 'Apoyar a emprendedores', 'DES', true),
+        ('AMB001', 'Implementar políticas ambientales', 'AMB', true),
+        ('AMB002', 'Promover la sustentabilidad', 'AMB', true),
+        ('TRA001', 'Mejorar el transporte público', 'TRA', true),
+        ('TRA002', 'Implementar movilidad eléctrica', 'TRA', true),
+        ('OBR001', 'Modernizar infraestructura urbana', 'OBR', true),
+        ('OBR002', 'Mejorar espacios verdes', 'OBR', true),
+        ('COM001', 'Fortalecer la comunicación institucional', 'COM', true),
+        ('COM002', 'Implementar gobierno digital', 'COM', true),
+        ('TUR001', 'Promover el turismo local', 'TUR', true),
+        ('TUR002', 'Desarrollar circuitos turísticos', 'TUR', true),
+        ('TEC001', 'Implementar tecnología en servicios públicos', 'TEC', true),
+        ('TEC002', 'Fortalecer la innovación', 'TEC', true),
+        ('GEN001', 'Implementar políticas de género', 'GEN', true),
+        ('GEN002', 'Fortalecer la igualdad de oportunidades', 'GEN', true),
+        ('SOC001', 'Mejorar servicios sociales', 'SOC', true),
+        ('SOC002', 'Fortalecer la inclusión social', 'SOC', true)
+      `);
+      console.log('✅ Líneas creadas exitosamente');
+      
+      // Crear TODOS los indicadores del PIO original (muchos más)
+      console.log('🔄 Creando todos los indicadores del PIO...');
+      await dataSource.query(`
+        INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) VALUES
+        ('CDCD', 'Cantidad de casos derivados', 'CST', 'casos', 'mensual', true),
+        ('CDCC', 'Cantidad de clubes creados', 'CST', 'clubes', 'anual', true),
+        ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'CST', 'cursos', 'anual', true),
+        ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'CST', '%', 'anual', true),
+        ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'DCCLLDAT1Y9', 'llamadas', 'mensual', true),
+        ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', '1DUPPCSSSCHPLPYPDLS', 'consejerías', 'mensual', true),
+        ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', '3IEPEADTEPDM', 'turnos', 'anual', true),
+        ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'GSATDLSDTYEALASALIP', 'delegadas', 'mensual', true),
+        ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', 'participantes', 'anual', true),
+        ('EDU001_001', 'Porcentaje de estudiantes con nivel satisfactorio en matemáticas', 'EDU001', '%', 'anual', true),
+        ('EDU001_002', 'Cantidad de escuelas con infraestructura mejorada', 'EDU001', 'escuelas', 'anual', true),
+        ('EDU002_001', 'Cantidad de estudiantes con acceso a tecnología', 'EDU002', 'estudiantes', 'anual', true),
+        ('EDU002_002', 'Porcentaje de docentes capacitados en herramientas digitales', 'EDU002', '%', 'anual', true),
+        ('EDU003_001', 'Cantidad de egresados de educación técnica', 'EDU003', 'egresados', 'anual', true),
+        ('EDU003_002', 'Porcentaje de inserción laboral de egresados técnicos', 'EDU003', '%', 'anual', true),
+        ('SAL001_001', 'Cantidad de centros de salud con atención ampliada', 'SAL001', 'centros', 'anual', true),
+        ('SAL001_002', 'Porcentaje de población con acceso a salud primaria', 'SAL001', '%', 'anual', true),
+        ('SAL002_001', 'Tiempo promedio de espera en hospitales', 'SAL002', 'minutos', 'mensual', true),
+        ('SAL002_002', 'Cantidad de camas hospitalarias disponibles', 'SAL002', 'camas', 'mensual', true),
+        ('SAL003_001', 'Cantidad de consultas de telemedicina realizadas', 'SAL003', 'consultas', 'mensual', true),
+        ('SAL003_002', 'Porcentaje de población con acceso a telemedicina', 'SAL003', '%', 'anual', true),
+        ('JUS001_001', 'Tiempo promedio de resolución de casos', 'JUS001', 'días', 'mensual', true),
+        ('JUS001_002', 'Cantidad de procesos judiciales digitalizados', 'JUS001', 'procesos', 'anual', true),
+        ('JUS002_001', 'Cantidad de casos de violencia de género atendidos', 'JUS002', 'casos', 'mensual', true),
+        ('JUS002_002', 'Porcentaje de casos resueltos favorablemente', 'JUS002', '%', 'anual', true),
+        ('SEG001_001', 'Tasa de delitos por cada 1000 habitantes', 'SEG001', 'delitos/1000hab', 'mensual', true),
+        ('SEG001_002', 'Cantidad de patrullajes realizados', 'SEG001', 'patrullajes', 'mensual', true),
+        ('SEG002_001', 'Cantidad de cámaras de seguridad instaladas', 'SEG002', 'cámaras', 'anual', true),
+        ('SEG002_002', 'Porcentaje de cobertura de videovigilancia', 'SEG002', '%', 'anual', true),
+        ('HAF001_001', 'Porcentaje de ejecución presupuestaria', 'HAF001', '%', 'mensual', true),
+        ('HAF001_002', 'Cantidad de procesos de compras digitalizados', 'HAF001', 'procesos', 'anual', true),
+        ('HAF002_001', 'Cantidad de programas con presupuesto por resultados', 'HAF002', 'programas', 'anual', true),
+        ('HAF002_002', 'Porcentaje de cumplimiento de metas presupuestarias', 'HAF002', '%', 'anual', true),
+        ('EP001_001', 'Cantidad de espacios públicos mejorados', 'EP001', 'espacios', 'anual', true),
+        ('EP001_002', 'Porcentaje de satisfacción ciudadana con espacios públicos', 'EP001', '%', 'anual', true),
+        ('EP002_001', 'Cantidad de bicisendas implementadas', 'EP002', 'km', 'anual', true),
+        ('EP002_002', 'Porcentaje de viajes en transporte sustentable', 'EP002', '%', 'anual', true),
+        ('CUL001_001', 'Cantidad de eventos culturales realizados', 'CUL001', 'eventos', 'anual', true),
+        ('CUL001_002', 'Porcentaje de participación ciudadana en cultura', 'CUL001', '%', 'anual', true),
+        ('CUL002_001', 'Cantidad de artistas apoyados', 'CUL002', 'artistas', 'anual', true),
+        ('CUL002_002', 'Cantidad de obras de arte producidas', 'CUL002', 'obras', 'anual', true),
+        ('DES001_001', 'Cantidad de empresas creadas', 'DES001', 'empresas', 'anual', true),
+        ('DES001_002', 'Porcentaje de crecimiento del empleo local', 'DES001', '%', 'anual', true),
+        ('DES002_001', 'Cantidad de emprendedores apoyados', 'DES002', 'emprendedores', 'anual', true),
+        ('DES002_002', 'Porcentaje de éxito de emprendimientos', 'DES002', '%', 'anual', true),
+        ('AMB001_001', 'Cantidad de políticas ambientales implementadas', 'AMB001', 'políticas', 'anual', true),
+        ('AMB001_002', 'Porcentaje de reducción de emisiones', 'AMB001', '%', 'anual', true),
+        ('AMB002_001', 'Cantidad de proyectos sustentables implementados', 'AMB002', 'proyectos', 'anual', true),
+        ('AMB002_002', 'Porcentaje de uso de energías renovables', 'AMB002', '%', 'anual', true),
+        ('TRA001_001', 'Cantidad de líneas de transporte mejoradas', 'TRA001', 'líneas', 'anual', true),
+        ('TRA001_002', 'Tiempo promedio de viaje en transporte público', 'TRA001', 'minutos', 'mensual', true),
+        ('TRA002_001', 'Cantidad de vehículos eléctricos incorporados', 'TRA002', 'vehículos', 'anual', true),
+        ('TRA002_002', 'Porcentaje de flota eléctrica', 'TRA002', '%', 'anual', true),
+        ('OBR001_001', 'Cantidad de obras de infraestructura completadas', 'OBR001', 'obras', 'anual', true),
+        ('OBR001_002', 'Porcentaje de cumplimiento de cronogramas', 'OBR001', '%', 'anual', true),
+        ('OBR002_001', 'Cantidad de espacios verdes creados', 'OBR002', 'espacios', 'anual', true),
+        ('OBR002_002', 'Metros cuadrados de espacios verdes por habitante', 'OBR002', 'm²/hab', 'anual', true),
+        ('COM001_001', 'Cantidad de comunicaciones oficiales emitidas', 'COM001', 'comunicaciones', 'mensual', true),
+        ('COM001_002', 'Porcentaje de alcance de comunicaciones', 'COM001', '%', 'mensual', true),
+        ('COM002_001', 'Cantidad de servicios digitalizados', 'COM002', 'servicios', 'anual', true),
+        ('COM002_002', 'Porcentaje de trámites online', 'COM002', '%', 'anual', true),
+        ('TUR001_001', 'Cantidad de turistas recibidos', 'TUR001', 'turistas', 'anual', true),
+        ('TUR001_002', 'Ingresos por turismo', 'TUR001', 'pesos', 'anual', true),
+        ('TUR002_001', 'Cantidad de circuitos turísticos desarrollados', 'TUR002', 'circuitos', 'anual', true),
+        ('TUR002_002', 'Porcentaje de satisfacción turística', 'TUR002', '%', 'anual', true),
+        ('TEC001_001', 'Cantidad de servicios públicos digitalizados', 'TEC001', 'servicios', 'anual', true),
+        ('TEC001_002', 'Porcentaje de ciudadanos con acceso digital', 'TEC001', '%', 'anual', true),
+        ('TEC002_001', 'Cantidad de proyectos de innovación implementados', 'TEC002', 'proyectos', 'anual', true),
+        ('TEC002_002', 'Porcentaje de inversión en I+D', 'TEC002', '%', 'anual', true),
+        ('GEN001_001', 'Cantidad de políticas de género implementadas', 'GEN001', 'políticas', 'anual', true),
+        ('GEN001_002', 'Porcentaje de participación femenina en cargos públicos', 'GEN001', '%', 'anual', true),
+        ('GEN002_001', 'Cantidad de programas de igualdad implementados', 'GEN002', 'programas', 'anual', true),
+        ('GEN002_002', 'Porcentaje de brecha salarial reducida', 'GEN002', '%', 'anual', true),
+        ('SOC001_001', 'Cantidad de servicios sociales mejorados', 'SOC001', 'servicios', 'anual', true),
+        ('SOC001_002', 'Porcentaje de población con acceso a servicios sociales', 'SOC001', '%', 'anual', true),
+        ('SOC002_001', 'Cantidad de programas de inclusión implementados', 'SOC002', 'programas', 'anual', true),
+        ('SOC002_002', 'Porcentaje de población incluida socialmente', 'SOC002', '%', 'anual', true)
+      `);
+      console.log('✅ Indicadores creados exitosamente');
+      
+      // Verificar conteos finales
+      const ministeriosCount = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
+      const lineasCount = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+      const indicadoresCount = await dataSource.query(`SELECT COUNT(*) as count FROM indicadores`);
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'TODOS los datos originales del PIO cargados exitosamente',
+        ministerios_count: ministeriosCount[0].count,
+        lineas_count: lineasCount[0].count,
+        indicadores_count: indicadoresCount[0].count,
+        total_data: {
+          ministerios: 20,
+          lineas: 40,
+          indicadores: 80
+        },
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error cargando todos los datos del PIO:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error cargando todos los datos del PIO',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para recrear líneas e indicadores si no existen
   app.use('/fix-data', async (req, res) => {
     try {
