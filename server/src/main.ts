@@ -429,6 +429,16 @@ async function bootstrap() {
       await dataSource.initialize();
       console.log('✅ Conexión a la base de datos establecida');
       
+      // Verificar estructura de la tabla ministerios
+      const ministeriosStructure = await dataSource.query(`
+        SELECT column_name, data_type 
+        FROM information_schema.columns 
+        WHERE table_name = 'ministerios' 
+        ORDER BY ordinal_position
+      `);
+      
+      console.log('🔍 Estructura de tabla ministerios:', ministeriosStructure);
+      
       // Verificar si ya existen datos
       const ministeriosCount = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
       if (parseInt(ministeriosCount[0].count) > 0) {
@@ -445,44 +455,64 @@ async function bootstrap() {
       
       console.log('🔄 Creando datos iniciales...');
       
-      // Crear ministerios originales del PIO
+      // Crear ministerios originales del PIO (solo columnas que existen)
       await dataSource.query(`
-        INSERT INTO ministerios (id, nombre, descripcion, activo) VALUES
-        ('JUS', 'Justicia', 'Ministerio de Justicia y Seguridad Jurídica', true),
-        ('JEF', 'Jefatura de Gabinete', 'Jefatura de Gabinete de Ministros', true),
-        ('EDU', 'Educación', 'Ministerio de Educación', true),
-        ('ERSP', 'Ente regulador de servicios públicos', 'Ente Regulador de Servicios Públicos', true),
-        ('SEG', 'Seguridad', 'Ministerio de Justicia y Seguridad', true),
-        ('VIC', 'Vicejefatura', 'Vicejefatura de Gobierno', true),
-        ('EP', 'Espacio Público', 'Ministerio de Espacio Público e Higiene Urbana', true),
-        ('HAF', 'Hacienda y finanzas', 'Ministerio de Hacienda y Finanzas', true),
-        ('SAL', 'Salud', 'Ministerio de Salud', true),
-        ('MDH', 'MDHyH', 'Ministerio de Desarrollo Humano y Hábitat', true)
+        INSERT INTO ministerios (id, nombre, activo) VALUES
+        ('JUS', 'Justicia', true),
+        ('JEF', 'Jefatura de Gabinete', true),
+        ('EDU', 'Educación', true),
+        ('ERSP', 'Ente regulador de servicios públicos', true),
+        ('SEG', 'Seguridad', true),
+        ('VIC', 'Vicejefatura', true),
+        ('EP', 'Espacio Público', true),
+        ('HAF', 'Hacienda y finanzas', true),
+        ('SAL', 'Salud', true),
+        ('MDH', 'MDHyH', true)
       `);
       
-      // Crear líneas de acción (compromisos) principales
-      await dataSource.query(`
-        INSERT INTO lineas_accion (id, nombre, descripcion, ministerio_id, activo) VALUES
-        ('CST', 'Compromiso sin título', 'Compromisos generales del ministerio', 'EDU', true),
-        ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'Líneas de atención telefónica', 'MDH', true),
-        ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'Consejerías de salud sexual', 'SAL', true),
-        ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'Estrategias de mamografía', 'SAL', true),
-        ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'Iniciativa PARES', 'JUS', true),
-        ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'Herramientas de autonomía económica', 'VIC', true)
+      // Verificar estructura de lineas_accion
+      const lineasStructure = await dataSource.query(`
+        SELECT column_name, data_type 
+        FROM information_schema.columns 
+        WHERE table_name = 'lineas_accion' 
+        ORDER BY ordinal_position
       `);
       
-      // Crear indicadores principales
+      console.log('🔍 Estructura de tabla lineas_accion:', lineasStructure);
+      
+      // Crear líneas de acción (compromisos) principales (solo columnas que existen)
       await dataSource.query(`
-        INSERT INTO indicadores (id, nombre, descripcion, unidad_medida, linea_id, activo) VALUES
-        ('CDCD', 'Cantidad de casos derivados', 'Casos derivados para terminalidad educativa', 'casos', 'CST', true),
-        ('CDCC', 'Cantidad de clubes creados', 'Clubes creados', 'clubes', 'CST', true),
-        ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'Cursos en centros de formación', 'cursos', 'CST', true),
-        ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'Cupo de mujeres en Talento Tech', '%', 'CST', true),
-        ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'Llamadas a líneas de atención', 'llamadas', 'DCCLLDAT1Y9', true),
-        ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', 'Consejerías de salud sexual', 'consejerías', '1DUPPCSSSCHPLPYPDLS', true),
-        ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', 'Turnos de mamografía', 'turnos', '3IEPEADTEPDM', true),
-        ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'Delegadas sindicales en PARES', 'delegadas', 'GSATDLSDTYEALASALIP', true),
-        ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', 'Participantes en Programa Mujeres Líderes', 'participantes', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
+        INSERT INTO lineas_accion (id, nombre, ministerio_id, activo) VALUES
+        ('CST', 'Compromiso sin título', 'EDU', true),
+        ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
+        ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
+        ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'SAL', true),
+        ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'JUS', true),
+        ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'VIC', true)
+      `);
+      
+      // Verificar estructura de indicadores
+      const indicadoresStructure = await dataSource.query(`
+        SELECT column_name, data_type 
+        FROM information_schema.columns 
+        WHERE table_name = 'indicadores' 
+        ORDER BY ordinal_position
+      `);
+      
+      console.log('🔍 Estructura de tabla indicadores:', indicadoresStructure);
+      
+      // Crear indicadores principales (solo columnas que existen)
+      await dataSource.query(`
+        INSERT INTO indicadores (id, nombre, linea_id, activo) VALUES
+        ('CDCD', 'Cantidad de casos derivados', 'CST', true),
+        ('CDCC', 'Cantidad de clubes creados', 'CST', true),
+        ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'CST', true),
+        ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'CST', true),
+        ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'DCCLLDAT1Y9', true),
+        ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', '1DUPPCSSSCHPLPYPDLS', true),
+        ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', '3IEPEADTEPDM', true),
+        ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'GSATDLSDTYEALASALIP', true),
+        ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
       `);
       
       console.log('✅ Datos iniciales creados exitosamente');
