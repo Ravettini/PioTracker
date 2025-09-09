@@ -886,9 +886,8 @@ export default function AnalyticsPage() {
                   <Select
                     value={selectedChartType}
                     onValueChange={(value) => setSelectedChartType(value)}
-                    className="w-full sm:w-40"
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full sm:w-40">
                       <SelectValue placeholder="Selecciona tipo de gráfico" />
                     </SelectTrigger>
                     <SelectContent>
