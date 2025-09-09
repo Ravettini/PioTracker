@@ -186,6 +186,49 @@ async function bootstrap() {
     });
   });
 
+  // Endpoint de prueba de base de datos
+  app.use('/test-db', async (req, res) => {
+    try {
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: false,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      
+      // Verificar si existe la tabla usuarios
+      const result = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'usuarios'
+      `);
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Test de base de datos exitoso',
+        usuarios_table_exists: result.length > 0,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error en test de base de datos',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Prefijo global de API
   app.setGlobalPrefix('api/v1');
 
