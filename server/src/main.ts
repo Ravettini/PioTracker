@@ -57,7 +57,9 @@ async function runMigrations() {
 
 async function bootstrap() {
   // Ejecutar migraciones automáticamente antes de iniciar la aplicación
+  console.log('🔄 ===== EJECUTANDO MIGRACIONES ANTES DEL INICIO =====');
   await runMigrations();
+  console.log('✅ ===== MIGRACIONES COMPLETADAS, INICIANDO APLICACIÓN =====');
   
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
