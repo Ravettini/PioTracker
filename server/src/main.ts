@@ -257,8 +257,16 @@ async function bootstrap() {
 
       await dataSource.initialize();
       
+      // Verificar todas las tablas existentes
+      const allTables = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public'
+        ORDER BY table_name
+      `);
+      
       // Verificar si existe la tabla usuarios
-      const tableResult = await dataSource.query(`
+      const usuariosTable = await dataSource.query(`
         SELECT table_name 
         FROM information_schema.tables 
         WHERE table_schema = 'public' 
@@ -266,20 +274,54 @@ async function bootstrap() {
       `);
       
       // Verificar si existe el usuario admin
-      const userResult = await dataSource.query(`
+      const adminUser = await dataSource.query(`
         SELECT id, email, nombre, rol, clave_temporal, activo
         FROM usuarios 
         WHERE email = 'admin@pio.local'
       `);
       
+      // Verificar si existe la tabla ministerios
+      const ministeriosTable = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'ministerios'
+      `);
+      
+      // Contar registros en ministerios si existe
+      let ministeriosCount = 0;
+      if (ministeriosTable.length > 0) {
+        const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
+        ministeriosCount = parseInt(countResult[0].count);
+      }
+      
+      // Verificar otras tablas importantes
+      const cargasTable = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'cargas'
+      `);
+      
+      let cargasCount = 0;
+      if (cargasTable.length > 0) {
+        const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM cargas`);
+        cargasCount = parseInt(countResult[0].count);
+      }
+      
       await dataSource.destroy();
       
       res.json({
         status: 'OK',
-        message: 'Test de base de datos exitoso',
-        usuarios_table_exists: tableResult.length > 0,
-        admin_user_exists: userResult.length > 0,
-        admin_user_data: userResult.length > 0 ? userResult[0] : null,
+        message: 'Test de base de datos completo',
+        all_tables: allTables.map(t => t.table_name),
+        usuarios_table_exists: usuariosTable.length > 0,
+        admin_user_exists: adminUser.length > 0,
+        admin_user_data: adminUser.length > 0 ? adminUser[0] : null,
+        ministerios_table_exists: ministeriosTable.length > 0,
+        ministerios_count: ministeriosCount,
+        cargas_table_exists: cargasTable.length > 0,
+        cargas_count: cargasCount,
         timestamp: new Date().toISOString()
       });
     } catch (error) {
