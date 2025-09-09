@@ -12,28 +12,38 @@ import { AppModule } from './app.module';
 // Función para ejecutar migraciones automáticamente
 async function runMigrations() {
   try {
-    console.log('🔄 Ejecutando migraciones automáticamente...');
+    console.log('🔄 ===== INICIANDO MIGRACIONES AUTOMÁTICAS =====');
+    console.log('🔍 DATABASE_URL:', process.env.DATABASE_URL ? 'Configurado' : 'NO CONFIGURADO');
+    console.log('🔍 NODE_ENV:', process.env.NODE_ENV);
     
     const dataSource = new DataSource({
       type: 'postgres',
       url: process.env.DATABASE_URL,
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
       synchronize: false,
-      logging: false,
+      logging: true, // Habilitar logging para ver las queries
       entities: [path.join(__dirname, 'db/entities/*.js')],
       migrations: [path.join(__dirname, 'db/migrations/*.js')],
     });
 
+    console.log('🔄 Inicializando conexión a la base de datos...');
     await dataSource.initialize();
-    console.log('✅ Conexión a la base de datos establecida');
+    console.log('✅ Conexión a la base de datos establecida exitosamente');
     
+    console.log('🔄 Ejecutando migraciones...');
     const migrations = await dataSource.runMigrations();
-    console.log(`✅ ${migrations.length} migraciones ejecutadas:`, migrations.map(m => m.name));
+    console.log(`✅ ${migrations.length} migraciones ejecutadas exitosamente:`);
+    migrations.forEach((migration, index) => {
+      console.log(`   ${index + 1}. ${migration.name}`);
+    });
     
     await dataSource.destroy();
-    console.log('🎉 Migraciones completadas exitosamente');
+    console.log('🎉 ===== MIGRACIONES COMPLETADAS EXITOSAMENTE =====');
   } catch (error) {
-    console.error('❌ Error ejecutando migraciones:', error.message);
+    console.error('❌ ===== ERROR EJECUTANDO MIGRACIONES =====');
+    console.error('❌ Error:', error.message);
+    console.error('❌ Stack:', error.stack);
+    console.error('❌ ===== CONTINUANDO CON EL INICIO DE LA APLICACIÓN =====');
     // No salir del proceso, continuar con el inicio de la aplicación
   }
 }
