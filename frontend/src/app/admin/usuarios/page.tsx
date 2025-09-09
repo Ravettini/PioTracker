@@ -773,20 +773,37 @@ export default function AdminUsuariosPage() {
                   required
                 />
 
-                <Select
-                  label="Rol"
-                  options={createRolOptions}
-                  value={createForm.rol}
-                  onChange={(e) => setCreateForm(prev => ({ ...prev, rol: e.target.value as any }))}
-                  required
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Rol *</label>
+                  <Select value={createForm.rol} onValueChange={(value) => setCreateForm(prev => ({ ...prev, rol: value as any }))}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un rol" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {createRolOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-                <Select
-                  label="Ministerio (Opcional)"
-                  options={ministerioOptions.filter(m => m.value !== '')}
-                  value={createForm.ministerioId}
-                  onChange={(e) => setCreateForm(prev => ({ ...prev, ministerioId: e.target.value }))}
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Ministerio (Opcional)</label>
+                  <Select value={createForm.ministerioId} onValueChange={(value) => setCreateForm(prev => ({ ...prev, ministerioId: value }))}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un ministerio" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {ministerioOptions.filter(m => m.value !== '').map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 <div className="flex justify-end space-x-3 pt-4">
                   <Button
@@ -835,20 +852,37 @@ export default function AdminUsuariosPage() {
                    required
                  />
 
-                 <Select
-                   label="Rol"
-                   options={createRolOptions}
-                   value={editForm.rol}
-                   onChange={(e) => setEditForm(prev => ({ ...prev, rol: e.target.value as any }))}
-                   required
-                 />
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 mb-2">Rol *</label>
+                   <Select value={editForm.rol} onValueChange={(value) => setEditForm(prev => ({ ...prev, rol: value as any }))}>
+                     <SelectTrigger>
+                       <SelectValue placeholder="Selecciona un rol" />
+                     </SelectTrigger>
+                     <SelectContent>
+                       {createRolOptions.map((option) => (
+                         <SelectItem key={option.value} value={option.value}>
+                           {option.label}
+                         </SelectItem>
+                       ))}
+                     </SelectContent>
+                   </Select>
+                 </div>
 
-                 <Select
-                   label="Ministerio (Opcional)"
-                   options={ministerioOptions.filter(m => m.value !== '')}
-                   value={editForm.ministerioId}
-                   onChange={(e) => setEditForm(prev => ({ ...prev, ministerioId: e.target.value }))}
-                 />
+                 <div>
+                   <label className="block text-sm font-medium text-gray-700 mb-2">Ministerio (Opcional)</label>
+                   <Select value={editForm.ministerioId} onValueChange={(value) => setEditForm(prev => ({ ...prev, ministerioId: value }))}>
+                     <SelectTrigger>
+                       <SelectValue placeholder="Selecciona un ministerio" />
+                     </SelectTrigger>
+                     <SelectContent>
+                       {ministerioOptions.filter(m => m.value !== '').map((option) => (
+                         <SelectItem key={option.value} value={option.value}>
+                           {option.label}
+                         </SelectItem>
+                       ))}
+                     </SelectContent>
+                   </Select>
+                 </div>
 
                  <div className="flex items-center space-x-2">
                    <input
