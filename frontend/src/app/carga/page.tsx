@@ -7,7 +7,7 @@ import Layout from '@/components/layout/Layout';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Select, SelectOption } from '@/components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { ArrowLeft, Upload, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -412,13 +412,20 @@ export default function CargaPage() {
                     Ministerio *
                   </label>
                   <Select
-                    id="ministerio"
                     value={selectedMinisterio}
-                    onChange={(e) => setSelectedMinisterio(e.target.value)}
-                    options={ministerios.map(m => ({ value: m.id, label: m.nombre }))}
-                    placeholder="Selecciona un ministerio"
-                    required
-                  />
+                    onValueChange={(value) => setSelectedMinisterio(value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un ministerio" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {ministerios.map(m => (
+                        <SelectItem key={m.id} value={m.id}>
+                          {m.nombre}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Compromisos */}
@@ -427,12 +434,20 @@ export default function CargaPage() {
                     Compromisos *
                   </label>
                   <Select
-                    id="linea"
                     value={selectedLinea}
-                    onChange={handleLineaChange}
-                    options={lineas.map(l => ({ value: l.id, label: l.titulo }))}
-                    placeholder="Selecciona un compromiso"
-                  />
+                    onValueChange={handleLineaChange}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un compromiso" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {lineas.map(l => (
+                        <SelectItem key={l.id} value={l.id}>
+                          {l.titulo}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   
                   {/* Opción para crear nuevo compromiso */}
                   <div className="mt-2">
@@ -493,11 +508,19 @@ export default function CargaPage() {
                    </label>
                    <Select
                      value={selectedIndicador}
-                     onChange={(e) => setSelectedIndicador(e.target.value)}
-                     options={indicadores.map(i => ({ value: i.id, label: i.nombre }))}
-                     placeholder="Selecciona un indicador"
-                     required
-                   />
+                     onValueChange={(value) => setSelectedIndicador(value)}
+                   >
+                     <SelectTrigger>
+                       <SelectValue placeholder="Selecciona un indicador" />
+                     </SelectTrigger>
+                     <SelectContent>
+                       {indicadores.map(i => (
+                         <SelectItem key={i.id} value={i.id}>
+                           {i.nombre}
+                         </SelectItem>
+                       ))}
+                     </SelectContent>
+                   </Select>
                    
                    {/* Opción para crear nuevo indicador */}
                    <div className="mt-2">
@@ -558,14 +581,16 @@ export default function CargaPage() {
                   </label>
                   <Select
                     value={periodo}
-                    onChange={(e) => setPeriodo(e.target.value)}
-                    options={[
-                  { value: '2024', label: '2024' },
-                  { value: '2025-2027', label: '2025-2027' }
-                ]}
-                    placeholder="Selecciona un período"
-                    required
-                  />
+                    onValueChange={(value) => setPeriodo(value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un período" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="2024">2024</SelectItem>
+                      <SelectItem value="2025-2027">2025-2027</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <p className="text-xs text-gray-500 mt-1">
                     Formato específico según la periodicidad del indicador seleccionado
                   </p>
