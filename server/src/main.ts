@@ -297,21 +297,21 @@ async function bootstrap() {
         ministeriosData = await dataSource.query(`SELECT id, nombre, sigla FROM ministerios LIMIT 5`);
       }
       
-      // Verificar tabla lineas
-      const lineasTable = await dataSource.query(`
-        SELECT table_name 
-        FROM information_schema.tables 
-        WHERE table_schema = 'public' 
-        AND table_name = 'lineas'
-      `);
-      
-      let lineasCount = 0;
-      let lineasData = [];
-      if (lineasTable.length > 0) {
-        const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
-        lineasCount = parseInt(countResult[0].count);
-        lineasData = await dataSource.query(`SELECT id, nombre, ministerio_id FROM lineas LIMIT 5`);
-      }
+                // Verificar tabla lineas
+                const lineasTable = await dataSource.query(`
+                  SELECT table_name 
+                  FROM information_schema.tables 
+                  WHERE table_schema = 'public' 
+                  AND table_name = 'lineas'
+                `);
+                
+                let lineasCount = 0;
+                let lineasData = [];
+                if (lineasTable.length > 0) {
+                  const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+                  lineasCount = parseInt(countResult[0].count);
+                  lineasData = await dataSource.query(`SELECT id, titulo, ministerio_id FROM lineas LIMIT 5`);
+                }
       
       // Verificar tabla indicadores
       const indicadoresTable = await dataSource.query(`
