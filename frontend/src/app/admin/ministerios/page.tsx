@@ -86,7 +86,7 @@ export default function MinisteriosPage() {
       
       // Llamada a la API para obtener ministerios
       console.log('🔍 Consultando API de ministerios...');
-      const response = await fetch('http://localhost:3001/api/v1/catalogos/ministerios');
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios');
       
       console.log('📡 Status de respuesta:', response.status);
       

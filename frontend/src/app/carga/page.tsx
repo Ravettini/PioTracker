@@ -139,7 +139,7 @@ export default function CargaPage() {
       console.log('🔄 Cargando ministerios desde la API...');
       
       // Llamada a la API para obtener ministerios
-      const response = await fetch('http://localhost:3001/api/v1/catalogos/ministerios', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -165,7 +165,7 @@ export default function CargaPage() {
   const loadLineas = async (ministerioId: string) => {
     console.log(`🔍 Frontend enviando ministerioId: "${ministerioId}"`);
     try {
-      const response = await fetch(`http://localhost:3001/api/v1/catalogos/lineas?ministerioId=${ministerioId}`, {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/lineas?ministerioId=${ministerioId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -187,7 +187,7 @@ export default function CargaPage() {
 
   const loadIndicadores = async (lineaId: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/v1/catalogos/indicadores?linea_id=${lineaId}`, {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/indicadores?linea_id=${lineaId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -245,7 +245,7 @@ export default function CargaPage() {
       };
 
       // Llamada a la API para crear la carga
-      const response = await fetch('http://localhost:3001/api/v1/cargas', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/cargas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -300,7 +300,7 @@ export default function CargaPage() {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/v1/catalogos/lineas', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/lineas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -339,7 +339,7 @@ export default function CargaPage() {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/v1/catalogos/indicadores', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/indicadores', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

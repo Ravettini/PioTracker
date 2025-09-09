@@ -103,7 +103,7 @@ export default function SyncPage() {
       formData.append('file', selectedFile);
 
       // Llamada real a la API
-      const response = await fetch('http://localhost:3001/api/v1/sync/import-excel', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/sync/import-excel', {
         method: 'POST',
         body: formData,
       });
@@ -143,7 +143,7 @@ export default function SyncPage() {
 
     try {
       // Llamada real a la API
-      const response = await fetch('http://localhost:3001/api/v1/sync/sync-to-sheets', {
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/sync/sync-to-sheets', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
