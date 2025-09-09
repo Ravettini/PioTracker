@@ -102,21 +102,25 @@ async function bootstrap() {
   });
 
   // Endpoint raíz - SOLO para la ruta exacta "/"
-  app.get('/', (req, res) => {
-    res.json({ 
-      status: 'OK', 
-      message: 'SIPIO API funcionando correctamente',
-      timestamp: new Date().toISOString(),
-      cors: 'Configurado correctamente',
-      endpoints: {
-        health: '/health',
-        api: '/api/v1',
-        auth: '/api/v1/auth',
-        admin: '/api/v1/admin',
-        cargas: '/api/v1/cargas',
-        analytics: '/api/v1/analytics'
-      }
-    });
+  app.use('/', (req, res, next) => {
+    if (req.path === '/' && req.method === 'GET') {
+      res.json({ 
+        status: 'OK', 
+        message: 'SIPIO API funcionando correctamente',
+        timestamp: new Date().toISOString(),
+        cors: 'Configurado correctamente',
+        endpoints: {
+          health: '/health',
+          api: '/api/v1',
+          auth: '/api/v1/auth',
+          admin: '/api/v1/admin',
+          cargas: '/api/v1/cargas',
+          analytics: '/api/v1/analytics'
+        }
+      });
+    } else {
+      next();
+    }
   });
 
   // Endpoint de health check - GARANTIZADO
