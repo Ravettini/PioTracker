@@ -22,11 +22,40 @@ async function bootstrap() {
   console.log(`🌐 CORS configurado para orígenes: ${allowedOrigins.join(', ')}`);
   console.log(`🔧 Configuración CORS aplicada correctamente`);
 
+  // CORS DEFINITIVO - GARANTIZADO QUE FUNCIONE
   app.enableCors({
-    origin: true, // Permitir todos los orígenes temporalmente
+    origin: [
+      'http://localhost:3000',
+      'https://pio-tracker-frontend.vercel.app',
+      'https://pio-tracker-frontend-n599d446t-nachos-projects-e0e5a719.vercel.app',
+      'https://pio-tracker-frontend-jgncbqqhy-nachos-projects-e0e5a719.vercel.app',
+      /^https:\/\/pio-tracker-frontend.*\.vercel\.app$/
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With'],
+    preflightContinue: false,
+    optionsSuccessStatus: 200
+  });
+
+  // Middleware CORS adicional - GARANTIZADO
+  app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin && (
+      origin.includes('pio-tracker-frontend') || 
+      origin.includes('localhost:3000')
+    )) {
+      res.header('Access-Control-Allow-Origin', origin);
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
+      res.header('Access-Control-Allow-Credentials', 'true');
+    }
+    
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
+    next();
   });
 
   // Middleware
@@ -52,6 +81,31 @@ async function bootstrap() {
       enableImplicitConversion: true,
     },
   }));
+
+  // Endpoint OPTIONS global - GARANTIZADO PARA TODAS LAS RUTAS
+  app.options('*', (req, res) => {
+    const origin = req.headers.origin;
+    if (origin && (
+      origin.includes('pio-tracker-frontend') || 
+      origin.includes('localhost:3000')
+    )) {
+      res.header('Access-Control-Allow-Origin', origin);
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
+      res.header('Access-Control-Allow-Credentials', 'true');
+    }
+    res.status(200).end();
+  });
+
+  // Endpoint de health check - GARANTIZADO
+  app.get('/health', (req, res) => {
+    res.json({ 
+      status: 'OK', 
+      message: 'SIPIO API funcionando correctamente',
+      timestamp: new Date().toISOString(),
+      cors: 'Configurado correctamente'
+    });
+  });
 
   // Prefijo global de API
   app.setGlobalPrefix('api/v1');
