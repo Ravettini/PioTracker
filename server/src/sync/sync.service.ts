@@ -707,7 +707,7 @@ export class SyncService {
     }
   }
 
-  // Función auxiliar para insertar/actualizar filas en Google Sheets
+  // Función auxiliar para insertar/actualizar filas en Google Sheets con lógica dinámica por ministerio
   private async upsertFactRow(data: {
     ministerio: string;
     linea: string;
@@ -741,9 +741,15 @@ export class SyncService {
       
       const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
       
+      // Generar nombre de hoja dinámico basado en el ministerio
+      const ministerioTab = this.generateMinisterioTabName(data.ministerio);
+      this.logger.log(`🏛️ Usando hoja: ${ministerioTab} para ministerio: ${data.ministerio}`);
+      
+      // Verificar si la hoja existe, si no, crearla
+      await this.ensureMinisterioSheetExists(sheets, config.sheetId, ministerioTab);
+      
       // Preparar datos para la fila
       const rowData = [
-        data.ministerio,
         data.linea,
         data.indicador,
         data.valor,
@@ -753,8 +759,8 @@ export class SyncService {
         new Date().toISOString()
       ];
       
-      // Buscar si ya existe una fila con el mismo ministerio/linea/indicador/periodo
-      const range = `${config.sheetTab}!A:H`;
+      // Buscar si ya existe una fila con el mismo linea/indicador/periodo en la hoja del ministerio
+      const range = `${ministerioTab}!A:H`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: range,
@@ -766,10 +772,9 @@ export class SyncService {
       // Buscar fila existente
       for (let i = 1; i < rows.length; i++) { // Saltar header
         const row = rows[i];
-        if (row[0] === data.ministerio && 
-            row[1] === data.linea && 
-            row[2] === data.indicador && 
-            row[5] === data.periodo) {
+        if (row[0] === data.linea && 
+            row[1] === data.indicador && 
+            row[4] === data.periodo) {
           rowIndex = i + 1; // +1 porque Google Sheets es 1-indexed
           break;
         }
@@ -779,30 +784,98 @@ export class SyncService {
         // Actualizar fila existente
         await sheets.spreadsheets.values.update({
           spreadsheetId: config.sheetId,
-          range: `${config.sheetTab}!A${rowIndex}:H${rowIndex}`,
+          range: `${ministerioTab}!A${rowIndex}:H${rowIndex}`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [rowData]
           }
         });
-        this.logger.log(`✅ Fila actualizada en Google Sheets (fila ${rowIndex})`);
+        this.logger.log(`✅ Fila actualizada en Google Sheets (hoja: ${ministerioTab}, fila ${rowIndex})`);
       } else {
         // Insertar nueva fila al final
         await sheets.spreadsheets.values.append({
           spreadsheetId: config.sheetId,
-          range: `${config.sheetTab}!A:H`,
+          range: `${ministerioTab}!A:H`,
           valueInputOption: 'RAW',
           insertDataOption: 'INSERT_ROWS',
           requestBody: {
             values: [rowData]
           }
         });
-        this.logger.log(`✅ Nueva fila insertada en Google Sheets`);
+        this.logger.log(`✅ Nueva fila insertada en Google Sheets (hoja: ${ministerioTab})`);
       }
       
     } catch (error) {
       this.logger.error(`❌ Error en upsertFactRow: ${error.message}`);
       // No lanzar error para no interrumpir la sincronización completa
+    }
+  }
+
+  // Generar nombre de hoja basado en el ministerio
+  private generateMinisterioTabName(ministerio: string): string {
+    // Limpiar el nombre del ministerio para crear un nombre de hoja válido
+    const cleanName = ministerio
+      .replace(/[^a-zA-Z0-9\s]/g, '') // Remover caracteres especiales
+      .replace(/\s+/g, '_') // Reemplazar espacios con guiones bajos
+      .substring(0, 30); // Limitar longitud
+    
+    return `Ministerio_${cleanName}`;
+  }
+
+  // Asegurar que la hoja del ministerio existe
+  private async ensureMinisterioSheetExists(sheets: any, sheetId: string, tabName: string): Promise<void> {
+    try {
+      // Obtener información del spreadsheet
+      const spreadsheet = await sheets.spreadsheets.get({
+        spreadsheetId: sheetId
+      });
+      
+      const existingSheets = spreadsheet.data.sheets.map((sheet: any) => sheet.properties.title);
+      
+      if (!existingSheets.includes(tabName)) {
+        this.logger.log(`📋 Creando nueva hoja: ${tabName}`);
+        
+        // Crear nueva hoja
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId: sheetId,
+          requestBody: {
+            requests: [{
+              addSheet: {
+                properties: {
+                  title: tabName
+                }
+              }
+            }]
+          }
+        });
+        
+        // Agregar headers a la nueva hoja
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: sheetId,
+          range: `${tabName}!A1:H1`,
+          valueInputOption: 'RAW',
+          requestBody: {
+            values: [[
+              'Línea de Acción',
+              'Indicador',
+              'Valor',
+              'Unidad',
+              'Período',
+              'Fuente',
+              'Fecha de Sincronización',
+              'Estado'
+            ]]
+          }
+        });
+        
+        this.logger.log(`✅ Hoja ${tabName} creada exitosamente con headers`);
+      } else {
+        this.logger.log(`✅ Hoja ${tabName} ya existe`);
+      }
+      
+    } catch (error) {
+      this.logger.error(`❌ Error creando hoja ${tabName}: ${error.message}`);
+      throw error;
     }
   }
 }
