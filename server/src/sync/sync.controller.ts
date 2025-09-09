@@ -71,6 +71,27 @@ export class SyncController {
       });
     }
   }
+
+  @Get('test-google-sheets')
+  @Public()
+  async testGoogleSheets() {
+    try {
+      const result = await this.syncService.testGoogleSheetsConnection();
+      return {
+        status: 'OK',
+        message: 'Conexión con Google Sheets exitosa',
+        data: result,
+        timestamp: new Date().toISOString()
+      };
+    } catch (error) {
+      return {
+        status: 'ERROR',
+        message: 'Error en conexión con Google Sheets',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      };
+    }
+  }
 }
 
 

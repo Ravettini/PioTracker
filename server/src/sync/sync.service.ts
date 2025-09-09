@@ -878,6 +878,88 @@ export class SyncService {
       throw error;
     }
   }
+
+  async testGoogleSheetsConnection(): Promise<any> {
+    try {
+      this.logger.log('🧪 Probando conexión con Google Sheets...');
+      
+      // Verificar configuración
+      const config = this.configService.get('google');
+      if (!config.sheetId || !config.refreshToken) {
+        throw new Error('Configuración de Google Sheets incompleta');
+      }
+      
+      this.logger.log(`📊 Sheet ID: ${config.sheetId}`);
+      this.logger.log(`🔑 Refresh Token: ${config.refreshToken ? 'Configurado' : 'No configurado'}`);
+      
+      // Crear cliente de Google Sheets
+      const { google } = require('googleapis');
+      const oauth2Client = new google.auth.OAuth2(
+        config.oauth.clientId,
+        config.oauth.clientSecret,
+        config.oauth.authUri
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token: config.refreshToken
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      
+      // Probar acceso al spreadsheet
+      const spreadsheet = await sheets.spreadsheets.get({
+        spreadsheetId: config.sheetId
+      });
+      
+      this.logger.log(`✅ Conexión exitosa con Google Sheets: ${spreadsheet.data.properties.title}`);
+      
+      // Listar hojas existentes
+      const existingSheets = spreadsheet.data.sheets.map((sheet: any) => ({
+        title: sheet.properties.title,
+        sheetId: sheet.properties.sheetId
+      }));
+      
+      this.logger.log(`📋 Hojas existentes: ${existingSheets.map(s => s.title).join(', ')}`);
+      
+      // Probar escritura en una hoja de prueba
+      const testTabName = 'Test_Conexion';
+      const testData = [
+        ['Test', 'Conexión', 'Exitosa', new Date().toISOString()]
+      ];
+      
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: config.sheetId,
+          range: `${testTabName}!A:D`,
+          valueInputOption: 'RAW',
+          insertDataOption: 'INSERT_ROWS',
+          requestBody: {
+            values: testData
+          }
+        });
+        this.logger.log(`✅ Escritura de prueba exitosa en hoja: ${testTabName}`);
+      } catch (writeError) {
+        this.logger.warn(`⚠️ No se pudo escribir en hoja de prueba: ${writeError.message}`);
+      }
+      
+      return {
+        spreadsheetTitle: spreadsheet.data.properties.title,
+        spreadsheetId: config.sheetId,
+        existingSheets: existingSheets,
+        testWriteSuccess: true,
+        config: {
+          clientId: config.oauth.clientId ? 'Configurado' : 'No configurado',
+          clientSecret: config.oauth.clientSecret ? 'Configurado' : 'No configurado',
+          refreshToken: config.refreshToken ? 'Configurado' : 'No configurado',
+          sheetId: config.sheetId ? 'Configurado' : 'No configurado'
+        }
+      };
+      
+    } catch (error) {
+      this.logger.error(`❌ Error en test de Google Sheets: ${error.message}`);
+      throw error;
+    }
+  }
 }
 
 
