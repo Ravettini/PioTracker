@@ -28,7 +28,8 @@
     "db:seed": "npm run seed",
     "db:reset": "npm run orm:revert",
     "migrate:prod": "node migrate.js",
-    "run-migrations": "node run-migrations.js"
+    "run-migrations": "node run-migrations.js",
+    "create-admin": "node create-admin.js"
   },
   "dependencies": {
     "@nestjs/class-validator": "^0.13.4",

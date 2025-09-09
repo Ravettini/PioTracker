@@ -55,11 +55,67 @@ async function runMigrations() {
   }
 }
 
+// Función para crear usuario administrador automáticamente
+async function createAdminUser() {
+  try {
+    console.log('🔄 Verificando usuario administrador...');
+    
+    const dataSource = new DataSource({
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      synchronize: false,
+      logging: false,
+      entities: [path.join(__dirname, 'db/entities/*.js')],
+    });
+
+    await dataSource.initialize();
+    
+    // Verificar si ya existe el usuario admin
+    const existingAdmin = await dataSource.query(`
+      SELECT id FROM usuarios WHERE email = 'admin@pio.local'
+    `);
+
+    if (existingAdmin.length > 0) {
+      console.log('✅ Usuario admin ya existe');
+    } else {
+      console.log('🔄 Creando usuario administrador...');
+      
+      // Crear usuario administrador (sin hash por ahora, solo para testing)
+      await dataSource.query(`
+        INSERT INTO usuarios (
+          email, nombre, rol, clave_temporal, 
+          intentos_fallidos, bloqueado_hasta, activo, 
+          fecha_creacion, ultimo_login
+        ) VALUES (
+          'admin@pio.local', 'Administrador', 'ADMIN', true,
+          0, NULL, true,
+          NOW(), NULL
+        )
+      `);
+      
+      console.log('✅ Usuario administrador creado');
+    }
+
+    await dataSource.destroy();
+  } catch (error) {
+    console.error('❌ Error creando usuario admin:', error.message);
+    // No salir del proceso, continuar con el inicio de la aplicación
+  }
+}
+
 async function bootstrap() {
   // Ejecutar migraciones automáticamente antes de iniciar la aplicación
   console.log('🔄 ===== EJECUTANDO MIGRACIONES ANTES DEL INICIO =====');
   await runMigrations();
-  console.log('✅ ===== MIGRACIONES COMPLETADAS, INICIANDO APLICACIÓN =====');
+  console.log('✅ ===== MIGRACIONES COMPLETADAS =====');
+  
+  // Crear usuario administrador si no existe
+  console.log('🔄 ===== CREANDO USUARIO ADMINISTRADOR =====');
+  await createAdminUser();
+  console.log('✅ ===== USUARIO ADMIN VERIFICADO =====');
+  
+  console.log('🚀 ===== INICIANDO APLICACIÓN =====');
   
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
