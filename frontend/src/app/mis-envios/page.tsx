@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
-import { Select, SelectOption } from '@/components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { CargaConRelaciones, FilterOptions } from '@/types';
 import { apiClient } from '@/lib/api';
 import { 
@@ -310,12 +310,24 @@ export default function MisEnviosPage() {
           {showFilters && (
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Select
-                  label="Estado"
-                  options={estadoOptions}
-                  value={filters.estado}
-                  onChange={(e) => handleFilterChange('estado', e.target.value)}
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+                  <Select
+                    value={filters.estado}
+                    onValueChange={(value) => handleFilterChange('estado', value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un estado" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {estadoOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
                 
                 <div className="flex flex-col sm:flex-row items-end space-y-2 sm:space-y-0 sm:space-x-2">
                   <Button

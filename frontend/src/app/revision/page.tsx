@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Ca
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { Input } from '../../components/ui/Input';
-import { Select, SelectOption } from '../../components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/Select';
 import { CargaConRelaciones, RevisionRequest } from '@/types';
 import { apiClient } from '@/lib/api';
 import { 
@@ -520,13 +520,24 @@ export default function RevisionPage() {
 
               {/* Formulario de revisión */}
               <div className="space-y-4">
-                <Select
-                  label="Decisión"
-                  options={estadoOptions}
-                  value={revisionData.estado}
-                  onChange={(e) => setRevisionData(prev => ({ ...prev, estado: e.target.value as any }))}
-                  required
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Decisión *</label>
+                  <Select
+                    value={revisionData.estado}
+                    onValueChange={(value) => setRevisionData(prev => ({ ...prev, estado: value as any }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona una decisión" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {estadoOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 {(revisionData.estado === 'observado' || revisionData.estado === 'rechazado') && (
                   <Input

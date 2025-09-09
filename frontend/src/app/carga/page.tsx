@@ -286,8 +286,8 @@ export default function CargaPage() {
     }
   };
 
-  const handleLineaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLinea(e.target.value);
+  const handleLineaChange = (value: string) => {
+    setSelectedLinea(value);
     setShowNewCompromiso(false); // Cerrar si se selecciona una línea existente
     setNewCompromiso(''); // Limpiar campos de nuevo compromiso
   };
