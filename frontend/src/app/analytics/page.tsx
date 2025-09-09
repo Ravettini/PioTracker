@@ -6,7 +6,7 @@ import { useIsAuthenticated, useIsAdmin } from '@/store/auth-store';
 import Layout from '@/components/layout/Layout';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Select, SelectOption } from '@/components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { 
   LineChart, 
   Line, 
