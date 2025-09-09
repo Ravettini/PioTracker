@@ -445,34 +445,44 @@ async function bootstrap() {
       
       console.log('🔄 Creando datos iniciales...');
       
-      // Crear ministerios
+      // Crear ministerios originales del PIO
       await dataSource.query(`
         INSERT INTO ministerios (id, nombre, descripcion, activo) VALUES
-        ('1', 'Ministerio de Desarrollo Humano y Hábitat', 'Ministerio responsable del desarrollo humano y hábitat', true),
-        ('2', 'Ministerio de Educación', 'Ministerio responsable de la educación', true),
-        ('3', 'Ministerio de Salud', 'Ministerio responsable de la salud pública', true),
-        ('4', 'Ministerio de Desarrollo Económico y Producción', 'Ministerio responsable del desarrollo económico', true),
-        ('5', 'Ministerio de Cultura', 'Ministerio responsable de la cultura', true)
+        ('JUS', 'Justicia', 'Ministerio de Justicia y Seguridad Jurídica', true),
+        ('JEF', 'Jefatura de Gabinete', 'Jefatura de Gabinete de Ministros', true),
+        ('EDU', 'Educación', 'Ministerio de Educación', true),
+        ('ERSP', 'Ente regulador de servicios públicos', 'Ente Regulador de Servicios Públicos', true),
+        ('SEG', 'Seguridad', 'Ministerio de Justicia y Seguridad', true),
+        ('VIC', 'Vicejefatura', 'Vicejefatura de Gobierno', true),
+        ('EP', 'Espacio Público', 'Ministerio de Espacio Público e Higiene Urbana', true),
+        ('HAF', 'Hacienda y finanzas', 'Ministerio de Hacienda y Finanzas', true),
+        ('SAL', 'Salud', 'Ministerio de Salud', true),
+        ('MDH', 'MDHyH', 'Ministerio de Desarrollo Humano y Hábitat', true)
       `);
       
-      // Crear líneas de acción
+      // Crear líneas de acción (compromisos) principales
       await dataSource.query(`
         INSERT INTO lineas_accion (id, nombre, descripcion, ministerio_id, activo) VALUES
-        ('1', 'Vivienda Social', 'Programa de vivienda social', '1', true),
-        ('2', 'Educación Digital', 'Programa de educación digital', '2', true),
-        ('3', 'Salud Preventiva', 'Programa de salud preventiva', '3', true),
-        ('4', 'Empleo Joven', 'Programa de empleo para jóvenes', '4', true),
-        ('5', 'Cultura Comunitaria', 'Programa de cultura comunitaria', '5', true)
+        ('CST', 'Compromiso sin título', 'Compromisos generales del ministerio', 'EDU', true),
+        ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'Líneas de atención telefónica', 'MDH', true),
+        ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'Consejerías de salud sexual', 'SAL', true),
+        ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'Estrategias de mamografía', 'SAL', true),
+        ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'Iniciativa PARES', 'JUS', true),
+        ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'Herramientas de autonomía económica', 'VIC', true)
       `);
       
-      // Crear indicadores
+      // Crear indicadores principales
       await dataSource.query(`
         INSERT INTO indicadores (id, nombre, descripcion, unidad_medida, linea_id, activo) VALUES
-        ('1', 'Viviendas Construidas', 'Número de viviendas sociales construidas', 'unidades', '1', true),
-        ('2', 'Estudiantes Conectados', 'Número de estudiantes con acceso a educación digital', 'personas', '2', true),
-        ('3', 'Consultas Preventivas', 'Número de consultas médicas preventivas', 'consultas', '3', true),
-        ('4', 'Empleos Creados', 'Número de empleos creados para jóvenes', 'empleos', '4', true),
-        ('5', 'Eventos Culturales', 'Número de eventos culturales comunitarios', 'eventos', '5', true)
+        ('CDCD', 'Cantidad de casos derivados', 'Casos derivados para terminalidad educativa', 'casos', 'CST', true),
+        ('CDCC', 'Cantidad de clubes creados', 'Clubes creados', 'clubes', 'CST', true),
+        ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'Cursos en centros de formación', 'cursos', 'CST', true),
+        ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'Cupo de mujeres en Talento Tech', '%', 'CST', true),
+        ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'Llamadas a líneas de atención', 'llamadas', 'DCCLLDAT1Y9', true),
+        ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', 'Consejerías de salud sexual', 'consejerías', '1DUPPCSSSCHPLPYPDLS', true),
+        ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', 'Turnos de mamografía', 'turnos', '3IEPEADTEPDM', true),
+        ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'Delegadas sindicales en PARES', 'delegadas', 'GSATDLSDTYEALASALIP', true),
+        ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', 'Participantes en Programa Mujeres Líderes', 'participantes', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
       `);
       
       console.log('✅ Datos iniciales creados exitosamente');
@@ -481,13 +491,17 @@ async function bootstrap() {
       
       res.json({
         status: 'OK',
-        message: 'Datos iniciales creados exitosamente',
+        message: 'Datos iniciales del PIO creados exitosamente',
         data_created: true,
         created: {
-          ministerios: 5,
-          lineas: 5,
-          indicadores: 5
+          ministerios: 10,
+          lineas: 6,
+          indicadores: 9
         },
+        ministerios_creados: [
+          'Justicia', 'Jefatura de Gabinete', 'Educación', 'Ente regulador de servicios públicos',
+          'Seguridad', 'Vicejefatura', 'Espacio Público', 'Hacienda y finanzas', 'Salud', 'MDHyH'
+        ],
         timestamp: new Date().toISOString()
       });
     } catch (error) {
