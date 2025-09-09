@@ -23,17 +23,9 @@ async function bootstrap() {
   console.log(`🔧 Configuración CORS aplicada correctamente`);
 
   app.enableCors({
-    origin: (origin, callback) => {
-      // Permitir peticiones sin origen (como Postman) o provenientes de orígenes permitidos
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      console.log(`🚫 CORS bloqueado: ${origin} no está permitido`);
-      console.log(`✅ Orígenes permitidos: ${allowedOrigins.join(', ')}`);
-      return callback(new Error(`CORS: ${origin} no está permitido`), false);
-    },
+    origin: true, // Permitir todos los orígenes temporalmente
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
   });
 
