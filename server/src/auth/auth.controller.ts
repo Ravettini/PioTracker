@@ -2,6 +2,7 @@ import {
   Controller,
   Post,
   Get,
+  Options,
   Body,
   Req,
   Res,
@@ -20,6 +21,16 @@ import { Usuario } from '../db/entities/usuario.entity';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Options('login')
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  async loginOptions(@Res() res: Response) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.send();
+  }
 
   @Post('login')
   @Public()
