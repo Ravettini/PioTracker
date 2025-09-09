@@ -639,9 +639,6 @@ export class SyncService {
       
       this.logger.log(`📊 Sincronizando ${ministerios.length} ministerios`);
       
-      // TODO: Aquí iría la lógica real de Google Sheets
-      // Por ahora simulamos la sincronización
-      
       let totalRegistros = 0;
       let registrosSincronizados = 0;
       
