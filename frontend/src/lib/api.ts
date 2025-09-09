@@ -9,7 +9,7 @@ const getApiBaseUrl = () => {
   }
   
   // En producción, usar la URL del backend desplegado
-  return process.env.NEXT_PUBLIC_API_URL || 'https://pio-tracker-backend.railway.app/api/v1';
+  return process.env.NEXT_PUBLIC_API_URL || 'https://sigepi-backend.onrender.com/api/v1';
 };
 
 // Configuración base de Axios
