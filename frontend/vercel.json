@@ -1,6 +1,6 @@
 {
   "version": 2,
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://pio-sigepi-backend.onrender.com"
+    "NEXT_PUBLIC_API_URL": "https://sigepi-backend.onrender.com"
   }
 }
