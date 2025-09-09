@@ -703,7 +703,7 @@ async function bootstrap() {
         }
       }
       
-      // Si no se encontraron indicadores reales, crear algunos básicos para las líneas restantes
+      // NO crear indicadores genéricos - solo usar los indicadores reales del PIO
       const lineasSinIndicadores = await dataSource.query(`
         SELECT l.id, l.titulo 
         FROM lineas l 
@@ -711,26 +711,8 @@ async function bootstrap() {
         WHERE i.id IS NULL
       `);
       
-      console.log(`📊 Líneas sin indicadores reales: ${lineasSinIndicadores.length}`);
-      
-      for (const linea of lineasSinIndicadores) {
-        // Crear un indicador básico para líneas sin indicadores reales
-        const indicadorId = `IND_${linea.id}_1`;
-        const indicadorNombre = `Indicador de seguimiento - ${linea.titulo.substring(0, 50)}...`;
-        
-        await dataSource.query(`
-          INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) 
-          VALUES ($1, $2, $3, $4, $5, true)
-          ON CONFLICT (id) DO NOTHING
-        `, [
-          indicadorId,
-          indicadorNombre,
-          linea.id,
-          'cantidad',
-          'mensual'
-        ]);
-        indicadoresCreados++;
-      }
+      console.log(`📊 Líneas sin indicadores reales del PIO: ${lineasSinIndicadores.length}`);
+      console.log(`ℹ️ Solo se crearon indicadores reales del PIO - no se crean indicadores genéricos`);
       
       console.log(`✅ ${indicadoresCreados} indicadores creados exitosamente`);
       
