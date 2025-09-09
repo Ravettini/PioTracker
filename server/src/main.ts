@@ -621,8 +621,8 @@ async function bootstrap() {
       await dataSource.query(`DELETE FROM lineas`); // Después las líneas
       console.log('✅ Datos limpiados');
       
-      // Crear TODOS los ministerios del PIO original
-      console.log('🔄 Creando todos los ministerios del PIO...');
+      // Crear los 10 ministerios del PIO original (sin duplicar los que ya existen)
+      console.log('🔄 Creando los ministerios del PIO...');
       await dataSource.query(`
         INSERT INTO ministerios (id, nombre, sigla, activo) VALUES
         ('JUS', 'Justicia', 'JUS', true),
@@ -634,22 +634,13 @@ async function bootstrap() {
         ('EP', 'Espacio Público', 'EP', true),
         ('HAF', 'Hacienda y finanzas', 'HAF', true),
         ('SAL', 'Salud', 'SAL', true),
-        ('MDH', 'MDHyH', 'MDH', true),
-        ('CUL', 'Cultura', 'CUL', true),
-        ('DES', 'Desarrollo Económico', 'DES', true),
-        ('AMB', 'Ambiente', 'AMB', true),
-        ('TRA', 'Transporte', 'TRA', true),
-        ('OBR', 'Obras Públicas', 'OBR', true),
-        ('COM', 'Comunicación', 'COM', true),
-        ('TUR', 'Turismo', 'TUR', true),
-        ('TEC', 'Tecnología', 'TEC', true),
-        ('GEN', 'Género', 'GEN', true),
-        ('SOC', 'Social', 'SOC', true)
+        ('MDH', 'MDHyH', 'MDH', true)
+        ON CONFLICT (id) DO NOTHING
       `);
       console.log('✅ Ministerios creados exitosamente');
       
-      // Crear TODAS las líneas de acción del PIO original (muchas más)
-      console.log('🔄 Creando todas las líneas de acción del PIO...');
+      // Crear las líneas de acción del PIO original (solo las reales, sin duplicar)
+      console.log('🔄 Creando las líneas de acción del PIO...');
       await dataSource.query(`
         INSERT INTO lineas (id, titulo, ministerio_id, activo) VALUES
         ('CST', 'Compromiso sin título', 'EDU', true),
@@ -671,32 +662,13 @@ async function bootstrap() {
         ('HAF001', 'Optimizar la gestión financiera', 'HAF', true),
         ('HAF002', 'Implementar presupuesto por resultados', 'HAF', true),
         ('EP001', 'Mejorar espacios públicos', 'EP', true),
-        ('EP002', 'Implementar políticas de movilidad sustentable', 'EP', true),
-        ('CUL001', 'Fortalecer la cultura local', 'CUL', true),
-        ('CUL002', 'Promover el arte y la creatividad', 'CUL', true),
-        ('DES001', 'Fomentar el desarrollo económico local', 'DES', true),
-        ('DES002', 'Apoyar a emprendedores', 'DES', true),
-        ('AMB001', 'Implementar políticas ambientales', 'AMB', true),
-        ('AMB002', 'Promover la sustentabilidad', 'AMB', true),
-        ('TRA001', 'Mejorar el transporte público', 'TRA', true),
-        ('TRA002', 'Implementar movilidad eléctrica', 'TRA', true),
-        ('OBR001', 'Modernizar infraestructura urbana', 'OBR', true),
-        ('OBR002', 'Mejorar espacios verdes', 'OBR', true),
-        ('COM001', 'Fortalecer la comunicación institucional', 'COM', true),
-        ('COM002', 'Implementar gobierno digital', 'COM', true),
-        ('TUR001', 'Promover el turismo local', 'TUR', true),
-        ('TUR002', 'Desarrollar circuitos turísticos', 'TUR', true),
-        ('TEC001', 'Implementar tecnología en servicios públicos', 'TEC', true),
-        ('TEC002', 'Fortalecer la innovación', 'TEC', true),
-        ('GEN001', 'Implementar políticas de género', 'GEN', true),
-        ('GEN002', 'Fortalecer la igualdad de oportunidades', 'GEN', true),
-        ('SOC001', 'Mejorar servicios sociales', 'SOC', true),
-        ('SOC002', 'Fortalecer la inclusión social', 'SOC', true)
+        ('EP002', 'Implementar políticas de movilidad sustentable', 'EP', true)
+        ON CONFLICT (id) DO NOTHING
       `);
       console.log('✅ Líneas creadas exitosamente');
       
-      // Crear TODOS los indicadores del PIO original (muchos más)
-      console.log('🔄 Creando todos los indicadores del PIO...');
+      // Crear los indicadores del PIO original (solo los reales, sin duplicar)
+      console.log('🔄 Creando los indicadores del PIO...');
       await dataSource.query(`
         INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) VALUES
         ('CDCD', 'Cantidad de casos derivados', 'CST', 'casos', 'mensual', true),
@@ -735,47 +707,8 @@ async function bootstrap() {
         ('EP001_001', 'Cantidad de espacios públicos mejorados', 'EP001', 'espacios', 'anual', true),
         ('EP001_002', 'Porcentaje de satisfacción ciudadana con espacios públicos', 'EP001', '%', 'anual', true),
         ('EP002_001', 'Cantidad de bicisendas implementadas', 'EP002', 'km', 'anual', true),
-        ('EP002_002', 'Porcentaje de viajes en transporte sustentable', 'EP002', '%', 'anual', true),
-        ('CUL001_001', 'Cantidad de eventos culturales realizados', 'CUL001', 'eventos', 'anual', true),
-        ('CUL001_002', 'Porcentaje de participación ciudadana en cultura', 'CUL001', '%', 'anual', true),
-        ('CUL002_001', 'Cantidad de artistas apoyados', 'CUL002', 'artistas', 'anual', true),
-        ('CUL002_002', 'Cantidad de obras de arte producidas', 'CUL002', 'obras', 'anual', true),
-        ('DES001_001', 'Cantidad de empresas creadas', 'DES001', 'empresas', 'anual', true),
-        ('DES001_002', 'Porcentaje de crecimiento del empleo local', 'DES001', '%', 'anual', true),
-        ('DES002_001', 'Cantidad de emprendedores apoyados', 'DES002', 'emprendedores', 'anual', true),
-        ('DES002_002', 'Porcentaje de éxito de emprendimientos', 'DES002', '%', 'anual', true),
-        ('AMB001_001', 'Cantidad de políticas ambientales implementadas', 'AMB001', 'políticas', 'anual', true),
-        ('AMB001_002', 'Porcentaje de reducción de emisiones', 'AMB001', '%', 'anual', true),
-        ('AMB002_001', 'Cantidad de proyectos sustentables implementados', 'AMB002', 'proyectos', 'anual', true),
-        ('AMB002_002', 'Porcentaje de uso de energías renovables', 'AMB002', '%', 'anual', true),
-        ('TRA001_001', 'Cantidad de líneas de transporte mejoradas', 'TRA001', 'líneas', 'anual', true),
-        ('TRA001_002', 'Tiempo promedio de viaje en transporte público', 'TRA001', 'minutos', 'mensual', true),
-        ('TRA002_001', 'Cantidad de vehículos eléctricos incorporados', 'TRA002', 'vehículos', 'anual', true),
-        ('TRA002_002', 'Porcentaje de flota eléctrica', 'TRA002', '%', 'anual', true),
-        ('OBR001_001', 'Cantidad de obras de infraestructura completadas', 'OBR001', 'obras', 'anual', true),
-        ('OBR001_002', 'Porcentaje de cumplimiento de cronogramas', 'OBR001', '%', 'anual', true),
-        ('OBR002_001', 'Cantidad de espacios verdes creados', 'OBR002', 'espacios', 'anual', true),
-        ('OBR002_002', 'Metros cuadrados de espacios verdes por habitante', 'OBR002', 'm²/hab', 'anual', true),
-        ('COM001_001', 'Cantidad de comunicaciones oficiales emitidas', 'COM001', 'comunicaciones', 'mensual', true),
-        ('COM001_002', 'Porcentaje de alcance de comunicaciones', 'COM001', '%', 'mensual', true),
-        ('COM002_001', 'Cantidad de servicios digitalizados', 'COM002', 'servicios', 'anual', true),
-        ('COM002_002', 'Porcentaje de trámites online', 'COM002', '%', 'anual', true),
-        ('TUR001_001', 'Cantidad de turistas recibidos', 'TUR001', 'turistas', 'anual', true),
-        ('TUR001_002', 'Ingresos por turismo', 'TUR001', 'pesos', 'anual', true),
-        ('TUR002_001', 'Cantidad de circuitos turísticos desarrollados', 'TUR002', 'circuitos', 'anual', true),
-        ('TUR002_002', 'Porcentaje de satisfacción turística', 'TUR002', '%', 'anual', true),
-        ('TEC001_001', 'Cantidad de servicios públicos digitalizados', 'TEC001', 'servicios', 'anual', true),
-        ('TEC001_002', 'Porcentaje de ciudadanos con acceso digital', 'TEC001', '%', 'anual', true),
-        ('TEC002_001', 'Cantidad de proyectos de innovación implementados', 'TEC002', 'proyectos', 'anual', true),
-        ('TEC002_002', 'Porcentaje de inversión en I+D', 'TEC002', '%', 'anual', true),
-        ('GEN001_001', 'Cantidad de políticas de género implementadas', 'GEN001', 'políticas', 'anual', true),
-        ('GEN001_002', 'Porcentaje de participación femenina en cargos públicos', 'GEN001', '%', 'anual', true),
-        ('GEN002_001', 'Cantidad de programas de igualdad implementados', 'GEN002', 'programas', 'anual', true),
-        ('GEN002_002', 'Porcentaje de brecha salarial reducida', 'GEN002', '%', 'anual', true),
-        ('SOC001_001', 'Cantidad de servicios sociales mejorados', 'SOC001', 'servicios', 'anual', true),
-        ('SOC001_002', 'Porcentaje de población con acceso a servicios sociales', 'SOC001', '%', 'anual', true),
-        ('SOC002_001', 'Cantidad de programas de inclusión implementados', 'SOC002', 'programas', 'anual', true),
-        ('SOC002_002', 'Porcentaje de población incluida socialmente', 'SOC002', '%', 'anual', true)
+        ('EP002_002', 'Porcentaje de viajes en transporte sustentable', 'EP002', '%', 'anual', true)
+        ON CONFLICT (id) DO NOTHING
       `);
       console.log('✅ Indicadores creados exitosamente');
       
@@ -788,14 +721,14 @@ async function bootstrap() {
       
       res.json({
         status: 'OK',
-        message: 'TODOS los datos originales del PIO cargados exitosamente',
+        message: 'Datos originales del PIO cargados exitosamente',
         ministerios_count: ministeriosCount[0].count,
         lineas_count: lineasCount[0].count,
         indicadores_count: indicadoresCount[0].count,
         total_data: {
-          ministerios: 20,
-          lineas: 40,
-          indicadores: 80
+          ministerios: 10,
+          lineas: 20,
+          indicadores: 36
         },
         timestamp: new Date().toISOString()
       });
