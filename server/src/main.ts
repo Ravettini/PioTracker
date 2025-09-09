@@ -677,14 +677,39 @@ async function bootstrap() {
       for (const resultado of reporteData.resultados) {
         const indicador = resultado.indicador;
         
-        // Buscar la línea correspondiente por título
-        const linea = await dataSource.query(`
-          SELECT id FROM lineas 
-          WHERE titulo ILIKE '%${indicador.lineaTitulo.replace(/[^a-zA-Z0-9\s]/g, '').trim()}%'
-          LIMIT 1
-        `);
+        // Buscar la línea correspondiente por ministerio y título
+        let linea = null;
         
-        if (linea.length > 0) {
+        // Primero buscar por ministerio
+        const ministerio = await dataSource.query(`
+          SELECT id FROM ministerios WHERE id = $1
+        `, [indicador.ministerioId]);
+        
+        if (ministerio.length > 0) {
+          // Buscar líneas de ese ministerio
+          const lineasDelMinisterio = await dataSource.query(`
+            SELECT id, titulo FROM lineas WHERE ministerio_id = $1
+          `, [indicador.ministerioId]);
+          
+          // Si hay líneas del ministerio, usar la primera
+          if (lineasDelMinisterio.length > 0) {
+            linea = lineasDelMinisterio[0];
+          }
+        }
+        
+        // Si no se encontró por ministerio, buscar por título
+        if (!linea) {
+          const lineaPorTitulo = await dataSource.query(`
+            SELECT id FROM lineas 
+            WHERE titulo ILIKE '%${indicador.lineaTitulo.replace(/[^a-zA-Z0-9\s]/g, '').trim()}%'
+            LIMIT 1
+          `);
+          if (lineaPorTitulo.length > 0) {
+            linea = lineaPorTitulo[0];
+          }
+        }
+        
+        if (linea) {
           // Usar el ID original del indicador
           const indicadorId = resultado.resultado.data.data.id;
           
@@ -695,11 +720,14 @@ async function bootstrap() {
           `, [
             indicadorId,
             indicador.nombre,
-            linea[0].id,
+            linea.id,
             indicador.unidadDefecto,
             indicador.periodicidad
           ]);
           indicadoresCreados++;
+          console.log(`✅ Indicador creado: ${indicador.nombre} -> Línea: ${linea.id}`);
+        } else {
+          console.log(`❌ No se encontró línea para indicador: ${indicador.nombre} (Ministerio: ${indicador.ministerioId}, Título: ${indicador.lineaTitulo})`);
         }
       }
       
