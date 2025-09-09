@@ -806,10 +806,19 @@ export default function AnalyticsPage() {
                 </label>
                 <Select
                   value={selectedMinisterio}
-                  onChange={(e) => setSelectedMinisterio(e.target.value)}
-                  options={ministerios.map(m => ({ value: m.id, label: m.nombre }))}
-                  placeholder="Selecciona un ministerio"
-                />
+                  onValueChange={(value) => setSelectedMinisterio(value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un ministerio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ministerios.map(m => (
+                      <SelectItem key={m.id} value={m.id}>
+                        {m.nombre}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
@@ -818,11 +827,20 @@ export default function AnalyticsPage() {
                 </label>
                 <Select
                   value={selectedCompromiso}
-                  onChange={(e) => setSelectedCompromiso(e.target.value)}
-                  options={compromisos.map(c => ({ value: c.id, label: c.titulo }))}
-                  placeholder="Selecciona un compromiso"
+                  onValueChange={(value) => setSelectedCompromiso(value)}
                   disabled={!selectedMinisterio}
-                />
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un compromiso" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {compromisos.map(c => (
+                      <SelectItem key={c.id} value={c.id}>
+                        {c.titulo}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
@@ -831,11 +849,20 @@ export default function AnalyticsPage() {
                 </label>
                 <Select
                   value={selectedIndicador}
-                  onChange={(e) => setSelectedIndicador(e.target.value)}
-                  options={indicadores.map(i => ({ value: i.id, label: i.nombre }))}
-                  placeholder="Selecciona un indicador"
+                  onValueChange={(value) => setSelectedIndicador(value)}
                   disabled={!selectedCompromiso}
-                />
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un indicador" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {indicadores.map(i => (
+                      <SelectItem key={i.id} value={i.id}>
+                        {i.nombre}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </CardContent>
@@ -858,18 +885,22 @@ export default function AnalyticsPage() {
                   <label className="text-sm font-medium text-gray-700">Tipo de Gráfico:</label>
                   <Select
                     value={selectedChartType}
-                    onChange={(e) => setSelectedChartType(e.target.value)}
-                    options={[
-                      { value: 'auto', label: 'Automático' },
-                      { value: 'line', label: 'Línea' },
-                      { value: 'bar', label: 'Barras' },
-                      { value: 'area', label: 'Área' },
-                      { value: 'pie', label: 'Torta' },
-                      { value: 'radar', label: 'Radar' },
-                      { value: 'composed', label: 'Combinado' }
-                    ]}
+                    onValueChange={(value) => setSelectedChartType(value)}
                     className="w-full sm:w-40"
-                  />
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona tipo de gráfico" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="auto">Automático</SelectItem>
+                      <SelectItem value="line">Línea</SelectItem>
+                      <SelectItem value="bar">Barras</SelectItem>
+                      <SelectItem value="area">Área</SelectItem>
+                      <SelectItem value="pie">Torta</SelectItem>
+                      <SelectItem value="radar">Radar</SelectItem>
+                      <SelectItem value="composed">Combinado</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </CardHeader>
