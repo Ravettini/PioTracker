@@ -3,13 +3,18 @@ import { useAuthStore } from '@/store/auth-store';
 
 // Configuración dinámica de API para desarrollo y producción
 const getApiBaseUrl = () => {
+  console.log('🔍 NODE_ENV:', process.env.NODE_ENV);
+  console.log('🔍 NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+  
   // En desarrollo, usar localhost
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/api/v1';
   }
   
   // En producción, usar la URL del backend desplegado
-  return process.env.NEXT_PUBLIC_API_URL || 'https://sigepi-backend.onrender.com/api/v1';
+  const url = process.env.NEXT_PUBLIC_API_URL || 'https://sigepi-backend.onrender.com/api/v1';
+  console.log('🔍 URL final:', url);
+  return url;
 };
 
 // Configuración base de Axios
