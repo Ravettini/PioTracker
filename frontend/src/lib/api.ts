@@ -11,9 +11,9 @@ const getApiBaseUrl = () => {
     return 'http://localhost:3001/api/v1';
   }
   
-  // En producción, usar la URL del backend desplegado
-  const url = process.env.NEXT_PUBLIC_API_URL || 'https://sigepi-backend.onrender.com/api/v1';
-  console.log('🔍 URL final:', url);
+  // En producción, SIEMPRE usar la URL de Render
+  const url = 'https://sigepi-backend.onrender.com/api/v1';
+  console.log('🔍 URL final (forzada):', url);
   return url;
 };
 
