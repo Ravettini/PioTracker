@@ -1,6 +1,7 @@
 import { Injectable, Logger, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 import * as XLSX from 'xlsx';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
@@ -46,6 +47,7 @@ export class SyncService {
     private indicadorRepository: Repository<Indicador>,
     @InjectRepository(Carga)
     private cargaRepository: Repository<Carga>,
+    private configService: ConfigService,
   ) {}
 
   async importExcelFile(file: any): Promise<any> {
@@ -668,16 +670,16 @@ export class SyncService {
               const cargaMasReciente = cargas[0];
               this.logger.log(`📊 Sincronizando indicador: ${indicador.nombre} - Valor: ${cargaMasReciente.valor} - Período: ${cargaMasReciente.periodo}`);
               
-              // Aquí iría la llamada real a Google Sheets API
-              // await this.upsertFactRow({
-              //   ministerio: ministerio.nombre,
-              //   linea: linea.titulo,
-              //   indicador: indicador.nombre,
-              //   valor: cargaMasReciente.valor,
-              //   unidad: cargaMasReciente.unidad,
-              //   periodo: cargaMasReciente.periodo,
-              //   fuente: cargaMasReciente.fuente
-              // });
+              // Llamada real a Google Sheets API
+              await this.upsertFactRow({
+                ministerio: ministerio.nombre,
+                linea: linea.titulo,
+                indicador: indicador.nombre,
+                valor: cargaMasReciente.valor,
+                unidad: cargaMasReciente.unidad,
+                periodo: cargaMasReciente.periodo,
+                fuente: cargaMasReciente.fuente
+              });
               
               registrosSincronizados++;
             }
@@ -715,14 +717,93 @@ export class SyncService {
     periodo: string;
     fuente: string;
   }): Promise<void> {
-    // TODO: Implementar la lógica real de Google Sheets API
-    // Esta función debería:
-    // 1. Buscar si ya existe una fila con el mismo ministerio/linea/indicador/periodo
-    // 2. Si existe, actualizarla
-    // 3. Si no existe, insertarla
-    // 4. Usar la API de Google Sheets para hacer los cambios
-    
-    this.logger.log(`📝 Upsert en Google Sheets: ${data.ministerio} - ${data.linea} - ${data.indicador} = ${data.valor} ${data.unidad}`);
+    try {
+      this.logger.log(`📝 Upsert en Google Sheets: ${data.ministerio} - ${data.linea} - ${data.indicador} = ${data.valor} ${data.unidad}`);
+      
+      // Verificar configuración de Google Sheets
+      const config = this.configService.get('google');
+      if (!config.sheetId || !config.refreshToken) {
+        this.logger.warn('⚠️ Configuración de Google Sheets incompleta. Saltando sincronización.');
+        return;
+      }
+      
+      // Crear cliente de Google Sheets
+      const { google } = require('googleapis');
+      const oauth2Client = new google.auth.OAuth2(
+        config.oauth.clientId,
+        config.oauth.clientSecret,
+        config.oauth.authUri
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token: config.refreshToken
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      
+      // Preparar datos para la fila
+      const rowData = [
+        data.ministerio,
+        data.linea,
+        data.indicador,
+        data.valor,
+        data.unidad,
+        data.periodo,
+        data.fuente,
+        new Date().toISOString()
+      ];
+      
+      // Buscar si ya existe una fila con el mismo ministerio/linea/indicador/periodo
+      const range = `${config.sheetTab}!A:H`;
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: config.sheetId,
+        range: range,
+      });
+      
+      const rows = response.data.values || [];
+      let rowIndex = -1;
+      
+      // Buscar fila existente
+      for (let i = 1; i < rows.length; i++) { // Saltar header
+        const row = rows[i];
+        if (row[0] === data.ministerio && 
+            row[1] === data.linea && 
+            row[2] === data.indicador && 
+            row[5] === data.periodo) {
+          rowIndex = i + 1; // +1 porque Google Sheets es 1-indexed
+          break;
+        }
+      }
+      
+      if (rowIndex > 0) {
+        // Actualizar fila existente
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: config.sheetId,
+          range: `${config.sheetTab}!A${rowIndex}:H${rowIndex}`,
+          valueInputOption: 'RAW',
+          requestBody: {
+            values: [rowData]
+          }
+        });
+        this.logger.log(`✅ Fila actualizada en Google Sheets (fila ${rowIndex})`);
+      } else {
+        // Insertar nueva fila al final
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: config.sheetId,
+          range: `${config.sheetTab}!A:H`,
+          valueInputOption: 'RAW',
+          insertDataOption: 'INSERT_ROWS',
+          requestBody: {
+            values: [rowData]
+          }
+        });
+        this.logger.log(`✅ Nueva fila insertada en Google Sheets`);
+      }
+      
+    } catch (error) {
+      this.logger.error(`❌ Error en upsertFactRow: ${error.message}`);
+      // No lanzar error para no interrumpir la sincronización completa
+    }
   }
 }
 
