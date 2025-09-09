@@ -260,11 +260,18 @@ async function bootstrap() {
       await dataSource.initialize();
       
       // Verificar si existe la tabla usuarios
-      const result = await dataSource.query(`
+      const tableResult = await dataSource.query(`
         SELECT table_name 
         FROM information_schema.tables 
         WHERE table_schema = 'public' 
         AND table_name = 'usuarios'
+      `);
+      
+      // Verificar si existe el usuario admin
+      const userResult = await dataSource.query(`
+        SELECT id, email, nombre, rol, clave_temporal, activo
+        FROM usuarios 
+        WHERE email = 'admin@pio.local'
       `);
       
       await dataSource.destroy();
@@ -272,7 +279,9 @@ async function bootstrap() {
       res.json({
         status: 'OK',
         message: 'Test de base de datos exitoso',
-        usuarios_table_exists: result.length > 0,
+        usuarios_table_exists: tableResult.length > 0,
+        admin_user_exists: userResult.length > 0,
+        admin_user_data: userResult.length > 0 ? userResult[0] : null,
         timestamp: new Date().toISOString()
       });
     } catch (error) {
