@@ -815,8 +815,8 @@ export class SyncService {
   private generateMinisterioTabName(ministerio: string): string {
     // Mapeo de nombres de ministerios a nombres de hojas existentes
     const ministerioMap: { [key: string]: string } = {
-      'Educación': 'Hoja 2', // O el nombre correcto de la hoja de Educación
-      'Ente regulador de servicios públicos': 'Ente rec',
+      'Educación': 'Educacion',
+      'Ente regulador de servicios públicos': 'Ente regulador de servicios púb',
       'Espacio Público': 'Espacio Publico',
       'Hacienda y finanzas': 'Hacienda y finanzas',
       'Jefatura de Gabinete': 'Jefatura de Gabinete',
