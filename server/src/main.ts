@@ -17,7 +17,7 @@ async function bootstrap() {
   // CORS - Configuración para múltiples orígenes
   const allowedOrigins = configService.get('cors.origin')
     ? configService.get('cors.origin').split(',').map((o: string) => o.trim())
-    : ['http://localhost:3000'];
+    : ['http://localhost:3000', 'https://pio-tracker-frontend.vercel.app'];
 
   console.log(`🌐 CORS configurado para orígenes: ${allowedOrigins.join(', ')}`);
   console.log(`🔧 Configuración CORS aplicada correctamente`);
