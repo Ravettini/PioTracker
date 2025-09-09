@@ -14,7 +14,7 @@ import {
   User,
   Database,
 } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '../ui/Button';
 import { useAuthStore } from '@/store/auth-store';
 
 interface SidebarProps {

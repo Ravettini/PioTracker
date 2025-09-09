@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Bell, User } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '../ui/Button';
 import { useUser } from '@/store/auth-store';
 
 interface HeaderProps {
