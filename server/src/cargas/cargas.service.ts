@@ -239,6 +239,12 @@ export class CargasService {
     carga.observaciones = revisionDto.observaciones;
     carga.actualizadoPor = userId;
     carga.actualizadoEn = new Date();
+    
+    // Marcar como publicado si se valida
+    if (revisionDto.estado === EstadoCarga.VALIDADO) {
+      carga.publicado = true;
+      this.logger.log(`✅ Carga ${id} marcada como publicada para sincronización`);
+    }
 
     const cargaActualizada = await this.cargaRepository.save(carga);
     this.logger.log(`✅ Carga ${id} actualizada a estado: ${cargaActualizada.estado}`);
