@@ -4,10 +4,44 @@ import { ConfigService } from '@nestjs/config';
 import * as cookieParser from 'cookie-parser';
 import * as csurf from 'csurf';
 import helmet from 'helmet';
+import { DataSource } from 'typeorm';
+import * as path from 'path';
 
 import { AppModule } from './app.module';
 
+// Función para ejecutar migraciones automáticamente
+async function runMigrations() {
+  try {
+    console.log('🔄 Ejecutando migraciones automáticamente...');
+    
+    const dataSource = new DataSource({
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      synchronize: false,
+      logging: false,
+      entities: [path.join(__dirname, 'db/entities/*.js')],
+      migrations: [path.join(__dirname, 'db/migrations/*.js')],
+    });
+
+    await dataSource.initialize();
+    console.log('✅ Conexión a la base de datos establecida');
+    
+    const migrations = await dataSource.runMigrations();
+    console.log(`✅ ${migrations.length} migraciones ejecutadas:`, migrations.map(m => m.name));
+    
+    await dataSource.destroy();
+    console.log('🎉 Migraciones completadas exitosamente');
+  } catch (error) {
+    console.error('❌ Error ejecutando migraciones:', error.message);
+    // No salir del proceso, continuar con el inicio de la aplicación
+  }
+}
+
 async function bootstrap() {
+  // Ejecutar migraciones automáticamente antes de iniciar la aplicación
+  await runMigrations();
+  
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
