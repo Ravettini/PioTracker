@@ -45,17 +45,22 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
+      console.log('🔐 Intentando login con:', data.email);
       const response = await apiClient.auth.login(data.email, data.password);
+      console.log('📊 Respuesta del login:', response);
       
       if (response.success) {
+        console.log('✅ Login exitoso, guardando datos...');
         login(response.data.user, response.data.accessToken);
         toast.success('Inicio de sesión exitoso');
+        console.log('🚀 Redirigiendo a dashboard...');
         router.push('/dashboard');
       } else {
+        console.log('❌ Login falló:', response.message);
         toast.error(response.message || 'Error en el inicio de sesión');
       }
     } catch (error: any) {
-      console.error('Error de login:', error);
+      console.error('💥 Error de login:', error);
       const errorMessage = error.response?.data?.message || 'Error en el inicio de sesión';
       toast.error(errorMessage);
     } finally {
