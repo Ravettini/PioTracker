@@ -324,7 +324,7 @@ export default function AnalyticsPage() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ periodo, valor }) => `${periodo}: ${valor}`}
+                label={({ name, valor }) => `${name}: ${valor}`}
                 outerRadius={120}
                 fill="#8884d8"
                 dataKey="valor"
