@@ -813,7 +813,26 @@ export class SyncService {
 
   // Generar nombre de hoja basado en el ministerio
   private generateMinisterioTabName(ministerio: string): string {
-    // Limpiar el nombre del ministerio para crear un nombre de hoja válido
+    // Mapeo de nombres de ministerios a nombres de hojas existentes
+    const ministerioMap: { [key: string]: string } = {
+      'Educación': 'Hoja 2', // O el nombre correcto de la hoja de Educación
+      'Ente regulador de servicios públicos': 'Ente rec',
+      'Espacio Público': 'Espacio Publico',
+      'Hacienda y finanzas': 'Hacienda y finanzas',
+      'Jefatura de Gabinete': 'Jefatura de Gabinete',
+      'Justicia': 'Justicia',
+      'MDHyH': 'MDHyH',
+      'Salud': 'Salud',
+      'Seguridad': 'Seguridad',
+      'Vicejefatura': 'Vicejefatura'
+    };
+    
+    // Si existe el mapeo, usar el nombre de la hoja existente
+    if (ministerioMap[ministerio]) {
+      return ministerioMap[ministerio];
+    }
+    
+    // Si no existe el mapeo, crear nombre limpio
     const cleanName = ministerio
       .replace(/[^a-zA-Z0-9\s]/g, '') // Remover caracteres especiales
       .replace(/\s+/g, '_') // Reemplazar espacios con guiones bajos
