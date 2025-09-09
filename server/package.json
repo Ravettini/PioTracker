@@ -26,7 +26,8 @@
     "db:setup": "npm run orm:migrate && npm run seed",
     "db:migrate": "npm run orm:migrate",
     "db:seed": "npm run seed",
-    "db:reset": "npm run orm:revert"
+    "db:reset": "npm run orm:revert",
+    "migrate:prod": "node migrate.js"
   },
   "dependencies": {
     "@nestjs/class-validator": "^0.13.4",
