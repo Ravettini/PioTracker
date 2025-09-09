@@ -20,7 +20,7 @@ const getApiBaseUrl = () => {
 // Configuración base de Axios
 const api: AxiosInstance = axios.create({
   baseURL: getApiBaseUrl(), 
-  timeout: 10000,
+  timeout: 30000, // Aumentado a 30 segundos para dar tiempo a las migraciones
   headers: {
     'Content-Type': 'application/json',
   },
