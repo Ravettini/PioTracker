@@ -24,6 +24,8 @@ async function runMigrations() {
       logging: true, // Habilitar logging para ver las queries
       entities: [path.join(__dirname, 'db/entities/*.js')],
       migrations: [path.join(__dirname, 'db/migrations/*.js')],
+      migrationsTableName: 'migrations',
+      migrationsRun: false, // No ejecutar automáticamente, lo hacemos manualmente
     });
 
     console.log('🔄 Inicializando conexión a la base de datos...');
@@ -31,6 +33,11 @@ async function runMigrations() {
     console.log('✅ Conexión a la base de datos establecida exitosamente');
     
     console.log('🔄 Ejecutando migraciones...');
+    
+    // Verificar qué migraciones están disponibles
+    const pendingMigrations = await dataSource.showMigrations();
+    console.log('🔍 Migraciones pendientes:', pendingMigrations);
+    
     const migrations = await dataSource.runMigrations();
     console.log(`✅ ${migrations.length} migraciones ejecutadas exitosamente:`);
     migrations.forEach((migration, index) => {
