@@ -660,35 +660,76 @@ async function bootstrap() {
       
       console.log(`✅ ${lineasCreadas} líneas creadas exitosamente`);
       
-      // Crear indicadores básicos para cada línea
-      console.log('🔄 Creando indicadores básicos...');
+      // Crear indicadores reales del PIO desde reporte-indicadores-creados.json
+      console.log('🔄 Creando indicadores reales del PIO...');
       let indicadoresCreados = 0;
       
-      const lineas = await dataSource.query(`SELECT id, titulo FROM lineas`);
+      // Leer el archivo de indicadores reales
+      const reportePath = path.join(__dirname, '../../reporte-indicadores-creados.json');
+      if (!fs.existsSync(reportePath)) {
+        throw new Error('Archivo reporte-indicadores-creados.json no encontrado');
+      }
       
-      for (const linea of lineas) {
-        // Crear 1-3 indicadores por línea
-        const numIndicadores = Math.floor(Math.random() * 3) + 1;
+      const reporteData = JSON.parse(fs.readFileSync(reportePath, 'utf8'));
+      console.log(`📖 Indicadores reales leídos: ${reporteData.resultados.length} indicadores`);
+      
+      // Crear indicadores reales del PIO
+      for (const resultado of reporteData.resultados) {
+        const indicador = resultado.indicador;
         
-        for (let i = 1; i <= numIndicadores; i++) {
-          const indicadorId = `IND_${linea.id}_${i}`;
-          const indicadorNombre = `Indicador ${i} - ${linea.titulo.substring(0, 50)}...`;
-          const unidades = ['casos', 'porcentaje', 'cantidad', 'personas', 'servicios', 'horas'];
-          const periodicidades = ['mensual', 'anual', 'trimestral'];
+        // Buscar la línea correspondiente por título
+        const linea = await dataSource.query(`
+          SELECT id FROM lineas 
+          WHERE titulo ILIKE '%${indicador.lineaTitulo.replace(/[^a-zA-Z0-9\s]/g, '').trim()}%'
+          LIMIT 1
+        `);
+        
+        if (linea.length > 0) {
+          // Usar el ID original del indicador
+          const indicadorId = resultado.resultado.data.data.id;
           
           await dataSource.query(`
             INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) 
             VALUES ($1, $2, $3, $4, $5, true)
             ON CONFLICT (id) DO NOTHING
           `, [
-            indicadorId, 
-            indicadorNombre, 
-            linea.id, 
-            unidades[Math.floor(Math.random() * unidades.length)],
-            periodicidades[Math.floor(Math.random() * periodicidades.length)]
+            indicadorId,
+            indicador.nombre,
+            linea[0].id,
+            indicador.unidadDefecto,
+            indicador.periodicidad
           ]);
           indicadoresCreados++;
         }
+      }
+      
+      // Si no se encontraron indicadores reales, crear algunos básicos para las líneas restantes
+      const lineasSinIndicadores = await dataSource.query(`
+        SELECT l.id, l.titulo 
+        FROM lineas l 
+        LEFT JOIN indicadores i ON l.id = i.linea_id 
+        WHERE i.id IS NULL
+      `);
+      
+      console.log(`📊 Líneas sin indicadores reales: ${lineasSinIndicadores.length}`);
+      
+      for (const linea of lineasSinIndicadores) {
+        // Crear un indicador básico para líneas sin indicadores reales
+        const indicadorId = `IND_${linea.id}_1`;
+        const indicadorNombre = `Indicador de seguimiento - ${linea.titulo.substring(0, 50)}...`;
+        
+        await dataSource.query(`
+          INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) 
+          VALUES ($1, $2, $3, $4, $5, true)
+          ON CONFLICT (id) DO NOTHING
+        `, [
+          indicadorId,
+          indicadorNombre,
+          linea.id,
+          'cantidad',
+          'mensual'
+        ]);
+        indicadoresCreados++;
       }
       
       console.log(`✅ ${indicadoresCreados} indicadores creados exitosamente`);
