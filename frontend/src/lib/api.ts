@@ -15,7 +15,7 @@ const getApiBaseUrl = () => {
 // Configuración base de Axios
 const api: AxiosInstance = axios.create({
   baseURL: getApiBaseUrl(), 
-  timeout: 30000, // Aumentado a 30 segundos para dar tiempo a las migraciones
+  timeout: 60000, // Aumentado a 60 segundos para cold start de Render
   headers: {
     'Content-Type': 'application/json',
   },
@@ -58,8 +58,28 @@ export const apiClient = {
     login: async (email: string, password: string) => {
       console.log('🌐 URL base del API:', getApiBaseUrl());
       console.log('🔗 URL completa del login:', `${getApiBaseUrl()}/auth/login`);
-      const response = await api.post('/auth/login', { email, password });
-      return response.data;
+      
+      // Retry mechanism para cold start de Render
+      let lastError;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          console.log(`🔄 Intento ${attempt} de login...`);
+          const response = await api.post('/auth/login', { email, password });
+          console.log('✅ Login exitoso');
+          return response.data;
+        } catch (error: any) {
+          lastError = error;
+          console.log(`❌ Intento ${attempt} falló:`, error.message);
+          
+          if (attempt < 3 && (error.code === 'ECONNABORTED' || error.message.includes('timeout'))) {
+            console.log(`⏳ Esperando 5 segundos antes del siguiente intento...`);
+            await new Promise(resolve => setTimeout(resolve, 5000));
+          }
+        }
+      }
+      
+      console.log('💥 Error de login:', lastError);
+      throw lastError;
     },
     logout: async () => {
       const response = await api.post('/auth/logout');
