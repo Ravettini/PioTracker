@@ -292,6 +292,81 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para crear usuario admin manualmente
+  app.use('/create-admin', async (req, res) => {
+    try {
+      console.log('🔄 ===== CREANDO USUARIO ADMIN MANUALMENTE =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Verificar si ya existe el usuario admin
+      const existingAdmin = await dataSource.query(`
+        SELECT id FROM usuarios WHERE email = 'admin@pio.local'
+      `);
+      
+      if (existingAdmin.length > 0) {
+        console.log('✅ Usuario admin ya existe');
+        await dataSource.destroy();
+        res.json({
+          status: 'OK',
+          message: 'Usuario admin ya existe',
+          admin_user_exists: true,
+          timestamp: new Date().toISOString()
+        });
+        return;
+      }
+      
+      console.log('🔄 Creando usuario administrador...');
+      
+      // Crear usuario administrador
+      await dataSource.query(`
+        INSERT INTO usuarios (
+          email, nombre, rol, clave_temporal,
+          intentos_fallidos, bloqueado_hasta, activo
+        ) VALUES (
+          'admin@pio.local', 'Administrador', 'ADMIN', true,
+          0, NULL, true
+        )
+      `);
+      
+      console.log('✅ Usuario administrador creado exitosamente');
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Usuario administrador creado exitosamente',
+        admin_user_created: true,
+        credentials: {
+          email: 'admin@pio.local',
+          password: 'admin123'
+        },
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error creando usuario admin:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error creando usuario admin',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Prefijo global de API
   app.setGlobalPrefix('api/v1');
 
