@@ -81,18 +81,16 @@ async function createAdminUser() {
     } else {
       console.log('🔄 Creando usuario administrador...');
       
-      // Crear usuario administrador (sin hash por ahora, solo para testing)
-      await dataSource.query(`
-        INSERT INTO usuarios (
-          email, nombre, rol, clave_temporal, 
-          intentos_fallidos, bloqueado_hasta, activo, 
-          fecha_creacion, ultimo_login
-        ) VALUES (
-          'admin@pio.local', 'Administrador', 'ADMIN', true,
-          0, NULL, true,
-          NOW(), NULL
-        )
-      `);
+        // Crear usuario administrador (sin hash por ahora, solo para testing)
+        await dataSource.query(`
+          INSERT INTO usuarios (
+            email, nombre, rol, clave_temporal,
+            intentos_fallidos, bloqueado_hasta, activo
+          ) VALUES (
+            'admin@pio.local', 'Administrador', 'ADMIN', true,
+            0, NULL, true
+          )
+        `);
       
       console.log('✅ Usuario administrador creado');
     }
