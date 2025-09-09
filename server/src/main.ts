@@ -334,10 +334,10 @@ async function bootstrap() {
       // Crear usuario administrador
       await dataSource.query(`
         INSERT INTO usuarios (
-          email, nombre, rol, clave_temporal,
+          email, nombre, rol, clave_temporal, hash_clave,
           intentos_fallidos, bloqueado_hasta, activo
         ) VALUES (
-          'admin@pio.local', 'Administrador', 'ADMIN', true,
+          'admin@pio.local', 'Administrador', 'ADMIN', true, 'admin123',
           0, NULL, true
         )
       `);
