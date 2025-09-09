@@ -409,6 +409,98 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para crear datos iniciales (ministerios, líneas, indicadores)
+  app.use('/init-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== CREANDO DATOS INICIALES =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Verificar si ya existen datos
+      const ministeriosCount = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
+      if (parseInt(ministeriosCount[0].count) > 0) {
+        console.log('✅ Datos iniciales ya existen');
+        await dataSource.destroy();
+        res.json({
+          status: 'OK',
+          message: 'Datos iniciales ya existen',
+          data_exists: true,
+          timestamp: new Date().toISOString()
+        });
+        return;
+      }
+      
+      console.log('🔄 Creando datos iniciales...');
+      
+      // Crear ministerios
+      await dataSource.query(`
+        INSERT INTO ministerios (id, nombre, descripcion, activo) VALUES
+        ('1', 'Ministerio de Desarrollo Humano y Hábitat', 'Ministerio responsable del desarrollo humano y hábitat', true),
+        ('2', 'Ministerio de Educación', 'Ministerio responsable de la educación', true),
+        ('3', 'Ministerio de Salud', 'Ministerio responsable de la salud pública', true),
+        ('4', 'Ministerio de Desarrollo Económico y Producción', 'Ministerio responsable del desarrollo económico', true),
+        ('5', 'Ministerio de Cultura', 'Ministerio responsable de la cultura', true)
+      `);
+      
+      // Crear líneas de acción
+      await dataSource.query(`
+        INSERT INTO lineas_accion (id, nombre, descripcion, ministerio_id, activo) VALUES
+        ('1', 'Vivienda Social', 'Programa de vivienda social', '1', true),
+        ('2', 'Educación Digital', 'Programa de educación digital', '2', true),
+        ('3', 'Salud Preventiva', 'Programa de salud preventiva', '3', true),
+        ('4', 'Empleo Joven', 'Programa de empleo para jóvenes', '4', true),
+        ('5', 'Cultura Comunitaria', 'Programa de cultura comunitaria', '5', true)
+      `);
+      
+      // Crear indicadores
+      await dataSource.query(`
+        INSERT INTO indicadores (id, nombre, descripcion, unidad_medida, linea_id, activo) VALUES
+        ('1', 'Viviendas Construidas', 'Número de viviendas sociales construidas', 'unidades', '1', true),
+        ('2', 'Estudiantes Conectados', 'Número de estudiantes con acceso a educación digital', 'personas', '2', true),
+        ('3', 'Consultas Preventivas', 'Número de consultas médicas preventivas', 'consultas', '3', true),
+        ('4', 'Empleos Creados', 'Número de empleos creados para jóvenes', 'empleos', '4', true),
+        ('5', 'Eventos Culturales', 'Número de eventos culturales comunitarios', 'eventos', '5', true)
+      `);
+      
+      console.log('✅ Datos iniciales creados exitosamente');
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Datos iniciales creados exitosamente',
+        data_created: true,
+        created: {
+          ministerios: 5,
+          lineas: 5,
+          indicadores: 5
+        },
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error creando datos iniciales:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error creando datos iniciales',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Prefijo global de API
   app.setGlobalPrefix('api/v1');
 
