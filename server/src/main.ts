@@ -455,24 +455,24 @@ async function bootstrap() {
       
       console.log('🔄 Creando datos iniciales...');
       
-      // Crear ministerios originales del PIO (solo columnas que existen)
+      // Crear ministerios originales del PIO (incluyendo sigla que es NOT NULL)
       await dataSource.query(`
-        INSERT INTO ministerios (id, nombre, activo) VALUES
-        ('JUS', 'Justicia', true),
-        ('JEF', 'Jefatura de Gabinete', true),
-        ('EDU', 'Educación', true),
-        ('ERSP', 'Ente regulador de servicios públicos', true),
-        ('SEG', 'Seguridad', true),
-        ('VIC', 'Vicejefatura', true),
-        ('EP', 'Espacio Público', true),
-        ('HAF', 'Hacienda y finanzas', true),
-        ('SAL', 'Salud', true),
-        ('MDH', 'MDHyH', true)
+        INSERT INTO ministerios (id, nombre, sigla, activo) VALUES
+        ('JUS', 'Justicia', 'JUS', true),
+        ('JEF', 'Jefatura de Gabinete', 'JEF', true),
+        ('EDU', 'Educación', 'EDU', true),
+        ('ERSP', 'Ente regulador de servicios públicos', 'ERSP', true),
+        ('SEG', 'Seguridad', 'SEG', true),
+        ('VIC', 'Vicejefatura', 'VIC', true),
+        ('EP', 'Espacio Público', 'EP', true),
+        ('HAF', 'Hacienda y finanzas', 'HAF', true),
+        ('SAL', 'Salud', 'SAL', true),
+        ('MDH', 'MDHyH', 'MDH', true)
       `);
       
       // Verificar estructura de lineas_accion
       const lineasStructure = await dataSource.query(`
-        SELECT column_name, data_type 
+        SELECT column_name, data_type, is_nullable 
         FROM information_schema.columns 
         WHERE table_name = 'lineas_accion' 
         ORDER BY ordinal_position
@@ -480,7 +480,8 @@ async function bootstrap() {
       
       console.log('🔍 Estructura de tabla lineas_accion:', lineasStructure);
       
-      // Crear líneas de acción (compromisos) principales (solo columnas que existen)
+      // Crear líneas de acción (compromisos) principales
+      // Nota: Si hay errores, ajustar según la estructura real
       await dataSource.query(`
         INSERT INTO lineas_accion (id, nombre, ministerio_id, activo) VALUES
         ('CST', 'Compromiso sin título', 'EDU', true),
@@ -493,7 +494,7 @@ async function bootstrap() {
       
       // Verificar estructura de indicadores
       const indicadoresStructure = await dataSource.query(`
-        SELECT column_name, data_type 
+        SELECT column_name, data_type, is_nullable 
         FROM information_schema.columns 
         WHERE table_name = 'indicadores' 
         ORDER BY ordinal_position
@@ -501,7 +502,8 @@ async function bootstrap() {
       
       console.log('🔍 Estructura de tabla indicadores:', indicadoresStructure);
       
-      // Crear indicadores principales (solo columnas que existen)
+      // Crear indicadores principales
+      // Nota: Si hay errores, ajustar según la estructura real
       await dataSource.query(`
         INSERT INTO indicadores (id, nombre, linea_id, activo) VALUES
         ('CDCD', 'Cantidad de casos derivados', 'CST', true),
