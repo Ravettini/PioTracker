@@ -614,10 +614,11 @@ async function bootstrap() {
       await dataSource.initialize();
       console.log('✅ Conexión a la base de datos establecida');
       
-      // Limpiar datos existentes primero
+      // Limpiar datos existentes primero (en orden correcto para evitar violaciones de FK)
       console.log('🧹 Limpiando datos existentes...');
-      await dataSource.query(`DELETE FROM indicadores`);
-      await dataSource.query(`DELETE FROM lineas`);
+      await dataSource.query(`DELETE FROM cargas`); // Primero las cargas
+      await dataSource.query(`DELETE FROM indicadores`); // Luego los indicadores
+      await dataSource.query(`DELETE FROM lineas`); // Después las líneas
       console.log('✅ Datos limpiados');
       
       // Crear TODOS los ministerios del PIO original
