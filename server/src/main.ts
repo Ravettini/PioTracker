@@ -515,6 +515,85 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para forzar creación de datos (sin verificar si existen)
+  app.use('/force-create-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== FORZANDO CREACIÓN DE DATOS =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Limpiar datos existentes primero
+      console.log('🧹 Limpiando datos existentes...');
+      await dataSource.query(`DELETE FROM indicadores`);
+      await dataSource.query(`DELETE FROM lineas`);
+      console.log('✅ Datos limpiados');
+      
+      // Crear líneas
+      console.log('🔄 Creando líneas de acción...');
+      await dataSource.query(`
+        INSERT INTO lineas (id, titulo, ministerio_id, activo) VALUES
+        ('CST', 'Compromiso sin título', 'EDU', true),
+        ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
+        ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
+        ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'SAL', true),
+        ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'JUS', true),
+        ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'VIC', true)
+      `);
+      console.log('✅ Líneas creadas exitosamente');
+      
+      // Crear indicadores
+      console.log('🔄 Creando indicadores...');
+      await dataSource.query(`
+        INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo) VALUES
+        ('CDCD', 'Cantidad de casos derivados', 'CST', 'casos', 'mensual', true),
+        ('CDCC', 'Cantidad de clubes creados', 'CST', 'clubes', 'anual', true),
+        ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'CST', 'cursos', 'anual', true),
+        ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'CST', '%', 'anual', true),
+        ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'DCCLLDAT1Y9', 'llamadas', 'mensual', true),
+        ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', '1DUPPCSSSCHPLPYPDLS', 'consejerías', 'mensual', true),
+        ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', '3IEPEADTEPDM', 'turnos', 'anual', true),
+        ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'GSATDLSDTYEALASALIP', 'delegadas', 'mensual', true),
+        ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', 'participantes', 'anual', true)
+      `);
+      console.log('✅ Indicadores creados exitosamente');
+      
+      // Verificar conteos finales
+      const lineasCount = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+      const indicadoresCount = await dataSource.query(`SELECT COUNT(*) as count FROM indicadores`);
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Datos forzados creados exitosamente',
+        lineas_count: lineasCount[0].count,
+        indicadores_count: indicadoresCount[0].count,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error forzando creación de datos:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error forzando creación de datos',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para recrear líneas e indicadores si no existen
   app.use('/fix-data', async (req, res) => {
     try {
