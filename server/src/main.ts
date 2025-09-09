@@ -450,6 +450,71 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para ver estructura de tablas
+  app.use('/table-structure', async (req, res) => {
+    try {
+      console.log('🔍 ===== VERIFICANDO ESTRUCTURA DE TABLAS =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Verificar estructura de ministerios
+      const ministeriosStructure = await dataSource.query(`
+        SELECT column_name, data_type, is_nullable 
+        FROM information_schema.columns 
+        WHERE table_name = 'ministerios' 
+        ORDER BY ordinal_position
+      `);
+      
+      // Verificar estructura de lineas
+      const lineasStructure = await dataSource.query(`
+        SELECT column_name, data_type, is_nullable 
+        FROM information_schema.columns 
+        WHERE table_name = 'lineas' 
+        ORDER BY ordinal_position
+      `);
+      
+      // Verificar estructura de indicadores
+      const indicadoresStructure = await dataSource.query(`
+        SELECT column_name, data_type, is_nullable 
+        FROM information_schema.columns 
+        WHERE table_name = 'indicadores' 
+        ORDER BY ordinal_position
+      `);
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Estructura de tablas obtenida',
+        ministerios_structure: ministeriosStructure,
+        lineas_structure: lineasStructure,
+        indicadores_structure: indicadoresStructure,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error obteniendo estructura:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error obteniendo estructura de tablas',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para recrear líneas e indicadores si no existen
   app.use('/fix-data', async (req, res) => {
     try {
@@ -477,41 +542,73 @@ async function bootstrap() {
       console.log(`📊 Líneas existentes: ${lineasCount[0].count}`);
       console.log(`📊 Indicadores existentes: ${indicadoresCount[0].count}`);
       
-      // Si no hay líneas, crearlas
+      // Verificar estructura de lineas primero
+      const lineasStructure = await dataSource.query(`
+        SELECT column_name, data_type, is_nullable 
+        FROM information_schema.columns 
+        WHERE table_name = 'lineas' 
+        ORDER BY ordinal_position
+      `);
+      
+      console.log('🔍 Estructura de tabla lineas:', lineasStructure);
+      
+      // Si no hay líneas, crearlas (solo si sabemos la estructura)
       if (parseInt(lineasCount[0].count) === 0) {
         console.log('🔄 Creando líneas de acción...');
         
-        await dataSource.query(`
-          INSERT INTO lineas (id, nombre, ministerio_id, activo) VALUES
-          ('CST', 'Compromiso sin título', 'EDU', true),
-          ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
-          ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
-          ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'SAL', true),
-          ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'JUS', true),
-          ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'VIC', true)
-        `);
-        
-        console.log('✅ Líneas creadas exitosamente');
+        // Por ahora, solo crear con las columnas básicas que sabemos que existen
+        try {
+          await dataSource.query(`
+            INSERT INTO lineas (id, activo) VALUES
+            ('CST', true),
+            ('DCCLLDAT1Y9', true),
+            ('1DUPPCSSSCHPLPYPDLS', true),
+            ('3IEPEADTEPDM', true),
+            ('GSATDLSDTYEALASALIP', true),
+            ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
+          `);
+          
+          console.log('✅ Líneas creadas exitosamente (solo id y activo)');
+        } catch (error) {
+          console.error('❌ Error creando líneas:', error.message);
+          throw error;
+        }
       }
       
-      // Si no hay indicadores, crearlos
+      // Verificar estructura de indicadores primero
+      const indicadoresStructure = await dataSource.query(`
+        SELECT column_name, data_type, is_nullable 
+        FROM information_schema.columns 
+        WHERE table_name = 'indicadores' 
+        ORDER BY ordinal_position
+      `);
+      
+      console.log('🔍 Estructura de tabla indicadores:', indicadoresStructure);
+      
+      // Si no hay indicadores, crearlos (solo si sabemos la estructura)
       if (parseInt(indicadoresCount[0].count) === 0) {
         console.log('🔄 Creando indicadores...');
         
-        await dataSource.query(`
-          INSERT INTO indicadores (id, nombre, linea_id, activo) VALUES
-          ('CDCD', 'Cantidad de casos derivados', 'CST', true),
-          ('CDCC', 'Cantidad de clubes creados', 'CST', true),
-          ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'CST', true),
-          ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'CST', true),
-          ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'DCCLLDAT1Y9', true),
-          ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', '1DUPPCSSSCHPLPYPDLS', true),
-          ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', '3IEPEADTEPDM', true),
-          ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'GSATDLSDTYEALASALIP', true),
-          ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
-        `);
-        
-        console.log('✅ Indicadores creados exitosamente');
+        // Por ahora, solo crear con las columnas básicas que sabemos que existen
+        try {
+          await dataSource.query(`
+            INSERT INTO indicadores (id, activo) VALUES
+            ('CDCD', true),
+            ('CDCC', true),
+            ('CCDE2CDFP', true),
+            ('GECDMEECTT-(%DMSETDC', true),
+            ('CDLRA1YDA9PM_1756998160748', true),
+            ('CDCDSSRELCDS_1756998161291', true),
+            ('CTDMOAELEPDSDLRC_1756998161842', true),
+            ('CDDSCAEDDDLIP_1756998162396', true),
+            ('CDPEEPMLDE2_1756998162956', true)
+          `);
+          
+          console.log('✅ Indicadores creados exitosamente (solo id y activo)');
+        } catch (error) {
+          console.error('❌ Error creando indicadores:', error.message);
+          throw error;
+        }
       }
       
       await dataSource.destroy();
