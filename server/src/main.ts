@@ -83,22 +83,26 @@ async function bootstrap() {
   }));
 
   // Endpoint OPTIONS global - GARANTIZADO PARA TODAS LAS RUTAS
-  app.options('*', (req, res) => {
-    const origin = req.headers.origin;
-    if (origin && (
-      origin.includes('pio-tracker-frontend') || 
-      origin.includes('localhost:3000')
-    )) {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
-      res.header('Access-Control-Allow-Credentials', 'true');
+  app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+      const origin = req.headers.origin;
+      if (origin && (
+        origin.includes('pio-tracker-frontend') || 
+        origin.includes('localhost:3000')
+      )) {
+        res.header('Access-Control-Allow-Origin', origin);
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
+        res.header('Access-Control-Allow-Credentials', 'true');
+      }
+      res.status(200).end();
+      return;
     }
-    res.status(200).end();
+    next();
   });
 
   // Endpoint de health check - GARANTIZADO
-  app.get('/health', (req, res) => {
+  app.use('/health', (req, res) => {
     res.json({ 
       status: 'OK', 
       message: 'SIPIO API funcionando correctamente',
