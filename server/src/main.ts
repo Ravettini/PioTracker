@@ -290,9 +290,43 @@ async function bootstrap() {
       
       // Contar registros en ministerios si existe
       let ministeriosCount = 0;
+      let ministeriosData = [];
       if (ministeriosTable.length > 0) {
         const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM ministerios`);
         ministeriosCount = parseInt(countResult[0].count);
+        ministeriosData = await dataSource.query(`SELECT id, nombre, sigla FROM ministerios LIMIT 5`);
+      }
+      
+      // Verificar tabla lineas
+      const lineasTable = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'lineas'
+      `);
+      
+      let lineasCount = 0;
+      let lineasData = [];
+      if (lineasTable.length > 0) {
+        const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+        lineasCount = parseInt(countResult[0].count);
+        lineasData = await dataSource.query(`SELECT id, nombre, ministerio_id FROM lineas LIMIT 5`);
+      }
+      
+      // Verificar tabla indicadores
+      const indicadoresTable = await dataSource.query(`
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public' 
+        AND table_name = 'indicadores'
+      `);
+      
+      let indicadoresCount = 0;
+      let indicadoresData = [];
+      if (indicadoresTable.length > 0) {
+        const countResult = await dataSource.query(`SELECT COUNT(*) as count FROM indicadores`);
+        indicadoresCount = parseInt(countResult[0].count);
+        indicadoresData = await dataSource.query(`SELECT id, nombre, linea_id FROM indicadores LIMIT 5`);
       }
       
       // Verificar otras tablas importantes
@@ -320,6 +354,13 @@ async function bootstrap() {
         admin_user_data: adminUser.length > 0 ? adminUser[0] : null,
         ministerios_table_exists: ministeriosTable.length > 0,
         ministerios_count: ministeriosCount,
+        ministerios_sample: ministeriosData,
+        lineas_table_exists: lineasTable.length > 0,
+        lineas_count: lineasCount,
+        lineas_sample: lineasData,
+        indicadores_table_exists: indicadoresTable.length > 0,
+        indicadores_count: indicadoresCount,
+        indicadores_sample: indicadoresData,
         cargas_table_exists: cargasTable.length > 0,
         cargas_count: cargasCount,
         timestamp: new Date().toISOString()
@@ -403,6 +444,90 @@ async function bootstrap() {
       res.status(500).json({
         status: 'ERROR',
         message: 'Error creando usuario admin',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+  // Endpoint para recrear líneas e indicadores si no existen
+  app.use('/fix-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== RECREANDO LÍNEAS E INDICADORES =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Verificar si existen líneas
+      const lineasCount = await dataSource.query(`SELECT COUNT(*) as count FROM lineas`);
+      const indicadoresCount = await dataSource.query(`SELECT COUNT(*) as count FROM indicadores`);
+      
+      console.log(`📊 Líneas existentes: ${lineasCount[0].count}`);
+      console.log(`📊 Indicadores existentes: ${indicadoresCount[0].count}`);
+      
+      // Si no hay líneas, crearlas
+      if (parseInt(lineasCount[0].count) === 0) {
+        console.log('🔄 Creando líneas de acción...');
+        
+        await dataSource.query(`
+          INSERT INTO lineas (id, nombre, ministerio_id, activo) VALUES
+          ('CST', 'Compromiso sin título', 'EDU', true),
+          ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
+          ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
+          ('3IEPEADTEPDM', '3. Implementar estrategias para el aumento de turnos en prácticas de mamografía', 'SAL', true),
+          ('GSATDLSDTYEALASALIP', 'G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciativa PARES', 'JUS', true),
+          ('4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', '4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buenos Aires', 'VIC', true)
+        `);
+        
+        console.log('✅ Líneas creadas exitosamente');
+      }
+      
+      // Si no hay indicadores, crearlos
+      if (parseInt(indicadoresCount[0].count) === 0) {
+        console.log('🔄 Creando indicadores...');
+        
+        await dataSource.query(`
+          INSERT INTO indicadores (id, nombre, linea_id, activo) VALUES
+          ('CDCD', 'Cantidad de casos derivados', 'CST', true),
+          ('CDCC', 'Cantidad de clubes creados', 'CST', true),
+          ('CCDE2CDFP', 'Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional', 'CST', true),
+          ('GECDMEECTT-(%DMSETDC', 'Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes', 'CST', true),
+          ('CDLRA1YDA9PM_1756998160748', 'Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes', 'DCCLLDAT1Y9', true),
+          ('CDCDSSRELCDS_1756998161291', 'Cantidad de consejerías de salud sexual realizadas en los centros de salud', '1DUPPCSSSCHPLPYPDLS', true),
+          ('CTDMOAELEPDSDLRC_1756998161842', 'Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA', '3IEPEADTEPDM', true),
+          ('CDDSCAEDDDLIP_1756998162396', 'Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES', 'GSATDLSDTYEALASALIP', true),
+          ('CDPEEPMLDE2_1756998162956', 'cantidad de participantes en el Programa Mujeres Líderes de edicion 2024', '4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC', true)
+        `);
+        
+        console.log('✅ Indicadores creados exitosamente');
+      }
+      
+      await dataSource.destroy();
+      
+      res.json({
+        status: 'OK',
+        message: 'Líneas e indicadores verificados/creados exitosamente',
+        lineas_count: lineasCount[0].count,
+        indicadores_count: indicadoresCount[0].count,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('❌ Error recreando datos:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error recreando líneas e indicadores',
         error: error.message,
         timestamp: new Date().toISOString()
       });
