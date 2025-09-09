@@ -9,10 +9,10 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "dest": "frontend/$1"
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://pio-tracker-backend.railway.app/api/v1"
+    "NEXT_PUBLIC_API_URL": "https://pio-sigepi-backend.onrender.com"
   }
 }
