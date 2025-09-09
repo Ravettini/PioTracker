@@ -355,8 +355,8 @@ export default function AdminUsuariosPage() {
   const filteredUsuarios = usuarios.filter(usuario => {
     const matchesSearch = usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          usuario.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRol = !filterRol || usuario.rol === filterRol;
-    const matchesMinisterio = !filterMinisterio || usuario.ministerioId === filterMinisterio;
+    const matchesRol = !filterRol || filterRol === 'all' || usuario.rol === filterRol;
+    const matchesMinisterio = !filterMinisterio || filterMinisterio === 'all' || usuario.ministerioId === filterMinisterio;
     
     return matchesSearch && matchesRol && matchesMinisterio;
   });
@@ -366,13 +366,13 @@ export default function AdminUsuariosPage() {
   }
 
   const rolOptions: SelectOption[] = [
-    { value: '', label: 'Todos los roles' },
+    { value: 'all', label: 'Todos los roles' },
     { value: 'ADMIN', label: 'Administrador' },
     { value: 'USUARIO', label: 'Usuario' },
   ];
 
   const ministerioOptions: SelectOption[] = [
-    { value: '', label: 'Todos los ministerios' },
+    { value: 'all', label: 'Todos los ministerios' },
     ...ministerios.map(m => ({
       value: m.id,
       label: `${m.sigla} - ${m.nombre}`,

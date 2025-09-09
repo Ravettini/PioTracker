@@ -254,7 +254,7 @@ export default function MisEnviosPage() {
   }
 
   const estadoOptions: SelectOption[] = [
-    { value: '', label: 'Todos los estados' },
+    { value: 'all', label: 'Todos los estados' },
     { value: 'borrador', label: 'Borrador' },
     { value: 'pendiente', label: 'Pendiente' },
     { value: 'validado', label: 'Validado' },
