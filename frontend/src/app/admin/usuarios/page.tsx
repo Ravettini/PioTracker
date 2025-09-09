@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { Input } from '../../../components/ui/Input';
-import { Select, SelectOption } from '../../../components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectOption } from '@/components/ui/Select';
 import { Usuario, Ministerio, CreateUsuarioRequest, UpdateUsuarioRequest } from '@/types';
 import { apiClient } from '@/lib/api';
 import { 
@@ -429,19 +429,37 @@ export default function AdminUsuariosPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               
-              <Select
-                label="Rol"
-                options={rolOptions}
-                value={filterRol}
-                onChange={(e) => setFilterRol(e.target.value)}
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Rol</label>
+                <Select value={filterRol} onValueChange={setFilterRol}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un rol" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {rolOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               
-              <Select
-                label="Ministerio"
-                options={ministerioOptions}
-                value={filterMinisterio}
-                onChange={(e) => setFilterMinisterio(e.target.value)}
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Ministerio</label>
+                <Select value={filterMinisterio} onValueChange={setFilterMinisterio}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un ministerio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ministerioOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               
               <div className="flex flex-col sm:flex-row items-end space-y-2 sm:space-y-0 sm:space-x-2">
                 <Button
