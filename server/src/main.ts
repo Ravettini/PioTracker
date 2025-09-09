@@ -470,20 +470,20 @@ async function bootstrap() {
         ('MDH', 'MDHyH', 'MDH', true)
       `);
       
-      // Verificar estructura de lineas_accion
+      // Verificar estructura de lineas (no lineas_accion)
       const lineasStructure = await dataSource.query(`
         SELECT column_name, data_type, is_nullable 
         FROM information_schema.columns 
-        WHERE table_name = 'lineas_accion' 
+        WHERE table_name = 'lineas' 
         ORDER BY ordinal_position
       `);
       
-      console.log('🔍 Estructura de tabla lineas_accion:', lineasStructure);
+      console.log('🔍 Estructura de tabla lineas:', lineasStructure);
       
       // Crear líneas de acción (compromisos) principales
       // Nota: Si hay errores, ajustar según la estructura real
       await dataSource.query(`
-        INSERT INTO lineas_accion (id, nombre, ministerio_id, activo) VALUES
+        INSERT INTO lineas (id, nombre, ministerio_id, activo) VALUES
         ('CST', 'Compromiso sin título', 'EDU', true),
         ('DCCLLDAT1Y9', 'Continuar con las líneas de atención telefónica 144 y 911', 'MDH', true),
         ('1DUPPCSSSCHPLPYPDLS', '1 Diseñar una planificación para consejerías sobre salud sexual', 'SAL', true),
