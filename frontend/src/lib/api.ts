@@ -56,6 +56,8 @@ export const apiClient = {
   // Autenticación
   auth: {
     login: async (email: string, password: string) => {
+      console.log('🌐 URL base del API:', getApiBaseUrl());
+      console.log('🔗 URL completa del login:', `${getApiBaseUrl()}/auth/login`);
       const response = await api.post('/auth/login', { email, password });
       return response.data;
     },
