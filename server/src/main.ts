@@ -101,8 +101,8 @@ async function bootstrap() {
     next();
   });
 
-  // Endpoint raíz - GARANTIZADO
-  app.use('/', (req, res) => {
+  // Endpoint raíz - SOLO para la ruta exacta "/"
+  app.get('/', (req, res) => {
     res.json({ 
       status: 'OK', 
       message: 'SIPIO API funcionando correctamente',
