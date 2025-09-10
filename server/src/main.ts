@@ -733,8 +733,8 @@ async function bootstrap() {
       console.log('✅ Datos limpiados');
       
       // Cargar ministerios (ya existen, solo verificar)
-      const ministeriosCount = await dataSource.query('SELECT COUNT(*) FROM ministerios');
-      console.log(`📊 Ministerios existentes: ${ministeriosCount[0].count}`);
+      const ministeriosExistentes = await dataSource.query('SELECT COUNT(*) FROM ministerios');
+      console.log(`📊 Ministerios existentes: ${ministeriosExistentes[0].count}`);
       
       // Cargar datos desde analisis-indicadores.json
       console.log('🔄 Cargando compromisos desde analisis-indicadores.json...');
