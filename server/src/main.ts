@@ -240,6 +240,15 @@ async function bootstrap() {
     });
   });
 
+  // Endpoint de prueba simple
+  app.use('/test', (req, res) => {
+    res.json({ 
+      status: 'OK', 
+      message: 'Test endpoint funcionando',
+      timestamp: new Date().toISOString()
+    });
+  });
+
   // Endpoint de prueba de base de datos
   app.use('/test-db', async (req, res) => {
     try {
