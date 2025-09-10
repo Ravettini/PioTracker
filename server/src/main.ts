@@ -763,12 +763,11 @@ async function bootstrap() {
           
           // Crear línea de acción
           await dataSource.query(`
-            INSERT INTO lineas (id, titulo, ministerio_id, activo, creado_en, actualizado_en)
-            VALUES ($1, $2, $3, true, NOW(), NOW())
+            INSERT INTO lineas (id, titulo, ministerio_id, activo)
+            VALUES ($1, $2, $3, true)
             ON CONFLICT (id) DO UPDATE SET
               titulo = EXCLUDED.titulo,
-              ministerio_id = EXCLUDED.ministerio_id,
-              actualizado_en = EXCLUDED.actualizado_en
+              ministerio_id = EXCLUDED.ministerio_id
           `, [lineaId, titulo, ministerioId]);
           
           lineasCreadas++;
@@ -782,14 +781,13 @@ async function bootstrap() {
               const periodicidad = indicador.periodicidad || 'mensual';
               
               await dataSource.query(`
-                INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
-                VALUES ($1, $2, $3, $4, $5, true, NOW(), NOW())
+                INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
+                VALUES ($1, $2, $3, $4, $5, true)
                 ON CONFLICT (id) DO UPDATE SET
                   nombre = EXCLUDED.nombre,
                   linea_id = EXCLUDED.linea_id,
                   unidad_defecto = EXCLUDED.unidad_defecto,
-                  periodicidad = EXCLUDED.periodicidad,
-                  actualizado_en = EXCLUDED.actualizado_en
+                  periodicidad = EXCLUDED.periodicidad
               `, [indicadorId, nombre, lineaId, unidad, periodicidad]);
               
               indicadoresCreados++;
@@ -800,12 +798,11 @@ async function bootstrap() {
             const nombre = `Indicador de seguimiento - ${titulo}`;
             
             await dataSource.query(`
-              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
-              VALUES ($1, $2, $3, 'unidades', 'mensual', true, NOW(), NOW())
+              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
+              VALUES ($1, $2, $3, 'unidades', 'mensual', true)
               ON CONFLICT (id) DO UPDATE SET
                 nombre = EXCLUDED.nombre,
-                linea_id = EXCLUDED.linea_id,
-                actualizado_en = EXCLUDED.actualizado_en
+                linea_id = EXCLUDED.linea_id
             `, [indicadorId, nombre, lineaId]);
             
             indicadoresCreados++;
@@ -829,14 +826,13 @@ async function bootstrap() {
             const indicador = resultado.resultado.data.data;
             
             await dataSource.query(`
-              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
-              VALUES ($1, $2, $3, $4, $5, true, NOW(), NOW())
+              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
+              VALUES ($1, $2, $3, $4, $5, true)
               ON CONFLICT (id) DO UPDATE SET
                 nombre = EXCLUDED.nombre,
                 linea_id = EXCLUDED.linea_id,
                 unidad_defecto = EXCLUDED.unidad_defecto,
-                periodicidad = EXCLUDED.periodicidad,
-                actualizado_en = EXCLUDED.actualizado_en
+                periodicidad = EXCLUDED.periodicidad
             `, [indicador.id, indicador.nombre, indicador.lineaId, indicador.unidadDefecto, indicador.periodicidad]);
           }
         }
