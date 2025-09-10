@@ -321,12 +321,12 @@ async function bootstrap() {
       
       // Procesar compromisos únicos
       const compromisosUnicos = new Map();
-      const indicadores = analisisData.indicadores || [];
+      const indicadoresData = analisisData.indicadores || [];
       
-      console.log(`📊 Procesando ${indicadores.length} indicadores...`);
+      console.log(`📊 Procesando ${indicadoresData.length} indicadores...`);
       
       // Agrupar indicadores por compromiso para crear líneas únicas
-      for (const indicador of indicadores) {
+      for (const indicador of indicadoresData) {
         const claveCompromiso = `${indicador.ministerio}|${indicador.compromiso}`;
         if (!compromisosUnicos.has(claveCompromiso)) {
           compromisosUnicos.set(claveCompromiso, {
