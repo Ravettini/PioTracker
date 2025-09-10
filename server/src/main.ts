@@ -756,11 +756,13 @@ async function bootstrap() {
       
       // PRIMERA PASADA: Crear todas las líneas primero
       console.log('🔄 Primera pasada: Creando todas las líneas...');
-      for (const compromiso of compromisos) {
+      for (let i = 0; i < compromisos.length; i++) {
+        const compromiso = compromisos[i];
         try {
           const ministerioId = compromiso.ministerioId;
           const titulo = compromiso.titulo;
-          const lineaId = compromiso.id;
+          // Generar ID único si no existe
+          const lineaId = compromiso.id || `LINEA_${i + 1}`;
           
           // Crear línea de acción
           await dataSource.query(`
@@ -774,7 +776,7 @@ async function bootstrap() {
           lineasCreadas++;
           
         } catch (error) {
-          console.error(`❌ Error creando línea ${compromiso.id}:`, error.message);
+          console.error(`❌ Error creando línea ${compromiso.id || `LINEA_${i + 1}`}:`, error.message);
         }
       }
       
@@ -782,11 +784,13 @@ async function bootstrap() {
       
       // SEGUNDA PASADA: Crear todos los indicadores
       console.log('🔄 Segunda pasada: Creando todos los indicadores...');
-      for (const compromiso of compromisos) {
+      for (let i = 0; i < compromisos.length; i++) {
+        const compromiso = compromisos[i];
         try {
           const ministerioId = compromiso.ministerioId;
           const titulo = compromiso.titulo;
-          const lineaId = compromiso.id;
+          // Usar el mismo ID generado en la primera pasada
+          const lineaId = compromiso.id || `LINEA_${i + 1}`;
           
           // Crear indicadores para esta línea
           if (compromiso.indicadores && compromiso.indicadores.length > 0) {
@@ -825,7 +829,7 @@ async function bootstrap() {
           }
           
         } catch (error) {
-          console.error(`❌ Error creando indicadores para ${compromiso.id}:`, error.message);
+          console.error(`❌ Error creando indicadores para ${compromiso.id || `LINEA_${i + 1}`}:`, error.message);
         }
       }
       
