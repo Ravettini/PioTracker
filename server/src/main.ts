@@ -736,6 +736,52 @@ async function bootstrap() {
       const ministeriosExistentes = await dataSource.query('SELECT COUNT(*) FROM ministerios');
       console.log(`📊 Ministerios existentes: ${ministeriosExistentes[0].count}`);
       
+      // Crear mapeo de nombres de ministerios a IDs
+      console.log('🔄 Creando mapeo de ministerios...');
+      const ministerios = await dataSource.query('SELECT id, nombre FROM ministerios');
+      const ministerioMap = new Map();
+      
+      for (const ministerio of ministerios) {
+        // Crear múltiples claves para el mapeo (nombre completo, sigla, variaciones)
+        ministerioMap.set(ministerio.nombre.toLowerCase(), ministerio.id);
+        ministerioMap.set(ministerio.id.toLowerCase(), ministerio.id);
+        
+        // Mapeos específicos para los nombres en el JSON
+        if (ministerio.nombre.includes('Justicia')) {
+          ministerioMap.set('justicia', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Jefatura')) {
+          ministerioMap.set('jefatura de gabinete', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Educación') || ministerio.nombre.includes('Educacion')) {
+          ministerioMap.set('educacion', ministerio.id);
+          ministerioMap.set('educación', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Ente regulador')) {
+          ministerioMap.set('ente regulador de servicios púb', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Seguridad')) {
+          ministerioMap.set('seguridad', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Vicejefatura')) {
+          ministerioMap.set('vicejefatura', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Espacio Público') || ministerio.nombre.includes('Espacio Publico')) {
+          ministerioMap.set('espacio publico', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Hacienda')) {
+          ministerioMap.set('hacienda y finanzas', ministerio.id);
+        }
+        if (ministerio.nombre.includes('Salud')) {
+          ministerioMap.set('salud', ministerio.id);
+        }
+        if (ministerio.nombre.includes('MDHyH') || ministerio.nombre.includes('MDH')) {
+          ministerioMap.set('mdhyh', ministerio.id);
+        }
+      }
+      
+      console.log(`📊 Mapeo creado con ${ministerioMap.size} entradas`);
+      
       // Cargar datos desde analisis-indicadores.json
       console.log('🔄 Cargando compromisos desde analisis-indicadores.json...');
       const analisisPath = path.join(__dirname, '../analisis-indicadores.json');
@@ -759,12 +805,20 @@ async function bootstrap() {
       for (let i = 0; i < compromisos.length; i++) {
         const compromiso = compromisos[i];
         try {
-          const ministerioId = compromiso.ministerioId;
+          // Obtener el ministerio_id usando el mapeo
+          const nombreMinisterio = compromiso.ministerio ? compromiso.ministerio.toLowerCase().trim() : '';
+          const ministerioId = ministerioMap.get(nombreMinisterio);
+          
+          if (!ministerioId) {
+            console.log(`⚠️ No se encontró ministerio para: "${compromiso.ministerio}" - saltando línea`);
+            continue;
+          }
+          
           const titulo = compromiso.titulo;
           // Generar ID único si no existe
           const lineaId = compromiso.id || `LINEA_${i + 1}`;
           
-          console.log(`📝 Creando línea ${lineaId}: ${titulo.substring(0, 50)}...`);
+          console.log(`📝 Creando línea ${lineaId} para ministerio ${ministerioId}: ${titulo.substring(0, 50)}...`);
           
           // Crear línea de acción
           await dataSource.query(`
@@ -794,7 +848,15 @@ async function bootstrap() {
       for (let i = 0; i < compromisos.length; i++) {
         const compromiso = compromisos[i];
         try {
-          const ministerioId = compromiso.ministerioId;
+          // Obtener el ministerio_id usando el mapeo
+          const nombreMinisterio = compromiso.ministerio ? compromiso.ministerio.toLowerCase().trim() : '';
+          const ministerioId = ministerioMap.get(nombreMinisterio);
+          
+          if (!ministerioId) {
+            console.log(`⚠️ No se encontró ministerio para: "${compromiso.ministerio}" - saltando indicadores`);
+            continue;
+          }
+          
           const titulo = compromiso.titulo;
           // Usar el mismo ID generado en la primera pasada
           const lineaId = compromiso.id || `LINEA_${i + 1}`;
