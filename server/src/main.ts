@@ -594,6 +594,116 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para crear cargas de prueba para gráficos
+  app.use('/create-test-cargas', async (req, res) => {
+    try {
+      console.log('🔄 ===== CREANDO CARGAS DE PRUEBA PARA GRÁFICOS =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Obtener indicadores existentes
+      const indicadores = await dataSource.query('SELECT id, nombre FROM indicadores LIMIT 5');
+      console.log(`📊 Encontrados ${indicadores.length} indicadores`);
+      
+      if (indicadores.length === 0) {
+        await dataSource.destroy();
+        return res.status(400).json({
+          status: 'ERROR',
+          message: 'No hay indicadores en la base de datos. Ejecuta /force-create-data primero.',
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // Crear cargas de prueba con datos variados
+      const cargasData = [];
+      const periodos = ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05'];
+      
+      console.log('🔄 Creando cargas de prueba...');
+      for (const indicador of indicadores) {
+        for (let i = 0; i < periodos.length; i++) {
+          const periodo = periodos[i];
+          const valor = Math.floor(Math.random() * 100) + 10; // Valores entre 10-110
+          const meta = valor + Math.floor(Math.random() * 20) - 10; // Meta ±10 del valor
+          
+          cargasData.push({
+            id: `carga_${indicador.id}_${periodo}`,
+            indicador_id: indicador.id,
+            periodo: periodo,
+            valor: valor,
+            meta: meta,
+            unidad: 'unidades',
+            fuente: 'Datos de prueba',
+            responsable_nombre: 'Sistema Automático',
+            responsable_email: 'sistema@pio.gob.ar',
+            observaciones: `Carga de prueba para ${indicador.nombre}`,
+            estado: 'validado',
+            publicado: true,
+            creado_por: 'ba3ebf2f-3243-4542-a45c-6f8daad00c4f', // Admin user ID
+            creado_en: new Date(),
+            actualizado_en: new Date()
+          });
+        }
+      }
+
+      // Insertar cargas
+      console.log(`🔄 Insertando ${cargasData.length} cargas...`);
+      for (const carga of cargasData) {
+        await dataSource.query(`
+          INSERT INTO cargas (
+            id, indicador_id, periodo, valor, meta, unidad, fuente,
+            responsable_nombre, responsable_email, observaciones,
+            estado, publicado, creado_por, creado_en, actualizado_en
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+          ON CONFLICT (id) DO UPDATE SET
+            valor = EXCLUDED.valor,
+            meta = EXCLUDED.meta,
+            actualizado_en = EXCLUDED.actualizado_en
+        `, [
+          carga.id, carga.indicador_id, carga.periodo, carga.valor, carga.meta,
+          carga.unidad, carga.fuente, carga.responsable_nombre, carga.responsable_email,
+          carga.observaciones, carga.estado, carga.publicado, carga.creado_por,
+          carga.creado_en, carga.actualizado_en
+        ]);
+      }
+
+      const cargasCount = await dataSource.query('SELECT COUNT(*) FROM cargas WHERE estado = $1', ['validado']);
+      console.log(`✅ ${cargasData.length} cargas creadas exitosamente`);
+
+      await dataSource.destroy();
+
+      res.json({
+        status: 'OK',
+        message: 'Cargas de prueba creadas exitosamente',
+        indicadores_procesados: indicadores.length,
+        cargas_creadas: cargasData.length,
+        cargas_validadas_total: cargasCount[0].count,
+        timestamp: new Date().toISOString()
+      });
+
+    } catch (error) {
+      console.error('❌ Error creando cargas de prueba:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error creando cargas de prueba',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para cargar los datos REALES del PIO desde analisis-indicadores.json
   app.use('/load-real-pio-data', async (req, res) => {
     try {
