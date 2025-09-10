@@ -745,13 +745,17 @@ async function bootstrap() {
       }
       
       const analisisData = JSON.parse(fs.readFileSync(analisisPath, 'utf8'));
-      console.log(`📊 Procesando ${analisisData.length} compromisos...`);
+      console.log(`📊 Estructura del archivo:`, Object.keys(analisisData));
+      
+      // El archivo tiene estructura { ministerios: [...], compromisos: [...] }
+      const compromisos = analisisData.compromisos || [];
+      console.log(`📊 Procesando ${compromisos.length} compromisos...`);
       
       let lineasCreadas = 0;
       let indicadoresCreados = 0;
       
       // Procesar cada compromiso
-      for (const compromiso of analisisData) {
+      for (const compromiso of compromisos) {
         try {
           const ministerioId = compromiso.ministerioId;
           const titulo = compromiso.titulo;
@@ -898,7 +902,7 @@ async function bootstrap() {
         lineas_count: lineasCount[0].count,
         indicadores_count: indicadoresCount[0].count,
         cargas_count: cargasCount[0].count,
-        compromisos_procesados: analisisData.length,
+        compromisos_procesados: compromisos.length,
         lineas_creadas: lineasCreadas,
         indicadores_creados: indicadoresCreados,
         timestamp: new Date().toISOString()
