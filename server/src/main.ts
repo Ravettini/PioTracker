@@ -640,6 +640,15 @@ async function bootstrap() {
       const cargasData = [];
       const periodos = ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05'];
       
+      // Función para generar UUID v4
+      function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          const r = Math.random() * 16 | 0;
+          const v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      
       console.log('🔄 Creando cargas de prueba...');
       for (const indicador of indicadores) {
         for (let i = 0; i < periodos.length; i++) {
@@ -647,8 +656,11 @@ async function bootstrap() {
           const valor = Math.floor(Math.random() * 100) + 10; // Valores entre 10-110
           const meta = valor + Math.floor(Math.random() * 20) - 10; // Meta ±10 del valor
           
+          // Generar UUID para el ID de la carga
+          const cargaId = generateUUID();
+          
           cargasData.push({
-            id: `carga_${indicador.id}_${periodo}`,
+            id: cargaId,
             indicador_id: indicador.id,
             periodo: periodo,
             valor: valor,
@@ -974,11 +986,23 @@ async function bootstrap() {
       const indicadores = await dataSource.query('SELECT id, nombre FROM indicadores LIMIT 10');
       const periodos = ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05'];
       
+      // Función para generar UUID v4
+      function generateUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          const r = Math.random() * 16 | 0;
+          const v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      
       for (const indicador of indicadores) {
         for (let i = 0; i < periodos.length; i++) {
           const periodo = periodos[i];
           const valor = Math.floor(Math.random() * 100) + 10;
           const meta = valor + Math.floor(Math.random() * 20) - 10;
+          
+          // Generar UUID para el ID de la carga
+          const cargaId = generateUUID();
           
           await dataSource.query(`
             INSERT INTO cargas (
@@ -991,7 +1015,7 @@ async function bootstrap() {
               meta = EXCLUDED.meta,
               actualizado_en = EXCLUDED.actualizado_en
           `, [
-            `carga_${indicador.id}_${periodo}`,
+            cargaId,
             indicador.id,
             periodo,
             valor,
