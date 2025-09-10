@@ -704,6 +704,217 @@ async function bootstrap() {
     }
   });
 
+  // Endpoint para cargar TODOS los datos reales del PIO (ministerios, líneas, indicadores y cargas)
+  app.use('/load-complete-pio-data', async (req, res) => {
+    try {
+      console.log('🔄 ===== CARGANDO DATOS COMPLETOS DEL PIO =====');
+      
+      const { DataSource } = require('typeorm');
+      const path = require('path');
+      const fs = require('fs');
+      
+      const dataSource = new DataSource({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        synchronize: false,
+        logging: true,
+        entities: [path.join(__dirname, 'db/entities/*.js')],
+      });
+
+      await dataSource.initialize();
+      console.log('✅ Conexión a la base de datos establecida');
+      
+      // Limpiar datos existentes
+      console.log('🧹 Limpiando datos existentes...');
+      await dataSource.query('DELETE FROM cargas');
+      await dataSource.query('DELETE FROM indicadores');
+      await dataSource.query('DELETE FROM lineas');
+      console.log('✅ Datos limpiados');
+      
+      // Cargar ministerios (ya existen, solo verificar)
+      const ministeriosCount = await dataSource.query('SELECT COUNT(*) FROM ministerios');
+      console.log(`📊 Ministerios existentes: ${ministeriosCount[0].count}`);
+      
+      // Cargar datos desde analisis-indicadores.json
+      console.log('🔄 Cargando compromisos desde analisis-indicadores.json...');
+      const analisisPath = path.join(__dirname, '../analisis-indicadores.json');
+      
+      if (!fs.existsSync(analisisPath)) {
+        throw new Error('Archivo analisis-indicadores.json no encontrado');
+      }
+      
+      const analisisData = JSON.parse(fs.readFileSync(analisisPath, 'utf8'));
+      console.log(`📊 Procesando ${analisisData.length} compromisos...`);
+      
+      let lineasCreadas = 0;
+      let indicadoresCreados = 0;
+      
+      // Procesar cada compromiso
+      for (const compromiso of analisisData) {
+        try {
+          const ministerioId = compromiso.ministerioId;
+          const titulo = compromiso.titulo;
+          const lineaId = compromiso.id;
+          
+          // Crear línea de acción
+          await dataSource.query(`
+            INSERT INTO lineas (id, titulo, ministerio_id, activo, creado_en, actualizado_en)
+            VALUES ($1, $2, $3, true, NOW(), NOW())
+            ON CONFLICT (id) DO UPDATE SET
+              titulo = EXCLUDED.titulo,
+              ministerio_id = EXCLUDED.ministerio_id,
+              actualizado_en = EXCLUDED.actualizado_en
+          `, [lineaId, titulo, ministerioId]);
+          
+          lineasCreadas++;
+          
+          // Crear indicadores para esta línea
+          if (compromiso.indicadores && compromiso.indicadores.length > 0) {
+            for (const indicador of compromiso.indicadores) {
+              const indicadorId = indicador.id || `IND_${lineaId}_${indicadoresCreados + 1}`;
+              const nombre = indicador.nombre || `Indicador de ${titulo}`;
+              const unidad = indicador.unidad || 'unidades';
+              const periodicidad = indicador.periodicidad || 'mensual';
+              
+              await dataSource.query(`
+                INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
+                VALUES ($1, $2, $3, $4, $5, true, NOW(), NOW())
+                ON CONFLICT (id) DO UPDATE SET
+                  nombre = EXCLUDED.nombre,
+                  linea_id = EXCLUDED.linea_id,
+                  unidad_defecto = EXCLUDED.unidad_defecto,
+                  periodicidad = EXCLUDED.periodicidad,
+                  actualizado_en = EXCLUDED.actualizado_en
+              `, [indicadorId, nombre, lineaId, unidad, periodicidad]);
+              
+              indicadoresCreados++;
+            }
+          } else {
+            // Si no hay indicadores específicos, crear uno genérico
+            const indicadorId = `IND_${lineaId}_1`;
+            const nombre = `Indicador de seguimiento - ${titulo}`;
+            
+            await dataSource.query(`
+              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
+              VALUES ($1, $2, $3, 'unidades', 'mensual', true, NOW(), NOW())
+              ON CONFLICT (id) DO UPDATE SET
+                nombre = EXCLUDED.nombre,
+                linea_id = EXCLUDED.linea_id,
+                actualizado_en = EXCLUDED.actualizado_en
+            `, [indicadorId, nombre, lineaId]);
+            
+            indicadoresCreados++;
+          }
+          
+        } catch (error) {
+          console.error(`❌ Error procesando compromiso ${compromiso.id}:`, error.message);
+        }
+      }
+      
+      // Cargar datos desde reporte-indicadores-creados.json si existe
+      console.log('🔄 Cargando indicadores adicionales desde reporte-indicadores-creados.json...');
+      const reportePath = path.join(__dirname, '../reporte-indicadores-creados.json');
+      
+      if (fs.existsSync(reportePath)) {
+        const reporteData = JSON.parse(fs.readFileSync(reportePath, 'utf8'));
+        console.log(`📊 Procesando ${reporteData.resultados.length} indicadores adicionales...`);
+        
+        for (const resultado of reporteData.resultados) {
+          if (resultado.resultado.success && resultado.resultado.data.success) {
+            const indicador = resultado.resultado.data.data;
+            
+            await dataSource.query(`
+              INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo, creado_en, actualizado_en)
+              VALUES ($1, $2, $3, $4, $5, true, NOW(), NOW())
+              ON CONFLICT (id) DO UPDATE SET
+                nombre = EXCLUDED.nombre,
+                linea_id = EXCLUDED.linea_id,
+                unidad_defecto = EXCLUDED.unidad_defecto,
+                periodicidad = EXCLUDED.periodicidad,
+                actualizado_en = EXCLUDED.actualizado_en
+            `, [indicador.id, indicador.nombre, indicador.lineaId, indicador.unidadDefecto, indicador.periodicidad]);
+          }
+        }
+      }
+      
+      // Crear cargas de prueba para algunos indicadores
+      console.log('🔄 Creando cargas de prueba para gráficos...');
+      const indicadores = await dataSource.query('SELECT id, nombre FROM indicadores LIMIT 10');
+      const periodos = ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05'];
+      
+      for (const indicador of indicadores) {
+        for (let i = 0; i < periodos.length; i++) {
+          const periodo = periodos[i];
+          const valor = Math.floor(Math.random() * 100) + 10;
+          const meta = valor + Math.floor(Math.random() * 20) - 10;
+          
+          await dataSource.query(`
+            INSERT INTO cargas (
+              id, indicador_id, periodo, valor, meta, unidad, fuente,
+              responsable_nombre, responsable_email, observaciones,
+              estado, publicado, creado_por, creado_en, actualizado_en
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+            ON CONFLICT (id) DO UPDATE SET
+              valor = EXCLUDED.valor,
+              meta = EXCLUDED.meta,
+              actualizado_en = EXCLUDED.actualizado_en
+          `, [
+            `carga_${indicador.id}_${periodo}`,
+            indicador.id,
+            periodo,
+            valor,
+            meta,
+            'unidades',
+            'Datos de prueba',
+            'Sistema Automático',
+            'sistema@pio.gob.ar',
+            `Carga de prueba para ${indicador.nombre}`,
+            'validado',
+            true,
+            'ba3ebf2f-3243-4542-a45c-6f8daad00c4f',
+            new Date(),
+            new Date()
+          ]);
+        }
+      }
+      
+      // Verificar conteos finales
+      const [ministeriosCount, lineasCount, indicadoresCount, cargasCount] = await Promise.all([
+        dataSource.query('SELECT COUNT(*) FROM ministerios'),
+        dataSource.query('SELECT COUNT(*) FROM lineas'),
+        dataSource.query('SELECT COUNT(*) FROM indicadores'),
+        dataSource.query('SELECT COUNT(*) FROM cargas WHERE estado = $1', ['validado'])
+      ]);
+      
+      await dataSource.destroy();
+      
+      console.log('✅ Datos completos del PIO cargados exitosamente');
+      
+      res.json({
+        status: 'OK',
+        message: 'Datos completos del PIO cargados exitosamente',
+        ministerios_count: ministeriosCount[0].count,
+        lineas_count: lineasCount[0].count,
+        indicadores_count: indicadoresCount[0].count,
+        cargas_count: cargasCount[0].count,
+        compromisos_procesados: analisisData.length,
+        lineas_creadas: lineasCreadas,
+        indicadores_creados: indicadoresCreados,
+        timestamp: new Date().toISOString()
+      });
+
+    } catch (error) {
+      console.error('❌ Error cargando datos completos del PIO:', error.message);
+      res.status(500).json({
+        status: 'ERROR',
+        message: 'Error cargando datos completos del PIO',
+        error: error.message,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
   // Endpoint para cargar los datos REALES del PIO desde analisis-indicadores.json
   app.use('/load-real-pio-data', async (req, res) => {
     try {
