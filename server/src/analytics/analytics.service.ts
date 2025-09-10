@@ -1,6 +1,6 @@
 import { Injectable, Logger, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import * as XLSX from 'xlsx';
 import { Ministerio } from '../db/entities/ministerio.entity';
@@ -180,7 +180,8 @@ export class AnalyticsService {
   private async getDataFromLocalDatabase(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
     const whereConditions: any = {
       indicadorId,
-      estado: 'validado',
+      // Incluir cargas en diferentes estados para mostrar datos en analytics
+      estado: In(['validado', 'borrador', 'pendiente']),
     };
 
     if (periodoDesde) {
