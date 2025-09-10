@@ -754,7 +754,8 @@ async function bootstrap() {
       let lineasCreadas = 0;
       let indicadoresCreados = 0;
       
-      // Procesar cada compromiso
+      // PRIMERA PASADA: Crear todas las líneas primero
+      console.log('🔄 Primera pasada: Creando todas las líneas...');
       for (const compromiso of compromisos) {
         try {
           const ministerioId = compromiso.ministerioId;
@@ -771,6 +772,21 @@ async function bootstrap() {
           `, [lineaId, titulo, ministerioId]);
           
           lineasCreadas++;
+          
+        } catch (error) {
+          console.error(`❌ Error creando línea ${compromiso.id}:`, error.message);
+        }
+      }
+      
+      console.log(`✅ ${lineasCreadas} líneas creadas`);
+      
+      // SEGUNDA PASADA: Crear todos los indicadores
+      console.log('🔄 Segunda pasada: Creando todos los indicadores...');
+      for (const compromiso of compromisos) {
+        try {
+          const ministerioId = compromiso.ministerioId;
+          const titulo = compromiso.titulo;
+          const lineaId = compromiso.id;
           
           // Crear indicadores para esta línea
           if (compromiso.indicadores && compromiso.indicadores.length > 0) {
@@ -809,7 +825,7 @@ async function bootstrap() {
           }
           
         } catch (error) {
-          console.error(`❌ Error procesando compromiso ${compromiso.id}:`, error.message);
+          console.error(`❌ Error creando indicadores para ${compromiso.id}:`, error.message);
         }
       }
       
