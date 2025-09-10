@@ -319,8 +319,27 @@ async function bootstrap() {
       const analisisData = JSON.parse(fs.readFileSync(analisisPath, 'utf8'));
       console.log(`📊 Estructura del archivo:`, Object.keys(analisisData));
       
-      const compromisos = analisisData.compromisos || [];
-      console.log(`📊 Procesando ${compromisos.length} compromisos...`);
+      // Procesar compromisos únicos
+      const compromisosUnicos = new Map();
+      const indicadores = analisisData.indicadores || [];
+      
+      console.log(`📊 Procesando ${indicadores.length} indicadores...`);
+      
+      // Agrupar indicadores por compromiso para crear líneas únicas
+      for (const indicador of indicadores) {
+        const claveCompromiso = `${indicador.ministerio}|${indicador.compromiso}`;
+        if (!compromisosUnicos.has(claveCompromiso)) {
+          compromisosUnicos.set(claveCompromiso, {
+            ministerio: indicador.ministerio,
+            compromiso: indicador.compromiso,
+            indicadores: []
+          });
+        }
+        compromisosUnicos.get(claveCompromiso).indicadores.push(indicador);
+      }
+      
+      const compromisos = Array.from(compromisosUnicos.values());
+      console.log(`📊 Procesando ${compromisos.length} compromisos únicos...`);
       
       let lineasCreadas = 0;
       let indicadoresCreados = 0;
@@ -328,18 +347,18 @@ async function bootstrap() {
       // PRIMERA PASADA: Crear todas las líneas primero
       console.log('🔄 Primera pasada: Creando todas las líneas...');
       for (let i = 0; i < compromisos.length; i++) {
-        const compromiso = compromisos[i];
+        const compromisoData = compromisos[i];
         try {
-          const nombreMinisterio = compromiso.ministerio ? compromiso.ministerio.toLowerCase().trim() : '';
+          const nombreMinisterio = compromisoData.ministerio ? compromisoData.ministerio.toLowerCase().trim() : '';
           const ministerioId = ministerioMap.get(nombreMinisterio);
           
           if (!ministerioId) {
-            console.log(`⚠️ No se encontró ministerio para: "${compromiso.ministerio}" - saltando línea`);
+            console.log(`⚠️ No se encontró ministerio para: "${compromisoData.ministerio}" - saltando línea`);
             continue;
           }
           
-          const titulo = compromiso.titulo;
-          const lineaId = compromiso.id || `LINEA_${i + 1}`;
+          const titulo = compromisoData.compromiso;
+          const lineaId = `LINEA_${i + 1}`;
           
           console.log(`📝 Creando línea ${lineaId} para ministerio ${ministerioId}: ${titulo.substring(0, 50)}...`);
           
@@ -355,7 +374,7 @@ async function bootstrap() {
           console.log(`✅ Línea ${lineaId} creada exitosamente`);
           
         } catch (error) {
-          console.error(`❌ Error creando línea ${compromiso.id || `LINEA_${i + 1}`}:`, error.message);
+          console.error(`❌ Error creando línea ${compromisoData.compromiso || `LINEA_${i + 1}`}:`, error.message);
         }
       }
       
@@ -368,27 +387,28 @@ async function bootstrap() {
       // SEGUNDA PASADA: Crear todos los indicadores
       console.log('🔄 Segunda pasada: Creando todos los indicadores...');
       for (let i = 0; i < compromisos.length; i++) {
-        const compromiso = compromisos[i];
+        const compromisoData = compromisos[i];
         try {
-          const nombreMinisterio = compromiso.ministerio ? compromiso.ministerio.toLowerCase().trim() : '';
+          const nombreMinisterio = compromisoData.ministerio ? compromisoData.ministerio.toLowerCase().trim() : '';
           const ministerioId = ministerioMap.get(nombreMinisterio);
           
           if (!ministerioId) {
-            console.log(`⚠️ No se encontró ministerio para: "${compromiso.ministerio}" - saltando indicadores`);
+            console.log(`⚠️ No se encontró ministerio para: "${compromisoData.ministerio}" - saltando indicadores`);
             continue;
           }
           
-          const titulo = compromiso.titulo;
-          const lineaId = compromiso.id || `LINEA_${i + 1}`;
+          const lineaId = `LINEA_${i + 1}`;
           
           console.log(`📊 Creando indicadores para línea ${lineaId}...`);
           
-          if (compromiso.indicadores && compromiso.indicadores.length > 0) {
-            for (const indicador of compromiso.indicadores) {
-              const indicadorId = indicador.id || `IND_${lineaId}_${indicadoresCreados + 1}`;
-              const nombre = indicador.nombre || `Indicador de ${titulo}`;
-              const unidad = indicador.unidad || 'unidades';
-              const periodicidad = indicador.periodicidad || 'mensual';
+          if (compromisoData.indicadores && compromisoData.indicadores.length > 0) {
+            for (const indicadorData of compromisoData.indicadores) {
+              const indicadorId = `IND_${lineaId}_${indicadoresCreados + 1}`;
+              const nombre = indicadorData.nombre; // Usar el campo 'nombre' del indicador
+              const unidad = indicadorData.tipo === 'porcentaje' ? 'porcentaje' : 'unidades';
+              const periodicidad = 'mensual';
+              
+              console.log(`📝 Creando indicador: "${nombre}"`);
               
               await dataSource.query(`
                 INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
@@ -401,10 +421,11 @@ async function bootstrap() {
               `, [indicadorId, nombre, lineaId, unidad, periodicidad]);
               
               indicadoresCreados++;
+              console.log(`✅ Indicador ${indicadorId} creado exitosamente`);
             }
           } else {
             const indicadorId = `IND_${lineaId}_1`;
-            const nombre = `Indicador de seguimiento - ${titulo}`;
+            const nombre = `Indicador de seguimiento - ${compromisoData.compromiso}`;
             
             console.log(`📝 Creando indicador genérico ${indicadorId} para línea ${lineaId}`);
             
@@ -421,7 +442,7 @@ async function bootstrap() {
           }
           
         } catch (error) {
-          console.error(`❌ Error creando indicadores para ${compromiso.id || `LINEA_${i + 1}`}:`, error.message);
+          console.error(`❌ Error creando indicadores para ${compromisoData.compromiso || `LINEA_${i + 1}`}:`, error.message);
         }
       }
       
