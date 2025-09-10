@@ -927,6 +927,32 @@ async function bootstrap() {
         for (const resultado of reporteData.resultados) {
           if (resultado.resultado.success && resultado.resultado.data.success) {
             const indicador = resultado.resultado.data.data;
+            const indicadorOriginal = resultado.indicador;
+            
+            // Verificar si la línea existe
+            const lineaExiste = await dataSource.query(`
+              SELECT id FROM lineas WHERE id = $1
+            `, [indicador.lineaId]);
+            
+            let lineaIdFinal = indicador.lineaId;
+            
+            if (lineaExiste.length === 0) {
+              console.log(`⚠️ Línea ${indicador.lineaId} no existe, buscando línea alternativa...`);
+              
+              // Buscar una línea del mismo ministerio
+              const ministerioId = indicadorOriginal.ministerioId;
+              const lineasDelMinisterio = await dataSource.query(`
+                SELECT id FROM lineas WHERE ministerio_id = $1 LIMIT 1
+              `, [ministerioId]);
+              
+              if (lineasDelMinisterio.length > 0) {
+                lineaIdFinal = lineasDelMinisterio[0].id;
+                console.log(`✅ Usando línea alternativa ${lineaIdFinal} del ministerio ${ministerioId}`);
+              } else {
+                console.log(`❌ No se encontró línea para ministerio ${ministerioId}, saltando indicador ${indicador.id}`);
+                continue;
+              }
+            }
             
             await dataSource.query(`
               INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
@@ -936,7 +962,9 @@ async function bootstrap() {
                 linea_id = EXCLUDED.linea_id,
                 unidad_defecto = EXCLUDED.unidad_defecto,
                 periodicidad = EXCLUDED.periodicidad
-            `, [indicador.id, indicador.nombre, indicador.lineaId, indicador.unidadDefecto, indicador.periodicidad]);
+            `, [indicador.id, indicador.nombre, lineaIdFinal, indicador.unidadDefecto, indicador.periodicidad]);
+            
+            console.log(`✅ Indicador adicional ${indicador.id} creado/actualizado`);
           }
         }
       }
