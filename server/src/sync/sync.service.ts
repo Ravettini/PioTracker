@@ -669,13 +669,20 @@ export class SyncService {
               
               // Llamada real a Google Sheets API
               await this.upsertFactRow({
-                ministerio: ministerio.nombre,
-                linea: linea.titulo,
+                indicadorId: indicador.id,
                 indicador: indicador.nombre,
+                periodo: cargaMasReciente.periodo,
+                ministerioId: ministerio.id,
+                ministerio: ministerio.nombre,
+                lineaId: linea.id,
+                linea: linea.titulo,
                 valor: cargaMasReciente.valor,
                 unidad: cargaMasReciente.unidad,
-                periodo: cargaMasReciente.periodo,
-                fuente: cargaMasReciente.fuente
+                meta: cargaMasReciente.meta,
+                fuente: cargaMasReciente.fuente,
+                responsableNombre: cargaMasReciente.responsableNombre,
+                responsableEmail: cargaMasReciente.responsableEmail,
+                observaciones: cargaMasReciente.observaciones
               });
               
               registrosSincronizados++;
@@ -706,13 +713,20 @@ export class SyncService {
 
   // Función auxiliar para insertar/actualizar filas en Google Sheets con lógica dinámica por ministerio
   private async upsertFactRow(data: {
-    ministerio: string;
-    linea: string;
+    indicadorId: string;
     indicador: string;
+    periodo: string;
+    ministerioId: string;
+    ministerio: string;
+    lineaId: string;
+    linea: string;
     valor: number;
     unidad: string;
-    periodo: string;
+    meta?: number;
     fuente: string;
+    responsableNombre: string;
+    responsableEmail: string;
+    observaciones?: string;
   }): Promise<void> {
     try {
       this.logger.log(`📝 Upsert en Google Sheets: ${data.ministerio} - ${data.linea} - ${data.indicador} = ${data.valor} ${data.unidad}`);
@@ -745,19 +759,30 @@ export class SyncService {
       // Verificar si la hoja existe, si no, crearla
       await this.ensureMinisterioSheetExists(sheets, config.sheetId, ministerioTab);
       
-      // Preparar datos para la fila
+      // Preparar datos para la fila con estructura correcta
       const rowData = [
-        data.linea,
-        data.indicador,
-        data.valor,
-        data.unidad,
-        data.periodo,
-        data.fuente,
-        new Date().toISOString()
+        data.indicadorId || '',           // Indicador ID
+        data.indicador,                   // Indicador Nombre
+        data.periodo,                     // Período
+        data.ministerioId || '',          // Ministerio ID
+        data.ministerio,                  // Ministerio Nombre
+        data.lineaId || '',               // Línea ID
+        data.linea,                       // Línea Título
+        data.valor,                       // Valor
+        data.unidad,                      // Unidad
+        data.meta || '',                  // Meta
+        data.fuente,                      // Fuente
+        data.responsableNombre || '',     // Responsable Nombre
+        data.responsableEmail || '',      // Responsable Email
+        data.observaciones || '',         // Observaciones
+        'validado',                       // Estado
+        'Sí',                             // Publicado
+        new Date().toISOString(),         // Creado En
+        new Date().toISOString()          // Actualizado En
       ];
       
-      // Buscar si ya existe una fila con el mismo linea/indicador/periodo en la hoja del ministerio
-      const range = `${ministerioTab}!A:H`;
+      // Buscar si ya existe una fila con el mismo indicador/periodo en la hoja del ministerio
+      const range = `${ministerioTab}!A:R`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: range,
@@ -766,12 +791,11 @@ export class SyncService {
       const rows = response.data.values || [];
       let rowIndex = -1;
       
-      // Buscar fila existente
+      // Buscar fila existente por Indicador ID y Período
       for (let i = 1; i < rows.length; i++) { // Saltar header
         const row = rows[i];
-        if (row[0] === data.linea && 
-            row[1] === data.indicador && 
-            row[4] === data.periodo) {
+        if (row[0] === (data.indicadorId || '') && 
+            row[2] === data.periodo) {
           rowIndex = i + 1; // +1 porque Google Sheets es 1-indexed
           break;
         }
@@ -781,7 +805,7 @@ export class SyncService {
         // Actualizar fila existente
         await sheets.spreadsheets.values.update({
           spreadsheetId: config.sheetId,
-          range: `${ministerioTab}!A${rowIndex}:H${rowIndex}`,
+          range: `${ministerioTab}!A${rowIndex}:R${rowIndex}`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [rowData]
@@ -792,7 +816,7 @@ export class SyncService {
         // Insertar nueva fila al final
         await sheets.spreadsheets.values.append({
           spreadsheetId: config.sheetId,
-          range: `${ministerioTab}!A:H`,
+          range: `${ministerioTab}!A:R`,
           valueInputOption: 'RAW',
           insertDataOption: 'INSERT_ROWS',
           requestBody: {
