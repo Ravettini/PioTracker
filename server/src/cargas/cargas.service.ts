@@ -8,6 +8,7 @@ import { Indicador } from '../db/entities/indicador.entity';
 import { CreateCargaDto } from './dto/create-carga.dto';
 import { UpdateCargaDto } from './dto/update-carga.dto';
 import { RevisionDto } from './dto/revision.dto';
+import { SyncService } from '../sync/sync.service';
 
 @Injectable()
 export class CargasService {
@@ -20,6 +21,7 @@ export class CargasService {
     private usuarioRepository: Repository<Usuario>,
     @InjectRepository(Indicador)
     private indicadorRepository: Repository<Indicador>,
+    private syncService: SyncService,
   ) {}
 
   async create(createCargaDto: CreateCargaDto, userId: string): Promise<Carga> {
@@ -244,6 +246,31 @@ export class CargasService {
     if (revisionDto.estado === EstadoCarga.VALIDADO) {
       carga.publicado = true;
       this.logger.log(`✅ Carga ${id} marcada como publicada para sincronización`);
+      
+      // Sincronización automática con Google Sheets
+      try {
+        this.logger.log(`🔄 Iniciando sincronización automática para carga ${id}`);
+        await this.syncService.upsertFactRow({
+          indicadorId: carga.indicadorId,
+          indicador: carga.indicador?.nombre || 'Indicador',
+          periodo: carga.periodo,
+          ministerioId: carga.ministerioId,
+          ministerio: carga.ministerio?.nombre || 'Ministerio',
+          lineaId: carga.lineaId,
+          linea: carga.linea?.titulo || 'Línea',
+          valor: carga.valor,
+          unidad: carga.unidad,
+          meta: carga.meta,
+          fuente: carga.fuente,
+          responsableNombre: carga.responsableNombre,
+          responsableEmail: carga.responsableEmail,
+          observaciones: carga.observaciones
+        });
+        this.logger.log(`✅ Sincronización automática completada para carga ${id}`);
+      } catch (syncError) {
+        this.logger.error(`❌ Error en sincronización automática para carga ${id}:`, syncError);
+        // No lanzar error para no interrumpir el proceso de validación
+      }
     }
 
     const cargaActualizada = await this.cargaRepository.save(carga);

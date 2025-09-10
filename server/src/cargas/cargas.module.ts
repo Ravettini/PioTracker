@@ -8,13 +8,14 @@ import { Usuario } from '../db/entities/usuario.entity';
 import { Indicador } from '../db/entities/indicador.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Ministerio } from '../db/entities/ministerio.entity';
+import { SyncService } from '../sync/sync.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Carga, Usuario, Indicador, Linea, Ministerio]),
   ],
   controllers: [CargasController],
-  providers: [CargasService],
+  providers: [CargasService, SyncService],
   exports: [CargasService],
 })
 export class CargasModule {}

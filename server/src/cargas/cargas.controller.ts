@@ -16,10 +16,14 @@ import { RevisionDto } from './dto/revision.dto';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Usuario, RolUsuario } from '../db/entities/usuario.entity';
+import { SyncService } from '../sync/sync.service';
 
 @Controller('cargas')
 export class CargasController {
-  constructor(private readonly cargasService: CargasService) {}
+  constructor(
+    private readonly cargasService: CargasService,
+    private readonly syncService: SyncService,
+  ) {}
 
   @Post()
   async create(
@@ -168,6 +172,40 @@ export class CargasController {
         actualizadoEn: carga.actualizadoEn,
       },
     };
+  }
+
+  @Post('sync/google-sheets')
+  @Roles(RolUsuario.ADMIN)
+  async syncToGoogleSheets(@CurrentUser() user: Usuario) {
+    try {
+      const result = await this.syncService.syncToGoogleSheets();
+      return {
+        message: 'Sincronización con Google Sheets completada',
+        result,
+      };
+    } catch (error) {
+      return {
+        message: 'Error en sincronización con Google Sheets',
+        error: error.message,
+      };
+    }
+  }
+
+  @Get('sync/test-connection')
+  @Roles(RolUsuario.ADMIN)
+  async testGoogleSheetsConnection(@CurrentUser() user: Usuario) {
+    try {
+      const result = await this.syncService.testGoogleSheetsConnection();
+      return {
+        message: 'Conexión con Google Sheets verificada',
+        result,
+      };
+    } catch (error) {
+      return {
+        message: 'Error verificando conexión con Google Sheets',
+        error: error.message,
+      };
+    }
   }
 }
 

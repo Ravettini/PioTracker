@@ -712,7 +712,7 @@ export class SyncService {
   }
 
   // Función auxiliar para insertar/actualizar filas en Google Sheets con lógica dinámica por ministerio
-  private async upsertFactRow(data: {
+  async upsertFactRow(data: {
     indicadorId: string;
     indicador: string;
     periodo: string;
