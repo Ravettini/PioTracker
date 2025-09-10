@@ -500,7 +500,7 @@ async function bootstrap() {
       // Crear cargas de prueba para algunos indicadores
       console.log('🔄 Creando cargas de prueba para gráficos...');
       const indicadores = await dataSource.query(`
-        SELECT i.id, i.nombre, l.ministerio_id 
+        SELECT i.id, i.nombre, i.linea_id, l.ministerio_id 
         FROM indicadores i 
         JOIN lineas l ON i.linea_id = l.id 
         LIMIT 10
@@ -526,10 +526,10 @@ async function bootstrap() {
           
           await dataSource.query(`
             INSERT INTO cargas (
-              id, indicador_id, ministerio_id, periodo, valor, meta, unidad, fuente,
+              id, indicador_id, ministerio_id, linea_id, periodo, valor, meta, unidad, fuente,
               responsable_nombre, responsable_email, observaciones,
               estado, publicado, creado_por, creado_en, actualizado_en
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
             ON CONFLICT (id) DO UPDATE SET
               valor = EXCLUDED.valor,
               meta = EXCLUDED.meta,
@@ -538,6 +538,7 @@ async function bootstrap() {
             cargaId,
             indicador.id,
             indicador.ministerio_id,
+            indicador.linea_id,
             periodo,
             valor,
             meta,
