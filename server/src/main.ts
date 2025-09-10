@@ -764,6 +764,8 @@ async function bootstrap() {
           // Generar ID único si no existe
           const lineaId = compromiso.id || `LINEA_${i + 1}`;
           
+          console.log(`📝 Creando línea ${lineaId}: ${titulo.substring(0, 50)}...`);
+          
           // Crear línea de acción
           await dataSource.query(`
             INSERT INTO lineas (id, titulo, ministerio_id, activo)
@@ -774,6 +776,7 @@ async function bootstrap() {
           `, [lineaId, titulo, ministerioId]);
           
           lineasCreadas++;
+          console.log(`✅ Línea ${lineaId} creada exitosamente`);
           
         } catch (error) {
           console.error(`❌ Error creando línea ${compromiso.id || `LINEA_${i + 1}`}:`, error.message);
@@ -781,6 +784,10 @@ async function bootstrap() {
       }
       
       console.log(`✅ ${lineasCreadas} líneas creadas`);
+      
+      // Verificar que las líneas se crearon correctamente
+      const lineasVerificacion = await dataSource.query('SELECT COUNT(*) as count FROM lineas');
+      console.log(`🔍 Verificación: ${lineasVerificacion[0].count} líneas en la base de datos`);
       
       // SEGUNDA PASADA: Crear todos los indicadores
       console.log('🔄 Segunda pasada: Creando todos los indicadores...');
@@ -791,6 +798,8 @@ async function bootstrap() {
           const titulo = compromiso.titulo;
           // Usar el mismo ID generado en la primera pasada
           const lineaId = compromiso.id || `LINEA_${i + 1}`;
+          
+          console.log(`📊 Creando indicadores para línea ${lineaId}...`);
           
           // Crear indicadores para esta línea
           if (compromiso.indicadores && compromiso.indicadores.length > 0) {
@@ -817,6 +826,8 @@ async function bootstrap() {
             const indicadorId = `IND_${lineaId}_1`;
             const nombre = `Indicador de seguimiento - ${titulo}`;
             
+            console.log(`📝 Creando indicador genérico ${indicadorId} para línea ${lineaId}`);
+            
             await dataSource.query(`
               INSERT INTO indicadores (id, nombre, linea_id, unidad_defecto, periodicidad, activo)
               VALUES ($1, $2, $3, 'unidades', 'mensual', true)
@@ -826,6 +837,7 @@ async function bootstrap() {
             `, [indicadorId, nombre, lineaId]);
             
             indicadoresCreados++;
+            console.log(`✅ Indicador ${indicadorId} creado exitosamente`);
           }
           
         } catch (error) {
