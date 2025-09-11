@@ -194,6 +194,155 @@ function generarExcelBasadoEnEstructurasReales() {
             }
           }
         ]
+      },
+      
+      'Ente regulador de servicios púb': {
+        headers: ['Ministerio', 'Compromisos', 'Indicadores', 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEPT', 'OCT', 'NOV', 'DIC'],
+        compromisos: [
+          {
+            nombre: 'Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación',
+            indicadores: [
+              'cantidad de reuniones para la actualizacion de los lineamientos',
+              'publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de genero'
+            ],
+            datosMeses: {
+              'AGO': [1, null],
+              'SEPT': [1, 'Revision del protocolo en vigencia'],
+              'OCT': [1, 'Revision del protocolo en vigencia'],
+              'NOV': [1, 'Revision del protocolo en vigencia']
+            }
+          },
+          {
+            nombre: 'Promover la incorporación de las empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires al Programa PARES',
+            indicadores: [
+              'Cantidad de acciones realizadas para promover la incorporación de las empresas proveedoras de servicios públicos',
+              'Cantidad de empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires incorporadas al Programa PARES'
+            ],
+            datosMeses: {
+              'ENE': ['Ver anexo', 'Ver anexo'],
+              'FEB': ['Ver anexo', 'Ver anexo'],
+              'MAR': ['Ver anexo', 'Ver anexo'],
+              'ABR': ['Ver anexo', 'Ver anexo'],
+              'MAY': ['Ver anexo', 'Ver anexo'],
+              'JUN': ['Ver anexo', 'Ver anexo'],
+              'JUL': ['Ver anexo', 'Ver anexo'],
+              'AGO': ['Ver anexo', 'Ver anexo'],
+              'SEPT': ['Ver anexo', 'Ver anexo'],
+              'OCT': ['Ver anexo', 'Ver anexo'],
+              'NOV': ['Ver anexo', 'Ver anexo'],
+              'DIC': ['Ver anexo', 'Ver anexo']
+            }
+          }
+        ]
+      },
+      
+      'Vicejefatura': {
+        headers: ['Area', 'Compromisos', 'Indicadores', 'Indicadores2', 'Indicadores3', 'Indicadores4'],
+        compromisos: [
+          {
+            nombre: 'A través de la Secretaría de Bienestar Integral: Promover el acompañamiento a mujeres mayores',
+            indicadores: [
+              'Cantidad de mujeres mayores que han participado de los diferentes programas/políticas de la secretaria',
+              'cantidad de mujeres mayores victimas de violencias por motivos de genero que han sido beneficiarias de las politicas de la Secretaria'
+            ],
+            datosMeses: {}
+          },
+          {
+            nombre: 'A través de la Subsecretaría de la Mujer: Centralizar y coordinar las políticas de género de la Ciudad de Buenos Aires',
+            indicadores: [
+              'cantidad de reuniones interinstitucionales de coordinación sobre políticas de género',
+              'cantidad de políticas impulsadas desde la SSMUJ',
+              'cantidad de políticas de género existentes en el GCBA'
+            ],
+            datosMeses: {}
+          },
+          {
+            nombre: 'A través de la Subsecretaría de Cultura Ciudadana y Derechos Humanos: Promover la igualdad de oportunidades en el ámbito laboral',
+            indicadores: [
+              'cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans',
+              'cantidad de persoas incluídas laboralmente a traves del programa de empleabilidad trans en el ambito publico',
+              'cantidad de personas incluídas laboralmente a traves del programa de empleabilidad trans en el ambito privado',
+              'Cantidad de espacios de promocion de derechos / capacitacion realizados'
+            ],
+            datosMeses: {}
+          }
+        ]
+      },
+      
+      'Espacio Publico': {
+        headers: ['Ministerio', 'Compromisos', 'Indicadores', 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEPT', 'OCT', 'NOV', 'DIC', 'TOTAL'],
+        compromisos: [
+          {
+            nombre: 'Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES',
+            indicadores: [
+              'Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes',
+              'Cantidad de empresas de estas'
+            ],
+            datosMeses: {
+              'TOTAL': ['Tras la firma de Acta Acuerdo Plan de Igualdad de Oportunidades', 'Ninguna']
+            }
+          },
+          {
+            nombre: 'Continuar con la implementación del programa de 12 cooperativas vinculadas al Ministerio de Espacio Público e Higiene Urbana',
+            indicadores: [
+              'Cantidad y tipo de acciones que',
+              'cantidad de charlas y capacitaciones',
+              'Porcentaje de cooperativas'
+            ],
+            datosMeses: {
+              'TOTAL': ['Promotoras Ambientales: las acciones realizadas entre enero y diciembre de 2024', 'Con el apoyo de la fundación Delterra, 116 Promotoras Ambientales pudieron', '100%: las promotoras de las 12 cooperativas fueron alcanzadas']
+            }
+          }
+        ]
+      },
+      
+      'Hacienda y finanzas': {
+        headers: ['Ministerio', 'Compromisos', 'Indicadores', 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEPT', 'OCT', 'NOV', 'DIC', 'TOTAL'],
+        compromisos: [
+          {
+            nombre: 'Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto',
+            indicadores: [
+              'cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto',
+              'porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad'
+            ],
+            datosMeses: {}
+          },
+          {
+            nombre: 'En el marco de la Ley 6083, promover a actualización de la normativa que reglamenta el alcance y procedimiento del Protocolo de actuación en los casos de violencia por motivos de género',
+            indicadores: [
+              'cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y procedimiento de Protocolo',
+              'publicacion del Protocolo actualizado'
+            ],
+            datosMeses: {}
+          },
+          {
+            nombre: 'del sello empresa mujer a las empresas proveedoras de GCBA que cumplan con los requisitos dispuestos',
+            indicadores: [
+              'cantidad de empresas que han solicitado',
+              'cantidad de actividades de promocion del',
+              'seguimiento y control de los requisitos de'
+            ],
+            datosMeses: {}
+          }
+        ]
+      },
+      
+      'MDHyH': {
+        headers: ['Ministerio', 'Compromisos', 'Indicadores', 'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEPT', 'OCT', 'NOV', 'DIC', 'TOTAL'],
+        compromisos: [
+          {
+            nombre: 'Continuar con las líneas de atención telefónica especializada en violencia de género',
+            indicadores: [
+              'Cantidad de llamadas a la línea: 43.765',
+              'Cantidad de casos de violencia de género: 4091',
+              'Cantidad de derivaciones de casos de VDG a línea 911: 731'
+            ],
+            datosMeses: {
+              'ENE': [43, 4091, 731],
+              'TOTAL': [43765, 4091, 731]
+            }
+          }
+        ]
       }
     };
     
