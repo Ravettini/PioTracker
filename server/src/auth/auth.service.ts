@@ -32,29 +32,47 @@ export class AuthService {
       throw new UnauthorizedException('Cuenta temporalmente bloqueada');
     }
 
-    // Verificar contraseña con argon2
-    const argon2 = require('argon2');
-    const isPasswordValid = await argon2.verify(usuario.hashClave, password);
-    if (!isPasswordValid) {
-      // Incrementar intentos fallidos
-      usuario.intentosFallidos += 1;
-      
-      // Bloquear si excede el límite
-      if (usuario.intentosFallidos >= 5) {
-        usuario.bloqueadoHasta = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
+    // Verificar contraseña con argon2 o bcrypt (compatibilidad)
+    try {
+      // Intentar primero con argon2
+      const argon2 = require('argon2');
+      const isPasswordValidArgon2 = await argon2.verify(usuario.hashClave, password);
+      if (isPasswordValidArgon2) {
+        // Resetear intentos fallidos y actualizar último login
+        usuario.intentosFallidos = 0;
+        usuario.bloqueadoHasta = null;
+        usuario.ultimoLogin = new Date();
+        await this.usuarioRepository.save(usuario);
+        return usuario;
       }
-      
-      await this.usuarioRepository.save(usuario);
-      throw new UnauthorizedException('Credenciales inválidas');
+    } catch (argon2Error) {
+      // Si argon2 falla, intentar con bcrypt
+      try {
+        const bcrypt = require('bcrypt');
+        const isPasswordValidBcrypt = await bcrypt.compare(password, usuario.hashClave);
+        if (isPasswordValidBcrypt) {
+          // Resetear intentos fallidos y actualizar último login
+          usuario.intentosFallidos = 0;
+          usuario.bloqueadoHasta = null;
+          usuario.ultimoLogin = new Date();
+          await this.usuarioRepository.save(usuario);
+          return usuario;
+        }
+      } catch (bcryptError) {
+        this.logger.error('Error en validación de contraseña:', bcryptError);
+      }
     }
 
-    // Resetear intentos fallidos y actualizar último login
-    usuario.intentosFallidos = 0;
-    usuario.bloqueadoHasta = null;
-    usuario.ultimoLogin = new Date();
+    // Si ninguna validación funcionó, incrementar intentos fallidos
+    usuario.intentosFallidos += 1;
+    
+    // Bloquear si excede el límite
+    if (usuario.intentosFallidos >= 5) {
+      usuario.bloqueadoHasta = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
+    }
+    
     await this.usuarioRepository.save(usuario);
-
-    return usuario;
+    throw new UnauthorizedException('Credenciales inválidas');
   }
 
   async login(loginDto: LoginDto, ip: string, userAgent: string) {

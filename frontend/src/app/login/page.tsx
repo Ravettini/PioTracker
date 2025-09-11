@@ -23,6 +23,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
   const { login, isAuthenticated } = useAuthStore();
 
@@ -44,6 +45,7 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
+    setPasswordError(''); // Limpiar error anterior
     try {
       console.log('🔐 Intentando login con:', data.email);
       const response = await apiClient.auth.login(data.email, data.password);
@@ -62,7 +64,14 @@ export default function LoginPage() {
     } catch (error: any) {
       console.error('💥 Error de login:', error);
       const errorMessage = error.response?.data?.message || 'Error en el inicio de sesión';
-      toast.error(errorMessage);
+      
+      // Si el error es de credenciales inválidas, mostrar mensaje específico
+      if (errorMessage.includes('Credenciales inválidas') || errorMessage.includes('credenciales')) {
+        setPasswordError('Contraseña incorrecta');
+        toast.error('Credenciales inválidas');
+      } else {
+        toast.error(errorMessage);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -122,6 +131,10 @@ export default function LoginPage() {
                     <Eye className="h-5 w-5" />
                   )}
                 </button>
+                {/* Mensaje de error específico para contraseña incorrecta */}
+                {passwordError && (
+                  <p className="mt-1 text-sm text-red-600">{passwordError}</p>
+                )}
               </div>
 
               <Button
