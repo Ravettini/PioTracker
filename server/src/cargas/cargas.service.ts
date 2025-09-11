@@ -256,6 +256,7 @@ export class CargasService {
           indicadorId: carga.indicadorId,
           indicador: carga.indicador?.nombre || 'Indicador',
           periodo: carga.periodo,
+          mes: carga.mes,
           ministerioId: carga.ministerioId,
           ministerio: carga.ministerio?.nombre || 'Ministerio',
           lineaId: carga.lineaId,
