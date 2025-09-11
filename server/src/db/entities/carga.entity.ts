@@ -50,6 +50,9 @@ export class Carga {
   @Column({ type: 'text' })
   periodo: string;
 
+  @Column({ type: 'text' })
+  mes: string;
+
   @Column({ type: 'numeric' })
   valor: number;
 

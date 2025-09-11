@@ -46,6 +46,7 @@ export default function CargaPage() {
   const [selectedLinea, setSelectedLinea] = useState<string>('');
   const [selectedIndicador, setSelectedIndicador] = useState<string>('');
   const [periodo, setPeriodo] = useState<string>('2024');
+  const [mes, setMes] = useState<string>('');
   const [valor, setValor] = useState<string>('0.00');
   const [unidad, setUnidad] = useState<string>('');
   const [meta, setMeta] = useState<string>('0.00');
@@ -210,7 +211,7 @@ export default function CargaPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!selectedMinisterio || !selectedLinea || !selectedIndicador || !periodo || !valor || !unidad || !fuente || !responsableNombre || !responsableEmail) {
+    if (!selectedMinisterio || !selectedLinea || !selectedIndicador || !periodo || !mes || !valor || !unidad || !fuente || !responsableNombre || !responsableEmail) {
       toast.error('Por favor completa todos los campos obligatorios');
       return;
     }
@@ -235,6 +236,7 @@ export default function CargaPage() {
         lineaId: selectedLinea,
         indicadorId: selectedIndicador,
         periodo,
+        mes,
         valor: parseFloat(valor),
         unidad,
         meta: parseFloat(meta) || undefined,
@@ -595,6 +597,72 @@ export default function CargaPage() {
                     Formato específico según la periodicidad del indicador seleccionado
                   </p>
                 </div>
+
+                {/* Mes */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mes *
+                  </label>
+                  <Select
+                    value={mes}
+                    onValueChange={(value) => setMes(value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona un mes" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="enero">Enero</SelectItem>
+                      <SelectItem value="febrero">Febrero</SelectItem>
+                      <SelectItem value="marzo">Marzo</SelectItem>
+                      <SelectItem value="abril">Abril</SelectItem>
+                      <SelectItem value="mayo">Mayo</SelectItem>
+                      <SelectItem value="junio">Junio</SelectItem>
+                      <SelectItem value="julio">Julio</SelectItem>
+                      <SelectItem value="agosto">Agosto</SelectItem>
+                      <SelectItem value="septiembre">Septiembre</SelectItem>
+                      <SelectItem value="octubre">Octubre</SelectItem>
+                      <SelectItem value="noviembre">Noviembre</SelectItem>
+                      <SelectItem value="diciembre">Diciembre</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Meta */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Meta *
+                  </label>
+                  <div className="flex gap-2">
+                    <Select
+                      value={meta}
+                      onValueChange={(value) => setMeta(value)}
+                    >
+                      <SelectTrigger className="flex-1">
+                        <SelectValue placeholder="Selecciona una meta" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0">Sin meta</SelectItem>
+                        <SelectItem value="10">10%</SelectItem>
+                        <SelectItem value="20">20%</SelectItem>
+                        <SelectItem value="30">30%</SelectItem>
+                        <SelectItem value="40">40%</SelectItem>
+                        <SelectItem value="50">50%</SelectItem>
+                        <SelectItem value="60">60%</SelectItem>
+                        <SelectItem value="70">70%</SelectItem>
+                        <SelectItem value="80">80%</SelectItem>
+                        <SelectItem value="90">90%</SelectItem>
+                        <SelectItem value="100">100%</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <button
+                      type="button"
+                      onClick={() => {/* TODO: Implementar crear nueva meta */}}
+                      className="px-3 py-2 text-sm text-blue-600 hover:text-blue-800 border border-blue-300 rounded-md hover:bg-blue-50"
+                    >
+                      + Nueva
+                    </button>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
@@ -628,20 +696,6 @@ export default function CargaPage() {
                     placeholder="Ej: Porcentaje, Cantidad, etc."
                     value={unidad}
                     onChange={(e) => setUnidad(e.target.value)}
-                  />
-                </div>
-
-                {/* Meta */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Meta (Opcional)
-                  </label>
-                  <Input
-                    type="number"
-                    step="0.01"
-                    placeholder="0.00"
-                    value={meta}
-                    onChange={(e) => setMeta(e.target.value)}
                   />
                 </div>
 

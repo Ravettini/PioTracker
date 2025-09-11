@@ -15,6 +15,9 @@ export class CreateCargaDto {
   @Validate(IsValidPeriodo)
   periodo: string;
 
+  @IsString({ message: 'El mes es requerido' })
+  mes: string;
+
   @IsNumber({}, { message: 'El valor debe ser numérico' })
   valor: number;
 

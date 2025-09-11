@@ -29,4 +29,8 @@ export class AnalyticsQueryDto {
   @IsOptional()
   @IsEnum(TipoIndicador)
   tipoIndicador?: TipoIndicador;
+
+  @IsOptional()
+  @IsString()
+  vista?: 'total' | 'mensual'; // Nueva opción para tipo de vista
 }

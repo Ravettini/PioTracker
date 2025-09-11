@@ -114,6 +114,7 @@ export default function AnalyticsPage() {
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [selectedChartType, setSelectedChartType] = useState<string>('auto');
   const [showChartGuide, setShowChartGuide] = useState(false);
+  const [chartViewType, setChartViewType] = useState<'total' | 'mensual'>('total');
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -145,7 +146,7 @@ export default function AnalyticsPage() {
     if (selectedIndicador) {
       loadAnalyticsData();
     }
-  }, [selectedIndicador]);
+  }, [selectedIndicador, chartViewType]);
 
   const loadMinisterios = async () => {
     try {
@@ -193,6 +194,7 @@ export default function AnalyticsPage() {
       setIsLoadingData(true);
       const response = await apiClient.analytics.getDatos({
         indicadorId: selectedIndicador,
+        vista: chartViewType,
       });
       
       // Debug: Log de datos recibidos
@@ -200,6 +202,7 @@ export default function AnalyticsPage() {
       console.log('📊 Períodos:', response.datos.periodos);
       console.log('📊 Valores:', response.datos.valores);
       console.log('📊 Metas:', response.datos.metas);
+      console.log('📊 Vista:', response.vista);
       
       setAnalyticsData(response);
     } catch (error) {
@@ -964,22 +967,45 @@ export default function AnalyticsPage() {
                   <div ref={chartRef}>
                     {renderChart()}
                   </div>
-                  <div className="mt-4 flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => setShowChartGuide(!showChartGuide)}
-                      className="w-full sm:w-auto"
-                    >
-                      {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full sm:w-auto"
-                      onClick={exportChart}
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Exportar
-                    </Button>
+                  <div className="mt-4 space-y-4">
+                    {/* Botones de Vista */}
+                    <div className="flex flex-col sm:flex-row justify-center sm:justify-start space-y-2 sm:space-y-0 sm:space-x-2">
+                      <div className="flex gap-2">
+                        <Button
+                          variant={chartViewType === 'total' ? 'default' : 'outline'}
+                          onClick={() => setChartViewType('total')}
+                          className="w-full sm:w-auto"
+                        >
+                          Vista Total
+                        </Button>
+                        <Button
+                          variant={chartViewType === 'mensual' ? 'default' : 'outline'}
+                          onClick={() => setChartViewType('mensual')}
+                          className="w-full sm:w-auto"
+                        >
+                          Avance por Mes
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Botones de Acción */}
+                    <div className="flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowChartGuide(!showChartGuide)}
+                        className="w-full sm:w-auto"
+                      >
+                        {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full sm:w-auto"
+                        onClick={exportChart}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Exportar
+                      </Button>
+                    </div>
                   </div>
                   {showChartGuide && renderChartGuide()}
                 </div>

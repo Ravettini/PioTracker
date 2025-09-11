@@ -127,7 +127,7 @@ export class AnalyticsService {
   async getDatos(query: AnalyticsQueryDto, user: Usuario): Promise<AnalyticsResponse> {
     this.logger.log(`Obteniendo datos de analytics:`, query);
 
-    const { indicadorId, periodoDesde, periodoHasta } = query;
+    const { indicadorId, periodoDesde, periodoHasta, vista = 'total' } = query;
 
     // Obtener el indicador con sus relaciones
     const indicador = await this.indicadorRepository.findOne({
@@ -150,10 +150,13 @@ export class AnalyticsService {
     // Determinar tipo de indicador
     const tipo = this.determinarTipoIndicador(indicador.nombre);
 
-    // Procesar datos para el gráfico
-    const periodos = sheetData.map(row => row.periodo);
-    const valores = sheetData.map(row => row.valor);
-    const metas = sheetData.map(row => row.meta); // Mantener null para períodos sin meta
+    // Procesar datos según el tipo de vista
+    let processedData;
+    if (vista === 'mensual') {
+      processedData = this.procesarDatosMensuales(sheetData);
+    } else {
+      processedData = this.procesarDatosTotales(sheetData);
+    }
 
     // Configurar gráfico según tipo
     const configuracion = this.configurarGrafico(tipo, indicador);
@@ -163,12 +166,66 @@ export class AnalyticsService {
       compromiso: indicador.linea.titulo,
       indicador: indicador.nombre,
       tipo,
-      datos: {
-        periodos,
-        valores,
-        metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
-      },
+      datos: processedData,
       configuracion,
+      vista, // Incluir tipo de vista en la respuesta
+    };
+  }
+
+  private procesarDatosTotales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
+    // Agrupar por período y sumar valores
+    const agrupado = sheetData.reduce((acc, row) => {
+      const periodo = row.periodo;
+      if (!acc[periodo]) {
+        acc[periodo] = { valor: 0, meta: row.meta, count: 0 };
+      }
+      acc[periodo].valor += row.valor;
+      acc[periodo].count += 1;
+      return acc;
+    }, {});
+
+    const periodos = Object.keys(agrupado);
+    const valores = periodos.map(p => agrupado[p].valor);
+    const metas = periodos.map(p => agrupado[p].meta);
+
+    return {
+      periodos,
+      valores,
+      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+    };
+  }
+
+  private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
+    // Agrupar por mes y sumar valores
+    const agrupado = sheetData.reduce((acc, row) => {
+      const mes = row.mes || 'Sin mes';
+      if (!acc[mes]) {
+        acc[mes] = { valor: 0, meta: row.meta, count: 0 };
+      }
+      acc[mes].valor += row.valor;
+      acc[mes].count += 1;
+      return acc;
+    }, {});
+
+    // Ordenar meses cronológicamente
+    const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
+                       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    
+    const periodos = Object.keys(agrupado).sort((a, b) => {
+      const indexA = ordenMeses.indexOf(a);
+      const indexB = ordenMeses.indexOf(b);
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+      return indexA - indexB;
+    });
+
+    const valores = periodos.map(p => agrupado[p].valor);
+    const metas = periodos.map(p => agrupado[p].meta);
+
+    return {
+      periodos,
+      valores,
+      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
     };
   }
 
@@ -236,6 +293,7 @@ export class AnalyticsService {
         // Filtrar por indicador ID (columna A)
         if (row[0] === indicadorId) {
           const periodo = row[2]; // Columna C: Período
+          const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[7]) || 0; // Columna H: Valor
           const meta = row[9] && row[9].trim() !== '' ? parseFloat(row[9]) : null; // Columna J: Meta (solo si no está vacía)
           const unidad = row[8] || 'unidades'; // Columna I: Unidad
@@ -252,6 +310,7 @@ export class AnalyticsService {
           
           datosIndicador.push({
             periodo,
+            mes,
             valor,
             meta,
             unidad,
