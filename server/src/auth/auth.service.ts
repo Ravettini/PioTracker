@@ -32,30 +32,21 @@ export class AuthService {
       throw new UnauthorizedException('Cuenta temporalmente bloqueada');
     }
 
-    // TEMPORAL: Validación simple para pruebas
-    if (password === 'Cambiar.123') {
-      // Resetear intentos fallidos y actualizar último login
-      usuario.intentosFallidos = 0;
-      usuario.bloqueadoHasta = null;
-      usuario.ultimoLogin = new Date();
+    // Verificar contraseña con argon2
+    const argon2 = require('argon2');
+    const isPasswordValid = await argon2.verify(usuario.hashClave, password);
+    if (!isPasswordValid) {
+      // Incrementar intentos fallidos
+      usuario.intentosFallidos += 1;
+      
+      // Bloquear si excede el límite
+      if (usuario.intentosFallidos >= 5) {
+        usuario.bloqueadoHasta = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
+      }
+      
       await this.usuarioRepository.save(usuario);
-      return usuario;
+      throw new UnauthorizedException('Credenciales inválidas');
     }
-
-    // Verificar contraseña con argon2 (comentado temporalmente)
-    // const isPasswordValid = await argon2.verify(usuario.hashClave, password);
-    // if (!isPasswordValid) {
-    //   // Incrementar intentos fallidos
-    //   usuario.intentosFallidos += 1;
-    //   
-    //   // Bloquear si excede el límite
-    //   if (usuario.intentosFallidos >= 5) {
-    //     usuario.bloqueadoHasta = new Date(Date.now() + 15 * 60 * 1000); // 15 minutos
-    //   }
-    //   
-    //   await this.usuarioRepository.save(usuario);
-    //   throw new UnauthorizedException('Credenciales inválidas');
-    // }
 
     // Resetear intentos fallidos y actualizar último login
     usuario.intentosFallidos = 0;
