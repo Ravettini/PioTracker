@@ -1,0 +1,698 @@
+{
+  "resumen": {
+    "totalIndicadores": 45,
+    "hojasAfectadas": [
+      "Jefatura de Gabinete",
+      "Educación 22/8",
+      "Educacion",
+      "Seguridad 16-5",
+      "Seguridad",
+      "MDHyH"
+    ],
+    "fechaGeneracion": "2025-09-11T15:31:54.108Z"
+  },
+  "instrucciones": [
+    "1. Abrir Google Sheets del proyecto",
+    "2. Para cada indicador listado, buscar la fila correspondiente",
+    "3. En la columna D (Mes), agregar el mes correspondiente",
+    "4. Verificar que la columna D tenga el header \"Mes\"",
+    "5. Si no existe la columna D, crearla antes de hacer las actualizaciones"
+  ],
+  "actualizaciones": [
+    {
+      "numero": 1,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela. ",
+      "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "mesAsignado": "enero",
+      "valorOriginal": 4557,
+      "datosOriginales": 4557,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de trabajadores inscriptos en la capacitacion\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 2,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de trabajadores que completaron la capacitación",
+      "mesAsignado": "enero",
+      "valorOriginal": 2440,
+      "datosOriginales": 2440,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de trabajadores que completaron la capacitación\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 3,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)",
+      "mesAsignado": "enero",
+      "valorOriginal": 2,
+      "datosOriginales": "Autogestionado 2 - Presencial 22 - Virtual con Tutoría 10",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 4,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Articular instancias de capacitación y formación en la implementación de Programa Mujeres Líderes en GCBA. ",
+      "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "mesAsignado": "enero",
+      "valorOriginal": 70,
+      "datosOriginales": 70,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de trabajadores inscriptos en la capacitacion\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 5,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de trabajadores que completaron la capacitación",
+      "mesAsignado": "enero",
+      "valorOriginal": 18,
+      "datosOriginales": 18,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de trabajadores que completaron la capacitación\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 6,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de capacitaciones brindadas",
+      "mesAsignado": "enero",
+      "valorOriginal": 7,
+      "datosOriginales": 7,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de capacitaciones brindadas\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 7,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Garantizar la especializaciòn en perspectiva de genero en el marco del programa \"Especializaciones\"",
+      "indicador": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": 1,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 8,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de personas inscriptas en especializacion/es de perspectiva de género",
+      "mesAsignado": "enero",
+      "valorOriginal": 926,
+      "datosOriginales": 926,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de personas inscriptas en especializacion/es de perspectiva de género\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 9,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "mesAsignado": "enero",
+      "valorOriginal": 59,
+      "datosOriginales": "59% (Total de 9 becas)",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Tasa de paridad en la asignación de becas\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 10,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "mesAsignado": "enero",
+      "valorOriginal": 27,
+      "datosOriginales": "27/31",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de mujeres con becas que finalizaron las formaciones\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 11,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Ajuste (ya está publicado) de manual de diseño de espacios públicos con perspectiva de género",
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "mesAsignado": "enero",
+      "valorOriginal": 4,
+      "datosOriginales": "4 (internas DGANU - SECDU)",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 12,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Promoción de espacios de fútbol mixto.",
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": 1,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 13,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Número de materiales promocionales producidos",
+      "mesAsignado": "enero",
+      "valorOriginal": 4,
+      "datosOriginales": 4,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Número de materiales promocionales producidos\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 14,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "mesAsignado": "enero",
+      "valorOriginal": 1803,
+      "datosOriginales": 1803,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de nuevas personas inscriptas a futbol mixto\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 15,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "mesAsignado": "enero",
+      "valorOriginal": 0,
+      "datosOriginales": 0.18,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Porcentaje de participación de mujeres en las actividades de fútbol mixto:\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 16,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de actividades de relevamiento realizadas ",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": 1,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de actividades de relevamiento realizadas \"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 17,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "mesAsignado": "enero",
+      "valorOriginal": 0,
+      "datosOriginales": 0.3,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Porcentaje de clubes con comisiones de género establecidas:\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 18,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Confección de un Informe de relevamiento sobre la existencia de Protocolos de actuación ante situaciones de violencia de género y protección a las infancias y adolescencias en las entidades deportivas.",
+      "indicador": "Actividades de planificacion",
+      "mesAsignado": "enero",
+      "valorOriginal": 2025,
+      "datosOriginales": "Se preve para el 2025 comenzar con el relevamiento en las convocatorias en el marco de la ley n° 1.624 de deportes",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Actividades de planificacion\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 19,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "mesAsignado": "enero",
+      "valorOriginal": 2025,
+      "datosOriginales": "De acuerdo a las convocatorias previstas para el 2025, se establecerá el cronograma correspondiente en cada una de ellas",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Elaboracion de cronograma de relevamiento\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 20,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Número de entidades deportivas relevadas",
+      "mesAsignado": "enero",
+      "valorOriginal": 2025,
+      "datosOriginales": "Se preve para el 2025 relevar a todos los clubes que soliciten el subsidio de acuerdo a la ley 1.625 de deportes",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Número de entidades deportivas relevadas\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 21,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "mesAsignado": "enero",
+      "valorOriginal": 2025,
+      "datosOriginales": "Se preve para el 2025 relevar a todos los clubes que soliciten el subsidio de acuerdo a la ley 1.625 de deportes",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Porcentaje de entidades con protocolos de actuación existentes:\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 22,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Fecha de publicacion del Informe",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": "Se preve para el 1° semestre del 2025 elaborar un informe",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Fecha de publicacion del Informe\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 23,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Fecha de Publicacion del protocolo",
+      "mesAsignado": "enero",
+      "valorOriginal": 2023,
+      "datosOriginales": "Diciembre de 2023 se publicó el protocolo de prevencion e intervención ante Situaciones de Violencia de Género y discriminación en actividades y espacios de la Secretaria de Deportes del GCBA",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Fecha de Publicacion del protocolo\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 24,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "mesAsignado": "enero",
+      "valorOriginal": 14,
+      "datosOriginales": 14,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de actividades de Difusión del protocolo\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 25,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "mesAsignado": "enero",
+      "valorOriginal": 12,
+      "datosOriginales": "12 Polideportivos recibieron materiales para colocar en su infraestructura",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 26,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible",
+      "mesAsignado": "enero",
+      "valorOriginal": 50,
+      "datosOriginales": "Se colocaron 50 carteles en los 12 Polideportivos de la Ciudad de Buenos Aires. A saber: Polideportivo Patricios; Polideportivo Don Pepe; Polideportio Pereyra; Polideportivo Dorrego; Polideportivo Avellaneda; Polideportivo Santojanni; Polideportivo Chacabuco; Polideportivo Onega; Polideportivo Pomar; Polideportivo Sarmiento; Polideportivo Martin Fierro; Polideportivo Colegiales.",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 27,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "mesAsignado": "enero",
+      "valorOriginal": 2025,
+      "datosOriginales": "Se realizaron charlas en Escuela Especial, Educación Primaria y Secundaria (dictadas por docentes especializados en el área y/o embajadores de la Secretaría de Deportes, quienes son deportistas con discapacidad). Se avanzó en comunicación con el ámbito de escuelas del sector privado con proyección a aumentar la cantidad de capacitaciones en 2025. Se realizó el primer Congreso de Deporte Adaptado y Paralímpico de la Ciudad de Buenos Aires. Se llevaron a cabo categorías específicas de Deportes para personas con Discapacidad en los Juegos Porteños, y por primera vez en la apertura de los mismos se realizó una demostración de Paraarquería. Se generaron encuentros deportivos específicos entre alumnos con y sin discapacidad. Se brindó 1 capacitación en el marco de una Jornada sobre Discapacidad organizada por la Asociación de Mujeres Médicas. Se brindó una charla en una Jornada de Charlas Deportivas, en una mesa relacionada al Deporte para personas con discpacidad, en el Consejo Profesional de Ciencias Económicas de la Ciudad de Buenos Aires. Participación en la Jornada \"Ellas Lideran\", evento organizado por y para las mujeres, donde se participó moderando la mesa de Deporte y Discapacidad. Se realizó el 1° torneo de Boccias categoría BC3 de la Ciudad de Buenos Aires (COPA PEDRO SAINT ANTONIN); articulación con Olimpiadas Especiales en la realización de un torneo clasificatorio de Atletismo en el Parque Olimpico y articulación con FADDIM en la segunda edición de la Liga Inclusiva de Futsal (personas con discapacidad intelectual y sindrome down, con categorías femeninas y masculinas). Participación en los Juegos Evita (Tenis de mesa, Natación, Atletismo, Boccias, Goalball, básquet 3 x 3) Participación en Opens de Natación Paralímpica. Caminata de concientización por la Esclerosis Múltiple. Maratones de concientización con organizaciones dedicadas al ámbito deportivo para personas con discapacidad.",
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Acciones de concientizacion sobre el deporte inclusivo\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 28,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "tiempo promedio de respuestaa incidentes de seguridad",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": 1.374,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"tiempo promedio de respuestaa incidentes de seguridad\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 29,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "",
+      "indicador": "aplicaciones de GCBA analizadas",
+      "mesAsignado": "enero",
+      "valorOriginal": 470,
+      "datosOriginales": 470,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"aplicaciones de GCBA analizadas\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 30,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA. \r\n.",
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "mesAsignado": "enero",
+      "valorOriginal": 479,
+      "datosOriginales": 479,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 31,
+      "ministerio": "Jefatura de Gabinete",
+      "compromiso": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "mesAsignado": "enero",
+      "valorOriginal": 5,
+      "datosOriginales": 5,
+      "instrucciones": [
+        "Buscar en la hoja \"Jefatura de Gabinete\"",
+        "Encontrar la fila con el indicador: \"contenidos de campaña de genero incorporados en boti\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 32,
+      "ministerio": "Educación 22/8",
+      "compromiso": "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+      "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+      "mesAsignado": "enero",
+      "valorOriginal": 0,
+      "datosOriginales": 0.39,
+      "instrucciones": [
+        "Buscar en la hoja \"Educación 22/8\"",
+        "Encontrar la fila con el indicador: \"Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 33,
+      "ministerio": "Educacion",
+      "compromiso": "",
+      "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+      "mesAsignado": "enero",
+      "valorOriginal": 0,
+      "datosOriginales": 0.42,
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 34,
+      "ministerio": "Educacion",
+      "compromiso": "Articular con la Dirección General de Abordaje de las Violencias por Motivos de Género dependiente de la Subsecretaría de Fortalecimiento Personal, Familiar y Comunitario, del Ministerio de Desarrollo Humano y Hábitat, la derivación de los casos que se presenten en los Centros Integrales de la Mujer que requieran terminalidad educativa.",
+      "indicador": "Cantidad de casos derivados",
+      "mesAsignado": "enero",
+      "valorOriginal": 4,
+      "datosOriginales": "4 casos derivados",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cantidad de casos derivados\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 35,
+      "ministerio": "Educacion",
+      "compromiso": "Incorporar los contenidos vinculados a violencia digital, delitos contra la integridad sexual en el {ámbito digital y trata de personas en la currícula de ESI en todos de todos los niveles de educación secundaria superior (4to, 5to y 6to).",
+      "indicador": "Creación de las comisiones de Bienestar Digital y de Género y STEAM ",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": "Ambas comisiones creadas: \"1. La Comisión de Bienestar Digital tiene por objeto delinear políticas estratégicas que aborden de forma integral el impacto de la educación digital en los aspectos académicos, socioemocionales y tecnológicos, asegurando un enfoque holístico que responda a las necesidades tanto del bienestar emocional como del aprendizaje digital.\r\n2. La Comisión de Género y STEAM se ha constituido para desarrollar el procedimiento de trabajo de Niñas Primero*\"",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Creación de las comisiones de Bienestar Digital y de Género y STEAM \"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 36,
+      "ministerio": "Educacion",
+      "compromiso": "Garantizar la continuidad en la asignación de vacantes de capacitación a mujeres para la profesionalización del cuidado en la infancia en niños de 43 días a 3 años de edad realizados a través de. la Agencia de Habilidades para el Futuro.",
+      "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "mesAsignado": "enero",
+      "valorOriginal": 0,
+      "datosOriginales": 0.82,
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 37,
+      "ministerio": "Educacion",
+      "compromiso": "",
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+      "mesAsignado": "enero",
+      "valorOriginal": 2024,
+      "datosOriginales": " En 2024 se asignaron 110  vacantes y hubo 63 matriculaciones  de las cuales 52 (el 82%) son mujeres",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 38,
+      "ministerio": "Educacion",
+      "compromiso": "Iniciar acciones para la implementación de la estrategia transversal “Niñas Primero” en los diferentes niveles de educación",
+      "indicador": "Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.",
+      "mesAsignado": "enero",
+      "valorOriginal": 300,
+      "datosOriginales": "300 participantes",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 39,
+      "ministerio": "Educacion",
+      "compromiso": "Potenciar el “Club de Robótica para chicas”.",
+      "indicador": "Cantidad de inscriptas en el programa",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": "1.000 inscriptas",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cantidad de inscriptas en el programa\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 40,
+      "ministerio": "Educacion",
+      "compromiso": "",
+      "indicador": "Cantidad de clubes creados",
+      "mesAsignado": "enero",
+      "valorOriginal": 14,
+      "datosOriginales": 14,
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cantidad de clubes creados\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 41,
+      "ministerio": "Educacion",
+      "compromiso": "Impulsar “Consultec”, actividad para promover vocaciones científicas y técnicas en niñas y jóvenes que impacta en las estudiantes de todas las escuelas técnicas de la ciudad.",
+      "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "mesAsignado": "enero",
+      "valorOriginal": 250,
+      "datosOriginales": "250 participantes",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 42,
+      "ministerio": "Educacion",
+      "compromiso": "Establecer “Mentoreo”, actividad de acompañamiento en la orientación vocacional y empleabilidad por referentes de la industria IT para el 100% de las alumnas de los Programas Talento Tech +18 y Talento Tech -18, y aquellos que los sucedan a futuro.",
+      "indicador": "Cantidad de mujeres mentoreadas anualmente ",
+      "mesAsignado": "enero",
+      "valorOriginal": 511,
+      "datosOriginales": "511 participantes ",
+      "instrucciones": [
+        "Buscar en la hoja \"Educacion\"",
+        "Encontrar la fila con el indicador: \"Cantidad de mujeres mentoreadas anualmente \"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 43,
+      "ministerio": "Seguridad 16-5",
+      "compromiso": "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+      "indicador": "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa\r\n",
+      "mesAsignado": "enero",
+      "valorOriginal": 1,
+      "datosOriginales": 1,
+      "instrucciones": [
+        "Buscar en la hoja \"Seguridad 16-5\"",
+        "Encontrar la fila con el indicador: \"a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa\r\n\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 44,
+      "ministerio": "Seguridad",
+      "compromiso": "Garantizar la continuidad del convenio de las líneas 144 de Atención a la Víctima y 911 de atención ante emergencias.",
+      "indicador": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+      "mesAsignado": "enero",
+      "valorOriginal": 37,
+      "datosOriginales": 37,
+      "instrucciones": [
+        "Buscar en la hoja \"Seguridad\"",
+        "Encontrar la fila con el indicador: \"a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    },
+    {
+      "numero": 45,
+      "ministerio": "MDHyH",
+      "compromiso": "D) Continuar con las líneas de atención telefónica 144 y 911. ",
+      "indicador": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+      "mesAsignado": "enero",
+      "valorOriginal": 43,
+      "datosOriginales": "Cantidad de llamadas a la línea: 43.765\r\n Cantidad de casos de violencia de género: 4091\r\n Cantidad de derivaciones de casos de VDG a línea 911: 731\r\n ",
+      "instrucciones": [
+        "Buscar en la hoja \"MDHyH\"",
+        "Encontrar la fila con el indicador: \"Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes\"",
+        "En la columna D (Mes), escribir: \"enero\"",
+        "Verificar que el período en columna C sea \"2024\""
+      ]
+    }
+  ]
+}
