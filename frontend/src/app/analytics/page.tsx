@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useIsAuthenticated, useIsAdmin } from '@/store/auth-store';
 import Layout from '@/components/layout/Layout';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
 import { 
   LineChart, 
   Line, 
@@ -112,6 +114,7 @@ export default function AnalyticsPage() {
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [selectedChartType, setSelectedChartType] = useState<string>('auto');
   const [showChartGuide, setShowChartGuide] = useState(false);
+  const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -213,6 +216,46 @@ export default function AnalyticsPage() {
       setResumenData(response);
     } catch (error) {
       console.error('Error cargando resumen:', error);
+    }
+  };
+
+  const exportChart = async () => {
+    if (!chartRef.current || !analyticsData) {
+      toast.error('No hay gráfico para exportar');
+      return;
+    }
+
+    try {
+      toast.loading('Generando imagen del gráfico...', { id: 'export-chart' });
+      
+      // Configurar opciones para html2canvas
+      const canvas = await html2canvas(chartRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2, // Mayor resolución
+        useCORS: true,
+        allowTaint: true,
+        width: chartRef.current.offsetWidth,
+        height: chartRef.current.offsetHeight,
+      });
+
+      // Convertir canvas a blob
+      canvas.toBlob((blob) => {
+        if (blob) {
+          // Generar nombre del archivo
+          const fileName = `grafico_${analyticsData.indicador.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.png`;
+          
+          // Descargar archivo
+          saveAs(blob, fileName);
+          
+          toast.success('Gráfico exportado exitosamente', { id: 'export-chart' });
+        } else {
+          toast.error('Error al generar la imagen', { id: 'export-chart' });
+        }
+      }, 'image/png');
+      
+    } catch (error) {
+      console.error('Error exportando gráfico:', error);
+      toast.error('Error al exportar el gráfico', { id: 'export-chart' });
     }
   };
 
@@ -917,23 +960,29 @@ export default function AnalyticsPage() {
                   <span className="ml-2 text-gray-600">Cargando datos...</span>
                 </div>
               ) : (
-                                 <div>
-                   {renderChart()}
-                   <div className="mt-4 flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
-                     <Button
-                       variant="outline"
-                       onClick={() => setShowChartGuide(!showChartGuide)}
-                       className="w-full sm:w-auto"
-                     >
-                       {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
-                     </Button>
-                     <Button variant="outline" className="w-full sm:w-auto">
-                       <Download className="h-4 w-4 mr-2" />
-                       Exportar
-                     </Button>
-                   </div>
-                   {showChartGuide && renderChartGuide()}
-                 </div>
+                <div>
+                  <div ref={chartRef}>
+                    {renderChart()}
+                  </div>
+                  <div className="mt-4 flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowChartGuide(!showChartGuide)}
+                      className="w-full sm:w-auto"
+                    >
+                      {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full sm:w-auto"
+                      onClick={exportChart}
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      Exportar
+                    </Button>
+                  </div>
+                  {showChartGuide && renderChartGuide()}
+                </div>
               )}
             </CardContent>
           </Card>
