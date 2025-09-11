@@ -213,7 +213,7 @@ export class AnalyticsService {
       this.logger.log(`🏛️ Leyendo datos de hoja: ${ministerioTab}`);
       
       // Leer datos de la hoja del ministerio
-      const range = `${ministerioTab}!A:R`;
+      const range = `${ministerioTab}!A:P`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: range,
@@ -237,14 +237,14 @@ export class AnalyticsService {
         if (row[0] === indicadorId) {
           const periodo = row[2]; // Columna C: Período
           const valor = parseFloat(row[7]) || 0; // Columna H: Valor
-          const meta = row[9] ? parseFloat(row[9]) : null; // Columna J: Meta
+          const meta = row[9] && row[9].trim() !== '' ? parseFloat(row[9]) : null; // Columna J: Meta (solo si no está vacía)
           const unidad = row[8] || 'unidades'; // Columna I: Unidad
           const fuente = row[10] || 'Google Sheets'; // Columna K: Fuente
           const responsableNombre = row[11] || 'Sistema'; // Columna L: Responsable
-          const estado = row[14] || 'validado'; // Columna O: Estado
-          const publicado = row[15] === 'Sí'; // Columna P: Publicado
-          const creadoEn = row[16] ? new Date(row[16]) : new Date(); // Columna Q: Creado En
-          const actualizadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Actualizado En
+          const estado = row[12] || 'validado'; // Columna M: Estado
+          const publicado = row[13] === 'Sí'; // Columna N: Publicado
+          const creadoEn = row[14] ? new Date(row[14]) : new Date(); // Columna O: Creado En
+          const actualizadoEn = row[15] ? new Date(row[15]) : new Date(); // Columna P: Actualizado En
           
           // Aplicar filtros de período si se especifican
           if (periodoDesde && periodo < periodoDesde) continue;
@@ -262,6 +262,9 @@ export class AnalyticsService {
             creadoEn,
             actualizadoEn,
           });
+          
+          // Log para debugging
+          this.logger.log(`📊 Datos leídos: Período=${periodo}, Valor=${valor}, Meta=${meta}`);
         }
       }
       
