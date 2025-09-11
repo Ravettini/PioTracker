@@ -191,6 +191,13 @@ export default function AnalyticsPage() {
       const response = await apiClient.analytics.getDatos({
         indicadorId: selectedIndicador,
       });
+      
+      // Debug: Log de datos recibidos
+      console.log('📊 Datos recibidos del backend:', response);
+      console.log('📊 Períodos:', response.datos.periodos);
+      console.log('📊 Valores:', response.datos.valores);
+      console.log('📊 Metas:', response.datos.metas);
+      
       setAnalyticsData(response);
     } catch (error) {
       console.error('Error cargando datos de analytics:', error);
