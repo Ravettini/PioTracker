@@ -59,6 +59,9 @@ export default function CargaPage() {
   const [newCompromiso, setNewCompromiso] = useState<string>('');
   const [showNewIndicador, setShowNewIndicador] = useState(false);
   const [newIndicador, setNewIndicador] = useState<string>('');
+  const [showNewMeta, setShowNewMeta] = useState(false);
+  const [newMeta, setNewMeta] = useState<string>('');
+  const [metas, setMetas] = useState<Array<{id: string, nombre: string}>>([]);
 
   // Función para obtener el placeholder del período según el indicador
   const getPeriodoPlaceholder = () => {
@@ -374,6 +377,33 @@ export default function CargaPage() {
     }
   };
 
+  const handleCreateNewMeta = async () => {
+    if (!newMeta.trim()) {
+      toast.error('Por favor, completa el nombre de la nueva meta.');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Crear la nueva meta (por ahora solo localmente)
+      const nuevaMeta = {
+        id: `meta_${Date.now()}`,
+        nombre: newMeta.trim()
+      };
+      
+      setMetas(prev => [...prev, nuevaMeta]);
+      setMeta(nuevaMeta.id);
+      setNewMeta('');
+      setShowNewMeta(false);
+      toast.success('Meta creada exitosamente');
+    } catch (error) {
+      console.error('Error creando nueva meta:', error);
+      toast.error('Error al crear la nueva meta.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (!isAuthenticated) {
     return null;
   }
@@ -632,35 +662,71 @@ export default function CargaPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Meta *
                   </label>
-                  <div className="flex gap-2">
-                    <Select
-                      value={meta}
-                      onValueChange={(value) => setMeta(value)}
-                    >
-                      <SelectTrigger className="flex-1">
-                        <SelectValue placeholder="Selecciona una meta" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="0">Sin meta</SelectItem>
-                        <SelectItem value="10">10%</SelectItem>
-                        <SelectItem value="20">20%</SelectItem>
-                        <SelectItem value="30">30%</SelectItem>
-                        <SelectItem value="40">40%</SelectItem>
-                        <SelectItem value="50">50%</SelectItem>
-                        <SelectItem value="60">60%</SelectItem>
-                        <SelectItem value="70">70%</SelectItem>
-                        <SelectItem value="80">80%</SelectItem>
-                        <SelectItem value="90">90%</SelectItem>
-                        <SelectItem value="100">100%</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <Select
+                    value={meta}
+                    onValueChange={(value) => setMeta(value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona una meta" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {metas.map(m => (
+                        <SelectItem key={m.id} value={m.id}>
+                          {m.nombre}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  {/* Opción para crear nueva meta */}
+                  <div className="mt-2">
                     <button
                       type="button"
-                      onClick={() => {/* TODO: Implementar crear nueva meta */}}
-                      className="px-3 py-2 text-sm text-blue-600 hover:text-blue-800 border border-blue-300 rounded-md hover:bg-blue-50"
+                      onClick={() => setShowNewMeta(!showNewMeta)}
+                      className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
                     >
-                      + Nueva
+                      {showNewMeta ? '−' : '+'} Crear nueva meta
                     </button>
+                    
+                    {showNewMeta && (
+                      <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                        <div className="space-y-3">
+                          <div>
+                            <label htmlFor="newMeta" className="block text-sm font-medium text-gray-700 mb-1">
+                              Nueva Meta
+                            </label>
+                            <input
+                              type="text"
+                              id="newMeta"
+                              value={newMeta}
+                              onChange={(e) => setNewMeta(e.target.value)}
+                              placeholder="Escribe la nueva meta..."
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              type="button"
+                              onClick={handleCreateNewMeta}
+                              disabled={isLoading}
+                              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                            >
+                              {isLoading ? 'Creando...' : 'Crear Meta'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setShowNewMeta(false);
+                                setNewMeta('');
+                              }}
+                              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>
