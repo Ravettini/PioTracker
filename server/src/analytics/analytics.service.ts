@@ -15,6 +15,7 @@ export interface AnalyticsResponse {
   compromiso: string;
   indicador: string;
   tipo: 'porcentaje' | 'cantidad';
+  vista: 'mensual' | 'total';
   datos: {
     periodos: string[];
     valores: number[];
