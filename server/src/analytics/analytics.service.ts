@@ -173,8 +173,116 @@ export class AnalyticsService {
   }
 
   private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
-    // Simplificado: solo usar base de datos local
-    return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+    try {
+      this.logger.log(`📊 Leyendo datos de Google Sheets para indicador: ${indicadorId}`);
+      
+      // Verificar configuración de Google Sheets
+      const config = this.configService.get('google');
+      if (!config.sheetId || !config.refreshToken) {
+        this.logger.warn('⚠️ Configuración de Google Sheets incompleta. Usando base de datos local.');
+        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
+
+      // Obtener información del indicador para saber qué ministerio buscar
+      const indicador = await this.indicadorRepository.findOne({
+        where: { id: indicadorId },
+        relations: ['linea', 'linea.ministerio']
+      });
+
+      if (!indicador) {
+        this.logger.warn(`⚠️ Indicador ${indicadorId} no encontrado. Usando base de datos local.`);
+        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
+
+      // Crear cliente de Google Sheets
+      const { google } = require('googleapis');
+      const oauth2Client = new google.auth.OAuth2(
+        config.oauth.clientId,
+        config.oauth.clientSecret,
+        config.oauth.authUri
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token: config.refreshToken
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      
+      // Generar nombre de hoja del ministerio
+      const ministerioTab = this.generateMinisterioTabName(indicador.linea.ministerio.nombre);
+      this.logger.log(`🏛️ Leyendo datos de hoja: ${ministerioTab}`);
+      
+      // Leer datos de la hoja del ministerio
+      const range = `${ministerioTab}!A:R`;
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: config.sheetId,
+        range: range,
+      });
+      
+      const rows = response.data.values || [];
+      if (rows.length <= 1) {
+        this.logger.warn(`⚠️ No hay datos en la hoja ${ministerioTab}. Usando base de datos local.`);
+        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
+      
+      // Procesar filas y filtrar por indicador
+      const datosIndicador = [];
+      const headers = rows[0]; // Primera fila son los headers
+      
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        if (row.length < 8) continue; // Asegurar que la fila tenga suficientes columnas
+        
+        // Filtrar por indicador ID (columna A)
+        if (row[0] === indicadorId) {
+          const periodo = row[2]; // Columna C: Período
+          const valor = parseFloat(row[7]) || 0; // Columna H: Valor
+          const meta = row[9] ? parseFloat(row[9]) : null; // Columna J: Meta
+          const unidad = row[8] || 'unidades'; // Columna I: Unidad
+          const fuente = row[10] || 'Google Sheets'; // Columna K: Fuente
+          const responsableNombre = row[11] || 'Sistema'; // Columna L: Responsable
+          const estado = row[14] || 'validado'; // Columna O: Estado
+          const publicado = row[15] === 'Sí'; // Columna P: Publicado
+          const creadoEn = row[16] ? new Date(row[16]) : new Date(); // Columna Q: Creado En
+          const actualizadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Actualizado En
+          
+          // Aplicar filtros de período si se especifican
+          if (periodoDesde && periodo < periodoDesde) continue;
+          if (periodoHasta && periodo > periodoHasta) continue;
+          
+          datosIndicador.push({
+            periodo,
+            valor,
+            meta,
+            unidad,
+            fuente,
+            responsable: responsableNombre,
+            estado,
+            publicado,
+            creadoEn,
+            actualizadoEn,
+          });
+        }
+      }
+      
+      // Ordenar por período
+      datosIndicador.sort((a, b) => a.periodo.localeCompare(b.periodo));
+      
+      this.logger.log(`✅ Encontrados ${datosIndicador.length} registros en Google Sheets para indicador ${indicadorId}`);
+      
+      // Si no hay datos en Sheets, usar base de datos local como fallback
+      if (datosIndicador.length === 0) {
+        this.logger.warn(`⚠️ No se encontraron datos en Google Sheets para indicador ${indicadorId}. Usando base de datos local.`);
+        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
+      
+      return datosIndicador;
+      
+    } catch (error) {
+      this.logger.error(`❌ Error leyendo datos de Google Sheets: ${error.message}`);
+      this.logger.warn('⚠️ Fallback a base de datos local debido a error en Google Sheets');
+      return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+    }
   }
 
   private async getDataFromLocalDatabase(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
@@ -295,5 +403,34 @@ export class AnalyticsService {
         }
       };
     }
+  }
+
+  private generateMinisterioTabName(ministerio: string): string {
+    // Mapeo de nombres de ministerios a nombres de hojas existentes
+    const ministerioMap: { [key: string]: string } = {
+      'Educación': 'Educacion',
+      'Ente regulador de servicios públicos': 'Ente regulador de servicios púb',
+      'Espacio Público': 'Espacio Publico',
+      'Hacienda y finanzas': 'Hacienda y finanzas',
+      'Jefatura de Gabinete': 'Jefatura de Gabinete',
+      'Justicia': 'Justicia',
+      'MDHyH': 'MDHyH',
+      'Salud': 'Salud',
+      'Seguridad': 'Seguridad',
+      'Vicejefatura': 'Vicejefatura'
+    };
+    
+    // Si existe el mapeo, usar el nombre de la hoja existente
+    if (ministerioMap[ministerio]) {
+      return ministerioMap[ministerio];
+    }
+    
+    // Si no existe el mapeo, crear nombre limpio
+    const cleanName = ministerio
+      .replace(/[^a-zA-Z0-9\s]/g, '') // Remover caracteres especiales
+      .replace(/\s+/g, '_') // Reemplazar espacios con guiones bajos
+      .substring(0, 30); // Limitar longitud
+    
+    return `Ministerio_${cleanName}`;
   }
 }
