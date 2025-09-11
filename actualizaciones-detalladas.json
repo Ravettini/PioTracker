@@ -1,0 +1,1046 @@
+{
+  "fechaGeneracion": "2025-09-11T17:17:13.125Z",
+  "totalActualizaciones": 129,
+  "totalErrores": 0,
+  "actualizaciones": [
+    {
+      "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 4557,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de trabajadores inscr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de trabajadores que completaron la capacitación",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2440,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de trabajadores que c...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de capacitaciones bri...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 70,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de trabajadores inscr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de trabajadores que completaron la capacitación",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 18,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de trabajadores que c...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de capacitaciones brindadas",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 7,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de capacitaciones bri...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de ediciones de la es...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de personas inscriptas en especializacion/es de perspectiva de género",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 926,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de personas inscripta...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 59,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Tasa de paridad en la asignaci...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 59,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Tasa de paridad en la asignaci...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 59,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Tasa de paridad en la asignaci...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 59,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Tasa de paridad en la asignaci...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 27,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres con becas ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 27,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres con becas ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 27,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres con becas ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 27,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres con becas ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de reuniones para rea...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de reuniones para rea...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de reuniones para rea...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de reuniones para rea...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de encuentros realiza...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de encuentros realiza...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de encuentros realiza...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de encuentros realiza...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de materiales promocionales producidos",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de materiales promocion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de materiales promocionales producidos",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de materiales promocion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de materiales promocionales producidos",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de materiales promocion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de materiales promocionales producidos",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de materiales promocion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1803,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de nuevas personas in...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1803,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de nuevas personas in...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1803,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de nuevas personas in...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 1803,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de nuevas personas in...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de participación de...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de participación de...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de participación de...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de participación de...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de relevamiento realizadas ",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de rel...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de relevamiento realizadas ",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de rel...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de relevamiento realizadas ",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de rel...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de relevamiento realizadas ",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de rel...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de clubes con comis...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de clubes con comis...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de clubes con comis...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de clubes con comis...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Actividades de planificacion",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Actividades de planificacion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Actividades de planificacion",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Actividades de planificacion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Actividades de planificacion",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Actividades de planificacion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Actividades de planificacion",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Actividades de planificacion...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Elaboracion de cronograma de r...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Elaboracion de cronograma de r...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Elaboracion de cronograma de r...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Elaboracion de cronograma de r...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de entidades deportivas relevadas",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de entidades deportivas...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de entidades deportivas relevadas",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de entidades deportivas...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de entidades deportivas relevadas",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de entidades deportivas...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Número de entidades deportivas relevadas",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Número de entidades deportivas...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de entidades con pr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de entidades con pr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de entidades con pr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Porcentaje de entidades con pr...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de publicacion del Informe",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de publicacion del Infor...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de publicacion del Informe",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de publicacion del Infor...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de publicacion del Informe",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de publicacion del Infor...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de publicacion del Informe",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de publicacion del Infor...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de Publicacion del protocolo",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2023,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de Publicacion del proto...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de Publicacion del protocolo",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2023,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de Publicacion del proto...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de Publicacion del protocolo",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2023,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de Publicacion del proto...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Fecha de Publicacion del protocolo",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2023,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Fecha de Publicacion del proto...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de Dif...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de Dif...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de Dif...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de actividades de Dif...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 12,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes deportivos ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 12,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes deportivos ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 12,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes deportivos ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 12,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes deportivos ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 50,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes deportivos ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Acciones de concientizacion so...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Acciones de concientizacion so...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Acciones de concientizacion so...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2025,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Acciones de concientizacion so...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "tiempo promedio de respuestaa incidentes de seguridad",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"tiempo promedio de respuestaa ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "aplicaciones de GCBA analizadas",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 470,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"aplicaciones de GCBA analizada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "aplicaciones de GCBA analizadas",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 470,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"aplicaciones de GCBA analizada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "aplicaciones de GCBA analizadas",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 470,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"aplicaciones de GCBA analizada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "aplicaciones de GCBA analizadas",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 470,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"aplicaciones de GCBA analizada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 479,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de consultas atendida...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 479,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de consultas atendida...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 479,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de consultas atendida...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 479,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de consultas atendida...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 5,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"contenidos de campaña de gener...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 5,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"contenidos de campaña de gener...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 5,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"contenidos de campaña de gener...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 5,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"contenidos de campaña de gener...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Garantizar el cupo de mujeres ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Garantizar el cupo de mujeres ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de casos derivados",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de casos derivados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de casos derivados",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de casos derivados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de casos derivados",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de casos derivados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de casos derivados",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 4,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de casos derivados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Creación de las comisiones de Bienestar Digital y de Género y STEAM ",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Creación de las comisiones de ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres sobre la matrícul...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres sobre la matrícul...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres sobre la matrícul...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres sobre la matrícula del  curso \"Cuidador/a de niños y niñas en el ámbito de la vida familiar\"",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 0,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres sobre la matrícul...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 2024,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cursos cuatrimestral, dictado ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 2024,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cursos cuatrimestral, dictado ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 2024,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cursos cuatrimestral, dictado ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 2024,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cursos cuatrimestral, dictado ...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 300,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de participantes de l...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de inscriptas en el programa",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de inscriptas en el p...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de inscriptas en el programa",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de inscriptas en el p...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de inscriptas en el programa",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de inscriptas en el p...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de inscriptas en el programa",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de inscriptas en el p...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes creados",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes creados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes creados",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes creados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes creados",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes creados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de clubes creados",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 14,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de clubes creados...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 250,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres matriculadas en l...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 250,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres matriculadas en l...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 250,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres matriculadas en l...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "% de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 250,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"% de mujeres matriculadas en l...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres mentoreadas anualmente ",
+      "mes": "enero",
+      "hoja": "Jefatura de Gabinete",
+      "valor": 511,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres mentoreada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres mentoreadas anualmente ",
+      "mes": "enero",
+      "hoja": "Educacion",
+      "valor": 511,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres mentoreada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres mentoreadas anualmente ",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 511,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres mentoreada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de mujeres mentoreadas anualmente ",
+      "mes": "enero",
+      "hoja": "MDHyH",
+      "valor": 511,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de mujeres mentoreada...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa\r\n",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 1,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"a) Cantidad de reuniones entre...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 37,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"a) Cantidad de llamadas recibi...\"",
+      "prioridad": "alta"
+    },
+    {
+      "indicador": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+      "mes": "enero",
+      "hoja": "Seguridad",
+      "valor": 43,
+      "instruccion": "Actualizar columna D (mes) con \"enero\" para indicadores que contengan \"Cantidad de llamadas realizada...\"",
+      "prioridad": "alta"
+    }
+  ],
+  "errores": [],
+  "instrucciones": {
+    "paso1": "Abrir Google Sheets: https://docs.google.com/spreadsheets/d/1oOsW1ph6eFo0WcK28XdVjOaMZ9VqvB1T48Zje7MN7IA",
+    "paso2": "Para cada actualización, buscar el indicador en la hoja correspondiente",
+    "paso3": "Actualizar la columna D (mes) con el valor especificado",
+    "paso4": "Verificar que la actualización sea correcta"
+  }
+}
