@@ -741,7 +741,7 @@ export default function CargaPage() {
                 {/* Valor */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Valor *
+                    Valor Alcanzado *
                   </label>
                   <Input
                     type="number"

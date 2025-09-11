@@ -672,6 +672,7 @@ export class SyncService {
                 indicadorId: indicador.id,
                 indicador: indicador.nombre,
                 periodo: cargaMasReciente.periodo,
+                mes: cargaMasReciente.mes,
                 ministerioId: ministerio.id,
                 ministerio: ministerio.nombre,
                 lineaId: linea.id,
@@ -716,6 +717,7 @@ export class SyncService {
     indicadorId: string;
     indicador: string;
     periodo: string;
+    mes: string;
     ministerioId: string;
     ministerio: string;
     lineaId: string;
@@ -764,6 +766,7 @@ export class SyncService {
         data.indicadorId || '',           // Indicador ID
         data.indicador,                   // Indicador Nombre
         data.periodo,                     // Período
+        data.mes,                         // Mes
         data.ministerioId || '',          // Ministerio ID
         data.ministerio,                  // Ministerio Nombre
         data.lineaId || '',               // Línea ID
@@ -782,7 +785,7 @@ export class SyncService {
       ];
       
       // Buscar si ya existe una fila con el mismo indicador/periodo en la hoja del ministerio
-      const range = `${ministerioTab}!A:R`;
+      const range = `${ministerioTab}!A:S`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: range,
@@ -805,7 +808,7 @@ export class SyncService {
         // Actualizar fila existente
         await sheets.spreadsheets.values.update({
           spreadsheetId: config.sheetId,
-          range: `${ministerioTab}!A${rowIndex}:R${rowIndex}`,
+          range: `${ministerioTab}!A${rowIndex}:S${rowIndex}`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [rowData]
@@ -816,7 +819,7 @@ export class SyncService {
         // Insertar nueva fila al final
         await sheets.spreadsheets.values.append({
           spreadsheetId: config.sheetId,
-          range: `${ministerioTab}!A:R`,
+          range: `${ministerioTab}!A:S`,
           valueInputOption: 'RAW',
           insertDataOption: 'INSERT_ROWS',
           requestBody: {
