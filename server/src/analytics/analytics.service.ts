@@ -153,7 +153,7 @@ export class AnalyticsService {
     // Procesar datos para el gráfico
     const periodos = sheetData.map(row => row.periodo);
     const valores = sheetData.map(row => row.valor);
-    const metas = sheetData.map(row => row.meta).filter(m => m !== null && m !== undefined);
+    const metas = sheetData.map(row => row.meta); // Mantener null para períodos sin meta
 
     // Configurar gráfico según tipo
     const configuracion = this.configurarGrafico(tipo, indicador);
@@ -166,7 +166,7 @@ export class AnalyticsService {
       datos: {
         periodos,
         valores,
-        metas: metas.length > 0 ? metas : undefined,
+        metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
       },
       configuracion,
     };
