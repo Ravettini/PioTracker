@@ -142,6 +142,10 @@ export const apiClient = {
       const response = await api.get('/cargas/stats');
       return response.data;
     },
+    getStatsFromSheets: async () => {
+      const response = await api.get('/cargas/stats/sheets');
+      return response.data;
+    },
     getById: async (id: string) => {
       const response = await api.get(`/cargas/${id}`);
       return response.data;

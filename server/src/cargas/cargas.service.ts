@@ -1,6 +1,7 @@
 import { Injectable, BadRequestException, NotFoundException, ForbiddenException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, FindOptionsWhere } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 
 import { Carga, EstadoCarga } from '../db/entities/carga.entity';
 import { Usuario } from '../db/entities/usuario.entity';
@@ -22,6 +23,7 @@ export class CargasService {
     @InjectRepository(Indicador)
     private indicadorRepository: Repository<Indicador>,
     private syncService: SyncService,
+    private configService: ConfigService,
   ) {}
 
   async create(createCargaDto: CreateCargaDto, userId: string): Promise<Carga> {
@@ -334,6 +336,142 @@ export class CargasService {
     } catch (error) {
       this.logger.error(`❌ Error obteniendo estadísticas:`, error);
       throw new BadRequestException('Error al obtener estadísticas del dashboard');
+    }
+  }
+
+  async getDashboardStatsFromGoogleSheets(userId: string, userRol: string, userMinisterioId: string): Promise<any> {
+    this.logger.log(`📊 Obteniendo estadísticas del dashboard desde Google Sheets para usuario ${userId} (rol: ${userRol})`);
+
+    try {
+      // Verificar configuración de Google Sheets
+      const config = this.configService.get('google');
+      if (!config.sheetId || !config.refreshToken) {
+        this.logger.warn('⚠️ Configuración de Google Sheets incompleta. Usando base de datos local.');
+        return this.getDashboardStats(userId, userRol, userMinisterioId);
+      }
+
+      // Obtener datos de Google Sheets
+      const sheetData = await this.getDataFromGoogleSheets(userId, userRol, userMinisterioId);
+      
+      // Calcular estadísticas
+      const totalCargas = sheetData.length;
+      const cargasPendientes = sheetData.filter(row => row.estado === 'pendiente').length;
+      const cargasValidadas = sheetData.filter(row => row.estado === 'validado').length;
+      const cargasObservadas = sheetData.filter(row => row.estado === 'observado').length;
+      const cargasRechazadas = sheetData.filter(row => row.estado === 'rechazado').length;
+      const cargasPublicadas = sheetData.filter(row => row.publicado === true).length;
+
+      const stats = {
+        totalCargas,
+        cargasPendientes,
+        cargasValidadas,
+        cargasObservadas,
+        cargasRechazadas,
+        cargasPublicadas,
+        source: 'google-sheets'
+      };
+
+      this.logger.log(`📊 Estadísticas obtenidas desde Google Sheets:`, stats);
+      return stats;
+    } catch (error) {
+      this.logger.error(`❌ Error obteniendo estadísticas desde Google Sheets:`, error);
+      this.logger.warn('⚠️ Fallback a base de datos local debido a error en Google Sheets');
+      return this.getDashboardStats(userId, userRol, userMinisterioId);
+    }
+  }
+
+  private async getDataFromGoogleSheets(userId: string, userRol: string, userMinisterioId: string): Promise<any[]> {
+    try {
+      this.logger.log(`📊 Leyendo datos de Google Sheets para estadísticas del dashboard`);
+      
+      // Crear cliente de Google Sheets
+      const { google } = require('googleapis');
+      const config = this.configService.get('google');
+      
+      const oauth2Client = new google.auth.OAuth2(
+        config.oauth.clientId,
+        config.oauth.clientSecret,
+        config.oauth.authUri
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token: config.refreshToken
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      
+      // Obtener todas las hojas del spreadsheet
+      const spreadsheet = await sheets.spreadsheets.get({
+        spreadsheetId: config.sheetId,
+      });
+      
+      const sheetNames = spreadsheet.data.sheets.map(sheet => sheet.properties.title);
+      this.logger.log(`📋 Hojas encontradas: ${sheetNames.join(', ')}`);
+      
+      let allData = [];
+      
+      // Leer datos de todas las hojas de ministerios
+      for (const sheetName of sheetNames) {
+        if (sheetName.includes('Ministerio') || sheetName.includes('Educacion') || sheetName.includes('Salud') || sheetName.includes('Justicia')) {
+          this.logger.log(`🏛️ Leyendo datos de hoja: ${sheetName}`);
+          
+          try {
+            const range = `${sheetName}!A:P`;
+            const response = await sheets.spreadsheets.values.get({
+              spreadsheetId: config.sheetId,
+              range: range,
+            });
+            
+            const rows = response.data.values || [];
+            if (rows.length <= 1) continue; // Saltar si no hay datos
+            
+            const headers = rows[0];
+            
+            // Procesar filas de datos
+            for (let i = 1; i < rows.length; i++) {
+              const row = rows[i];
+              if (row.length < 8) continue; // Asegurar que la fila tenga suficientes columnas
+              
+              // Filtrar por ministerio del usuario si no es admin
+              if (userRol !== 'ADMIN') {
+                const ministerioEnRow = row[5]; // Columna F: Ministerio
+                if (ministerioEnRow !== userMinisterioId) continue;
+              }
+              
+              const estado = row[12] || 'pendiente'; // Columna M: Estado
+              const publicado = row[13] === 'Sí'; // Columna N: Publicado
+              const periodo = row[2]; // Columna C: Período
+              
+              // Filtrar solo cargas de 2024 para el dashboard
+              if (periodo !== '2024') continue;
+              
+              allData.push({
+                estado,
+                publicado,
+                periodo,
+                ministerio: row[5],
+                indicador: row[1],
+                valor: row[7],
+                meta: row[9],
+                fuente: row[10] || 'Google Sheets',
+                responsable: row[11] || 'Sistema',
+                creadoEn: row[14] ? new Date(row[14]) : new Date(),
+                actualizadoEn: row[15] ? new Date(row[15]) : new Date(),
+              });
+            }
+          } catch (sheetError) {
+            this.logger.warn(`⚠️ Error leyendo hoja ${sheetName}: ${sheetError.message}`);
+            continue;
+          }
+        }
+      }
+      
+      this.logger.log(`✅ Encontrados ${allData.length} registros en Google Sheets para estadísticas del dashboard`);
+      return allData;
+      
+    } catch (error) {
+      this.logger.error(`❌ Error leyendo datos de Google Sheets: ${error.message}`);
+      throw error;
     }
   }
 

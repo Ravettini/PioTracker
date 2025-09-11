@@ -39,14 +39,31 @@ export default function DashboardPage() {
 
   const loadDashboardData = async () => {
     try {
-      console.log('🔄 Cargando datos del dashboard...');
+      console.log('🔄 Cargando datos del dashboard desde Google Sheets...');
       setIsLoading(true);
       
+      // Intentar primero obtener datos de Google Sheets
+      try {
+        const response = await apiClient.cargas.getStatsFromSheets();
+        console.log('📊 Respuesta de stats desde Google Sheets:', response);
+        
+        if (response.source === 'google-sheets') {
+          setStats(response);
+          console.log('✅ Estadísticas actualizadas desde Google Sheets:', response);
+          return;
+        }
+      } catch (sheetsError) {
+        console.warn('⚠️ Error obteniendo datos de Google Sheets, usando fallback:', sheetsError);
+      }
+      
+      // Fallback a base de datos local
+      console.log('🔄 Usando datos de base de datos local como fallback...');
       const response = await apiClient.cargas.getStats();
-      console.log('📊 Respuesta de stats:', response);
+      console.log('📊 Respuesta de stats desde BD local:', response);
       
       setStats(response);
-      console.log('✅ Estadísticas actualizadas:', response);
+      console.log('✅ Estadísticas actualizadas desde BD local:', response);
+      
     } catch (error) {
       console.error('❌ Error cargando stats:', error);
       toast.error('Error al cargar las estadísticas del dashboard');

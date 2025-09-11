@@ -1,6 +1,6 @@
 import { Injectable, Logger, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, In } from 'typeorm';
+import { Repository, In, Not, IsNull } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import * as XLSX from 'xlsx';
 import { Ministerio } from '../db/entities/ministerio.entity';
@@ -356,9 +356,8 @@ export class AnalyticsService {
       this.cargaRepository.count({ where: { ...whereConditions, estado: 'pendiente' } }),
     ]);
 
-    const porcentajeCumplimiento = cargasValidadas > 0 
-      ? Math.round((cargasValidadas / (cargasValidadas + cargasPendientes)) * 100)
-      : 0;
+    // Calcular cumplimiento basado en metas cumplidas
+    const porcentajeCumplimiento = await this.calcularCumplimientoBasadoEnMetas(user);
 
     return {
       totalMinisterios,
@@ -368,6 +367,80 @@ export class AnalyticsService {
       cargasPendientes,
       porcentajeCumplimiento,
     };
+  }
+
+  private async calcularCumplimientoBasadoEnMetas(user: Usuario): Promise<number> {
+    try {
+      this.logger.log(`🎯 Calculando cumplimiento basado en metas para usuario: ${user.id}`);
+
+      // Obtener todas las cargas con metas del usuario
+      const whereConditions: any = {
+        estado: 'validado', // Solo cargas validadas
+      };
+      
+      if (user.rol !== 'ADMIN') {
+        whereConditions.ministerioId = user.ministerioId;
+      }
+
+      const cargasConMetas = await this.cargaRepository.find({
+        where: {
+          ...whereConditions,
+          meta: Not(IsNull()), // Solo cargas que tienen meta definida
+        },
+        select: ['valor', 'meta'],
+      });
+
+      if (cargasConMetas.length === 0) {
+        this.logger.log('⚠️ No hay cargas con metas definidas, usando cálculo tradicional');
+        // Fallback al cálculo tradicional si no hay metas
+        const cargasValidadas = await this.cargaRepository.count({ 
+          where: { ...whereConditions, estado: 'validado' } 
+        });
+        const cargasPendientes = await this.cargaRepository.count({ 
+          where: { ...whereConditions, estado: 'pendiente' } 
+        });
+        
+        return cargasValidadas > 0 
+          ? Math.round((cargasValidadas / (cargasValidadas + cargasPendientes)) * 100)
+          : 0;
+      }
+
+      // Calcular cuántas metas se cumplieron
+      let metasCumplidas = 0;
+      let totalMetas = cargasConMetas.length;
+
+      for (const carga of cargasConMetas) {
+        if (carga.valor >= carga.meta) {
+          metasCumplidas++;
+        }
+      }
+
+      const porcentajeCumplimiento = Math.round((metasCumplidas / totalMetas) * 100);
+      
+      this.logger.log(`🎯 Cumplimiento calculado: ${metasCumplidas}/${totalMetas} metas cumplidas = ${porcentajeCumplimiento}%`);
+      
+      return porcentajeCumplimiento;
+
+    } catch (error) {
+      this.logger.error(`❌ Error calculando cumplimiento basado en metas:`, error);
+      
+      // Fallback al cálculo tradicional en caso de error
+      const whereConditions: any = {};
+      if (user.rol !== 'ADMIN') {
+        whereConditions.ministerioId = user.ministerioId;
+      }
+
+      const cargasValidadas = await this.cargaRepository.count({ 
+        where: { ...whereConditions, estado: 'validado' } 
+      });
+      const cargasPendientes = await this.cargaRepository.count({ 
+        where: { ...whereConditions, estado: 'pendiente' } 
+      });
+      
+      return cargasValidadas > 0 
+        ? Math.round((cargasValidadas / (cargasValidadas + cargasPendientes)) * 100)
+        : 0;
+    }
   }
 
   private determinarTipoIndicador(nombre: string): 'porcentaje' | 'cantidad' {

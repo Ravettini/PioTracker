@@ -69,6 +69,15 @@ export class CargasController {
     );
   }
 
+  @Get('stats/sheets')
+  async getDashboardStatsFromSheets(@CurrentUser() user: Usuario) {
+    return await this.cargasService.getDashboardStatsFromGoogleSheets(
+      user.id,
+      user.rol,
+      user.ministerioId,
+    );
+  }
+
   @Get(':id')
   async findOne(
     @Param('id') id: string,
