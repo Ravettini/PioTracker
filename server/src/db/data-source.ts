@@ -14,7 +14,7 @@ const getDatabaseConfig = () => {
     const url = new URL(process.env.DATABASE_URL);
     return {
       host: url.hostname,
-      port: parseInt(url.port),
+      port: parseInt(url.port) || 5432,
       username: url.username,
       password: url.password,
       database: url.pathname.substring(1), // Remover el '/' inicial
