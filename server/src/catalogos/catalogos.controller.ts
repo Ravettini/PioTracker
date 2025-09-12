@@ -5,6 +5,7 @@ import { Ministerio } from '../db/entities/ministerio.entity';
 import { Indicador } from '../db/entities/indicador.entity';
 import { CreateLineaDto } from './dto/create-linea.dto';
 import { CreateIndicadorDto, Periodicidad } from './dto/create-indicador.dto';
+import { CreateMinisterioDto } from './dto/create-ministerio.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
@@ -23,6 +24,45 @@ export class CatalogosController {
   @Get('ministerios')
   async getMinisterios() {
     return await this.catalogosService.getMinisterios();
+  }
+
+  @Post('ministerios')
+  async createMinisterio(@Body() createMinisterioDto: CreateMinisterioDto) {
+    try {
+      // Generar ID único para el ministerio
+      const ministerioId = this.generateShortId(createMinisterioDto.nombre);
+      
+      // Verificar que el ID no exista
+      const existingMinisterio = await this.ministerioRepository.findOne({
+        where: { id: ministerioId }
+      });
+
+      if (existingMinisterio) {
+        // Si existe, generar un ID único
+        const uniqueId = `${ministerioId}_${Date.now()}`;
+        createMinisterioDto['id'] = uniqueId;
+      } else {
+        createMinisterioDto['id'] = ministerioId;
+      }
+
+      const ministerio = this.ministerioRepository.create({
+        ...createMinisterioDto,
+        activo: true
+      });
+
+      const savedMinisterio = await this.ministerioRepository.save(ministerio);
+
+      this.logger.log(`Nuevo ministerio creado: ${savedMinisterio.nombre}`);
+
+      return {
+        success: true,
+        data: savedMinisterio,
+        message: 'Ministerio creado exitosamente'
+      };
+    } catch (error) {
+      this.logger.error('Error creando ministerio:', error);
+      throw new InternalServerErrorException('Error creando ministerio');
+    }
   }
 
   @Get('lineas')

@@ -17,6 +17,7 @@ import { SyncModule } from './sync/sync.module';
 import { AuditModule } from './audit/audit.module';
 import { DatabaseModule } from './db/database.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { MetasMensualesModule } from './metas-mensuales/metas-mensuales.module';
 
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
@@ -48,6 +49,7 @@ import { AuditInterceptor } from './audit/interceptors/audit.interceptor';
     SyncModule,
     AuditModule,
     AnalyticsModule,
+    MetasMensualesModule,
   ],
   
   controllers: [AppController],

@@ -14,6 +14,7 @@ import {
   User,
   Database,
   Settings2,
+  Plus,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -83,6 +84,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             href: '/gestion',
             icon: Settings2,
             current: pathname === '/gestion',
+          },
+          {
+            name: 'Creación',
+            href: '/creacion',
+            icon: Plus,
+            current: pathname === '/creacion',
           },
           {
             name: 'Sincronización',

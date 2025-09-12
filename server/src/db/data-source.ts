@@ -5,6 +5,7 @@ import { Linea } from './entities/linea.entity';
 import { Indicador } from './entities/indicador.entity';
 import { Carga } from './entities/carga.entity';
 import { Auditoria } from './entities/auditoria.entity';
+import { MetaMensual } from './entities/meta-mensual.entity';
 
 // Configuración para migraciones usando variables de entorno
 // Render usa DATABASE_URL o variables específicas
@@ -46,7 +47,7 @@ export const AppDataSource = new DataSource({
   ...dbConfig,
   synchronize: false,
   logging: false,
-  entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria],
+        entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria, MetaMensual],
   migrations: ['src/db/migrations/*.ts'],
   subscribers: [],
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
