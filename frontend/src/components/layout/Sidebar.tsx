@@ -13,6 +13,7 @@ import {
   TrendingUp,
   User,
   Database,
+  Settings2,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -76,6 +77,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             href: '/admin/usuarios',
             icon: Users,
             current: pathname === '/admin/usuarios',
+          },
+          {
+            name: 'Gestión',
+            href: '/gestion',
+            icon: Settings2,
+            current: pathname === '/gestion',
           },
           {
             name: 'Sincronización',

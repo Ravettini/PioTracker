@@ -69,6 +69,7 @@ export class CargasService {
     // Crear la carga - va directo a PENDIENTE para revisión
     const carga = this.cargaRepository.create({
       ...createCargaDto,
+      meta: createCargaDto.meta || null, // Asegurar que meta sea null si es undefined
       periodicidad: indicador.periodicidad,
       estado: EstadoCarga.PENDIENTE, // Cambio: va directo a PENDIENTE
       creadoPor: userId,
@@ -170,6 +171,10 @@ export class CargasService {
     }
 
     Object.assign(carga, updateCargaDto);
+    // Asegurar que meta sea null si es undefined
+    if (updateCargaDto.meta !== undefined) {
+      carga.meta = updateCargaDto.meta || null;
+    }
     carga.actualizadoPor = userId;
     carga.actualizadoEn = new Date();
 
