@@ -763,25 +763,25 @@ export class SyncService {
       
       // Preparar datos para la fila con estructura correcta
       const rowData = [
-        data.indicadorId || '',           // Indicador ID
-        data.indicador,                   // Indicador Nombre
-        data.periodo,                     // Período
-        data.ministerioId || '',          // Ministerio ID
-        data.ministerio,                  // Ministerio Nombre
-        data.lineaId || '',               // Línea ID
-        data.linea,                       // Línea Título
-        data.valor,                       // Valor
-        data.unidad,                      // Unidad
-        data.meta || '',                  // Meta
-        data.fuente,                      // Fuente
-        data.responsableNombre || '',     // Responsable Nombre
-        data.responsableEmail || '',      // Responsable Email
-        data.observaciones || '',         // Observaciones
-        'validado',                       // Estado
-        'Sí',                             // Publicado
-        new Date().toISOString(),         // Creado En
-        new Date().toISOString(),         // Actualizado En
-        data.mes                           // Mes
+        data.indicadorId || '',           // A - Indicador ID
+        data.indicador,                   // B - Indicador Nombre
+        data.periodo,                     // C - Período
+        data.mes,                         // D - Mes
+        data.ministerioId || '',          // E - Ministerio ID
+        data.ministerio,                  // F - Ministerio Nombre
+        data.lineaId || '',               // G - Línea ID
+        data.linea,                       // H - Línea Título
+        data.valor,                       // I - Valor
+        data.unidad,                      // J - Unidad
+        data.meta || '',                  // K - Meta
+        data.fuente,                      // L - Fuente
+        data.responsableNombre || '',     // M - Responsable Nombre
+        data.responsableEmail || '',      // N - Responsable Email
+        data.observaciones || '',         // O - Observaciones
+        'validado',                       // P - Estado
+        'Sí',                             // Q - Publicado
+        new Date().toISOString(),         // R - Creado En
+        new Date().toISOString()          // S - Actualizado En
       ];
       
       // Buscar si ya existe una fila con el mismo indicador/periodo en la hoja del ministerio
