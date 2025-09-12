@@ -8,6 +8,7 @@ import { Linea } from './entities/linea.entity';
 import { Indicador } from './entities/indicador.entity';
 import { Carga } from './entities/carga.entity';
 import { Auditoria } from './entities/auditoria.entity';
+import { MetaMensual } from './entities/meta-mensual.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { Auditoria } from './entities/auditoria.entity';
           return {
             type: 'postgres',
             url: databaseUrl,
-            entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria],
+            entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria, MetaMensual],
             synchronize: false,
             logging: configService.get('NODE_ENV') === 'development',
             ssl: {
@@ -37,7 +38,7 @@ import { Auditoria } from './entities/auditoria.entity';
             username: configService.get('DB_USERNAME') || 'postgres',
             password: configService.get('DB_PASSWORD') || 'postgres',
             database: configService.get('DB_DATABASE') || 'pio',
-            entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria],
+            entities: [Usuario, Ministerio, Linea, Indicador, Carga, Auditoria, MetaMensual],
             synchronize: false,
             logging: configService.get('NODE_ENV') === 'development',
             ssl: false,
@@ -58,6 +59,7 @@ import { Auditoria } from './entities/auditoria.entity';
       Indicador,
       Carga,
       Auditoria,
+      MetaMensual,
     ]),
   ],
   exports: [TypeOrmModule],

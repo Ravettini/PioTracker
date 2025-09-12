@@ -116,48 +116,51 @@ async function bootstrap() {
   // Configuración de seguridad
   app.use(helmet());
   
-  // CORS - Configuración para múltiples orígenes
-  const allowedOrigins = configService.get('cors.origin')
-    ? configService.get('cors.origin').split(',').map((o: string) => o.trim())
-    : ['http://localhost:3000', 'https://pio-tracker-frontend.vercel.app'];
-
-  console.log(`🌐 CORS configurado para orígenes: ${allowedOrigins.join(', ')}`);
-
-  // CORS DEFINITIVO
+  // CORS - Configuración simplificada y robusta
+  console.log('🌐 Configurando CORS...');
+  
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'https://pio-tracker-frontend.vercel.app',
-      'https://pio-tracker-frontend-n599d446t-nachos-projects-e0e5a719.vercel.app',
-      'https://pio-tracker-frontend-jgncbqqhy-nachos-projects-e0e5a719.vercel.app',
-      /^https:\/\/pio-tracker-frontend.*\.vercel\.app$/
-    ],
+    origin: (origin, callback) => {
+      // Permitir requests sin origin (ej: Postman, mobile apps)
+      if (!origin) return callback(null, true);
+      
+      const allowedOrigins = [
+        'http://localhost:3000',
+        'https://pio-tracker-frontend.vercel.app',
+        'https://pio-tracker-frontend-n599d446t-nachos-projects-e0e5a719.vercel.app',
+        'https://pio-tracker-frontend-jgncbqqhy-nachos-projects-e0e5a719.vercel.app'
+      ];
+      
+      // Permitir cualquier subdominio de vercel.app que contenga pio-tracker-frontend
+      if (origin.includes('pio-tracker-frontend') && origin.includes('vercel.app')) {
+        return callback(null, true);
+      }
+      
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      
+      console.log(`❌ CORS bloqueado para origen: ${origin}`);
+      return callback(new Error('No permitido por CORS'), false);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With'],
+    allowedHeaders: [
+      'Content-Type', 
+      'Authorization', 
+      'X-CSRF-Token', 
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers'
+    ],
+    exposedHeaders: ['Content-Range', 'X-Content-Range'],
     preflightContinue: false,
     optionsSuccessStatus: 200
   });
 
-  // Middleware CORS adicional
-  app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (origin && (
-      origin.includes('pio-tracker-frontend') || 
-      origin.includes('localhost:3000')
-    )) {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
-      res.header('Access-Control-Allow-Credentials', 'true');
-    }
-    
-    if (req.method === 'OPTIONS') {
-      res.status(200).end();
-      return;
-    }
-    next();
-  });
+  console.log('✅ CORS configurado exitosamente');
 
   // Middleware
   app.use(cookieParser());
