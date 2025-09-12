@@ -766,7 +766,6 @@ export class SyncService {
         data.indicadorId || '',           // Indicador ID
         data.indicador,                   // Indicador Nombre
         data.periodo,                     // Período
-        data.mes,                         // Mes
         data.ministerioId || '',          // Ministerio ID
         data.ministerio,                  // Ministerio Nombre
         data.lineaId || '',               // Línea ID
@@ -781,7 +780,8 @@ export class SyncService {
         'validado',                       // Estado
         'Sí',                             // Publicado
         new Date().toISOString(),         // Creado En
-        new Date().toISOString()          // Actualizado En
+        new Date().toISOString(),         // Actualizado En
+        data.mes                           // Mes
       ];
       
       // Buscar si ya existe una fila con el mismo indicador/periodo en la hoja del ministerio

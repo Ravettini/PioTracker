@@ -217,14 +217,6 @@ export default function RevisionPage() {
     });
   };
 
-  // Función de prueba para cerrar modal
-  const testCloseModal = () => {
-    console.log('🧪 Probando cierre de modal...');
-    setShowRevisionModal(false);
-    setSelectedCarga(null);
-    setRevisionData({ estado: 'validado', observaciones: '' });
-    console.log('✅ Modal cerrado por prueba');
-  };
 
   const getPeriodoDisplay = (periodo: string, periodicidad: string) => {
     switch (periodicidad) {
@@ -550,13 +542,6 @@ export default function RevisionPage() {
                 )}
 
                 <div className="flex justify-end space-x-3 pt-4">
-                  <Button
-                    variant="outline"
-                    onClick={testCloseModal}
-                    disabled={isSubmitting}
-                  >
-                    🧪 Test Cerrar
-                  </Button>
                   <Button
                     variant="outline"
                     onClick={closeRevisionModal}
