@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && npm run orm:migrate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -29,7 +29,8 @@
     "db:reset": "npm run orm:revert",
     "migrate:prod": "node migrate.js",
     "run-migrations": "node run-migrations.js",
-    "create-admin": "node create-admin.js"
+    "create-admin": "node create-admin.js",
+    "deploy:render": "node deploy-render.js"
   },
   "dependencies": {
     "@nestjs/class-validator": "^0.13.4",
