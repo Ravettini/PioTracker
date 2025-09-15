@@ -353,8 +353,19 @@ export class AnalyticsService {
           this.logger.log(`📋 Fila ${i}: IndicadorID="${row[0]}", Mes="${row[3]}", Valor="${row[8]}"`);
         }
         
-        // Filtrar por indicador ID (columna A)
-        if (row[0] === indicadorId) {
+        // Filtrar por indicador ID (columna A) o por nombre del indicador (columna B)
+        const indicadorIdEnRow = row[0];
+        const indicadorNombreEnRow = row[1];
+        
+        // Buscar por ID exacto o por nombre del indicador
+        const coincidePorId = indicadorIdEnRow === indicadorId;
+        const coincidePorNombre = indicadorNombreEnRow && indicador.nombre && 
+                                 indicadorNombreEnRow.toLowerCase().includes(indicador.nombre.toLowerCase());
+        
+        if (coincidePorId || coincidePorNombre) {
+          const tipoCoincidencia = coincidePorId ? 'ID' : 'NOMBRE';
+          this.logger.log(`✅ Coincidencia por ${tipoCoincidencia}: "${indicadorIdEnRow}" -> "${indicadorNombreEnRow}"`);
+          
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
