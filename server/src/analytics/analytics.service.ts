@@ -197,9 +197,13 @@ export class AnalyticsService {
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
+    this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
+    
     // Agrupar por mes normalizado y sumar valores
     const agrupado = sheetData.reduce((acc, row) => {
       const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
+      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
+      
       if (!acc[mesNormalizado]) {
         acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
       }
@@ -207,6 +211,8 @@ export class AnalyticsService {
       acc[mesNormalizado].count += 1;
       return acc;
     }, {});
+
+    this.logger.log(`📊 Datos agrupados:`, Object.keys(agrupado));
 
     // Ordenar meses cronológicamente
     const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
@@ -222,6 +228,8 @@ export class AnalyticsService {
 
     const valores = periodos.map(p => agrupado[p].valor);
     const metas = periodos.map(p => agrupado[p].meta);
+
+    this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
 
     return {
       periodos,
@@ -259,6 +267,7 @@ export class AnalyticsService {
 
     // Si es un mes abreviado, convertir a completo
     if (mesesAbreviados[mesLower]) {
+      this.logger.log(`🔄 Mes normalizado: "${mes}" -> "${mesesAbreviados[mesLower]}"`);
       return mesesAbreviados[mesLower];
     }
 
@@ -267,6 +276,7 @@ export class AnalyticsService {
                            'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     
     if (mesesCompletos.includes(mesLower)) {
+      this.logger.log(`✅ Mes ya normalizado: "${mes}" -> "${mesLower}"`);
       return mesLower;
     }
 
