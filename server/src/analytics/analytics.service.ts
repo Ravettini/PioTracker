@@ -342,9 +342,16 @@ export class AnalyticsService {
       const datosIndicador = [];
       const headers = rows[0]; // Primera fila son los headers
       
+      this.logger.log(`🔍 Buscando indicador: "${indicadorId}" en ${rows.length - 1} filas`);
+      
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
         if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
+        
+        // Log de cada fila para debug
+        if (i <= 5) { // Solo log de las primeras 5 filas para no saturar
+          this.logger.log(`📋 Fila ${i}: IndicadorID="${row[0]}", Mes="${row[3]}", Valor="${row[8]}"`);
+        }
         
         // Filtrar por indicador ID (columna A)
         if (row[0] === indicadorId) {
@@ -387,6 +394,10 @@ export class AnalyticsService {
       datosIndicador.sort((a, b) => a.periodo.localeCompare(b.periodo));
       
       this.logger.log(`✅ Encontrados ${datosIndicador.length} registros en Google Sheets para indicador ${indicadorId}`);
+      
+      if (datosIndicador.length > 0) {
+        this.logger.log(`📊 Primeros registros encontrados:`, datosIndicador.slice(0, 3).map(d => `Mes=${d.mes}, Valor=${d.valor}`));
+      }
       
       // Si no hay datos en Sheets, usar base de datos local como fallback
       if (datosIndicador.length === 0) {
