@@ -15,7 +15,7 @@ const getApiBaseUrl = () => {
 // Configuración base de Axios
 const api: AxiosInstance = axios.create({
   baseURL: getApiBaseUrl(), 
-  timeout: 60000, // Aumentado a 60 segundos para cold start de Render
+  timeout: 30000, // Reducido a 30 segundos
   headers: {
     'Content-Type': 'application/json',
   },
@@ -59,9 +59,18 @@ export const apiClient = {
       console.log('🌐 URL base del API:', getApiBaseUrl());
       console.log('🔗 URL completa del login:', `${getApiBaseUrl()}/auth/login`);
       
-      // Retry mechanism para cold start de Render
+      // Health check primero para verificar que el servidor esté activo
+      try {
+        console.log('🏥 Verificando estado del servidor...');
+        await api.get('/health', { timeout: 10000 });
+        console.log('✅ Servidor activo');
+      } catch (error) {
+        console.log('⚠️ Servidor puede estar en cold start, continuando con login...');
+      }
+      
+      // Retry mechanism mejorado para cold start de Render
       let lastError;
-      for (let attempt = 1; attempt <= 3; attempt++) {
+      for (let attempt = 1; attempt <= 5; attempt++) {
         try {
           console.log(`🔄 Intento ${attempt} de login...`);
           const response = await api.post('/auth/login', { email, password });
@@ -71,9 +80,10 @@ export const apiClient = {
           lastError = error;
           console.log(`❌ Intento ${attempt} falló:`, error.message);
           
-          if (attempt < 3 && (error.code === 'ECONNABORTED' || error.message.includes('timeout'))) {
-            console.log(`⏳ Esperando 5 segundos antes del siguiente intento...`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
+          if (attempt < 5 && (error.code === 'ECONNABORTED' || error.message.includes('timeout'))) {
+            const waitTime = attempt * 2000; // 2s, 4s, 6s, 8s
+            console.log(`⏳ Esperando ${waitTime/1000} segundos antes del siguiente intento...`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
           }
         }
       }

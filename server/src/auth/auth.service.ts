@@ -20,19 +20,28 @@ export class AuthService {
   ) {}
 
   async validateUser(email: string, password: string): Promise<Usuario> {
+    this.logger.log(`🔍 Validando usuario: ${email}`);
+    const startTime = Date.now();
+    
     const usuario = await this.usuarioRepository.findOne({
       where: { email: email.toLowerCase() },
       relations: ['ministerio'],
     });
+    this.logger.log(`📊 Usuario encontrado en ${Date.now() - startTime}ms`);
 
     if (!usuario || !usuario.activo) {
+      this.logger.warn(`❌ Usuario no encontrado o inactivo: ${email}`);
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
     // Verificar si el usuario está bloqueado
     if (usuario.bloqueadoHasta && usuario.bloqueadoHasta > new Date()) {
+      this.logger.warn(`🚫 Usuario bloqueado: ${email}`);
       throw new UnauthorizedException('Cuenta temporalmente bloqueada');
     }
+
+    this.logger.log(`🔐 Verificando contraseña para: ${email}`);
+    const passwordStartTime = Date.now();
 
     // Verificar contraseña con argon2 o bcrypt (compatibilidad)
     try {
@@ -40,6 +49,7 @@ export class AuthService {
       const argon2 = require('argon2');
       const isPasswordValidArgon2 = await argon2.verify(usuario.hashClave, password);
       if (isPasswordValidArgon2) {
+        this.logger.log(`✅ Contraseña válida (argon2) en ${Date.now() - passwordStartTime}ms`);
         // Resetear intentos fallidos y actualizar último login
         usuario.intentosFallidos = 0;
         usuario.bloqueadoHasta = null;
@@ -48,11 +58,13 @@ export class AuthService {
         return usuario;
       }
     } catch (argon2Error) {
+      this.logger.log(`⚠️ Error con argon2, intentando bcrypt para: ${email}`);
       // Si argon2 falla, intentar con bcrypt
       try {
         const bcrypt = require('bcrypt');
         const isPasswordValidBcrypt = await bcrypt.compare(password, usuario.hashClave);
         if (isPasswordValidBcrypt) {
+          this.logger.log(`✅ Contraseña válida (bcrypt) en ${Date.now() - passwordStartTime}ms`);
           // Resetear intentos fallidos y actualizar último login
           usuario.intentosFallidos = 0;
           usuario.bloqueadoHasta = null;
@@ -65,6 +77,8 @@ export class AuthService {
       }
     }
 
+    this.logger.warn(`❌ Contraseña inválida para: ${email} en ${Date.now() - passwordStartTime}ms`);
+    
     // Si ninguna validación funcionó, incrementar intentos fallidos
     usuario.intentosFallidos += 1;
     
@@ -78,7 +92,11 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto, ip: string, userAgent: string) {
+    this.logger.log(`🔐 Iniciando login para: ${loginDto.email}`);
+    const startTime = Date.now();
+    
     const usuario = await this.validateUser(loginDto.email, loginDto.password);
+    this.logger.log(`✅ Usuario validado en ${Date.now() - startTime}ms`);
     
     const payload: JwtPayload = {
       sub: usuario.id,
@@ -90,6 +108,8 @@ export class AuthService {
 
     const accessToken = this.jwtService.sign(payload);
     const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+
+    this.logger.log(`🎫 Tokens generados en ${Date.now() - startTime}ms total`);
 
     // Registrar auditoría de login
     // TODO: Implementar auditoría
