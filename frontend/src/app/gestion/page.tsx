@@ -455,71 +455,97 @@ export default function GestionPage() {
               <div className="space-y-4">
                 {/* Vista de escritorio */}
                 <div className="hidden lg:block overflow-x-auto">
-                  <table className="w-full min-w-[800px]">
+                  <table className="w-full min-w-[1000px]">
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Indicador</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Ministerio</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Línea</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Unidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Periodicidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Estado</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700">Acciones</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/4">Indicador</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/8">Ministerio</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/4">Línea</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Unidad</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Periodicidad</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Estado</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/6">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredIndicadores.map((indicador) => (
                         <tr key={indicador.id} className="border-b border-gray-100 hover:bg-gray-50">
-                          <td className="py-3 px-4">
-                            <div>
-                              <p className="font-medium text-gray-900">{indicador.nombre}</p>
-                              <p className="text-sm text-gray-500">ID: {indicador.id}</p>
+                          <td className="py-3 px-4 w-1/4">
+                            <div className="max-w-xs">
+                              <p 
+                                className="font-medium text-gray-900 truncate" 
+                                title={indicador.nombre}
+                              >
+                                {indicador.nombre}
+                              </p>
+                              <p 
+                                className="text-sm text-gray-500 truncate" 
+                                title={`ID: ${indicador.id}`}
+                              >
+                                ID: {indicador.id}
+                              </p>
                             </div>
                           </td>
-                          <td className="py-3 px-4">
+                          <td className="py-3 px-4 w-1/8">
                             <div className="flex items-center gap-2">
-                              <Building2 className="h-4 w-4 text-gray-400" />
-                              <span className="text-sm text-gray-700">{indicador.linea.ministerio.nombre}</span>
+                              <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                              <span 
+                                className="text-sm text-gray-700 truncate" 
+                                title={indicador.linea.ministerio.nombre}
+                              >
+                                {indicador.linea.ministerio.nombre}
+                              </span>
                             </div>
                           </td>
-                          <td className="py-3 px-4">
-                            <div className="flex items-center gap-2">
-                              <FileText className="h-4 w-4 text-gray-400" />
-                              <span className="text-sm text-gray-700">{indicador.linea.titulo}</span>
+                          <td className="py-3 px-4 w-1/4">
+                            <div className="max-w-xs">
+                              <div className="flex items-start gap-2">
+                                <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                                <span 
+                                  className="text-sm text-gray-700 truncate" 
+                                  title={indicador.linea.titulo}
+                                >
+                                  {indicador.linea.titulo}
+                                </span>
+                              </div>
                             </div>
                           </td>
-                          <td className="py-3 px-4">
-                            <Badge variant="outline">{indicador.unidadDefecto}</Badge>
+                          <td className="py-3 px-4 w-1/12">
+                            <Badge variant="outline" className="text-xs">
+                              {indicador.unidadDefecto}
+                            </Badge>
                           </td>
-                          <td className="py-3 px-4">
-                            <Badge className={getPeriodicidadColor(indicador.periodicidad)}>
+                          <td className="py-3 px-4 w-1/12">
+                            <Badge className={`${getPeriodicidadColor(indicador.periodicidad)} text-xs`}>
                               {getPeriodicidadDisplay(indicador.periodicidad)}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4">
-                            <Badge variant={indicador.activo ? 'success' : 'secondary'}>
+                          <td className="py-3 px-4 w-1/12">
+                            <Badge variant={indicador.activo ? 'success' : 'secondary'} className="text-xs">
                               {indicador.activo ? 'Activo' : 'Inactivo'}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4">
-                            <div className="flex items-center gap-2">
+                          <td className="py-3 px-4 w-1/6">
+                            <div className="flex items-center gap-1">
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleEdit(indicador)}
-                                className="flex items-center gap-1"
+                                className="flex items-center gap-1 text-xs px-2 py-1"
+                                title="Editar indicador"
                               >
                                 <Edit className="h-3 w-3" />
-                                Editar
+                                <span className="hidden xl:inline">Editar</span>
                               </Button>
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleDelete(indicador)}
-                                className="flex items-center gap-1 text-red-600 hover:text-red-700"
+                                className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                                title="Eliminar indicador"
                               >
                                 <Trash2 className="h-3 w-3" />
-                                Eliminar
+                                <span className="hidden xl:inline">Eliminar</span>
                               </Button>
                             </div>
                           </td>
@@ -535,28 +561,43 @@ export default function GestionPage() {
                     <Card key={indicador.id} className="p-4">
                       <div className="space-y-3">
                         <div>
-                          <h3 className="font-medium text-gray-900">{indicador.nombre}</h3>
-                          <p className="text-sm text-gray-500">ID: {indicador.id}</p>
+                          <h3 
+                            className="font-medium text-gray-900 break-words" 
+                            title={indicador.nombre}
+                          >
+                            {indicador.nombre}
+                          </h3>
+                          <p className="text-sm text-gray-500 break-all">ID: {indicador.id}</p>
                         </div>
                         
                         <div className="grid grid-cols-1 gap-2">
                           <div className="flex items-center gap-2">
-                            <Building2 className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-700">{indicador.linea.ministerio.nombre}</span>
+                            <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                            <span 
+                              className="text-sm text-gray-700 truncate" 
+                              title={indicador.linea.ministerio.nombre}
+                            >
+                              {indicador.linea.ministerio.nombre}
+                            </span>
                           </div>
                           
-                          <div className="flex items-center gap-2">
-                            <FileText className="h-4 w-4 text-gray-400" />
-                            <span className="text-sm text-gray-700">{indicador.linea.titulo}</span>
+                          <div className="flex items-start gap-2">
+                            <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                            <span 
+                              className="text-sm text-gray-700 break-words" 
+                              title={indicador.linea.titulo}
+                            >
+                              {indicador.linea.titulo}
+                            </span>
                           </div>
                         </div>
 
                         <div className="flex flex-wrap gap-2">
-                          <Badge variant="outline">{indicador.unidadDefecto}</Badge>
-                          <Badge className={getPeriodicidadColor(indicador.periodicidad)}>
+                          <Badge variant="outline" className="text-xs">{indicador.unidadDefecto}</Badge>
+                          <Badge className={`${getPeriodicidadColor(indicador.periodicidad)} text-xs`}>
                             {getPeriodicidadDisplay(indicador.periodicidad)}
                           </Badge>
-                          <Badge variant={indicador.activo ? 'success' : 'secondary'}>
+                          <Badge variant={indicador.activo ? 'success' : 'secondary'} className="text-xs">
                             {indicador.activo ? 'Activo' : 'Inactivo'}
                           </Badge>
                         </div>
@@ -566,7 +607,7 @@ export default function GestionPage() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleEdit(indicador)}
-                            className="flex items-center gap-1 flex-1"
+                            className="flex items-center gap-1 flex-1 text-xs"
                           >
                             <Edit className="h-3 w-3" />
                             Editar
@@ -575,7 +616,7 @@ export default function GestionPage() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleDelete(indicador)}
-                            className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1"
+                            className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
                           >
                             <Trash2 className="h-3 w-3" />
                             Eliminar
