@@ -181,7 +181,10 @@ export class AdminService {
       }
     }
     
-    await this.usuarioRepository.remove(usuario);
+    // Usar soft delete en lugar de eliminación física para evitar problemas con relaciones
+    usuario.activo = false;
+    usuario.actualizadoEn = new Date();
+    await this.usuarioRepository.save(usuario);
   }
 
   private generateTemporaryPassword(): string {
