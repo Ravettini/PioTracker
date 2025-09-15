@@ -6,6 +6,10 @@ export class CreateMinisterioDto {
   nombre: string;
 
   @IsString()
+  @IsNotEmpty()
+  sigla: string;
+
+  @IsString()
   @IsOptional()
   descripcion?: string;
 }

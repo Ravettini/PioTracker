@@ -58,6 +58,7 @@ export default function CreacionPage() {
   // Estados para ministerio
   const [ministerioForm, setMinisterioForm] = useState({
     nombre: '',
+    sigla: '',
     descripcion: ''
   });
   
@@ -167,8 +168,8 @@ export default function CreacionPage() {
   const handleCreateMinisterio = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!ministerioForm.nombre.trim()) {
-      toast.error('El nombre del ministerio es requerido');
+    if (!ministerioForm.nombre.trim() || !ministerioForm.sigla.trim()) {
+      toast.error('El nombre y sigla del ministerio son requeridos');
       return;
     }
 
@@ -186,7 +187,7 @@ export default function CreacionPage() {
       if (response.ok) {
         const result = await response.json();
         toast.success('Ministerio creado exitosamente');
-        setMinisterioForm({ nombre: '', descripcion: '' });
+        setMinisterioForm({ nombre: '', sigla: '', descripcion: '' });
         await loadMinisterios();
       } else {
         const error = await response.json();
@@ -360,6 +361,21 @@ export default function CreacionPage() {
                       placeholder="Ej: Ministerio de Salud"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Sigla *
+                    </label>
+                    <input
+                      type="text"
+                      value={ministerioForm.sigla}
+                      onChange={(e) => setMinisterioForm(prev => ({ ...prev, sigla: e.target.value.toUpperCase() }))}
+                      placeholder="Ej: SAL"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                      maxLength={10}
                     />
                   </div>
 

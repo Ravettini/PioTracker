@@ -29,6 +29,11 @@ export class CatalogosController {
   @Post('ministerios')
   async createMinisterio(@Body() createMinisterioDto: CreateMinisterioDto) {
     try {
+      // Generar sigla automáticamente si no se proporciona
+      if (!createMinisterioDto.sigla) {
+        createMinisterioDto.sigla = this.generateSigla(createMinisterioDto.nombre);
+      }
+
       // Generar ID único para el ministerio
       const ministerioId = this.generateShortId(createMinisterioDto.nombre);
       
@@ -188,6 +193,24 @@ export class CatalogosController {
       this.logger.error('Error creando indicador:', error);
       throw new InternalServerErrorException('Error creando indicador');
     }
+  }
+
+  private generateSigla(nombre: string): string {
+    // Remover palabras comunes y generar sigla
+    const palabrasComunes = ['de', 'del', 'la', 'el', 'y', 'en', 'con', 'para', 'por'];
+    const palabras = nombre
+      .toLowerCase()
+      .split(' ')
+      .filter(palabra => palabra.length > 0 && !palabrasComunes.includes(palabra));
+    
+    if (palabras.length === 0) return 'MIN';
+    
+    if (palabras.length === 1) {
+      return palabras[0].substring(0, 3).toUpperCase();
+    }
+    
+    // Tomar las primeras letras de las primeras palabras importantes
+    return palabras.slice(0, 3).map(palabra => palabra.charAt(0)).join('').toUpperCase();
   }
 
   private generateShortId(titulo: string): string {
