@@ -18,11 +18,19 @@ export class CatalogosService {
   ) {}
 
   async getMinisterios(): Promise<Ministerio[]> {
-    return await this.ministerioRepository.find({
-      where: { activo: true },
-      relations: ['lineas', 'lineas.indicadores'],
-      order: { nombre: 'ASC' },
-    });
+    try {
+      console.log('🔍 Obteniendo ministerios...');
+      const ministerios = await this.ministerioRepository.find({
+        where: { activo: true },
+        relations: ['lineas'],
+        order: { nombre: 'ASC' },
+      });
+      console.log(`✅ ${ministerios.length} ministerios encontrados`);
+      return ministerios;
+    } catch (error) {
+      console.error('❌ Error obteniendo ministerios:', error);
+      throw error;
+    }
   }
 
   async getLineas(ministerioId?: string): Promise<Linea[]> {

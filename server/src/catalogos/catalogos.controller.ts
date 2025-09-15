@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Post, Body } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body, Delete, Param } from '@nestjs/common';
 import { CatalogosService } from './catalogos.service';
 import { Linea } from '../db/entities/linea.entity';
 import { Ministerio } from '../db/entities/ministerio.entity';
@@ -210,6 +210,93 @@ export class CatalogosController {
     }
     
     return words.map(word => word.charAt(0)).join('').toUpperCase();
+  }
+
+  @Delete('indicadores/:id')
+  async deleteIndicador(@Param('id') id: string) {
+    try {
+      const indicador = await this.indicadorRepository.findOne({
+        where: { id, activo: true }
+      });
+
+      if (!indicador) {
+        throw new NotFoundException('Indicador no encontrado');
+      }
+
+      // Soft delete - marcar como inactivo
+      await this.indicadorRepository.update(id, { activo: false });
+
+      this.logger.log(`Indicador eliminado: ${indicador.nombre}`);
+
+      return {
+        success: true,
+        message: 'Indicador eliminado exitosamente'
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      this.logger.error('Error eliminando indicador:', error);
+      throw new InternalServerErrorException('Error eliminando indicador');
+    }
+  }
+
+  @Delete('lineas/:id')
+  async deleteLinea(@Param('id') id: string) {
+    try {
+      const linea = await this.lineaRepository.findOne({
+        where: { id, activo: true }
+      });
+
+      if (!linea) {
+        throw new NotFoundException('Línea no encontrada');
+      }
+
+      // Soft delete - marcar como inactivo
+      await this.lineaRepository.update(id, { activo: false });
+
+      this.logger.log(`Línea eliminada: ${linea.titulo}`);
+
+      return {
+        success: true,
+        message: 'Línea eliminada exitosamente'
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      this.logger.error('Error eliminando línea:', error);
+      throw new InternalServerErrorException('Error eliminando línea');
+    }
+  }
+
+  @Delete('ministerios/:id')
+  async deleteMinisterio(@Param('id') id: string) {
+    try {
+      const ministerio = await this.ministerioRepository.findOne({
+        where: { id, activo: true }
+      });
+
+      if (!ministerio) {
+        throw new NotFoundException('Ministerio no encontrado');
+      }
+
+      // Soft delete - marcar como inactivo
+      await this.ministerioRepository.update(id, { activo: false });
+
+      this.logger.log(`Ministerio eliminado: ${ministerio.nombre}`);
+
+      return {
+        success: true,
+        message: 'Ministerio eliminado exitosamente'
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      this.logger.error('Error eliminando ministerio:', error);
+      throw new InternalServerErrorException('Error eliminando ministerio');
+    }
   }
 }
 

@@ -70,6 +70,7 @@ export default function CreacionPage() {
   // Estados para indicador
   const [indicadorForm, setIndicadorForm] = useState({
     nombre: '',
+    ministerioId: '',
     lineaId: '',
     unidadDefecto: '',
     periodicidad: 'mensual',
@@ -80,6 +81,7 @@ export default function CreacionPage() {
   // Datos para selects
   const [ministerios, setMinisterios] = useState<Ministerio[]>([]);
   const [lineas, setLineas] = useState<Linea[]>([]);
+  const [filteredLineas, setFilteredLineas] = useState<Linea[]>([]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -94,6 +96,20 @@ export default function CreacionPage() {
     
     loadData();
   }, [isAuthenticated, isAdmin, router]);
+
+  // Filtrar líneas cuando cambie el ministerio seleccionado
+  useEffect(() => {
+    if (indicadorForm.ministerioId) {
+      const filtered = lineas.filter(linea => linea.ministerioId === indicadorForm.ministerioId);
+      setFilteredLineas(filtered);
+      // Limpiar línea seleccionada si no pertenece al ministerio
+      if (indicadorForm.lineaId && !filtered.find(l => l.id === indicadorForm.lineaId)) {
+        setIndicadorForm(prev => ({ ...prev, lineaId: '' }));
+      }
+    } else {
+      setFilteredLineas(lineas);
+    }
+  }, [indicadorForm.ministerioId, lineas]);
 
   const loadData = async () => {
     setIsLoading(true);
@@ -223,8 +239,8 @@ export default function CreacionPage() {
   const handleCreateIndicador = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!indicadorForm.nombre.trim() || !indicadorForm.lineaId) {
-      toast.error('El nombre y línea son requeridos');
+    if (!indicadorForm.nombre.trim() || !indicadorForm.ministerioId || !indicadorForm.lineaId) {
+      toast.error('El nombre, ministerio y línea son requeridos');
       return;
     }
 
@@ -244,6 +260,7 @@ export default function CreacionPage() {
         toast.success('Indicador creado exitosamente');
         setIndicadorForm({
           nombre: '',
+          ministerioId: '',
           lineaId: '',
           unidadDefecto: '',
           periodicidad: 'mensual',
@@ -448,6 +465,29 @@ export default function CreacionPage() {
                 <form onSubmit={handleCreateIndicador} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Ministerio *
+                    </label>
+                    <select
+                      value={indicadorForm.ministerioId}
+                      onChange={(e) => setIndicadorForm(prev => ({ 
+                        ...prev, 
+                        ministerioId: e.target.value,
+                        lineaId: '' // Limpiar línea cuando cambie ministerio
+                      }))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    >
+                      <option value="">Selecciona un ministerio</option>
+                      {ministerios.map((ministerio) => (
+                        <option key={ministerio.id} value={ministerio.id}>
+                          {ministerio.nombre}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Línea de Compromiso *
                     </label>
                     <select
@@ -455,11 +495,14 @@ export default function CreacionPage() {
                       onChange={(e) => setIndicadorForm(prev => ({ ...prev, lineaId: e.target.value }))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
+                      disabled={!indicadorForm.ministerioId}
                     >
-                      <option value="">Selecciona una línea</option>
-                      {lineas.map((linea) => (
+                      <option value="">
+                        {indicadorForm.ministerioId ? 'Selecciona una línea' : 'Primero selecciona un ministerio'}
+                      </option>
+                      {filteredLineas.map((linea) => (
                         <option key={linea.id} value={linea.id}>
-                          {linea.titulo} - {linea.ministerio.nombre}
+                          {linea.titulo}
                         </option>
                       ))}
                     </select>
