@@ -271,11 +271,11 @@ export default function CreacionPage() {
       <div>
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
             <Button
               variant="outline"
               onClick={() => router.push('/gestion')}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 w-full sm:w-auto"
             >
               <ArrowLeft className="h-4 w-4" />
               Volver a Gestión
@@ -292,7 +292,7 @@ export default function CreacionPage() {
         {/* Tabs */}
         <div className="mb-6">
           <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
+            <nav className="-mb-px flex flex-wrap sm:flex-nowrap space-x-2 sm:space-x-8">
               {[
                 { id: 'ministerio', name: 'Ministerio', icon: Building2 },
                 { id: 'linea', name: 'Línea', icon: FileText },
@@ -303,14 +303,15 @@ export default function CreacionPage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`flex items-center gap-2 py-2 px-1 border-b-2 font-medium text-sm ${
+                    className={`flex items-center gap-1 sm:gap-2 py-2 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
                       activeTab === tab.id
                         ? 'border-blue-500 text-blue-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
-                    {tab.name}
+                    <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
+                    <span className="hidden xs:inline">{tab.name}</span>
+                    <span className="xs:hidden">{tab.name.charAt(0)}</span>
                   </button>
                 );
               })}
@@ -358,12 +359,12 @@ export default function CreacionPage() {
                     />
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex flex-col sm:flex-row justify-end gap-3">
                     <Button
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 w-full sm:w-auto"
                     >
                       <Save className="h-4 w-4" />
                       Crear Ministerio
@@ -418,12 +419,12 @@ export default function CreacionPage() {
                     />
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex flex-col sm:flex-row justify-end gap-3">
                     <Button
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 w-full sm:w-auto"
                     >
                       <Save className="h-4 w-4" />
                       Crear Línea
@@ -478,7 +479,7 @@ export default function CreacionPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Unidad por Defecto
@@ -535,12 +536,12 @@ export default function CreacionPage() {
                     />
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex flex-col sm:flex-row justify-end gap-3">
                     <Button
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 w-full sm:w-auto"
                     >
                       <Save className="h-4 w-4" />
                       Crear Indicador
@@ -553,7 +554,7 @@ export default function CreacionPage() {
         </div>
 
         {/* Estadísticas rápidas */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center">
