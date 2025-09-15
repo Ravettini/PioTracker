@@ -270,8 +270,8 @@ export class AnalyticsService {
       const ministerioTab = this.generateMinisterioTabName(indicador.linea.ministerio.nombre);
       this.logger.log(`🏛️ Leyendo datos de hoja: ${ministerioTab}`);
       
-      // Leer datos de la hoja del ministerio
-      const range = `${ministerioTab}!A:P`;
+      // Leer datos de la hoja del ministerio (nueva estructura con más columnas)
+      const range = `${ministerioTab}!A:S`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: range,
@@ -289,21 +289,21 @@ export class AnalyticsService {
       
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
-        if (row.length < 8) continue; // Asegurar que la fila tenga suficientes columnas
+        if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
         
         // Filtrar por indicador ID (columna A)
         if (row[0] === indicadorId) {
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
-          const valor = parseFloat(row[7]) || 0; // Columna H: Valor
-          const meta = row[9] && row[9].trim() !== '' ? parseFloat(row[9]) : null; // Columna J: Meta (solo si no está vacía)
-          const unidad = row[8] || 'unidades'; // Columna I: Unidad
-          const fuente = row[10] || 'Google Sheets'; // Columna K: Fuente
-          const responsableNombre = row[11] || 'Sistema'; // Columna L: Responsable
-          const estado = row[12] || 'validado'; // Columna M: Estado
-          const publicado = row[13] === 'Sí'; // Columna N: Publicado
-          const creadoEn = row[14] ? new Date(row[14]) : new Date(); // Columna O: Creado En
-          const actualizadoEn = row[15] ? new Date(row[15]) : new Date(); // Columna P: Actualizado En
+          const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
+          const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : null; // Columna K: Meta (nueva posición)
+          const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
+          const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
+          const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
+          const estado = row[15] || 'validado'; // Columna P: Estado (nueva posición)
+          const publicado = row[16] === 'Sí'; // Columna Q: Publicado (nueva posición)
+          const creadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Creado En (nueva posición)
+          const actualizadoEn = row[18] ? new Date(row[18]) : new Date(); // Columna S: Actualizado En (nueva posición)
           
           // Aplicar filtros de período si se especifican
           if (periodoDesde && periodo < periodoDesde) continue;

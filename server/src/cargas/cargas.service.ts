@@ -422,7 +422,7 @@ export class CargasService {
           this.logger.log(`🏛️ Leyendo datos de hoja: ${sheetName}`);
           
           try {
-            const range = `${sheetName}!A:P`;
+            const range = `${sheetName}!A:S`;
             const response = await sheets.spreadsheets.values.get({
               spreadsheetId: config.sheetId,
               range: range,
@@ -436,16 +436,16 @@ export class CargasService {
             // Procesar filas de datos
             for (let i = 1; i < rows.length; i++) {
               const row = rows[i];
-              if (row.length < 8) continue; // Asegurar que la fila tenga suficientes columnas
+              if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
               
               // Filtrar por ministerio del usuario si no es admin
               if (userRol !== 'ADMIN') {
-                const ministerioEnRow = row[5]; // Columna F: Ministerio
+                const ministerioEnRow = row[4]; // Columna E: Ministerio ID (nueva posición)
                 if (ministerioEnRow !== userMinisterioId) continue;
               }
               
-              const estado = row[12] || 'pendiente'; // Columna M: Estado
-              const publicado = row[13] === 'Sí'; // Columna N: Publicado
+              const estado = row[15] || 'pendiente'; // Columna P: Estado (nueva posición)
+              const publicado = row[16] === 'Sí'; // Columna Q: Publicado (nueva posición)
               const periodo = row[2]; // Columna C: Período
               
               // Filtrar solo cargas de 2024 para el dashboard
@@ -455,14 +455,14 @@ export class CargasService {
                 estado,
                 publicado,
                 periodo,
-                ministerio: row[5],
-                indicador: row[1],
-                valor: row[7],
-                meta: row[9],
-                fuente: row[10] || 'Google Sheets',
-                responsable: row[11] || 'Sistema',
-                creadoEn: row[14] ? new Date(row[14]) : new Date(),
-                actualizadoEn: row[15] ? new Date(row[15]) : new Date(),
+                ministerio: row[4], // Columna E: Ministerio ID (nueva posición)
+                indicador: row[1], // Columna B: Indicador Nombre
+                valor: row[8], // Columna I: Valor (nueva posición)
+                meta: row[10], // Columna K: Meta (nueva posición)
+                fuente: row[11] || 'Google Sheets', // Columna L: Fuente (nueva posición)
+                responsable: row[12] || 'Sistema', // Columna M: Responsable (nueva posición)
+                creadoEn: row[17] ? new Date(row[17]) : new Date(), // Columna R: Creado En (nueva posición)
+                actualizadoEn: row[18] ? new Date(row[18]) : new Date(), // Columna S: Actualizado En (nueva posición)
               });
             }
           } catch (sheetError) {
