@@ -374,7 +374,7 @@ export default function GestionPage() {
         </Card>
 
         {/* Estadísticas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center">
@@ -454,23 +454,24 @@ export default function GestionPage() {
             ) : (
               <div className="space-y-4">
                 {/* Vista de escritorio */}
-                <div className="hidden lg:block overflow-x-auto">
-                  <table className="w-full min-w-[1000px]">
+                <div className="hidden lg:block">
+                  <div className="overflow-x-auto max-w-full">
+                    <table className="w-full" style={{ maxWidth: '100%', tableLayout: 'fixed' }}>
                     <thead>
                       <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/4">Indicador</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/8">Ministerio</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/4">Línea</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Unidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Periodicidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/12">Estado</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700 w-1/6">Acciones</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '30%' }}>Indicador</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '12%' }}>Ministerio</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '25%' }}>Línea</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Unidad</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Periodicidad</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Estado</th>
+                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '9%' }}>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredIndicadores.map((indicador) => (
                         <tr key={indicador.id} className="border-b border-gray-100 hover:bg-gray-50">
-                          <td className="py-3 px-4 w-1/4">
+                          <td className="py-3 px-4" style={{ width: '30%' }}>
                             <div className="max-w-xs">
                               <p 
                                 className="font-medium text-gray-900 truncate" 
@@ -486,7 +487,7 @@ export default function GestionPage() {
                               </p>
                             </div>
                           </td>
-                          <td className="py-3 px-4 w-1/8">
+                          <td className="py-3 px-4" style={{ width: '12%' }}>
                             <div className="flex items-center gap-2">
                               <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
                               <span 
@@ -497,7 +498,7 @@ export default function GestionPage() {
                               </span>
                             </div>
                           </td>
-                          <td className="py-3 px-4 w-1/4">
+                          <td className="py-3 px-4" style={{ width: '25%' }}>
                             <div className="max-w-xs">
                               <div className="flex items-start gap-2">
                                 <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
@@ -510,22 +511,22 @@ export default function GestionPage() {
                               </div>
                             </div>
                           </td>
-                          <td className="py-3 px-4 w-1/12">
+                          <td className="py-3 px-4" style={{ width: '8%' }}>
                             <Badge variant="outline" className="text-xs">
                               {indicador.unidadDefecto}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4 w-1/12">
+                          <td className="py-3 px-4" style={{ width: '8%' }}>
                             <Badge className={`${getPeriodicidadColor(indicador.periodicidad)} text-xs`}>
                               {getPeriodicidadDisplay(indicador.periodicidad)}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4 w-1/12">
+                          <td className="py-3 px-4" style={{ width: '8%' }}>
                             <Badge variant={indicador.activo ? 'success' : 'secondary'} className="text-xs">
                               {indicador.activo ? 'Activo' : 'Inactivo'}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4 w-1/6">
+                          <td className="py-3 px-4" style={{ width: '9%' }}>
                             <div className="flex items-center gap-1">
                               <Button
                                 variant="outline"
@@ -553,6 +554,7 @@ export default function GestionPage() {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 </div>
 
                 {/* Vista móvil */}
