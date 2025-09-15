@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useIsAuthenticated, useIsAdmin } from '@/store/auth-store';
 import { useAuthStore } from '@/store/auth-store';
 import { toast } from 'react-hot-toast';
+import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -266,8 +267,8 @@ export default function CreacionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-4xl mx-auto">
+    <Layout>
+      <div>
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -590,6 +591,6 @@ export default function CreacionPage() {
           </Card>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

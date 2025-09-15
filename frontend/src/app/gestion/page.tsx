@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useIsAuthenticated } from '@/store/auth-store';
 import { useAuthStore } from '@/store/auth-store';
 import { toast } from 'react-hot-toast';
+import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -279,8 +280,8 @@ export default function GestionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+    <Layout>
+      <div>
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -649,6 +650,6 @@ export default function GestionPage() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 }
