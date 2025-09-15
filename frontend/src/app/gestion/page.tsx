@@ -71,6 +71,9 @@ export default function GestionPage() {
   const [selectedMinisterioForDelete, setSelectedMinisterioForDelete] = useState<Ministerio | null>(null);
   const [deleteType, setDeleteType] = useState<'indicador' | 'linea' | 'ministerio'>('indicador');
   
+  // Estados para tabs
+  const [activeTab, setActiveTab] = useState<'ministerios' | 'compromisos' | 'indicadores'>('ministerios');
+  
   // Estados para paginación
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
@@ -97,6 +100,15 @@ export default function GestionPage() {
   useEffect(() => {
     setCurrentPage(1); // Reset a la primera página cuando cambian los filtros
   }, [selectedMinisterio, selectedLinea, searchTerm]);
+
+  useEffect(() => {
+    setCurrentPage(1); // Reset a la primera página cuando cambia el tab
+    setTotalItems(getCurrentTotalItems());
+  }, [activeTab]);
+
+  useEffect(() => {
+    setTotalItems(getCurrentTotalItems());
+  }, [ministerios, lineas, filteredIndicadores]);
 
   const loadData = async () => {
     setIsLoading(true);
@@ -198,20 +210,18 @@ export default function GestionPage() {
     setSelectedIndicador(indicador);
     setEditForm({
       nombre: indicador.nombre,
-      unidadDefecto: indicador.unidadDefecto,
-      periodicidad: indicador.periodicidad,
+      unidadDefecto: indicador.unidadDefecto || '',
+      periodicidad: indicador.periodicidad || 'mensual',
       activo: indicador.activo
     });
     setShowEditModal(true);
   };
 
-  const handleDelete = (indicador: Indicador) => {
-    setSelectedIndicador(indicador);
-    setShowDeleteModal(true);
-  };
-
   const handleSaveEdit = async () => {
-    if (!selectedIndicador) return;
+    if (!selectedIndicador || !editForm.nombre.trim()) {
+      toast.error('El nombre del indicador es requerido');
+      return;
+    }
 
     setIsLoading(true);
     try {
@@ -370,6 +380,41 @@ export default function GestionPage() {
     return { start, end };
   };
 
+  // Funciones específicas para cada tab
+  const getCurrentData = () => {
+    switch (activeTab) {
+      case 'ministerios':
+        return ministerios;
+      case 'compromisos':
+        return lineas;
+      case 'indicadores':
+        return filteredIndicadores;
+      default:
+        return [];
+    }
+  };
+
+  const getCurrentTotalItems = () => {
+    return getCurrentData().length;
+  };
+
+  const getCurrentPaginatedData = () => {
+    return getPaginatedData(getCurrentData());
+  };
+
+  const getCurrentTabTitle = () => {
+    switch (activeTab) {
+      case 'ministerios':
+        return 'Ministerios';
+      case 'compromisos':
+        return 'Líneas de Compromiso';
+      case 'indicadores':
+        return 'Indicadores';
+      default:
+        return '';
+    }
+  };
+
   const getPeriodicidadDisplay = (periodicidad: string) => {
     switch (periodicidad) {
       case 'mensual': return 'Mensual';
@@ -396,492 +441,450 @@ export default function GestionPage() {
 
   return (
     <Layout>
-      <div>
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Gestión de Indicadores y Compromisos
-          </h1>
-          <p className="text-gray-600">
-            Administra indicadores, compromisos y sus configuraciones
-          </p>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Gestión de Elementos</h1>
+            <p className="text-gray-600">Administra ministerios, compromisos e indicadores</p>
+          </div>
         </div>
 
-        {/* Filtros */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Filtros
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Ministerio
-                </label>
-                <select
-                  value={selectedMinisterio}
-                  onChange={(e) => setSelectedMinisterio(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">Todos los ministerios</option>
-                  {ministerios.map((ministerio) => (
-                    <option key={ministerio.id} value={ministerio.id}>
-                      {ministerio.nombre}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Línea
-                </label>
-                <select
-                  value={selectedLinea}
-                  onChange={(e) => setSelectedLinea(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">Todas las líneas</option>
-                  {lineas
-                    .filter(linea => !selectedMinisterio || linea.ministerioId === selectedMinisterio)
-                    .map((linea) => (
-                      <option key={linea.id} value={linea.id}>
-                        {linea.titulo}
-                      </option>
-                    ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Buscar
-                </label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar indicadores..."
-                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+        {/* Sistema de Tabs */}
+        <div className="mb-6">
+          <div className="border-b border-gray-200">
+            <nav className="-mb-px flex space-x-8">
+              <button
+                onClick={() => setActiveTab('ministerios')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'ministerios'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Building2 className="h-4 w-4" />
+                  Ministerios ({ministerios.length})
                 </div>
-              </div>
-
-              <div className="flex items-end">
-                <Button
-                  onClick={() => {
-                    setSelectedMinisterio('');
-                    setSelectedLinea('');
-                    setSearchTerm('');
-                  }}
-                  variant="outline"
-                  className="w-full"
-                >
-                  Limpiar filtros
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Estadísticas */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <Building2 className="h-8 w-8 text-blue-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Ministerios</p>
-                  <p className="text-2xl font-bold text-gray-900">{ministerios.length}</p>
+              </button>
+              <button
+                onClick={() => setActiveTab('compromisos')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'compromisos'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4" />
+                  Compromisos ({lineas.length})
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <FileText className="h-8 w-8 text-green-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Líneas</p>
-                  <p className="text-2xl font-bold text-gray-900">{lineas.length}</p>
+              </button>
+              <button
+                onClick={() => setActiveTab('indicadores')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'indicadores'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Target className="h-4 w-4" />
+                  Indicadores ({filteredIndicadores.length})
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <Target className="h-8 w-8 text-purple-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Indicadores</p>
-                  <p className="text-2xl font-bold text-gray-900">{indicadores.length}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <CheckCircle className="h-8 w-8 text-green-600" />
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Activos</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {indicadores.filter(ind => ind.activo).length}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </button>
+            </nav>
+          </div>
         </div>
 
-        {/* Gestión de Ministerios */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>Ministerios ({ministerios.length})</span>
-              <Button
-                onClick={() => router.push('/creacion')}
-                className="flex items-center gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Crear Ministerio
-              </Button>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Nombre</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Sigla</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Estado</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ministerios.map((ministerio) => (
-                    <tr key={ministerio.id} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-gray-400" />
-                          <span className="font-medium text-gray-900">{ministerio.nombre}</span>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <Badge variant="secondary">{ministerio.id}</Badge>
-                      </td>
-                      <td className="py-3 px-4">
-                        <Badge variant={ministerio.activo ? "default" : "secondary"}>
-                          {ministerio.activo ? "Activo" : "Inactivo"}
-                        </Badge>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => openDeleteModal('ministerio', ministerio)}
-                            className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
-                            title="Eliminar ministerio"
-                          >
-                            <Trash2 className="h-3 w-3" />
-                            <span className="hidden xl:inline">Eliminar</span>
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Gestión de Líneas de Compromiso */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <span>Líneas de Compromiso ({lineas.length})</span>
-              <Button
-                onClick={() => router.push('/creacion')}
-                className="flex items-center gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Crear Línea
-              </Button>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Título</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Ministerio</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Estado</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {lineas.map((linea) => (
-                    <tr key={linea.id} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4 text-gray-400" />
-                          <span className="font-medium text-gray-900 truncate max-w-xs" title={linea.titulo}>
-                            {linea.titulo}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm text-gray-700">{linea.ministerio.nombre}</span>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <Badge variant={linea.activo ? "default" : "secondary"}>
-                          {linea.activo ? "Activo" : "Inactivo"}
-                        </Badge>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => openDeleteModal('linea', linea)}
-                            className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
-                            title="Eliminar línea"
-                          >
-                            <Trash2 className="h-3 w-3" />
-                            <span className="hidden xl:inline">Eliminar</span>
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Lista de Indicadores */}
+        {/* Contenido del Tab Activo */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>Indicadores ({filteredIndicadores.length})</span>
+              <span>{getCurrentTabTitle()} ({getCurrentTotalItems()})</span>
               <Button
                 onClick={() => router.push('/creacion')}
                 className="flex items-center gap-2"
               >
                 <Plus className="h-4 w-4" />
-                Crear Elementos
+                Crear {activeTab === 'ministerios' ? 'Ministerio' : activeTab === 'compromisos' ? 'Compromiso' : 'Indicador'}
               </Button>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {isLoading ? (
-              <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-2 text-gray-600">Cargando...</p>
-              </div>
-            ) : filteredIndicadores.length === 0 ? (
-              <div className="text-center py-8">
-                <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">No se encontraron indicadores</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {/* Vista de escritorio */}
+            {/* Filtros solo para indicadores */}
+            {activeTab === 'indicadores' && (
+              <Card className="mb-6">
+                <CardContent className="p-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Ministerio
+                      </label>
+                      <select
+                        value={selectedMinisterio}
+                        onChange={(e) => setSelectedMinisterio(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="">Todos los ministerios</option>
+                        {ministerios.map((ministerio) => (
+                          <option key={ministerio.id} value={ministerio.id}>
+                            {ministerio.nombre}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Línea de Compromiso
+                      </label>
+                      <select
+                        value={selectedLinea}
+                        onChange={(e) => setSelectedLinea(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="">Todas las líneas</option>
+                        {lineas
+                          .filter((linea) => !selectedMinisterio || linea.ministerioId === selectedMinisterio)
+                          .map((linea) => (
+                            <option key={linea.id} value={linea.id}>
+                              {linea.titulo}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Buscar
+                      </label>
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                          type="text"
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          placeholder="Buscar indicadores..."
+                          className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-end">
+                      <Button
+                        onClick={() => {
+                          setSelectedMinisterio('');
+                          setSelectedLinea('');
+                          setSearchTerm('');
+                        }}
+                        variant="outline"
+                        className="w-full"
+                      >
+                        Limpiar filtros
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Tabla de datos */}
+            {getCurrentTotalItems() > 0 ? (
+              <div>
+                {/* Vista desktop */}
                 <div className="hidden lg:block">
-                  <div className="overflow-x-auto max-w-full">
-                    <table className="w-full" style={{ maxWidth: '100%', tableLayout: 'fixed' }}>
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '30%' }}>Indicador</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '12%' }}>Ministerio</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '25%' }}>Línea</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Unidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Periodicidad</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Estado</th>
-                        <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '9%' }}>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {getPaginatedData(filteredIndicadores).map((indicador) => (
-                        <tr key={indicador.id} className="border-b border-gray-100 hover:bg-gray-50">
-                          <td className="py-3 px-4" style={{ width: '30%' }}>
-                            <div className="max-w-xs">
-                              <p 
-                                className="font-medium text-gray-900 truncate" 
-                                title={indicador.nombre}
-                              >
-                                {indicador.nombre}
-                              </p>
-                              <p 
-                                className="text-sm text-gray-500 truncate" 
-                                title={`ID: ${indicador.id}`}
-                              >
-                                ID: {indicador.id}
-                              </p>
-                            </div>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '12%' }}>
-                            <div className="flex items-center gap-2">
-                              <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                              <span 
-                                className="text-sm text-gray-700 truncate" 
-                                title={indicador.linea.ministerio.nombre}
-                              >
-                                {indicador.linea.ministerio.nombre}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '25%' }}>
-                            <div className="max-w-xs">
-                              <div className="flex items-start gap-2">
-                                <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                                <span 
-                                  className="text-sm text-gray-700 truncate" 
-                                  title={indicador.linea.titulo}
-                                >
-                                  {indicador.linea.titulo}
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '8%' }}>
-                            <Badge variant="outline" className="text-xs">
-                              {indicador.unidadDefecto}
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '8%' }}>
-                            <Badge className={`${getPeriodicidadColor(indicador.periodicidad)} text-xs`}>
-                              {getPeriodicidadDisplay(indicador.periodicidad)}
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '8%' }}>
-                            <Badge variant={indicador.activo ? 'success' : 'secondary'} className="text-xs">
-                              {indicador.activo ? 'Activo' : 'Inactivo'}
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4" style={{ width: '9%' }}>
-                            <div className="flex items-center gap-1">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleEdit(indicador)}
-                                className="flex items-center gap-1 text-xs px-2 py-1"
-                                title="Editar indicador"
-                              >
-                                <Edit className="h-3 w-3" />
-                                <span className="hidden xl:inline">Editar</span>
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => openDeleteModal('indicador', indicador)}
-                                className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
-                                title="Eliminar indicador"
-                              >
-                                <Trash2 className="h-3 w-3" />
-                                <span className="hidden xl:inline">Eliminar</span>
-                              </Button>
-                            </div>
-                          </td>
+                  <div className="overflow-x-auto">
+                    <table className="w-full" style={{ tableLayout: 'fixed' }}>
+                      <thead>
+                        <tr className="border-b border-gray-200">
+                          {activeTab === 'ministerios' && (
+                            <>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '40%' }}>Nombre</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '20%' }}>Sigla</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '20%' }}>Estado</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '20%' }}>Acciones</th>
+                            </>
+                          )}
+                          {activeTab === 'compromisos' && (
+                            <>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '50%' }}>Título</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '30%' }}>Ministerio</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '20%' }}>Acciones</th>
+                            </>
+                          )}
+                          {activeTab === 'indicadores' && (
+                            <>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '30%' }}>Indicador</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '12%' }}>Ministerio</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '25%' }}>Línea</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Unidad</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Periodicidad</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '8%' }}>Estado</th>
+                              <th className="text-left py-3 px-4 font-medium text-gray-700" style={{ width: '9%' }}>Acciones</th>
+                            </>
+                          )}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {getCurrentPaginatedData().map((item: any) => (
+                          <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50">
+                            {activeTab === 'ministerios' && (
+                              <>
+                                <td className="py-3 px-4">
+                                  <div className="flex items-center gap-2">
+                                    <Building2 className="h-4 w-4 text-gray-400" />
+                                    <span className="font-medium text-gray-900">{item.nombre}</span>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <Badge variant="secondary">{item.id}</Badge>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <Badge variant={item.activo ? "default" : "secondary"}>
+                                    {item.activo ? "Activo" : "Inactivo"}
+                                  </Badge>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <div className="flex gap-2">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => openDeleteModal('ministerio', item)}
+                                      className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                                      title="Eliminar ministerio"
+                                    >
+                                      <Trash2 className="h-3 w-3" />
+                                      <span className="hidden xl:inline">Eliminar</span>
+                                    </Button>
+                                  </div>
+                                </td>
+                              </>
+                            )}
+                            {activeTab === 'compromisos' && (
+                              <>
+                                <td className="py-3 px-4">
+                                  <div className="flex items-center gap-2">
+                                    <FileText className="h-4 w-4 text-gray-400" />
+                                    <span className="font-medium text-gray-900 truncate max-w-xs" title={item.titulo}>
+                                      {item.titulo}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <div className="flex items-center gap-2">
+                                    <Building2 className="h-4 w-4 text-gray-400" />
+                                    <span className="text-sm text-gray-700">{item.ministerio.nombre}</span>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4">
+                                  <div className="flex gap-2">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => openDeleteModal('linea', item)}
+                                      className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                                      title="Eliminar línea"
+                                    >
+                                      <Trash2 className="h-3 w-3" />
+                                      <span className="hidden xl:inline">Eliminar</span>
+                                    </Button>
+                                  </div>
+                                </td>
+                              </>
+                            )}
+                            {activeTab === 'indicadores' && (
+                              <>
+                                <td className="py-3 px-4" style={{ width: '30%' }}>
+                                  <div className="max-w-xs">
+                                    <p 
+                                      className="font-medium text-gray-900 truncate" 
+                                      title={item.nombre}
+                                    >
+                                      {item.nombre}
+                                    </p>
+                                    <p 
+                                      className="text-sm text-gray-500 truncate" 
+                                      title={`ID: ${item.id}`}
+                                    >
+                                      ID: {item.id}
+                                    </p>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '12%' }}>
+                                  <div className="flex items-center gap-2">
+                                    <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                    <span 
+                                      className="text-sm text-gray-700 truncate" 
+                                      title={item.linea.ministerio.nombre}
+                                    >
+                                      {item.linea.ministerio.nombre}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '25%' }}>
+                                  <div className="max-w-xs">
+                                    <div className="flex items-start gap-2">
+                                      <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                                      <span 
+                                        className="text-sm text-gray-700 truncate" 
+                                        title={item.linea.titulo}
+                                      >
+                                        {item.linea.titulo}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '8%' }}>
+                                  <span className="text-sm text-gray-700">{item.unidadDefecto || '-'}</span>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '8%' }}>
+                                  <Badge className={getPeriodicidadColor(item.periodicidad)}>
+                                    {getPeriodicidadDisplay(item.periodicidad)}
+                                  </Badge>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '8%' }}>
+                                  <Badge variant={item.activo ? "default" : "secondary"}>
+                                    {item.activo ? "Activo" : "Inactivo"}
+                                  </Badge>
+                                </td>
+                                <td className="py-3 px-4" style={{ width: '9%' }}>
+                                  <div className="flex gap-1">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => handleEdit(item)}
+                                      className="flex items-center gap-1 text-xs px-2 py-1"
+                                      title="Editar indicador"
+                                    >
+                                      <Edit className="h-3 w-3" />
+                                      <span className="hidden xl:inline">Editar</span>
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => openDeleteModal('indicador', item)}
+                                      className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                                      title="Eliminar indicador"
+                                    >
+                                      <Trash2 className="h-3 w-3" />
+                                      <span className="hidden xl:inline">Eliminar</span>
+                                    </Button>
+                                  </div>
+                                </td>
+                              </>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
                 {/* Vista móvil */}
                 <div className="lg:hidden space-y-4">
-                  {getPaginatedData(filteredIndicadores).map((indicador) => (
-                    <Card key={indicador.id} className="p-4">
+                  {getCurrentPaginatedData().map((item: any) => (
+                    <Card key={item.id} className="p-4">
                       <div className="space-y-3">
-                        <div>
-                          <h3 
-                            className="font-medium text-gray-900 break-words" 
-                            title={indicador.nombre}
-                          >
-                            {indicador.nombre}
-                          </h3>
-                          <p className="text-sm text-gray-500 break-all">ID: {indicador.id}</p>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 gap-2">
-                          <div className="flex items-center gap-2">
-                            <Building2 className="h-4 w-4 text-gray-400 flex-shrink-0" />
-                            <span 
-                              className="text-sm text-gray-700 truncate" 
-                              title={indicador.linea.ministerio.nombre}
-                            >
-                              {indicador.linea.ministerio.nombre}
-                            </span>
-                          </div>
-                          
-                          <div className="flex items-start gap-2">
-                            <FileText className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
-                            <span 
-                              className="text-sm text-gray-700 break-words" 
-                              title={indicador.linea.titulo}
-                            >
-                              {indicador.linea.titulo}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="outline" className="text-xs">{indicador.unidadDefecto}</Badge>
-                          <Badge className={`${getPeriodicidadColor(indicador.periodicidad)} text-xs`}>
-                            {getPeriodicidadDisplay(indicador.periodicidad)}
-                          </Badge>
-                          <Badge variant={indicador.activo ? 'success' : 'secondary'} className="text-xs">
-                            {indicador.activo ? 'Activo' : 'Inactivo'}
-                          </Badge>
-                        </div>
-
-                        <div className="flex gap-2 pt-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleEdit(indicador)}
-                            className="flex items-center gap-1 flex-1 text-xs"
-                          >
-                            <Edit className="h-3 w-3" />
-                            Editar
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => openDeleteModal('indicador', indicador)}
-                            className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
-                          >
-                            <Trash2 className="h-3 w-3" />
-                            Eliminar
-                          </Button>
-                        </div>
+                        {activeTab === 'ministerios' && (
+                          <>
+                            <div>
+                              <h3 className="font-medium text-gray-900 break-words">{item.nombre}</h3>
+                              <p className="text-sm text-gray-500">Sigla: {item.id}</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Badge variant={item.activo ? "default" : "secondary"}>
+                                {item.activo ? "Activo" : "Inactivo"}
+                              </Badge>
+                            </div>
+                            <div className="flex gap-2 pt-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => openDeleteModal('ministerio', item)}
+                                className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                                Eliminar
+                              </Button>
+                            </div>
+                          </>
+                        )}
+                        {activeTab === 'compromisos' && (
+                          <>
+                            <div>
+                              <h3 className="font-medium text-gray-900 break-words">{item.titulo}</h3>
+                              <p className="text-sm text-gray-500">{item.ministerio.nombre}</p>
+                            </div>
+                            <div className="flex gap-2 pt-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => openDeleteModal('linea', item)}
+                                className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                                Eliminar
+                              </Button>
+                            </div>
+                          </>
+                        )}
+                        {activeTab === 'indicadores' && (
+                          <>
+                            <div>
+                              <h3 className="font-medium text-gray-900 break-words">{item.nombre}</h3>
+                              <p className="text-sm text-gray-500 break-all">ID: {item.id}</p>
+                            </div>
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <Building2 className="h-4 w-4 text-gray-400" />
+                                <span className="text-sm text-gray-700 break-words">{item.linea.ministerio.nombre}</span>
+                              </div>
+                              <div className="flex items-start gap-2">
+                                <FileText className="h-4 w-4 text-gray-400 mt-0.5" />
+                                <span className="text-sm text-gray-700 break-words">{item.linea.titulo}</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm text-gray-700">{item.unidadDefecto || '-'}</span>
+                                <Badge className={getPeriodicidadColor(item.periodicidad)}>
+                                  {getPeriodicidadDisplay(item.periodicidad)}
+                                </Badge>
+                                <Badge variant={item.activo ? "default" : "secondary"}>
+                                  {item.activo ? "Activo" : "Inactivo"}
+                                </Badge>
+                              </div>
+                            </div>
+                            <div className="flex gap-2 pt-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleEdit(item)}
+                                className="flex items-center gap-1 flex-1 text-xs"
+                              >
+                                <Edit className="h-3 w-3" />
+                                Editar
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => openDeleteModal('indicador', item)}
+                                className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                                Eliminar
+                              </Button>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </Card>
                   ))}
                 </div>
 
                 {/* Paginación */}
-                {totalItems > itemsPerPage && (
+                {getCurrentTotalItems() > itemsPerPage && (
                   <div className="mt-6 flex items-center justify-between">
                     <div className="text-sm text-gray-700">
-                      Mostrando {getPaginationInfo().start} a {getPaginationInfo().end} de {totalItems} indicadores
+                      Mostrando {getPaginationInfo().start} a {getPaginationInfo().end} de {getCurrentTotalItems()} {getCurrentTabTitle().toLowerCase()}
                     </div>
                     <div className="flex items-center gap-2">
                       <Button
@@ -895,7 +898,7 @@ export default function GestionPage() {
                       </Button>
                       
                       <div className="flex items-center gap-1">
-                        {Array.from({ length: getTotalPages(totalItems) }, (_, i) => i + 1).map((page) => (
+                        {Array.from({ length: getTotalPages(getCurrentTotalItems()) }, (_, i) => i + 1).map((page) => (
                           <Button
                             key={page}
                             variant={page === currentPage ? "default" : "outline"}
@@ -912,7 +915,7 @@ export default function GestionPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === getTotalPages(totalItems)}
+                        disabled={currentPage === getTotalPages(getCurrentTotalItems())}
                         className="px-3 py-1"
                       >
                         Siguiente
@@ -920,6 +923,28 @@ export default function GestionPage() {
                     </div>
                   </div>
                 )}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <div className="text-gray-500">
+                  {activeTab === 'ministerios' && <Building2 className="h-12 w-12 mx-auto mb-4 text-gray-300" />}
+                  {activeTab === 'compromisos' && <FileText className="h-12 w-12 mx-auto mb-4 text-gray-300" />}
+                  {activeTab === 'indicadores' && <Target className="h-12 w-12 mx-auto mb-4 text-gray-300" />}
+                  <p className="text-lg font-medium text-gray-900 mb-2">No hay {getCurrentTabTitle().toLowerCase()}</p>
+                  <p className="text-gray-500 mb-4">
+                    {activeTab === 'indicadores' && selectedMinisterio && selectedLinea 
+                      ? 'No hay indicadores que coincidan con los filtros seleccionados.'
+                      : `Aún no se han creado ${getCurrentTabTitle().toLowerCase()}.`
+                    }
+                  </p>
+                  <Button
+                    onClick={() => router.push('/creacion')}
+                    className="flex items-center gap-2 mx-auto"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Crear {activeTab === 'ministerios' ? 'Ministerio' : activeTab === 'compromisos' ? 'Compromiso' : 'Indicador'}
+                  </Button>
+                </div>
               </div>
             )}
           </CardContent>
@@ -943,6 +968,7 @@ export default function GestionPage() {
                     value={editForm.nombre}
                     onChange={(e) => setEditForm(prev => ({ ...prev, nombre: e.target.value }))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
                   />
                 </div>
 
