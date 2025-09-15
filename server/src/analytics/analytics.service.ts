@@ -237,6 +237,7 @@ export class AnalyticsService {
     
     // Mapeo de meses abreviados a completos
     const mesesAbreviados: { [key: string]: string } = {
+      // Abreviaciones en español
       'ene': 'enero',
       'feb': 'febrero', 
       'mar': 'marzo',
@@ -249,18 +250,10 @@ export class AnalyticsService {
       'oct': 'octubre',
       'nov': 'noviembre',
       'dic': 'diciembre',
-      // También manejar abreviaciones en inglés
+      // Abreviaciones en inglés (solo las que son diferentes)
       'jan': 'enero',
-      'feb': 'febrero',
-      'mar': 'marzo',
       'apr': 'abril',
-      'may': 'mayo',
-      'jun': 'junio',
-      'jul': 'julio',
       'aug': 'agosto',
-      'sep': 'septiembre',
-      'oct': 'octubre',
-      'nov': 'noviembre',
       'dec': 'diciembre'
     };
 
