@@ -240,20 +240,30 @@ export default function CreacionPage() {
   const handleCreateIndicador = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!indicadorForm.nombre.trim() || !indicadorForm.ministerioId || !indicadorForm.lineaId) {
-      toast.error('El nombre, ministerio y línea son requeridos');
+    if (!indicadorForm.nombre.trim() || !indicadorForm.lineaId) {
+      toast.error('El nombre y línea son requeridos');
       return;
     }
 
     setIsLoading(true);
     try {
+      // Preparar datos para enviar (sin ministerioId)
+      const indicadorData = {
+        nombre: indicadorForm.nombre,
+        lineaId: indicadorForm.lineaId,
+        unidadDefecto: indicadorForm.unidadDefecto || '',
+        periodicidad: indicadorForm.periodicidad,
+        meta: indicadorForm.meta || '',
+        descripcion: indicadorForm.descripcion || ''
+      };
+
       const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/indicadores', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(indicadorForm),
+        body: JSON.stringify(indicadorData),
       });
 
       if (response.ok) {
