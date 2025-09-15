@@ -6,6 +6,8 @@ import { Indicador } from '../db/entities/indicador.entity';
 import { CreateLineaDto } from './dto/create-linea.dto';
 import { CreateIndicadorDto, Periodicidad } from './dto/create-indicador.dto';
 import { CreateMinisterioDto } from './dto/create-ministerio.dto';
+import { IndicadoresQueryDto } from './dto/indicadores-query.dto';
+import { LineasQueryDto } from './dto/lineas-query.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
@@ -71,10 +73,10 @@ export class CatalogosController {
   }
 
   @Get('lineas')
-  async getLineas(@Query('ministerioId') ministerioId?: string) {
-    this.logger.log(`🔍 Controlador recibió ministerioId: "${ministerioId}"`);
+  async getLineas(@Query() query: LineasQueryDto) {
+    this.logger.log(`🔍 Controlador recibió ministerioId: "${query.ministerioId}"`);
     try {
-      const lineas = await this.catalogosService.getLineas(ministerioId);
+      const lineas = await this.catalogosService.getLineas(query.ministerioId);
 
       return {
         success: true,
@@ -139,8 +141,9 @@ export class CatalogosController {
   }
 
   @Get('indicadores')
-  async getIndicadores(@Query('linea_id') lineaId?: string) {
-    return await this.catalogosService.getIndicadores(lineaId);
+  async getIndicadores(@Query() query: IndicadoresQueryDto) {
+    this.logger.log(`🔍 Controlador recibió parámetros:`, query);
+    return await this.catalogosService.getIndicadores(query.linea_id);
   }
 
   @Post('indicadores')
