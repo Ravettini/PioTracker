@@ -67,6 +67,14 @@ export default function GestionPage() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedIndicador, setSelectedIndicador] = useState<Indicador | null>(null);
+  const [selectedLinea, setSelectedLinea] = useState<Linea | null>(null);
+  const [selectedMinisterio, setSelectedMinisterio] = useState<Ministerio | null>(null);
+  const [deleteType, setDeleteType] = useState<'indicador' | 'linea' | 'ministerio'>('indicador');
+  
+  // Estados para paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(15);
+  const [totalItems, setTotalItems] = useState(0);
   const [editForm, setEditForm] = useState({
     nombre: '',
     unidadDefecto: '',
@@ -85,6 +93,10 @@ export default function GestionPage() {
   useEffect(() => {
     filterIndicadores();
   }, [indicadores, selectedMinisterio, selectedLinea, searchTerm]);
+
+  useEffect(() => {
+    setCurrentPage(1); // Reset a la primera página cuando cambian los filtros
+  }, [selectedMinisterio, selectedLinea, searchTerm]);
 
   const loadData = async () => {
     setIsLoading(true);
@@ -179,6 +191,7 @@ export default function GestionPage() {
     }
 
     setFilteredIndicadores(filtered);
+    setTotalItems(filtered.length);
   };
 
   const handleEdit = (indicador: Indicador) => {
@@ -228,6 +241,16 @@ export default function GestionPage() {
   };
 
   const handleConfirmDelete = async () => {
+    if (deleteType === 'indicador' && selectedIndicador) {
+      await handleDeleteIndicador();
+    } else if (deleteType === 'linea' && selectedLinea) {
+      await handleDeleteLinea();
+    } else if (deleteType === 'ministerio' && selectedMinisterio) {
+      await handleDeleteMinisterio();
+    }
+  };
+
+  const handleDeleteIndicador = async () => {
     if (!selectedIndicador) return;
 
     setIsLoading(true);
@@ -243,6 +266,7 @@ export default function GestionPage() {
         toast.success('Indicador eliminado exitosamente');
         setShowDeleteModal(false);
         await loadIndicadores();
+        setSelectedIndicador(null);
       } else {
         const error = await response.json();
         toast.error(error.message || 'Error eliminando indicador');
@@ -253,6 +277,97 @@ export default function GestionPage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleDeleteLinea = async () => {
+    if (!selectedLinea) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/lineas/${selectedLinea.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        toast.success('Línea de compromiso eliminada exitosamente');
+        setShowDeleteModal(false);
+        await loadLineas();
+        setSelectedLinea(null);
+      } else {
+        const error = await response.json();
+        toast.error(error.message || 'Error eliminando línea');
+      }
+    } catch (error) {
+      console.error('Error eliminando línea:', error);
+      toast.error('Error eliminando línea');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeleteMinisterio = async () => {
+    if (!selectedMinisterio) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios/${selectedMinisterio.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        toast.success('Ministerio eliminado exitosamente');
+        setShowDeleteModal(false);
+        await loadMinisterios();
+        setSelectedMinisterio(null);
+      } else {
+        const error = await response.json();
+        toast.error(error.message || 'Error eliminando ministerio');
+      }
+    } catch (error) {
+      console.error('Error eliminando ministerio:', error);
+      toast.error('Error eliminando ministerio');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const openDeleteModal = (type: 'indicador' | 'linea' | 'ministerio', item: any) => {
+    setDeleteType(type);
+    if (type === 'indicador') {
+      setSelectedIndicador(item);
+    } else if (type === 'linea') {
+      setSelectedLinea(item);
+    } else if (type === 'ministerio') {
+      setSelectedMinisterio(item);
+    }
+    setShowDeleteModal(true);
+  };
+
+  // Funciones de paginación
+  const getPaginatedData = (data: any[]) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  };
+
+  const getTotalPages = (total: number) => {
+    return Math.ceil(total / itemsPerPage);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const getPaginationInfo = () => {
+    const start = (currentPage - 1) * itemsPerPage + 1;
+    const end = Math.min(currentPage * itemsPerPage, totalItems);
+    return { start, end };
   };
 
   const getPeriodicidadDisplay = (periodicidad: string) => {
@@ -426,6 +541,139 @@ export default function GestionPage() {
           </Card>
         </div>
 
+        {/* Gestión de Ministerios */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span>Ministerios ({ministerios.length})</span>
+              <Button
+                onClick={() => router.push('/creacion')}
+                className="flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Crear Ministerio
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Nombre</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Sigla</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Estado</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ministerios.map((ministerio) => (
+                    <tr key={ministerio.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <Building2 className="h-4 w-4 text-gray-400" />
+                          <span className="font-medium text-gray-900">{ministerio.nombre}</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <Badge variant="secondary">{ministerio.id}</Badge>
+                      </td>
+                      <td className="py-3 px-4">
+                        <Badge variant={ministerio.activo ? "default" : "secondary"}>
+                          {ministerio.activo ? "Activo" : "Inactivo"}
+                        </Badge>
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openDeleteModal('ministerio', ministerio)}
+                            className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                            title="Eliminar ministerio"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                            <span className="hidden xl:inline">Eliminar</span>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Gestión de Líneas de Compromiso */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span>Líneas de Compromiso ({lineas.length})</span>
+              <Button
+                onClick={() => router.push('/creacion')}
+                className="flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Crear Línea
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Título</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Ministerio</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Estado</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {lineas.map((linea) => (
+                    <tr key={linea.id} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-gray-400" />
+                          <span className="font-medium text-gray-900 truncate max-w-xs" title={linea.titulo}>
+                            {linea.titulo}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <Building2 className="h-4 w-4 text-gray-400" />
+                          <span className="text-sm text-gray-700">{linea.ministerio.nombre}</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <Badge variant={linea.activo ? "default" : "secondary"}>
+                          {linea.activo ? "Activo" : "Inactivo"}
+                        </Badge>
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openDeleteModal('linea', linea)}
+                            className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
+                            title="Eliminar línea"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                            <span className="hidden xl:inline">Eliminar</span>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Lista de Indicadores */}
         <Card>
           <CardHeader>
@@ -469,7 +717,7 @@ export default function GestionPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredIndicadores.map((indicador) => (
+                      {getPaginatedData(filteredIndicadores).map((indicador) => (
                         <tr key={indicador.id} className="border-b border-gray-100 hover:bg-gray-50">
                           <td className="py-3 px-4" style={{ width: '30%' }}>
                             <div className="max-w-xs">
@@ -541,7 +789,7 @@ export default function GestionPage() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => handleDelete(indicador)}
+                                onClick={() => openDeleteModal('indicador', indicador)}
                                 className="flex items-center gap-1 text-red-600 hover:text-red-700 text-xs px-2 py-1"
                                 title="Eliminar indicador"
                               >
@@ -559,7 +807,7 @@ export default function GestionPage() {
 
                 {/* Vista móvil */}
                 <div className="lg:hidden space-y-4">
-                  {filteredIndicadores.map((indicador) => (
+                  {getPaginatedData(filteredIndicadores).map((indicador) => (
                     <Card key={indicador.id} className="p-4">
                       <div className="space-y-3">
                         <div>
@@ -617,7 +865,7 @@ export default function GestionPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => handleDelete(indicador)}
+                            onClick={() => openDeleteModal('indicador', indicador)}
                             className="flex items-center gap-1 text-red-600 hover:text-red-700 flex-1 text-xs"
                           >
                             <Trash2 className="h-3 w-3" />
@@ -628,6 +876,50 @@ export default function GestionPage() {
                     </Card>
                   ))}
                 </div>
+
+                {/* Paginación */}
+                {totalItems > itemsPerPage && (
+                  <div className="mt-6 flex items-center justify-between">
+                    <div className="text-sm text-gray-700">
+                      Mostrando {getPaginationInfo().start} a {getPaginationInfo().end} de {totalItems} indicadores
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1"
+                      >
+                        Anterior
+                      </Button>
+                      
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: getTotalPages(totalItems) }, (_, i) => i + 1).map((page) => (
+                          <Button
+                            key={page}
+                            variant={page === currentPage ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(page)}
+                            className="px-3 py-1 min-w-[40px]"
+                          >
+                            {page}
+                          </Button>
+                        ))}
+                      </div>
+                      
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === getTotalPages(totalItems)}
+                        className="px-3 py-1"
+                      >
+                        Siguiente
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </CardContent>
@@ -717,7 +1009,7 @@ export default function GestionPage() {
         )}
 
         {/* Modal de Eliminación */}
-        {showDeleteModal && selectedIndicador && (
+        {showDeleteModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-lg max-w-md w-full p-6">
               <div className="flex items-center gap-3 mb-4">
@@ -728,7 +1020,10 @@ export default function GestionPage() {
               </div>
               
               <p className="text-gray-600 mb-6">
-                ¿Estás seguro de que deseas eliminar el indicador "{selectedIndicador.nombre}"?
+                ¿Estás seguro de que deseas eliminar {deleteType === 'indicador' ? 'el indicador' : deleteType === 'linea' ? 'la línea de compromiso' : 'el ministerio'} "
+                {deleteType === 'indicador' ? selectedIndicador?.nombre : 
+                 deleteType === 'linea' ? selectedLinea?.titulo : 
+                 selectedMinisterio?.nombre}"?
                 Esta acción no se puede deshacer.
               </p>
 
