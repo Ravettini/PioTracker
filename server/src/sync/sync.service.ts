@@ -443,6 +443,7 @@ export class SyncService {
 
   private extractMonth(header: string): string | null {
     const monthMap: { [key: string]: string } = {
+      // Nombres completos
       'enero': 'enero',
       'febrero': 'febrero',
       'marzo': 'marzo',
@@ -455,6 +456,19 @@ export class SyncService {
       'octubre': 'octubre',
       'noviembre': 'noviembre',
       'diciembre': 'diciembre',
+      // Abreviaciones
+      'ene': 'enero',
+      'feb': 'febrero',
+      'mar': 'marzo',
+      'abr': 'abril',
+      'may': 'mayo',
+      'jun': 'junio',
+      'jul': 'julio',
+      'ago': 'agosto',
+      'sep': 'septiembre',
+      'oct': 'octubre',
+      'nov': 'noviembre',
+      'dic': 'diciembre',
     };
 
     const lowerHeader = header.toLowerCase();
