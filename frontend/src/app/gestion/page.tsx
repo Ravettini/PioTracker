@@ -67,8 +67,8 @@ export default function GestionPage() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedIndicador, setSelectedIndicador] = useState<Indicador | null>(null);
-  const [selectedLinea, setSelectedLinea] = useState<Linea | null>(null);
-  const [selectedMinisterio, setSelectedMinisterio] = useState<Ministerio | null>(null);
+  const [selectedLineaForDelete, setSelectedLineaForDelete] = useState<Linea | null>(null);
+  const [selectedMinisterioForDelete, setSelectedMinisterioForDelete] = useState<Ministerio | null>(null);
   const [deleteType, setDeleteType] = useState<'indicador' | 'linea' | 'ministerio'>('indicador');
   
   // Estados para paginación
@@ -243,9 +243,9 @@ export default function GestionPage() {
   const handleConfirmDelete = async () => {
     if (deleteType === 'indicador' && selectedIndicador) {
       await handleDeleteIndicador();
-    } else if (deleteType === 'linea' && selectedLinea) {
+    } else if (deleteType === 'linea' && selectedLineaForDelete) {
       await handleDeleteLinea();
-    } else if (deleteType === 'ministerio' && selectedMinisterio) {
+    } else if (deleteType === 'ministerio' && selectedMinisterioForDelete) {
       await handleDeleteMinisterio();
     }
   };
@@ -280,11 +280,11 @@ export default function GestionPage() {
   };
 
   const handleDeleteLinea = async () => {
-    if (!selectedLinea) return;
+    if (!selectedLineaForDelete) return;
 
     setIsLoading(true);
     try {
-      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/lineas/${selectedLinea.id}`, {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/lineas/${selectedLineaForDelete.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -295,7 +295,7 @@ export default function GestionPage() {
         toast.success('Línea de compromiso eliminada exitosamente');
         setShowDeleteModal(false);
         await loadLineas();
-        setSelectedLinea(null);
+        setSelectedLineaForDelete(null);
       } else {
         const error = await response.json();
         toast.error(error.message || 'Error eliminando línea');
@@ -309,11 +309,11 @@ export default function GestionPage() {
   };
 
   const handleDeleteMinisterio = async () => {
-    if (!selectedMinisterio) return;
+    if (!selectedMinisterioForDelete) return;
 
     setIsLoading(true);
     try {
-      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios/${selectedMinisterio.id}`, {
+      const response = await fetch(`https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios/${selectedMinisterioForDelete.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -324,7 +324,7 @@ export default function GestionPage() {
         toast.success('Ministerio eliminado exitosamente');
         setShowDeleteModal(false);
         await loadMinisterios();
-        setSelectedMinisterio(null);
+        setSelectedMinisterioForDelete(null);
       } else {
         const error = await response.json();
         toast.error(error.message || 'Error eliminando ministerio');
@@ -342,9 +342,9 @@ export default function GestionPage() {
     if (type === 'indicador') {
       setSelectedIndicador(item);
     } else if (type === 'linea') {
-      setSelectedLinea(item);
+      setSelectedLineaForDelete(item);
     } else if (type === 'ministerio') {
-      setSelectedMinisterio(item);
+      setSelectedMinisterioForDelete(item);
     }
     setShowDeleteModal(true);
   };
@@ -1022,8 +1022,8 @@ export default function GestionPage() {
               <p className="text-gray-600 mb-6">
                 ¿Estás seguro de que deseas eliminar {deleteType === 'indicador' ? 'el indicador' : deleteType === 'linea' ? 'la línea de compromiso' : 'el ministerio'} "
                 {deleteType === 'indicador' ? selectedIndicador?.nombre : 
-                 deleteType === 'linea' ? selectedLinea?.titulo : 
-                 selectedMinisterio?.nombre}"?
+                 deleteType === 'linea' ? selectedLineaForDelete?.titulo : 
+                 selectedMinisterioForDelete?.nombre}"?
                 Esta acción no se puede deshacer.
               </p>
 
