@@ -197,14 +197,14 @@ export class AnalyticsService {
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
-    // Agrupar por mes y sumar valores
+    // Agrupar por mes normalizado y sumar valores
     const agrupado = sheetData.reduce((acc, row) => {
-      const mes = row.mes || 'Sin mes';
-      if (!acc[mes]) {
-        acc[mes] = { valor: 0, meta: row.meta, count: 0 };
+      const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
+      if (!acc[mesNormalizado]) {
+        acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
       }
-      acc[mes].valor += row.valor;
-      acc[mes].count += 1;
+      acc[mesNormalizado].valor += row.valor;
+      acc[mesNormalizado].count += 1;
       return acc;
     }, {});
 
@@ -228,6 +228,58 @@ export class AnalyticsService {
       valores,
       metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
     };
+  }
+
+  private normalizarMes(mes: string): string {
+    if (!mes || mes.trim() === '') return 'Sin mes';
+    
+    const mesLower = mes.toLowerCase().trim();
+    
+    // Mapeo de meses abreviados a completos
+    const mesesAbreviados: { [key: string]: string } = {
+      'ene': 'enero',
+      'feb': 'febrero', 
+      'mar': 'marzo',
+      'abr': 'abril',
+      'may': 'mayo',
+      'jun': 'junio',
+      'jul': 'julio',
+      'ago': 'agosto',
+      'sep': 'septiembre',
+      'oct': 'octubre',
+      'nov': 'noviembre',
+      'dic': 'diciembre',
+      // También manejar abreviaciones en inglés
+      'jan': 'enero',
+      'feb': 'febrero',
+      'mar': 'marzo',
+      'apr': 'abril',
+      'may': 'mayo',
+      'jun': 'junio',
+      'jul': 'julio',
+      'aug': 'agosto',
+      'sep': 'septiembre',
+      'oct': 'octubre',
+      'nov': 'noviembre',
+      'dec': 'diciembre'
+    };
+
+    // Si es un mes abreviado, convertir a completo
+    if (mesesAbreviados[mesLower]) {
+      return mesesAbreviados[mesLower];
+    }
+
+    // Si ya es un mes completo, verificar que esté en la lista válida
+    const mesesCompletos = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
+                           'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    
+    if (mesesCompletos.includes(mesLower)) {
+      return mesLower;
+    }
+
+    // Si no se reconoce, devolver tal como está
+    this.logger.warn(`⚠️ Mes no reconocido: "${mes}". Usando tal como está.`);
+    return mesLower;
   }
 
   private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
@@ -324,7 +376,7 @@ export class AnalyticsService {
           });
           
           // Log para debugging
-          this.logger.log(`📊 Datos leídos: Período=${periodo}, Valor=${valor}, Meta=${meta}`);
+          this.logger.log(`📊 Datos leídos: Período=${periodo}, Mes="${mes}", Valor=${valor}, Meta=${meta}`);
         }
       }
       
