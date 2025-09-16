@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useIsAuthenticated } from '@/store/auth-store';
 import Layout from '@/components/layout/Layout';
@@ -24,9 +24,19 @@ export default function ManualPage() {
   const router = useRouter();
   const isAuthenticated = useIsAuthenticated();
   const [searchTerm, setSearchTerm] = useState('');
+  const [mounted, setMounted] = useState(false);
 
-  if (!isAuthenticated) {
-    router.push('/login');
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [mounted, isAuthenticated, router]);
+
+  if (!mounted) {
     return null;
   }
 
