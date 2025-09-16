@@ -15,6 +15,7 @@ import {
   Database,
   Settings2,
   Plus,
+  HelpCircle,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -64,6 +65,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       href: '/analytics',
       icon: TrendingUp,
       current: pathname === '/analytics',
+    },
+    {
+      name: 'Manual',
+      href: '/manual',
+      icon: HelpCircle,
+      current: pathname === '/manual',
     },
     ...(isAdmin
       ? [
