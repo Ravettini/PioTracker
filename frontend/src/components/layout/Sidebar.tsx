@@ -181,6 +181,18 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
                 <span>Mi Perfil</span>
               </Link>
             </div>
+            
+            {/* Botón Cerrar Sesión */}
+            <div className="mt-3">
+              <Button
+                variant="ghost"
+                onClick={handleLogout}
+                className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Cerrar Sesión
+              </Button>
+            </div>
           </div>
         )}
 
@@ -209,17 +221,6 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
           })}
         </nav>
 
-        {/* Footer del sidebar */}
-        <div className="flex-shrink-0 p-6 pb-9 border-t border-gray-200 bg-white">
-          <Button
-            variant="ghost"
-            onClick={handleLogout}
-            className="w-full justify-start text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-          >
-            <LogOut className="w-5 h-5 mr-3" />
-            Cerrar Sesión
-          </Button>
-        </div>
       </div>
     </>
   );
