@@ -121,7 +121,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       {/* Sidebar */}
       <div
         className={`
-          fixed top-0 left-0 z-50 h-full w-72 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out
+          fixed top-0 left-0 z-50 h-full w-72 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out flex flex-col
           ${open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
@@ -185,7 +185,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
         )}
 
         {/* Navegación */}
-        <nav className="flex-1 p-6 space-y-2">
+        <nav className="flex-1 overflow-y-auto p-6 space-y-2">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -210,7 +210,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
         </nav>
 
         {/* Footer del sidebar */}
-        <div className="p-6 pb-9 border-t border-gray-200">
+        <div className="flex-shrink-0 p-6 pb-9 border-t border-gray-200 bg-white">
           <Button
             variant="ghost"
             onClick={handleLogout}
