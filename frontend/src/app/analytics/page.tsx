@@ -377,7 +377,7 @@ export default function AnalyticsPage() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={(entry: any) => `${entry.name}: ${entry.valor}`}
+                label={(entry: any) => `${entry.periodo}: ${entry.valor}`}
                 outerRadius={120}
                 fill="#8884d8"
                 dataKey="valor"
@@ -386,7 +386,7 @@ export default function AnalyticsPage() {
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip formatter={(value: any, name: any, props: any) => [`${value}`, props.payload.periodo]} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
