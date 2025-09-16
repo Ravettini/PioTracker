@@ -210,7 +210,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
         </nav>
 
         {/* Footer del sidebar */}
-        <div className="p-6 border-t border-gray-200">
+        <div className="p-6 pb-9 border-t border-gray-200">
           <Button
             variant="ghost"
             onClick={handleLogout}
