@@ -1,0 +1,13 @@
+[33m020a7e1[m Corregir lógica de búsqueda de indicadores en Google Sheets
+[33m2804f42[m Agregar logging detallado para debuggear filtrado de indicadores
+[33md4ac967[m Agregar logging detallado para debuggear problema de gráficos mensuales
+[33m9860888[m Corregir error 500 al eliminar usuarios - implementar soft delete
+[33m21d13ec[m fix: Agregar soporte para abreviaciones de meses en gráficos
+[33m3d10891[m Corregir error de compilación - eliminar propiedades duplicadas en mesesAbreviados
+[33m5a231e0[m Corregir lectura de meses en gráficos - reconocer formato completo y abreviado
+[33m5c698c2[m Corregir lectura de Google Sheets para nueva estructura de columnas
+[33m69adfaf[m Corregir error 400 en creación de indicadores
+[33mcc67422[m Implementar sistema de tabs y paginación completa en página de gestión
+[33m85417ea[m Corregir variables duplicadas en página de gestión - Renombrar variables de eliminación para evitar conflictos - selectedLineaForDelete para líneas de eliminación - selectedMinisterioForDelete para ministerios de eliminación - Mantener selectedLinea y selectedMinisterio para filtros (string) - Actualizar todas las funciones que usan estas variables - Corregir error de compilación en Vercel
+[33m32030be[m Implementar eliminación y paginado en página de gestión - Agregar funcionalidad de eliminación para ministerios, líneas e indicadores - Implementar sistema de paginado con máximo 15 elementos por página - Crear secciones separadas para gestión de ministerios y líneas de compromiso - Agregar modal genérico de confirmación de eliminación - Implementar funciones de paginación con navegación por páginas - Agregar contador de elementos mostrados y total - Mejorar UX con botones de navegación y información de paginación - Mantener estado de página al cambiar filtros
+[33m4c4563a[m Mejorar manejo de timeout de login - Reducir timeout de 60s a 30s para respuestas más rápidas - Implementar health check antes del login para verificar servidor activo - Mejorar retry mechanism con 5 intentos y tiempos progresivos (2s, 4s, 6s, 8s) - Agregar logging detallado en AuthService para diagnosticar problemas de rendimiento - Medir tiempos de validación de usuario y verificación de contraseña - Optimizar experiencia de usuario durante cold start de Render

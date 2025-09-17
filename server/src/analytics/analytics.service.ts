@@ -183,30 +183,28 @@ export class AnalyticsService {
   private procesarDatosTotales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     // Vista Total: Suma TODOS los valores del indicador (sin agrupar)
     const valorTotal = sheetData.reduce((sum, row) => sum + row.valor, 0);
-    const metaTotal = sheetData.reduce((sum, row) => sum + (row.meta || 0), 0);
     
-    this.logger.log(`📊 Vista Total: Valor total=${valorTotal}, Meta total=${metaTotal}`);
+    this.logger.log(`📊 Vista Total: Valor total=${valorTotal}`);
 
     return {
       periodos: ['Total'],
       valores: [valorTotal],
-      metas: metaTotal > 0 ? [metaTotal] : undefined,
+      metas: undefined, // NO MOSTRAR METAS
     };
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
     
-    // Agrupar por mes de la columna "Mes" del sheets y sumar valores
+    // Agrupar por mes de la columna "Mes" del sheets y sumar SOLO valores
     const agrupado = sheetData.reduce((acc, row) => {
       const mes = row.mes || 'Sin mes';
-      this.logger.log(`📅 Procesando fila: Mes="${mes}", Valor=${row.valor}, Meta=${row.meta}`);
+      this.logger.log(`📅 Procesando fila: Mes="${mes}", Valor=${row.valor}`);
       
       if (!acc[mes]) {
-        acc[mes] = { valor: 0, meta: 0, count: 0 };
+        acc[mes] = { valor: 0, count: 0 };
       }
       acc[mes].valor += row.valor;
-      acc[mes].meta += (row.meta || 0);
       acc[mes].count += 1;
       return acc;
     }, {});
@@ -226,14 +224,13 @@ export class AnalyticsService {
     });
 
     const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
 
-    this.logger.log(`📊 Resultado final mensual: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}, Metas=${metas.join(', ')}`);
+    this.logger.log(`📊 Resultado final mensual: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m > 0) ? metas : undefined,
+      metas: undefined, // NO MOSTRAR METAS
     };
   }
 
