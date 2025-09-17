@@ -296,7 +296,7 @@ export default function CreacionPage() {
 
   return (
     <Layout>
-      <div>
+      <div className="max-w-full overflow-x-hidden">
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
@@ -320,7 +320,8 @@ export default function CreacionPage() {
         {/* Tabs */}
         <div className="mb-6">
           <div className="border-b border-gray-200">
-            <nav className="-mb-px flex flex-wrap sm:flex-nowrap space-x-2 sm:space-x-8">
+            <nav className="-mb-px flex space-x-8 overflow-x-auto sm:overflow-visible">
+              <div className="flex space-x-2 sm:space-x-8 min-w-max sm:min-w-0">
               {[
                 { id: 'ministerio', name: 'Ministerio', icon: Building2 },
                 { id: 'linea', name: 'Línea', icon: FileText },
@@ -343,6 +344,7 @@ export default function CreacionPage() {
                   </button>
                 );
               })}
+              </div>
             </nav>
           </div>
         </div>
@@ -355,7 +357,8 @@ export default function CreacionPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Building2 className="h-5 w-5" />
-                  Crear Nuevo Ministerio
+                  <span className="hidden sm:inline">Crear Nuevo Ministerio</span>
+                  <span className="sm:hidden">Nuevo Ministerio</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -407,10 +410,11 @@ export default function CreacionPage() {
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2 w-full sm:w-auto"
+                      className="flex items-center gap-2 w-full sm:w-auto text-sm px-3 py-2 sm:px-4 sm:py-2 sm:text-base"
                     >
                       <Save className="h-4 w-4" />
-                      Crear Ministerio
+                      <span className="hidden sm:inline">Crear Ministerio</span>
+                      <span className="sm:hidden">Crear</span>
                     </Button>
                   </div>
                 </form>
@@ -424,7 +428,8 @@ export default function CreacionPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  Crear Nueva Línea de Compromiso
+                  <span className="hidden sm:inline">Crear Nueva Línea de Compromiso</span>
+                  <span className="sm:hidden">Nueva Línea</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -467,10 +472,11 @@ export default function CreacionPage() {
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2 w-full sm:w-auto"
+                      className="flex items-center gap-2 w-full sm:w-auto text-sm px-3 py-2 sm:px-4 sm:py-2 sm:text-base"
                     >
                       <Save className="h-4 w-4" />
-                      Crear Línea
+                      <span className="hidden sm:inline">Crear Línea</span>
+                      <span className="sm:hidden">Crear</span>
                     </Button>
                   </div>
                 </form>
@@ -484,7 +490,8 @@ export default function CreacionPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5" />
-                  Crear Nuevo Indicador
+                  <span className="hidden sm:inline">Crear Nuevo Indicador</span>
+                  <span className="sm:hidden">Nuevo Indicador</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -610,10 +617,11 @@ export default function CreacionPage() {
                       type="submit"
                       disabled={isLoading}
                       loading={isLoading}
-                      className="flex items-center gap-2 w-full sm:w-auto"
+                      className="flex items-center gap-2 w-full sm:w-auto text-sm px-3 py-2 sm:px-4 sm:py-2 sm:text-base"
                     >
                       <Save className="h-4 w-4" />
-                      Crear Indicador
+                      <span className="hidden sm:inline">Crear Indicador</span>
+                      <span className="sm:hidden">Crear</span>
                     </Button>
                   </div>
                 </form>
