@@ -441,7 +441,7 @@ export default function GestionPage() {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-full overflow-x-hidden">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Gestión de Elementos</h1>
@@ -452,52 +452,54 @@ export default function GestionPage() {
         {/* Sistema de Tabs */}
         <div className="mb-6">
           <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-2 sm:space-x-4 lg:space-x-8 overflow-x-auto">
+            <nav className="-mb-px flex space-x-8 overflow-x-auto sm:overflow-visible">
+              <div className="flex space-x-2 sm:space-x-8 min-w-max sm:min-w-0">
               <button
                 onClick={() => setActiveTab('ministerios')}
-                className={`py-2 px-2 sm:px-4 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
                   activeTab === 'ministerios'
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <Building2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                <div className="flex items-center gap-2">
+                  <Building2 className="h-4 w-4" />
                   <span className="hidden sm:inline">Ministerios</span>
                   <span className="sm:hidden">Min.</span>
-                  <span className="text-xs">({ministerios.length})</span>
+                  <span className="text-xs sm:text-sm">({ministerios.length})</span>
                 </div>
               </button>
               <button
                 onClick={() => setActiveTab('compromisos')}
-                className={`py-2 px-2 sm:px-4 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
                   activeTab === 'compromisos'
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4" />
                   <span className="hidden sm:inline">Compromisos</span>
                   <span className="sm:hidden">Comp.</span>
-                  <span className="text-xs">({lineas.length})</span>
+                  <span className="text-xs sm:text-sm">({lineas.length})</span>
                 </div>
               </button>
               <button
                 onClick={() => setActiveTab('indicadores')}
-                className={`py-2 px-2 sm:px-4 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
                   activeTab === 'indicadores'
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <Target className="h-3 w-3 sm:h-4 sm:w-4" />
+                <div className="flex items-center gap-2">
+                  <Target className="h-4 w-4" />
                   <span className="hidden sm:inline">Indicadores</span>
                   <span className="sm:hidden">Ind.</span>
-                  <span className="text-xs">({filteredIndicadores.length})</span>
+                  <span className="text-xs sm:text-sm">({filteredIndicadores.length})</span>
                 </div>
               </button>
+              </div>
             </nav>
           </div>
         </div>
@@ -505,11 +507,11 @@ export default function GestionPage() {
         {/* Contenido del Tab Activo */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <span className="text-lg sm:text-xl">{getCurrentTabTitle()} ({getCurrentTotalItems()})</span>
+            <CardTitle className="flex items-center justify-between">
+              <span>{getCurrentTabTitle()} ({getCurrentTotalItems()})</span>
               <Button
                 onClick={() => router.push('/creacion')}
-                className="flex items-center gap-2 text-sm px-3 py-2 whitespace-nowrap self-start sm:self-auto"
+                className="flex items-center gap-2 text-sm px-3 py-2 sm:px-4 sm:py-2 sm:text-base"
               >
                 <Plus className="h-4 w-4" />
                 <span className="hidden sm:inline">Crear {activeTab === 'ministerios' ? 'Ministerio' : activeTab === 'compromisos' ? 'Compromiso' : 'Indicador'}</span>
@@ -601,7 +603,7 @@ export default function GestionPage() {
                 {/* Vista desktop */}
                 <div className="hidden lg:block">
                   <div className="overflow-x-auto max-w-full">
-                    <table className="w-full min-w-max" style={{ tableLayout: 'fixed' }}>
+                    <table className="w-full" style={{ tableLayout: 'fixed' }}>
                       <thead>
                         <tr className="border-b border-gray-200">
                           {activeTab === 'ministerios' && (
