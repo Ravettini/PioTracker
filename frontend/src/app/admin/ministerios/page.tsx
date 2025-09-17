@@ -341,9 +341,10 @@ export default function MinisteriosPage() {
               Gestiona los ministerios, áreas y sus indicadores del sistema PIO
             </p>
           </div>
-          <Button className="flex items-center gap-2 text-sm sm:text-base px-4 py-2">
+          <Button className="flex items-center gap-2 text-sm px-3 py-2 whitespace-nowrap">
             <Plus className="h-4 w-4" />
-            Nuevo Ministerio
+            <span className="hidden sm:inline">Nuevo Ministerio</span>
+            <span className="sm:hidden">Nuevo</span>
           </Button>
         </div>
 
