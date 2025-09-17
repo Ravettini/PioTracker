@@ -331,17 +331,17 @@ export default function MinisteriosPage() {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <Building2 className="h-8 w-8 text-gcba-blue" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
+              <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-gcba-blue" />
               Ministerios y Áreas
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-sm sm:text-base text-gray-600 mt-2">
               Gestiona los ministerios, áreas y sus indicadores del sistema PIO
             </p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button className="flex items-center gap-2 text-sm sm:text-base px-4 py-2">
             <Plus className="h-4 w-4" />
             Nuevo Ministerio
           </Button>
@@ -384,45 +384,45 @@ export default function MinisteriosPage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredMinisterios.map((ministerio) => (
-              <Card key={ministerio.id} className="hover:shadow-lg transition-shadow w-full max-w-sm">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="text-lg font-semibold text-gray-900 mb-2">
+              <Card key={ministerio.id} className="hover:shadow-lg transition-shadow w-full min-w-0">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-base sm:text-lg font-semibold text-gray-900 mb-2 truncate" title={ministerio.nombre}>
                         {ministerio.nombre}
                       </CardTitle>
                       {ministerio.descripcion && (
-                        <p className="text-sm text-gray-600 line-clamp-2">
+                        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 break-words">
                           {ministerio.descripcion}
                         </p>
                       )}
                     </div>
-                    <Badge variant={ministerio.activo ? "default" : "secondary"}>
+                    <Badge variant={ministerio.activo ? "default" : "secondary"} className="flex-shrink-0 text-xs">
                       {ministerio.activo ? "Activo" : "Inactivo"}
                     </Badge>
                   </div>
                 </CardHeader>
                 
-                <CardContent>
+                <CardContent className="pt-0">
                   {/* Estadísticas */}
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="text-center p-3 bg-blue-50 rounded-lg">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <TrendingUp className="h-4 w-4 text-blue-600" />
-                        <span className="text-sm text-blue-600">Compromisos</span>
+                  <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-4">
+                    <div className="text-center p-2 sm:p-3 bg-blue-50 rounded-lg">
+                      <div className="flex items-center justify-center gap-1 sm:gap-2 mb-1">
+                        <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
+                        <span className="text-xs sm:text-sm text-blue-600">Compromisos</span>
                       </div>
-                      <p className="text-lg font-semibold text-blue-900">
+                      <p className="text-sm sm:text-lg font-semibold text-blue-900">
                         {getTotalLineas(ministerio)}
                       </p>
                     </div>
-                    <div className="text-center p-3 bg-green-50 rounded-lg">
-                      <div className="flex items-center justify-center gap-2 mb-1">
-                        <FileText className="h-4 w-4 text-green-600" />
-                        <span className="text-sm text-green-600">Indicadores</span>
+                    <div className="text-center p-2 sm:p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center justify-center gap-1 sm:gap-2 mb-1">
+                        <FileText className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
+                        <span className="text-xs sm:text-sm text-green-600">Indicadores</span>
                       </div>
-                      <p className="text-lg font-semibold text-green-900">
+                      <p className="text-sm sm:text-lg font-semibold text-green-900">
                         {getTotalIndicadores(ministerio)}
                       </p>
                     </div>
@@ -431,29 +431,31 @@ export default function MinisteriosPage() {
                   {/* Líneas */}
                   {ministerio.lineas && ministerio.lineas.length > 0 && (
                     <div className="space-y-2">
-                      <h4 className="text-sm font-medium text-gray-700">Compromisos:</h4>
+                      <h4 className="text-xs sm:text-sm font-medium text-gray-700">Compromisos:</h4>
                       {ministerio.lineas.slice(0, 2).map((linea) => (
-                        <div key={linea.id} className="text-sm text-gray-600 bg-gray-50 p-2 rounded">
+                        <div key={linea.id} className="text-xs sm:text-sm text-gray-600 bg-gray-50 p-2 rounded break-words">
                           {linea.nombre}
                         </div>
                       ))}
-                                              {ministerio.lineas.length > 2 && (
-                          <p className="text-xs text-gray-500">
-                            +{ministerio.lineas.length - 2} compromisos más
-                          </p>
-                        )}
+                      {ministerio.lineas.length > 2 && (
+                        <p className="text-xs text-gray-500">
+                          +{ministerio.lineas.length - 2} compromisos más
+                        </p>
+                      )}
                     </div>
                   )}
 
                   {/* Acciones */}
                   <div className="flex items-center gap-2 mt-4 pt-4 border-t">
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Edit className="h-4 w-4 mr-2" />
-                      Editar
+                    <Button variant="outline" size="sm" className="flex-1 text-xs sm:text-sm">
+                      <Edit className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                      <span className="hidden sm:inline">Editar</span>
+                      <span className="sm:hidden">Ed.</span>
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
-                      <Users className="h-4 w-4 mr-2" />
-                      Ver Detalles
+                    <Button variant="outline" size="sm" className="flex-1 text-xs sm:text-sm">
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                      <span className="hidden sm:inline">Ver Detalles</span>
+                      <span className="sm:hidden">Ver</span>
                     </Button>
                   </div>
                 </CardContent>
