@@ -158,10 +158,10 @@ export class AnalyticsService {
     let processedData;
     if (vista === 'mensual') {
       this.logger.log(`📊 Procesando datos para vista MENSUAL`);
-      processedData = this.procesarDatosTotales(sheetData);
+      processedData = this.procesarDatosMensuales(sheetData);
     } else {
       this.logger.log(`📊 Procesando datos para vista TOTAL`);
-      processedData = this.procesarDatosMensuales(sheetData);
+      processedData = this.procesarDatosTotales(sheetData);
     }
     
     this.logger.log(`📊 Datos procesados: Periodos=${processedData.periodos.join(', ')}, Valores=${processedData.valores.join(', ')}`);
@@ -181,53 +181,45 @@ export class AnalyticsService {
   }
 
   private procesarDatosTotales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
-    // Agrupar por período y sumar valores
-    const agrupado = sheetData.reduce((acc, row) => {
-      const periodo = row.periodo;
-      if (!acc[periodo]) {
-        acc[periodo] = { valor: 0, meta: row.meta, count: 0 };
-      }
-      acc[periodo].valor += row.valor;
-      acc[periodo].count += 1;
-      return acc;
-    }, {});
-
-    const periodos = Object.keys(agrupado);
-    const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
+    // Vista Total: Suma TODOS los valores del indicador (sin agrupar)
+    const valorTotal = sheetData.reduce((sum, row) => sum + row.valor, 0);
+    const metaTotal = sheetData.reduce((sum, row) => sum + (row.meta || 0), 0);
+    
+    this.logger.log(`📊 Vista Total: Valor total=${valorTotal}, Meta total=${metaTotal}`);
 
     return {
-      periodos,
-      valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      periodos: ['Total'],
+      valores: [valorTotal],
+      metas: metaTotal > 0 ? [metaTotal] : undefined,
     };
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
     
-    // Agrupar por mes normalizado y sumar valores
+    // Agrupar por mes de la columna "Mes" del sheets y sumar valores
     const agrupado = sheetData.reduce((acc, row) => {
-      const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
-      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
+      const mes = row.mes || 'Sin mes';
+      this.logger.log(`📅 Procesando fila: Mes="${mes}", Valor=${row.valor}, Meta=${row.meta}`);
       
-      if (!acc[mesNormalizado]) {
-        acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
+      if (!acc[mes]) {
+        acc[mes] = { valor: 0, meta: 0, count: 0 };
       }
-      acc[mesNormalizado].valor += row.valor;
-      acc[mesNormalizado].count += 1;
+      acc[mes].valor += row.valor;
+      acc[mes].meta += (row.meta || 0);
+      acc[mes].count += 1;
       return acc;
     }, {});
 
-    this.logger.log(`📊 Datos agrupados:`, Object.keys(agrupado));
+    this.logger.log(`📊 Datos agrupados por mes:`, Object.keys(agrupado));
 
     // Ordenar meses cronológicamente
     const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
                        'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     
     const periodos = Object.keys(agrupado).sort((a, b) => {
-      const indexA = ordenMeses.indexOf(a);
-      const indexB = ordenMeses.indexOf(b);
+      const indexA = ordenMeses.indexOf(a.toLowerCase());
+      const indexB = ordenMeses.indexOf(b.toLowerCase());
       if (indexA === -1) return 1;
       if (indexB === -1) return -1;
       return indexA - indexB;
@@ -236,12 +228,12 @@ export class AnalyticsService {
     const valores = periodos.map(p => agrupado[p].valor);
     const metas = periodos.map(p => agrupado[p].meta);
 
-    this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
+    this.logger.log(`📊 Resultado final mensual: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}, Metas=${metas.join(', ')}`);
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      metas: metas.some(m => m > 0) ? metas : undefined,
     };
   }
 
@@ -375,8 +367,8 @@ export class AnalyticsService {
           
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
-          const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
-          const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : null; // Columna K: Meta (nueva posición)
+          const valor = parseFloat(row[8]) || 0; // Columna I: Valor
+          const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : 0; // Columna K: Meta (0 si está vacía)
           const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
           const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
           const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
