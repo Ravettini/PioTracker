@@ -126,9 +126,10 @@ export class AnalyticsService {
   }
 
   async getDatos(query: AnalyticsQueryDto, user: Usuario): Promise<AnalyticsResponse> {
-    this.logger.log(`Obteniendo datos de analytics:`, query);
+    this.logger.log(`📊 Obteniendo datos de analytics:`, query);
 
     const { indicadorId, periodoDesde, periodoHasta, vista = 'total' } = query;
+    this.logger.log(`📊 Vista seleccionada: ${vista}`);
 
     // Obtener el indicador con sus relaciones
     const indicador = await this.indicadorRepository.findOne({
@@ -147,6 +148,8 @@ export class AnalyticsService {
 
     // Obtener datos del Google Sheets
     const sheetData = await this.getDataFromGoogleSheets(indicadorId, periodoDesde, periodoHasta);
+    this.logger.log(`📊 Datos obtenidos del Google Sheets: ${sheetData.length} registros`);
+    this.logger.log(`📊 Primeros 3 registros:`, sheetData.slice(0, 3).map(d => `Período=${d.periodo}, Mes="${d.mes}", Valor=${d.valor}`));
 
     // Determinar tipo de indicador
     const tipo = this.determinarTipoIndicador(indicador.nombre);
@@ -154,10 +157,14 @@ export class AnalyticsService {
     // Procesar datos según el tipo de vista
     let processedData;
     if (vista === 'mensual') {
+      this.logger.log(`📊 Procesando datos para vista MENSUAL`);
       processedData = this.procesarDatosMensuales(sheetData);
     } else {
+      this.logger.log(`📊 Procesando datos para vista TOTAL`);
       processedData = this.procesarDatosTotales(sheetData);
     }
+    
+    this.logger.log(`📊 Datos procesados: Periodos=${processedData.periodos.join(', ')}, Valores=${processedData.valores.join(', ')}`);
 
     // Configurar gráfico según tipo
     const configuracion = this.configurarGrafico(tipo, indicador);
