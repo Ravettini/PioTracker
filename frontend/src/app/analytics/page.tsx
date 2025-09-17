@@ -114,7 +114,7 @@ export default function AnalyticsPage() {
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [selectedChartType, setSelectedChartType] = useState<string>('auto');
   const [showChartGuide, setShowChartGuide] = useState(false);
-  const [chartViewType, setChartViewType] = useState<'total' | 'mensual'>('total');
+  const [chartViewType, setChartViewType] = useState<'total' | 'mensual'>('mensual');
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
