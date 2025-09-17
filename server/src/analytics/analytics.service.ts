@@ -158,10 +158,10 @@ export class AnalyticsService {
     let processedData;
     if (vista === 'mensual') {
       this.logger.log(`📊 Procesando datos para vista MENSUAL`);
-      processedData = this.procesarDatosMensuales(sheetData);
+      processedData = this.procesarDatosTotales(sheetData);
     } else {
       this.logger.log(`📊 Procesando datos para vista TOTAL`);
-      processedData = this.procesarDatosTotales(sheetData);
+      processedData = this.procesarDatosMensuales(sheetData);
     }
     
     this.logger.log(`📊 Datos procesados: Periodos=${processedData.periodos.join(', ')}, Valores=${processedData.valores.join(', ')}`);
