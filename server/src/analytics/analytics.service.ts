@@ -362,10 +362,9 @@ export class AnalyticsService {
       const datosIndicador = [];
       const headers = rows[0]; // Primera fila son los headers
       
-      this.logger.log(`🔍 Buscando indicador: "${indicadorId}" (${indicador.nombre}) en ${rows.length - 1} filas`);
+      this.logger.log(`🔍 Buscando indicador por NOMBRE: "${indicador.nombre}" en ${rows.length - 1} filas`);
       
-      // Contar cuántas filas tienen este indicadorId
-      let filasConIndicadorId = 0;
+      // Contar cuántas filas tienen este nombre de indicador
       let filasConNombreIndicador = 0;
       
       for (let i = 1; i < rows.length; i++) {
@@ -377,29 +376,23 @@ export class AnalyticsService {
           this.logger.log(`📋 Fila ${i}: IndicadorID="${row[0]}", Nombre="${row[1]}", Mes="${row[3]}", Valor="${row[8]}"`);
         }
         
-        // Contar filas que coinciden con el ID
-        if (row[0] === indicadorId) {
-          filasConIndicadorId++;
-        }
-        
         // Contar filas que coinciden con el nombre del indicador
         if (row[1] && row[1].toString().trim() === indicador.nombre.trim()) {
           filasConNombreIndicador++;
         }
       }
       
-      this.logger.log(`📊 Estadísticas: ${filasConIndicadorId} filas con ID "${indicadorId}", ${filasConNombreIndicador} filas con nombre "${indicador.nombre}"`);
+      this.logger.log(`📊 Estadísticas: ${filasConNombreIndicador} filas con nombre "${indicador.nombre}"`);
       
-      // Buscar datos usando AMBOS criterios: ID y nombre
+      // Buscar datos SOLO por nombre del indicador (columna B)
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
         if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
         
-        // Filtrar por indicador ID (columna A) O por nombre del indicador (columna B)
-        const coincidePorId = row[0] === indicadorId;
+        // Filtrar SOLO por nombre del indicador (columna B)
         const coincidePorNombre = row[1] && row[1].toString().trim() === indicador.nombre.trim();
         
-        if (coincidePorId || coincidePorNombre) {
+        if (coincidePorNombre) {
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
@@ -432,8 +425,7 @@ export class AnalyticsService {
           });
           
           // Log para debugging
-          const criterioUsado = coincidePorId ? 'ID' : 'Nombre';
-          this.logger.log(`📊 Datos leídos (${criterioUsado}): Período=${periodo}, Mes="${mes}", Valor=${valor}`);
+          this.logger.log(`📊 Datos leídos (por Nombre): Período=${periodo}, Mes="${mes}", Valor=${valor}`);
         }
       }
       
