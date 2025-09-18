@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In, Not, IsNull } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import * as XLSX from 'xlsx';
+import { GoogleAuthService } from '../sync/google-auth.service';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Indicador } from '../db/entities/indicador.entity';
@@ -51,6 +52,7 @@ export class AnalyticsService {
     @InjectRepository(Carga)
     private cargaRepository: Repository<Carga>,
     private configService: ConfigService,
+    private googleAuthService: GoogleAuthService,
   ) {}
 
   async getMinisterios(user: Usuario) {
@@ -303,6 +305,9 @@ export class AnalyticsService {
   private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
     try {
       this.logger.log(`📊 Leyendo datos de Google Sheets para indicador: ${indicadorId}`);
+      
+      // Verificar y renovar token si es necesario
+      await this.googleAuthService.renovarTokenSiEsNecesario();
       
       // Verificar configuración de Google Sheets
       const config = this.configService.get('google');
