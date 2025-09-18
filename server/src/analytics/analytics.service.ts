@@ -178,7 +178,7 @@ export class AnalyticsService {
     const agrupado = sheetData.reduce((acc, row) => {
       const periodo = row.periodo;
       if (!acc[periodo]) {
-        acc[periodo] = { valor: 0, meta: row.meta, count: 0 };
+        acc[periodo] = { valor: 0, count: 0 };
       }
       acc[periodo].valor += row.valor;
       acc[periodo].count += 1;
@@ -187,12 +187,11 @@ export class AnalyticsService {
 
     const periodos = Object.keys(agrupado);
     const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      metas: undefined, // NO HAY METAS EN GOOGLE SHEETS
     };
   }
 
@@ -205,7 +204,7 @@ export class AnalyticsService {
       this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
       
       if (!acc[mesNormalizado]) {
-        acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
+        acc[mesNormalizado] = { valor: 0, count: 0 };
       }
       acc[mesNormalizado].valor += row.valor;
       acc[mesNormalizado].count += 1;
@@ -227,14 +226,13 @@ export class AnalyticsService {
     });
 
     const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
 
     this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      metas: undefined, // NO HAY METAS EN GOOGLE SHEETS
     };
   }
 
@@ -375,7 +373,8 @@ export class AnalyticsService {
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
-          const meta = row[10] && row[10].toString().trim() !== '' ? parseFloat(row[10].toString()) : null; // Columna K: Meta (solo si no está vacía)
+          // NO LEER METAS - están vacías en Google Sheets
+          // const meta = row[10] && row[10].toString().trim() !== '' ? parseFloat(row[10].toString()) : null;
           const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
           const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
           const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
@@ -392,7 +391,7 @@ export class AnalyticsService {
             periodo,
             mes,
             valor,
-            meta,
+            // meta, // NO HAY METAS EN GOOGLE SHEETS
             unidad,
             fuente,
             responsable: responsableNombre,
@@ -403,7 +402,7 @@ export class AnalyticsService {
           });
           
           // Log para debugging
-          this.logger.log(`📊 Datos leídos: Período=${periodo}, Mes="${mes}", Valor=${valor}, Meta=${meta}`);
+          this.logger.log(`📊 Datos leídos: Período=${periodo}, Mes="${mes}", Valor=${valor}`);
         }
       }
       
