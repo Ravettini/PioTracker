@@ -211,13 +211,18 @@ export class AnalyticsService {
 
     this.logger.log(`📊 Datos agrupados por mes:`, Object.keys(agrupado));
 
-    // Ordenar meses cronológicamente
+    // Ordenar meses cronológicamente - manejar formato "2024 JUNIO", "2024 JULIO", etc.
     const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
                        'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     
     const periodos = Object.keys(agrupado).sort((a, b) => {
-      const indexA = ordenMeses.indexOf(a.toLowerCase());
-      const indexB = ordenMeses.indexOf(b.toLowerCase());
+      // Extraer el mes del formato "2024 JUNIO" o similar
+      const mesA = this.extraerMesDePeriodo(a);
+      const mesB = this.extraerMesDePeriodo(b);
+      
+      const indexA = ordenMeses.indexOf(mesA.toLowerCase());
+      const indexB = ordenMeses.indexOf(mesB.toLowerCase());
+      
       if (indexA === -1) return 1;
       if (indexB === -1) return -1;
       return indexA - indexB;
@@ -232,6 +237,20 @@ export class AnalyticsService {
       valores,
       metas: undefined, // NO MOSTRAR METAS
     };
+  }
+
+  private extraerMesDePeriodo(periodo: string): string {
+    if (!periodo || periodo === 'Sin mes') {
+      return 'enero'; // Valor por defecto para ordenamiento
+    }
+    
+    // Si el período tiene formato "2024 JUNIO", extraer solo "JUNIO"
+    const partes = periodo.split(' ');
+    if (partes.length > 1) {
+      return partes[partes.length - 1]; // Tomar la última parte (el mes)
+    }
+    
+    return periodo;
   }
 
   private normalizarMes(mes: string): string {
@@ -281,6 +300,47 @@ export class AnalyticsService {
     return mesLower;
   }
 
+  private parseDecimalValue(value: string | number): number {
+    if (typeof value === 'number') {
+      return value;
+    }
+    
+    if (!value || value === '') {
+      return 0;
+    }
+    
+    // Convertir a string y limpiar
+    let cleanValue = String(value).trim();
+    
+    // Si tiene comas como separador decimal, convertir a punto
+    if (cleanValue.includes(',') && !cleanValue.includes('.')) {
+      // Caso: "910,161015" -> "910.161015"
+      cleanValue = cleanValue.replace(',', '.');
+    } else if (cleanValue.includes(',') && cleanValue.includes('.')) {
+      // Caso: "1.000,50" -> "1000.50" (formato europeo con miles separados por punto y decimal por coma)
+      const parts = cleanValue.split('.');
+      if (parts.length > 2) {
+        // Hay múltiples puntos, el último es decimal
+        const lastPart = parts.pop();
+        const integerPart = parts.join('');
+        cleanValue = `${integerPart}.${lastPart}`;
+      } else {
+        // Solo un punto, asumir que es separador de miles
+        cleanValue = cleanValue.replace('.', '').replace(',', '.');
+      }
+    }
+    
+    const parsed = parseFloat(cleanValue);
+    
+    if (isNaN(parsed)) {
+      this.logger.warn(`⚠️ No se pudo parsear el valor: "${value}" -> "${cleanValue}"`);
+      return 0;
+    }
+    
+    this.logger.log(`🔢 Valor parseado: "${value}" -> "${cleanValue}" -> ${parsed}`);
+    return parsed;
+  }
+
   private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
     try {
       this.logger.log(`📊 Leyendo datos de Google Sheets para indicador: ${indicadorId}`);
@@ -317,36 +377,59 @@ export class AnalyticsService {
       
       const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
       
-      // Generar nombre de hoja del ministerio
-      const ministerioTab = this.generateMinisterioTabName(indicador.linea.ministerio.nombre);
-      this.logger.log(`🏛️ Leyendo datos de hoja: ${ministerioTab}`);
-      
-      // Leer datos de la hoja del ministerio (nueva estructura con más columnas)
-      const range = `${ministerioTab}!A:S`;
-      const response = await sheets.spreadsheets.values.get({
+      // Leer datos de todas las hojas disponibles
+      // Primero obtener la lista de hojas disponibles
+      const spreadsheetInfo = await sheets.spreadsheets.get({
         spreadsheetId: config.sheetId,
-        range: range,
       });
       
-      const rows = response.data.values || [];
-      if (rows.length <= 1) {
-        this.logger.warn(`⚠️ No hay datos en la hoja ${ministerioTab}. Usando base de datos local.`);
+      const sheetNames = spreadsheetInfo.data.sheets.map(sheet => sheet.properties.title);
+      this.logger.log(`📋 Hojas disponibles: ${sheetNames.join(', ')}`);
+      
+      // Buscar en todas las hojas hasta encontrar datos
+      let allRows = [];
+      let foundData = false;
+      
+      for (const sheetName of sheetNames) {
+        try {
+          const range = `${sheetName}!A:Q`;
+          const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: config.sheetId,
+            range: range,
+          });
+          
+          const rows = response.data.values || [];
+          if (rows.length > 1) {
+            this.logger.log(`📊 Encontrados ${rows.length - 1} filas en hoja: ${sheetName}`);
+            allRows = allRows.concat(rows.map(row => ({ ...row, sheetName })));
+            foundData = true;
+          }
+        } catch (error) {
+          this.logger.warn(`⚠️ Error leyendo hoja ${sheetName}: ${error.message}`);
+        }
+      }
+      
+      if (!foundData || allRows.length <= 1) {
+        this.logger.warn(`⚠️ No se encontraron datos en ninguna hoja. Usando base de datos local.`);
         return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
       }
+      
+      const rows = allRows;
       
       // Procesar filas y filtrar por indicador
       const datosIndicador = [];
       const headers = rows[0]; // Primera fila son los headers
       
       this.logger.log(`🔍 Buscando indicador: "${indicadorId}" en ${rows.length - 1} filas`);
+      this.logger.log(`📋 Headers encontrados:`, headers);
       
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
-        if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
+        if (row.length < 7) continue; // Asegurar que la fila tenga suficientes columnas
         
         // Log de cada fila para debug
         if (i <= 5) { // Solo log de las primeras 5 filas para no saturar
-          this.logger.log(`📋 Fila ${i}: IndicadorID="${row[0]}", Mes="${row[3]}", Valor="${row[8]}"`);
+          this.logger.log(`📋 Fila ${i} (${row.sheetName || 'sin hoja'}): IndicadorID="${row[0]}", Mes="${row[3]}", Valor="${row[8]}"`);
         }
         
         // Filtrar por indicador ID (columna A) o por nombre del indicador (columna B)
@@ -362,17 +445,23 @@ export class AnalyticsService {
           const tipoCoincidencia = coincidePorId ? 'ID' : 'NOMBRE';
           this.logger.log(`✅ Coincidencia por ${tipoCoincidencia}: "${indicadorIdEnRow}" -> "${indicadorNombreEnRow}"`);
           
-          const periodo = row[2]; // Columna C: Período
-          const mes = row[3] || ''; // Columna D: Mes
-          const valor = parseFloat(row[8]) || 0; // Columna I: Valor
-          const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : 0; // Columna K: Meta (0 si está vacía)
-          const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
-          const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
-          const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
-          const estado = row[15] || 'validado'; // Columna P: Estado (nueva posición)
-          const publicado = row[16] === 'Sí'; // Columna Q: Publicado (nueva posición)
-          const creadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Creado En (nueva posición)
-          const actualizadoEn = row[18] ? new Date(row[18]) : new Date(); // Columna S: Actualizado En (nueva posición)
+          const periodo = row[2] || ''; // Columna C: Período
+          const mes = this.normalizarMes(row[3] || ''); // Columna D: Mes
+          const valorRaw = row[8] || '0'; // Columna I: Valor
+          
+          // Convertir valor con comas decimales a número
+          const valor = this.parseDecimalValue(valorRaw);
+          
+          const meta = row[10] && row[10].trim() !== '' ? this.parseDecimalValue(row[10]) : 0; // Columna K: Meta
+          const unidad = row[9] || 'unidades'; // Columna J: Unidad
+          const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente
+          const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable N
+          const responsableEmail = row[13] || 'sistema@pio.gob.ar'; // Columna N: Responsable Er
+          const observaciones = row[14] || ''; // Columna O: Observaciones
+          const estado = row[15] || 'validado'; // Columna P: Estado
+          const publicado = row[16] === 'Sí'; // Columna Q: Publicado
+          const creadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Creado En
+          const actualizadoEn = row[18] ? new Date(row[18]) : new Date(); // Columna S: Actualizado En
           
           // Aplicar filtros de período si se especifican
           if (periodoDesde && periodo < periodoDesde) continue;
@@ -386,6 +475,8 @@ export class AnalyticsService {
             unidad,
             fuente,
             responsable: responsableNombre,
+            responsableEmail,
+            observaciones,
             estado,
             publicado,
             creadoEn,
