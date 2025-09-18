@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AnalyticsController } from './analytics.controller';
 import { AnalyticsService } from './analytics.service';
+import { GoogleAuthService } from '../sync/google-auth.service';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Indicador } from '../db/entities/indicador.entity';
@@ -15,7 +16,7 @@ import { Carga } from '../db/entities/carga.entity';
     ConfigModule,
   ],
   controllers: [AnalyticsController],
-  providers: [AnalyticsService],
+  providers: [AnalyticsService, GoogleAuthService],
   exports: [AnalyticsService],
 })
 export class AnalyticsModule {}
