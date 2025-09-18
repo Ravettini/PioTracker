@@ -1,0 +1,515 @@
+PIO Tracker: app web con login propio (alta de usuarios por Admin) y control de permisos para cargar,
+revisar y publicar indicadores. Front minimalista con lineamientos GCBA; backend con base de datos,
+auditoría y sincronización hacia una hoja de cálculo consumida por Power BI. Se usa tu cliente OAuth
+de Google para autorizar escritura en la hoja (server-side con refresh token). El front solo conversa
+con la API; las credenciales de Google viven en el servidor/secret manager.
+globs:
+
+"frontend/**"
+
+"server/**"
+
+"jobs/**"
+
+"infra/**"
+
+"docs/**"
+
+".env.example"
+
+"package.json"
+
+"README.md"
+alwaysApply: true
+
+Líneas Generales
+
+Autenticación propia (email + contraseña) y roles:
+
+Admin: ABM de usuarios, asignación de ministerios, reset de claves, acceso total y panel de control.
+
+Usuario: carga y consulta acotada a su ministerio (y solo lectura donde corresponda).
+
+Persistencia en PostgreSQL (usuarios/roles, catálogos, cargas, auditoría).
+
+Publicación: la API normaliza y empuja filas a una hoja maestra (Google Sheets). Power BI consume esa tabla.
+
+Credenciales de Google: se usa tu cliente OAuth
+GOOGLE_OAUTH_CLIENT_ID = 152204850788-6pkbsgcvkbu9fro0f179jkmkul7do8tv.apps.googleusercontent.com
+y el JSON provisto (cargado como secreto). El backend obtiene un refresh token de una cuenta técnica con permiso de edición sobre la hoja.
+
+Diseño sobrio y accesible, con tipografía Archivo y paleta institucional (amarillo, cyan, azul oscuro, gris, off-white). 
+
+Modelo de datos (PostgreSQL)
+
+usuarios
+
+id (uuid)
+
+email (text, único)
+
+nombre (text)
+
+hash_clave (text)
+
+rol (text) # ADMIN | USUARIO
+
+ministerio_id (text, null si Admin global)
+
+activo (boolean)
+
+creado_en (timestamp)
+
+actualizado_en (timestamp)
+
+ministerios
+
+id (text pk) # código estable
+
+nombre (text)
+
+sigla (text)
+
+activo (boolean)
+
+lineas
+
+id (text pk)
+
+titulo (text)
+
+ministerio_id (text fk)
+
+activo (boolean)
+
+indicadores
+
+id (text pk)
+
+nombre (text)
+
+linea_id (text fk)
+
+unidad_defecto (text)
+
+periodicidad (text) # mensual | trimestral | semestral | anual
+
+activo (boolean)
+
+cargas
+
+id (uuid)
+
+ministerio_id (text fk)
+
+linea_id (text fk)
+
+indicador_id (text fk)
+
+periodicidad (text)
+
+periodo (text) # 2025-06 | 2025Q2 | 2025S1 | 2025
+
+valor (numeric)
+
+unidad (text)
+
+meta (numeric, null)
+
+fuente (text)
+
+responsable_nombre (text)
+
+responsable_email (text)
+
+estado (text) # borrador | pendiente | validado | observado | rechazado
+
+observaciones (text)
+
+publicado (boolean) # ya sincronizado a la hoja
+
+creado_por (uuid fk usuarios)
+
+actualizado_por (uuid fk usuarios)
+
+creado_en (timestamp)
+
+actualizado_en (timestamp)
+
+auditoria
+
+id (uuid)
+
+actor_id (uuid fk usuarios)
+
+accion (text) # crear|editar|enviar|aprobar|observar|rechazar|publicar|login
+
+objeto (text) # cargas|usuarios|indicadores|sync
+
+objeto_id (text)
+
+antes (jsonb, null)
+
+despues (jsonb, null)
+
+ip (inet, null)
+
+cuando (timestamp)
+
+Reglas
+
+Unicidad (indicador_id, periodo, ministerio_id) cuando estado IN ('pendiente','validado').
+
+Transiciones: borrador → pendiente → (validado | observado | rechazado).
+
+Endpoints (REST, prefijo /api/v1)
+
+Auth & cuentas
+
+POST /auth/login → email+password, entrega JWT (httpOnly)
+
+POST /auth/logout
+
+POST /auth/refresh
+
+POST /auth/cambiar-clave
+
+GET /me
+
+Admin (solo rol ADMIN)
+
+POST /admin/usuarios → alta (email, nombre, rol, ministerio, clave temporal)
+
+GET /admin/usuarios?q=&rol=&ministerio_id=&activo=&limit=&offset=
+
+PUT /admin/usuarios/:id → editar (rol, ministerio, activar/bloquear, reset clave)
+
+Catálogos
+
+GET /ministerios
+
+GET /lineas?ministerio_id=
+
+GET /indicadores?linea_id=
+
+Cargas
+
+GET /cargas?ministerio_id=&indicador_id=&periodo=&estado=&limit=&offset=
+
+POST /cargas → crea borrador
+
+PUT /cargas/:id → edita borrador
+
+POST /cargas/:id/enviar → pasa a pendiente
+
+POST /cargas/:id/revision → { estado: validado|observado|rechazado, observaciones? }
+
+GET /cargas/:id → detalle + historial
+
+Sincronización a hoja
+
+POST /sync/push/:id → publica una carga (idempotente)
+
+POST /sync/push-pendientes → publica todas las validadas no publicadas
+
+GET /sync/estado/:id → estado de publicación
+
+Sistema
+
+GET /health
+
+Estructura del proyecto
+frontend/
+  src/
+    pages/
+    components/
+    theme/              # tokens GCBA (tipos, colores, espaciado)
+    lib/api.ts
+  next.config.js
+server/
+  src/
+    main.ts
+    app.module.ts
+    config/             # env, rate limit, cors
+    auth/               # login propio (hash, JWT), recuperación de clave
+    admin/              # ABM de usuarios/roles
+    catalogos/          # ministerios/lineas/indicadores
+    cargas/             # casos de uso de carga/validación
+    sync/               # conector Google Sheets
+    audit/              # bitácora central
+    db/                 # entities + migraciones TypeORM
+  test/
+jobs/
+  refresh-bi.ts         # opcional para disparar actualización de Power BI
+infra/
+  Dockerfile.frontend
+  Dockerfile.backend
+  docker-compose.yml
+docs/
+  api-contract.md
+  data-model.md
+  ux-gcba.md
+.env.example
+package.json
+README.md
+
+Variables de entorno (.env)
+# App
+NODE_ENV=production
+PORT=8080
+WEB_ORIGIN=https://pio.gcba.gob.ar
+JWT_SECRET=<<generar>>
+JWT_EXPIRES_IN=12h
+
+# Base de datos
+DATABASE_URL=postgres://user:pass@host:5432/pio
+
+# Google OAuth (desde tu JSON)
+GOOGLE_OAUTH_CLIENT_ID=152204850788-6pkbsgcvkbu9fro0f179jkmkul7do8tv.apps.googleusercontent.com
+GOOGLE_OAUTH_CLIENT_SECRET=<<cargar desde el JSON provisto>>
+GOOGLE_OAUTH_AUTH_URI=https://accounts.google.com/o/oauth2/auth
+GOOGLE_OAUTH_TOKEN_URI=https://oauth2.googleapis.com/token
+GOOGLE_REFRESH_TOKEN=<<generar con cuenta técnica editora de la hoja>>
+GOOGLE_SHEET_ID=<<id de la planilla maestra>>
+GOOGLE_SHEET_TAB=fact_indicadores
+
+# Power BI (opcional si disparan refresh)
+POWERBI_TENANT_ID=<<...>>
+POWERBI_CLIENT_ID=<<...>>
+POWERBI_CLIENT_SECRET=<<...>>
+POWERBI_GROUP_ID=<<...>>
+POWERBI_DATASET_ID=<<...>>
+POWERBI_REFRESH_ENABLED=true
+
+
+Seguridad: el JSON de Google debe guardarse en secret manager o como env (nunca en Git). Se sugiere almacenar solo client_id, client_secret y el refresh_token resultante.
+
+Reglas de implementación
+
+Login propio
+
+Alta de usuarios por Admin con clave temporal (obliga cambio en primer ingreso).
+
+Hash de contraseña (Argon2 o bcrypt), bloqueo tras intentos fallidos, política de longitud y complejidad.
+
+JWT en cookie httpOnly + SameSite=Lax, rotación con /auth/refresh, y CSRF token en operaciones mutantes.
+
+Permisos
+
+Guards por rol y alcance (filtro automático por ministerio_id).
+
+Rutas de Admin separadas con validación estricta.
+
+Validaciones de negocio
+
+Período consistente con periodicidad (máscaras: YYYY-MM, YYYYQn, YYYYSn, YYYY).
+
+Rango de valor por indicador (configurable).
+
+Duplicados bloqueados por índice único y chequeo previo.
+
+Sincronización a Google Sheets
+
+Flujo OAuth de servidor: con client_id/secret + refresh_token de la cuenta técnica, la API obtiene tokens y append/update en la tabla destino.
+
+Operación idempotente: buscar (indicador_id, periodo, ministerio_id) y actualizar; si no existe, insertar.
+
+Reintentos exponenciales y auditoría del rango/valores escritos.
+
+Auditoría
+
+Registro “antes/después” en cambios.
+
+Trazabilidad de inicio/cierre de sesión y de sincronizaciones.
+
+Compatibilidad con Power BI
+
+Tabla plana estable fact_indicadores (tipos consistentes).
+
+Refresh programado o endpoint para job refresh-bi.
+
+Backups y resiliencia
+
+Respaldos diarios de DB, export semanal CSV firmado.
+
+Health checks y alertas en fallos de sync.
+
+UX — Guía completa (alineada a GCBA)
+
+Tipografía
+
+Familia Archivo para títulos, bajadas y cuerpo. Pesos: Regular, Medium, Bold. Usar jerarquías: título > bajada (50% del título) > cuerpo (50% de la bajada). 
+
+Paleta (nombres y hex principales)
+
+Amarillo #FFCC00 (CTAs, realces)
+
+Cyan #8DE2D6 (apoyos, placas)
+
+Azul oscuro #153244 (texto, fondos institucionales)
+
+Gris #3C3C3B (texto secundario/divisores)
+
+Off-white #FCFCFC (fondos) 
+
+Logos y convivencia
+
+Usar logo BA o escudo según formalidad. No combinarlos en la misma pieza; respetar zonas de seguridad, tamaños mínimos y versiones de color permitidas. 
+
+Iconografía
+
+Trazos uniformes con puntas redondeadas; combinaciones azul/cyan o cyan/azul según layout, manteniendo coherencia con el sistema. 
+
+Tokens de tema (ejemplo)
+
+--color-bg: #FCFCFC;
+--color-surface: #FFFFFF;
+--color-text: #153244;
+--color-muted: #3C3C3B;
+--color-primary: #153244;     /* acciones principales */
+--color-accent: #FFCC00;      /* CTA */
+--color-accent-2: #8DE2D6;    /* apoyo */
+--radius-sm: 6px;
+--radius-md: 10px;
+--radius-lg: 16px;
+--space-1: 8px;
+--space-2: 12px;
+--space-3: 16px;
+--space-4: 24px;
+--space-5: 32px;
+--shadow-1: 0 1px 2px rgba(0,0,0,.04);
+--shadow-2: 0 2px 8px rgba(0,0,0,.08);
+--font-family: 'Archivo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+
+Layout
+
+Cabecera con logo/escudo (según contexto) y nombre del sistema.
+
+Menú lateral con cuatro zonas: Carga, Mis envíos, Revisión, Admin (solo Admin).
+
+Contenido en tarjetas con bordes suaves y sombras leves; fondos claros para legibilidad.
+
+Controles
+
+Botones
+
+Primario: fondo amarillo (#FFCC00), texto azul oscuro; hover con leve oscurecimiento; foco con anillo visible.
+
+Secundario: borde azul oscuro sobre fondo claro.
+
+Destructivo: borde/texto gris oscuro; confirmación modal.
+
+Inputs
+
+Labels arriba, ayuda contextual debajo (texto gris).
+
+Estados: normal, foco (borde azul oscuro), error (borde + texto de error), deshabilitado (opacidad).
+
+Máscaras: período según periodicidad.
+
+Chips/Badges de estado
+
+Borrador (gris), Pendiente (cyan), Validado (azul), Observado (amarillo), Rechazado (gris oscuro).
+
+Listas y tablas
+
+Filtros por Ministerio, Línea, Indicador, Período, Estado.
+
+Columnas clave visibles; paginación por 20.
+
+Acciones contextuales: ver, editar (si procede), enviar, revisar.
+
+Accesibilidad
+
+Contraste AA mínimo; tamaños y jerarquías de texto según guía.
+
+Navegación por teclado, aria-* en controles, foco visible.
+
+Mensajes claros y concisos; formularios con validación inline.
+
+Vistas
+
+Ingreso
+
+Email, contraseña, “Olvidé mi contraseña”.
+
+Soporte para clave temporal (primer inicio obliga cambio).
+
+Carga
+
+Select Ministerio (prefijado si el usuario tiene uno) → Línea → Indicador.
+
+Periodicidad (auto por indicador) y Período con máscara.
+
+Campos: Valor, Unidad (prellenada editable si se permite), Meta (opcional), Fuente, Responsable, Email, Observaciones.
+
+Acciones: Guardar borrador, Enviar a revisión.
+
+Mis envíos
+
+Tabla con estados y filtros.
+
+Reabrir observados y reenviar.
+
+Revisión (Admin u operador con permiso)
+
+Lista de pendientes con atajos Aprobar / Observar / Rechazar.
+
+Modal con comentarios obligatorios en observar/rechazar.
+
+Botón Publicar (o publicación automática tras validar, según política).
+
+Admin
+
+ABM de usuarios (crear, editar, activar/bloquear, reset de clave).
+
+Asignación de rol y ministerio.
+
+Historial de accesos y export CSV.
+
+Pautas de marca visibles en UI
+
+Titulares con Archivo Bold y jerarquías de tamaño.
+
+CTAs amarillos con texto azul.
+
+Evitar combinar logo BA y escudo simultáneamente en la misma vista; respetar márgenes y versiones de color. 
+
+Cambios en el front
+
+Incorporar tema con tokens GCBA (colores, tipografías, radios, sombras, espaciado).
+
+Páginas: /login, /carga, /mis-envios, /revision, /admin/usuarios.
+
+Componentes reutilizables: Button, Input, Select, BadgeEstado, DataTable, Card, Modal.
+
+Cliente API (lib/api.ts) con manejo de cookies httpOnly y reintentos.
+
+Scripts npm
+# Desarrollo
+npm run dev:server
+npm run dev:front
+npm run dev
+
+# Build
+npm run build:server
+npm run build:front
+npm run build
+
+# Producción
+npm run start
+
+# DB
+npm run orm:migrate
+npm run orm:revert
+
+Entregable
+
+Front con vistas Ingreso / Carga / Mis envíos / Revisión / Admin y tema GCBA aplicado.
+
+API con login propio, roles, validaciones, auditoría, sincronización a Google Sheets usando tu client_id y el JSON provisto (guardados como secretos).
+
+Tabla fact_indicadores publicada y conectable a Power BI.
+
+Documentación: contrato de API, diccionario de datos, guía de UX, pasos para generar refresh token y configurar la hoja.

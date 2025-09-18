@@ -1,0 +1,21 @@
+# Railway configuration
+# This file tells Railway to only run the backend
+
+# Root directory should be set to 'server' in Railway settings
+# Build command: npm install && npm run build
+# Start command: npm run start:prod
+
+# Environment variables should be set in Railway dashboard:
+# - NODE_ENV=production
+# - PORT=8080
+# - DB_HOST=containers-us-west-207.railway.app
+# - DB_PORT=5432
+# - DB_USERNAME=postgres
+# - DB_PASSWORD=pJccuVousWEYcRyWGwroeFeHNSLgERyE
+# - DB_DATABASE=pio_tracker
+# - JWT_SECRET=tu-jwt-secret-super-seguro-aqui
+# - JWT_EXPIRES_IN=12h
+# - WEB_ORIGIN=https://pio-o5efx9scp-nachos-projects-e0e5a719.vercel.app,https://railway.com
+# - GOOGLE_OAUTH_CLIENT_ID=152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com
+# - GOOGLE_OAUTH_CLIENT_SECRET=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
+

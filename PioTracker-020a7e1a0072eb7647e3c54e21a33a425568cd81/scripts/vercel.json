@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://sigepi-backend.onrender.com/api/v1"
+  },
+  "functions": {
+    "frontend/src/app/**/*.tsx": {
+      "env": {
+        "NEXT_PUBLIC_API_URL": "https://sigepi-backend.onrender.com/api/v1"
+      }
+    }
+  }
+}

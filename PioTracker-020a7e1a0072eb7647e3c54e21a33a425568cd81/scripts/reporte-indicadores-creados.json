@@ -1,0 +1,243 @@
+
+{
+  "fecha": "2025-09-04T15:02:43.482Z",
+  "totalIndicadores": 9,
+  "exitosos": 9,
+  "fallidos": 0,
+  "resultados": [
+    {
+      "indicador": {
+        "nombre": "Cantidad de casos derivados",
+        "lineaTitulo": "Compromiso sin título",
+        "ministerioId": "EDU",
+        "unidadDefecto": "casos",
+        "periodicidad": "mensual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDCD",
+            "nombre": "Cantidad de casos derivados",
+            "lineaId": "CST",
+            "unidadDefecto": "casos",
+            "periodicidad": "mensual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cantidad de clubes creados",
+        "lineaTitulo": "Compromiso sin título",
+        "ministerioId": "EDU",
+        "unidadDefecto": "clubes",
+        "periodicidad": "anual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDCC",
+            "nombre": "Cantidad de clubes creados",
+            "lineaId": "CST",
+            "unidadDefecto": "clubes",
+            "periodicidad": "anual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional",
+        "lineaTitulo": "Compromiso sin título",
+        "ministerioId": "EDU",
+        "unidadDefecto": "cursos",
+        "periodicidad": "anual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CCDE2CDFP",
+            "nombre": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional",
+            "lineaId": "CST",
+            "unidadDefecto": "cursos",
+            "periodicidad": "anual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+        "lineaTitulo": "Compromiso sin título",
+        "ministerioId": "EDU",
+        "unidadDefecto": "%",
+        "periodicidad": "anual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "GECDMEECTT-(%DMSETDC",
+            "nombre": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+            "lineaId": "CST",
+            "unidadDefecto": "%",
+            "periodicidad": "anual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+        "lineaTitulo": "Continuar con las líneas de atención telefónica 144 y 911",
+        "ministerioId": "MDH",
+        "unidadDefecto": "llamadas",
+        "periodicidad": "mensual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDLRA1YDA9PM_1756998160748",
+            "nombre": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+            "lineaId": "DCCLLDAT1Y9",
+            "unidadDefecto": "llamadas",
+            "periodicidad": "mensual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud",
+        "lineaTitulo": "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y",
+        "ministerioId": "SAL",
+        "unidadDefecto": "consejerías",
+        "periodicidad": "mensual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDCDSSRELCDS_1756998161291",
+            "nombre": "Cantidad de consejerías de salud sexual realizadas en los centros de salud",
+            "lineaId": "1DUPPCSSSCHPLPYPDLS",
+            "unidadDefecto": "consejerías",
+            "periodicidad": "mensual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA",
+        "lineaTitulo": "3. Implementar estrategias para el aumento de turnos en prácticas de mamografía",
+        "ministerioId": "SAL",
+        "unidadDefecto": "turnos",
+        "periodicidad": "anual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CTDMOAELEPDSDLRC_1756998161842",
+            "nombre": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA",
+            "lineaId": "3IEPEADTEPDM",
+            "unidadDefecto": "turnos",
+            "periodicidad": "anual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+        "lineaTitulo": "G) Sumar, a través de la Secretaría de Trabajo y Empleo, a las asociaciones sindicales a la iniciati",
+        "ministerioId": "JUS",
+        "unidadDefecto": "delegadas",
+        "periodicidad": "mensual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDDSCAEDDDLIP_1756998162396",
+            "nombre": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+            "lineaId": "GSATDLSDTYEALASALIP",
+            "unidadDefecto": "delegadas",
+            "periodicidad": "mensual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    },
+    {
+      "indicador": {
+        "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+        "lineaTitulo": "4. Difundir las herramientas existentes e impulsadas desde el Gobierno de la Ciudad Autónoma de Buen",
+        "ministerioId": "VIC",
+        "unidadDefecto": "participantes",
+        "periodicidad": "anual"
+      },
+      "resultado": {
+        "success": true,
+        "data": {
+          "success": true,
+          "data": {
+            "id": "CDPEEPMLDE2_1756998162956",
+            "nombre": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+            "lineaId": "4DLHEEIDEGDLCADBADAPLAEDLMDDLCMDLC",
+            "unidadDefecto": "participantes",
+            "periodicidad": "anual",
+            "activo": true,
+            "valorMin": null,
+            "valorMax": null
+          },
+          "message": "Indicador creado exitosamente"
+        }
+      }
+    }
+  ]
+}

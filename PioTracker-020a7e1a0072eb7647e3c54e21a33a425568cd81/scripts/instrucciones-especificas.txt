@@ -1,0 +1,547 @@
+INSTRUCCIONES ESPECÍFICAS PARA ACTUALIZAR GOOGLE SHEETS
+============================================================
+
+URL: https://docs.google.com/spreadsheets/d/1oOsW1ph6eFo0WcK28XdVjOaMZ9VqvB1T48Zje7MN7IA
+
+TOTAL ACTUALIZACIONES: 129
+MES A ASIGNAR: enero
+COLUMNA A ACTUALIZAR: D (mes)
+COLUMNA DONDE BUSCAR: B (indicador)
+
+
+HOJA: Jefatura de Gabinete
+==========================
+Total actualizaciones: 36
+
+1. Cantidad de trabajadores inscriptos en la capacitacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+2. Cantidad de trabajadores que completaron la capacitación
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+3. Cantidad de capacitaciones brindadas (si sirve se puede dividir en modalidad online y presencial)
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+4. Cantidad de trabajadores inscriptos en la capacitacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+5. Cantidad de trabajadores que completaron la capacitación
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+6. Cantidad de capacitaciones brindadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+7. Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+8. Cantidad de personas inscriptas en especializacion/es de perspectiva de género
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+9. Tasa de paridad en la asignación de becas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+10. Cantidad de mujeres con becas que finalizaron las formaciones
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+11. Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+12. Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+13. Número de materiales promocionales producidos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+14. Cantidad de nuevas personas inscriptas a futbol mixto
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+15. Porcentaje de participación de mujeres en las actividades de fútbol mixto:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+16. Cantidad de actividades de relevamiento realizadas 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+17. Porcentaje de clubes con comisiones de género establecidas:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+18. Actividades de planificacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+19. Elaboracion de cronograma de relevamiento
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+20. Número de entidades deportivas relevadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+21. Porcentaje de entidades con protocolos de actuación existentes:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+22. Fecha de publicacion del Informe
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+23. Fecha de Publicacion del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+24. Cantidad de actividades de Difusión del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+25. Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+26. Acciones de concientizacion sobre el deporte inclusivo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+27. aplicaciones de GCBA analizadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+28. Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+29. contenidos de campaña de genero incorporados en boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+30. Cantidad de casos derivados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+31. % de mujeres sobre la matrícula del  curso "Cuidador/a de niños y niñas en el ámbito de la vida familiar"
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+32. Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+33. Cantidad de inscriptas en el programa
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+34. Cantidad de clubes creados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+35. % de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+36. Cantidad de mujeres mentoreadas anualmente 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+
+HOJA: Educacion
+===============
+Total actualizaciones: 32
+
+1. Tasa de paridad en la asignación de becas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+2. Cantidad de mujeres con becas que finalizaron las formaciones
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+3. Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+4. Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+5. Número de materiales promocionales producidos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+6. Cantidad de nuevas personas inscriptas a futbol mixto
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+7. Porcentaje de participación de mujeres en las actividades de fútbol mixto:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+8. Cantidad de actividades de relevamiento realizadas 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+9. Porcentaje de clubes con comisiones de género establecidas:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+10. Actividades de planificacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+11. Elaboracion de cronograma de relevamiento
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+12. Número de entidades deportivas relevadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+13. Porcentaje de entidades con protocolos de actuación existentes:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+14. Fecha de publicacion del Informe
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+15. Fecha de Publicacion del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+16. Cantidad de actividades de Difusión del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+17. Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+18. Acciones de concientizacion sobre el deporte inclusivo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+19. aplicaciones de GCBA analizadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+20. Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+21. contenidos de campaña de genero incorporados en boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+22. Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+23. Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+24. Cantidad de casos derivados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+25. Creación de las comisiones de Bienestar Digital y de Género y STEAM 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+26. % de mujeres sobre la matrícula del  curso "Cuidador/a de niños y niñas en el ámbito de la vida familiar"
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+27. Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+28. Cantidad de participantes de la comisión de Género y STEAM. Dicha comisión tiene por objeto dar herramientas de formación sobre mujeres ganers, la modificación de roles y funciones de Facilitadores y Asistentes Pedagógicos Digitales y la inserción de las niñas en la cultura digital.
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+29. Cantidad de inscriptas en el programa
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+30. Cantidad de clubes creados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+31. % de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+32. Cantidad de mujeres mentoreadas anualmente 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+
+HOJA: Seguridad
+===============
+Total actualizaciones: 33
+
+1. Tasa de paridad en la asignación de becas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+2. Cantidad de mujeres con becas que finalizaron las formaciones
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+3. Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+4. Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+5. Número de materiales promocionales producidos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+6. Cantidad de nuevas personas inscriptas a futbol mixto
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+7. Porcentaje de participación de mujeres en las actividades de fútbol mixto:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+8. Cantidad de actividades de relevamiento realizadas 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+9. Porcentaje de clubes con comisiones de género establecidas:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+10. Actividades de planificacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+11. Elaboracion de cronograma de relevamiento
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+12. Número de entidades deportivas relevadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+13. Porcentaje de entidades con protocolos de actuación existentes:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+14. Fecha de publicacion del Informe
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+15. Fecha de Publicacion del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+16. Cantidad de actividades de Difusión del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+17. Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+18. Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+19. Acciones de concientizacion sobre el deporte inclusivo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+20. tiempo promedio de respuestaa incidentes de seguridad
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+21. aplicaciones de GCBA analizadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+22. Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+23. contenidos de campaña de genero incorporados en boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+24. Cantidad de casos derivados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+25. % de mujeres sobre la matrícula del  curso "Cuidador/a de niños y niñas en el ámbito de la vida familiar"
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+26. Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+27. Cantidad de inscriptas en el programa
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+28. Cantidad de clubes creados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+29. % de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+30. Cantidad de mujeres mentoreadas anualmente 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+31. a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa
+
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+32. a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+33. Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+
+HOJA: MDHyH
+===========
+Total actualizaciones: 28
+
+1. Tasa de paridad en la asignación de becas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+2. Cantidad de mujeres con becas que finalizaron las formaciones
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+3. Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+4. Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+5. Número de materiales promocionales producidos
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+6. Cantidad de nuevas personas inscriptas a futbol mixto
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+7. Porcentaje de participación de mujeres en las actividades de fútbol mixto:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+8. Cantidad de actividades de relevamiento realizadas 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+9. Porcentaje de clubes con comisiones de género establecidas:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+10. Actividades de planificacion
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+11. Elaboracion de cronograma de relevamiento
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+12. Número de entidades deportivas relevadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+13. Porcentaje de entidades con protocolos de actuación existentes:
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+14. Fecha de publicacion del Informe
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+15. Fecha de Publicacion del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+16. Cantidad de actividades de Difusión del protocolo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+17. Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+18. Acciones de concientizacion sobre el deporte inclusivo
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+19. aplicaciones de GCBA analizadas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+20. Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+21. contenidos de campaña de genero incorporados en boti
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+22. Cantidad de casos derivados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+23. % de mujeres sobre la matrícula del  curso "Cuidador/a de niños y niñas en el ámbito de la vida familiar"
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+24. Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional.
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+25. Cantidad de inscriptas en el programa
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+26. Cantidad de clubes creados
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+27. % de mujeres matriculadas en las 32 divisiones de escuelas técnicas inscriptas
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+
+28. Cantidad de mujeres mentoreadas anualmente 
+   📅 Mes: enero
+   💡 Buscar en columna B, actualizar columna D
+

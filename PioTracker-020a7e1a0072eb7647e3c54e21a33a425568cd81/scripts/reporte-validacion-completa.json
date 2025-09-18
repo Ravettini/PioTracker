@@ -1,0 +1,812 @@
+{
+  "fecha": "2025-09-04T16:33:27.042Z",
+  "total": 134,
+  "validadas": 134,
+  "fallidas": 0,
+  "resultados": [
+    {
+      "id": "3a2ab9a1-b8eb-4062-b6e1-ae2dc9b1a57e",
+      "ministerio": "compromisos ",
+      "indicador": "Eventos Culturales Realizados",
+      "success": true
+    },
+    {
+      "id": "6a412656-e077-4dca-90ff-61f77fc5dc9c",
+      "ministerio": "Vicejefatura",
+      "indicador": "Realizacion de tablero de acceso a mujeres con discapacidad",
+      "success": true
+    },
+    {
+      "id": "a4e6812f-9bae-4053-a5f1-344f67c64c48",
+      "ministerio": "Vicejefatura",
+      "indicador": "Cantidad de mujeres con discapacidad participantes de espacios de capacitación en educación financie",
+      "success": true
+    },
+    {
+      "id": "5dedbf52-3413-4e44-a720-9c176935505e",
+      "ministerio": "Vicejefatura",
+      "indicador": "Cantidad de acciones de sensibilización y educación realizadas sobre la violencia de género dirigida",
+      "success": true
+    },
+    {
+      "id": "013226a5-f3d0-4966-b2a9-0373feb12f33",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de mujeres mayoren con discapacidad y en soledad acompañadas a traves de los diferentes pro",
+      "success": true
+    },
+    {
+      "id": "9da87ebb-7e34-4daf-8866-7717d65a654f",
+      "ministerio": "Vicejefatura",
+      "indicador": "Medios/canales a traves de los cuales se difunden las herramientas existentes e impulsadas desde el ",
+      "success": true
+    },
+    {
+      "id": "57f20e16-7252-4682-b1f2-5146bf6862ae",
+      "ministerio": "Vicejefatura",
+      "indicador": "Cantidad de acciones realizadas para promover políticas de género en torno al ciudado",
+      "success": true
+    },
+    {
+      "id": "7e4c7dbe-25b6-4b61-9dfe-3c5159e7fd8e",
+      "ministerio": "Vicejefatura",
+      "indicador": "publicacion del plan plurianual de accion para la prevencion atencion y acompañlamiento integral de ",
+      "success": true
+    },
+    {
+      "id": "e9548bdd-5293-4f6d-aeed-0f1088d8afa4",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de mujeres con discapacidad que han participado de instanciuas de formacion en derechos rep",
+      "success": true
+    },
+    {
+      "id": "e73f60a5-960c-4e3a-9e23-0be8e387673b",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de políticas tendientes a la promoción de la autonomía económica de las mujeres que fueron ",
+      "success": true
+    },
+    {
+      "id": "c78fae93-c433-4621-9cbb-f4be853ce10b",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de encuentros realizados desde BA Convive",
+      "success": true
+    },
+    {
+      "id": "2642b27a-a689-45a4-9472-45c0113b0a94",
+      "ministerio": "Vicejefatura",
+      "indicador": "- cantidad de reuniones interinstitucionales de coordinación sobre políticas de género",
+      "success": true
+    },
+    {
+      "id": "17051404-dbbd-4b46-b647-74a5652603ae",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de integrantes de equipos interdisciplinarios a cargo de la asistencia a niñas, adolescente",
+      "success": true
+    },
+    {
+      "id": "8612fbe3-b08b-4db9-82ea-03272e078815",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de espacios de intercambio de conocimientos tecnicos / capacitaciones para el armado de hue",
+      "success": true
+    },
+    {
+      "id": "8f2f75c2-a97a-4ef7-a9fc-87ba020537cb",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de nuevos Cv recibidos en el Programa de Empleabilidad trans",
+      "success": true
+    },
+    {
+      "id": "b546eb6c-4dd2-410a-923f-3d43d4eeef21",
+      "ministerio": "Vicejefatura",
+      "indicador": "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretar",
+      "success": true
+    },
+    {
+      "id": "c2fc6561-cd5d-4b16-9376-f21fcdb5a6a4",
+      "ministerio": "Seguridad",
+      "indicador": "a) Cantidad de derivaciones realizadas a los CIMs de mujeres con dispositivos electrónicos por estar en situación de violencia de género que requieran asistencia sobre asignaciones de dispositivos por mes",
+      "success": true
+    },
+    {
+      "id": "a3beddcd-aede-4255-b93f-264b99e66a03",
+      "ministerio": "Seguridad",
+      "indicador": "a) Cantidad de llamadas recibidas a la línea 911 y redirigidas al 144 (por mes del año 2024)",
+      "success": true
+    },
+    {
+      "id": "52146d5b-6904-4285-a454-8bbe0ac57a73",
+      "ministerio": "Salud",
+      "indicador": "Porcentaje/cantidad de variación con respecto al año anterior",
+      "success": true
+    },
+    {
+      "id": "9b4c3979-6ce1-4af2-b723-abac516baf76",
+      "ministerio": "Salud",
+      "indicador": "Cantidad de turnos de colocacion o consulta sobre MAC realizados anualmente en atención primaria.",
+      "success": true
+    },
+    {
+      "id": "d653b302-8f8a-4a6a-a3dd-7ee416fc25b5",
+      "ministerio": "Salud",
+      "indicador": "Cantidad de eventos, actividades y políticas del Ministerio de Salud publicadas anualmente en el por",
+      "success": true
+    },
+    {
+      "id": "f8984ee6-495b-4b3c-b4e8-118b8420d109",
+      "ministerio": "Salud",
+      "indicador": "Porcentaje/Cantidad de turnos de salud asignados sobre turnos de salud pedidos para victimas de viol",
+      "success": true
+    },
+    {
+      "id": "f7396e91-575a-4129-9631-ea752f49c4f8",
+      "ministerio": "Salud",
+      "indicador": "Cantidad de mujeres (entre 25 y 64 años) que se realizaron un estudio de PAP en el ultimo año.",
+      "success": true
+    },
+    {
+      "id": "e049dddf-6863-46c2-9b0a-b337eb4dabcc",
+      "ministerio": "Salud",
+      "indicador": "Cantidad de consejerías de salud sexual realizadas en los centros de salud",
+      "success": true
+    },
+    {
+      "id": "c809e7f6-3854-4e22-9266-4287cd9a0178",
+      "ministerio": "MDHyH",
+      "indicador": "Reuniones realizadas con el Ministerio Público Fiscal para mejorar la cobertura en los Centros Integ",
+      "success": true
+    },
+    {
+      "id": "5a86e3d6-8bad-45e7-8325-d0639a74fb6e",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de acciones de articulacion con la el Ministerio de educacion para el fomento de trayectos ",
+      "success": true
+    },
+    {
+      "id": "008ce01f-91c2-46fd-af41-e4b72e6dad7b",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de instancias de revisión de instrumentos del protocolo de intervención y abordaje social c",
+      "success": true
+    },
+    {
+      "id": "42b3c21a-b8be-4a71-a875-fb9dbf2d5778",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de acciones realizadas con el Ministerio de Salud para incluir el Plan de Abordaje Territor",
+      "success": true
+    },
+    {
+      "id": "2213eee7-58f2-473f-bf32-74b1d550d948",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de reuniones con el Ministerio de Salud para la formalización del protocolo de ingresos a u",
+      "success": true
+    },
+    {
+      "id": "94b95d83-13be-4dc1-a39e-6edd849d90f8",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de acciones de articulacion con la Subsecretaría de Desarrollo del Potencial Humano para pr",
+      "success": true
+    },
+    {
+      "id": "ceae3e55-56a7-48cc-86ff-b7e3b79ec7eb",
+      "ministerio": "MDHyH",
+      "indicador": "Publicación del boletín epidemiológico con perspectiva de género de la Dirección General de Política",
+      "success": true
+    },
+    {
+      "id": "79292645-29e9-4044-b32e-4a3cf3c31bd3",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de llamadas realizadas al 144 y derivadas al 911 por mes",
+      "success": true
+    },
+    {
+      "id": "fab53660-5730-4ad7-8f7f-f25f8b89053f",
+      "ministerio": "MDHyH",
+      "indicador": "Publicacion del nuevo protocolo de intervención y abordaje social con perspectiva de género en el ma",
+      "success": true
+    },
+    {
+      "id": "10e8fbfd-4a1a-4413-91e1-17724181bb01",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de mujeres asistidas en los Cesac de la region sur de la ciudad a traves del Plan de aborda",
+      "success": true
+    },
+    {
+      "id": "e61ae290-7d52-4a59-953c-ab1c07b4c2bb",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de Cesacs de la region sur de la ciudad que han incluido el Plan de Abordaje territorial de",
+      "success": true
+    },
+    {
+      "id": "6911a37f-2a65-4342-a00a-bd951abbc278",
+      "ministerio": "MDHyH",
+      "indicador": "Publicacion de Protocolo por medio de acto administrativo",
+      "success": true
+    },
+    {
+      "id": "b3792640-0d43-4fa4-82f1-c1e601263739",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de mujeres asistidas en materia de violencias por motivos de género que participan de  tray",
+      "success": true
+    },
+    {
+      "id": "9c54aff8-15b7-4f23-b8f7-9d79f5280c2b",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de enlaces del MPF dispuestos en los CIMs",
+      "success": true
+    },
+    {
+      "id": "93f71943-3477-400c-aa16-918cfc39e4dc",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de mujeres asistidas en situación de consumo en dispositivos donde se garanticen espacio de cuidados. (Indicador propuesto)",
+      "success": true
+    },
+    {
+      "id": "0a0574ba-194d-4a3e-ae33-bb8f334998ab",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de entrevistas de admisión. Cantidad de prestaciones realizadas. (Indicador propuesto)",
+      "success": true
+    },
+    {
+      "id": "d334197d-aceb-4119-a0f9-ccda440cc91f",
+      "ministerio": "MDHyH",
+      "indicador": "Creacion/implementacion de una herramienta que permita sistematizar la informacion en materia de asi",
+      "success": true
+    },
+    {
+      "id": "935766da-f6e0-4458-85aa-0c3bd5dd6fdb",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de espacios de cuidado inaugurados en los dispositivos de acompañamiento a mujeres en situa",
+      "success": true
+    },
+    {
+      "id": "aa9780d1-ee89-403c-8014-7ea5ede6093a",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de acciones que implementadas por mes para garantizar la continuidad del Plan de Abordaje a",
+      "success": true
+    },
+    {
+      "id": "3b1ddfbc-d8b4-4668-9aec-ed601ba4736c",
+      "ministerio": "MDHyH",
+      "indicador": "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+      "success": true
+    },
+    {
+      "id": "ce3020e6-4a9d-4cf9-867a-f18dfcf4f4ed",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de delegadas sindicales convocadas a encuentros de difusion de la iniciativa PARES",
+      "success": true
+    },
+    {
+      "id": "6eecda1d-5514-4fcb-a8a2-4b0bbfd18b97",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de personas asesoradas por mes: Total de personas en situación de violencia por razones de ",
+      "success": true
+    },
+    {
+      "id": "1aacdc32-3ebc-4257-a2d1-544b7b850d7a",
+      "ministerio": "Justicia",
+      "indicador": "Acciones desarrolladas en articulacion con la DG de Autonomia Economica de la Mujer para desarrollar",
+      "success": true
+    },
+    {
+      "id": "48d503d9-d2c3-4ab0-b175-6d177aa32fb1",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de encuentros virtuales/presenciales con otras juridicciones para difundir el indice de par",
+      "success": true
+    },
+    {
+      "id": "fed01b78-b661-4fc9-bcc7-67df272a80c9",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de asociaciones sindicales informadas anualmente de los alcances de la iniciatva PARES",
+      "success": true
+    },
+    {
+      "id": "b6c52a19-624c-466b-8e5a-10b418113a73",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de mujeres que obtuvieron empleo como resultado de la participación de la Expo Empleo Barri",
+      "success": true
+    },
+    {
+      "id": "16e0758f-4aef-4194-8cf3-8d58dc07da4a",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de mujeres participantes en la Expo Empleo Barrial Edicion Mujer",
+      "success": true
+    },
+    {
+      "id": "adb617dc-b42a-4598-8a64-041feb41d4a8",
+      "ministerio": "Justicia",
+      "indicador": "Fecha de realizacion de la Expo Empleo Barrial Edicion Mujer",
+      "success": true
+    },
+    {
+      "id": "3a0cc621-0ab6-4c9a-8c7c-70f44fbdac15",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de actividades técnicas con otras jurisdicciones para el desarrollo del índice de paridad p",
+      "success": true
+    },
+    {
+      "id": "dcddb3d9-4e22-44fb-8208-64eabc2c282d",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de actividades de formacion con funcionarios de otras juridicciones para impulsar la autono",
+      "success": true
+    },
+    {
+      "id": "d940e9b1-7098-4f0a-bbb8-8e899ffc0013",
+      "ministerio": "Justicia",
+      "indicador": "Porcentaje de avance de realización de un Análisis Diagnóstico de la situación actual que incluya ev",
+      "success": true
+    },
+    {
+      "id": "817807a4-bfd4-4160-ba4d-bf3d6b3aa152",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de casos atendidos anualmente según tipo de violencia: Distribución de asesoría jurídica en",
+      "success": true
+    },
+    {
+      "id": "eb520937-a174-48e0-bd74-94392ce7ba6e",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de mujeres/usuarios atendidos anualmente. Total de víctimas de violencia de género, violenc",
+      "success": true
+    },
+    {
+      "id": "2f366a35-b598-422d-897c-dde22961568f",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de encuentros formales entre actores relevantes para trabajar en la modificacion del regist",
+      "success": true
+    },
+    {
+      "id": "dc7b1f26-aa84-4619-8930-31eff85cf7d0",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad de reuniones y/o encuentros formales entre autoridades locales así como con otros actores r",
+      "success": true
+    },
+    {
+      "id": "642f4e47-3678-4efd-91d1-a7f45c661c28",
+      "ministerio": "Justicia",
+      "indicador": "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+      "success": true
+    },
+    {
+      "id": "d7311061-0b23-417e-9446-80ff14669d11",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+      "success": true
+    },
+    {
+      "id": "dbabf6f2-c55f-4b36-9f48-d09d78fe87e5",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "tiempo promedio de respuestaa incidentes de seguridad",
+      "success": true
+    },
+    {
+      "id": "affd9e2e-a1b1-45c2-9cc1-7f9472ff5ed2",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "c) seguimiento y control de los requisitos de cada empresa solicitante del sello",
+      "success": true
+    },
+    {
+      "id": "a0dbf5a3-25e3-49fa-a670-48ff45e8b47c",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "b) cantidad de actividades de promocion del sello \"empresa mujer\"",
+      "success": true
+    },
+    {
+      "id": "a8653153-57e4-4915-9277-a4cdc0272666",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "b) publicacion del Protocolo actualizado",
+      "success": true
+    },
+    {
+      "id": "e7096133-a87c-46e9-8871-95e43df434bc",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "b) porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad",
+      "success": true
+    },
+    {
+      "id": "f1455b56-7030-4574-aa6c-1c715bc78e25",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "a) cantidad de empresas que han solicitado el sello mujer",
+      "success": true
+    },
+    {
+      "id": "70d9334c-4ae6-474d-a9cb-b94c3ee132c7",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "a) cantidad de reuniones para realizar la actualizacion de la normartiva que reglamenta el alcance y",
+      "success": true
+    },
+    {
+      "id": "35cbde62-e75f-4a06-b26b-d3c07fae2898",
+      "ministerio": "Hacienda y finanzas",
+      "indicador": "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto",
+      "success": true
+    },
+    {
+      "id": "261073f5-a9a9-4501-82b1-effc51adb4b3",
+      "ministerio": "Espacio Publico",
+      "indicador": "Porcentaje de cooperativas capacitadas en género",
+      "success": true
+    },
+    {
+      "id": "988dc23d-32d3-4cf4-8cba-1ce01fdec86e",
+      "ministerio": "Espacio Publico",
+      "indicador": "Cantidad de empresas de estas características incorporadas al Programa PARES",
+      "success": true
+    },
+    {
+      "id": "137fabd2-8583-46fa-b057-1b008cfc99b9",
+      "ministerio": "Espacio Publico",
+      "indicador": "cantidad de charlas y capacitaciones sobre género a las 12 cooperativas vinculadas al Ministerio de ",
+      "success": true
+    },
+    {
+      "id": "47f29754-b5c7-41c7-aacf-47414a93f732",
+      "ministerio": "Espacio Publico",
+      "indicador": "Cantidad y tipo de acciones que garantizan la continuidad de la implementación del programa de promo",
+      "success": true
+    },
+    {
+      "id": "da626766-6eef-4d77-addf-565ae6cfe202",
+      "ministerio": "Espacio Publico",
+      "indicador": "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vige",
+      "success": true
+    },
+    {
+      "id": "822497f7-2c2f-413b-ab6d-74f5d35ce2c9",
+      "ministerio": "Ente regulador de servicios púb",
+      "indicador": "Cantidad de empresas proveedoras de servicios públicos de la Ciudad de Buenos Aires incorporadas al ",
+      "success": true
+    },
+    {
+      "id": "6d31962a-df7f-40fc-96fa-1a7b097fdabf",
+      "ministerio": "Ente regulador de servicios púb",
+      "indicador": "publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de",
+      "success": true
+    },
+    {
+      "id": "ce5ec353-5064-4296-9620-c9d2759c3695",
+      "ministerio": "Ente regulador de servicios púb",
+      "indicador": "Cantidad de actividades de promoción y difusión de los recursos y servicios disponibles en materia d",
+      "success": true
+    },
+    {
+      "id": "57620f26-b0f5-4786-8f2a-a2d41facd885",
+      "ministerio": "Ente regulador de servicios púb",
+      "indicador": "Cantidad de acciones realizadas para promover  la incorporación de las empresas proveedoras de servi",
+      "success": true
+    },
+    {
+      "id": "105e8b4d-9b41-4a8a-9d8a-bbac7f376a47",
+      "ministerio": "Ente regulador de servicios púb",
+      "indicador": "cantidad de reuniones para la actualizacion de los lineamientos",
+      "success": true
+    },
+    {
+      "id": "ff7cdfe0-18fb-4df3-a14c-3f864ac3ebbc",
+      "ministerio": "Educacion",
+      "indicador": "Cantidad de casos derivados",
+      "success": true
+    },
+    {
+      "id": "5f155fbf-0159-43d0-8c3a-a7d540682ec7",
+      "ministerio": "compromisos ",
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "success": true
+    },
+    {
+      "id": "4bdb1aea-a147-46a1-baf6-5102f8d895f5",
+      "ministerio": "compromisos ",
+      "indicador": "Desarrollo Economico",
+      "success": true
+    },
+    {
+      "id": "14572227-207a-4c69-aaaf-8c2dbfe06682",
+      "ministerio": "Vicejefatura",
+      "indicador": "cantidad de participantes en el Programa Mujeres Líderes de edicion 2024",
+      "success": true
+    },
+    {
+      "id": "c0fbe23b-2ea7-4c7b-be4c-76d055b18e9b",
+      "ministerio": "Seguridad",
+      "indicador": "a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+      "success": true
+    },
+    {
+      "id": "f30f6a03-97b9-4317-b53a-4ac28dfeb688",
+      "ministerio": "Seguridad",
+      "indicador": "b) Aprobación de la Resolución conjunta",
+      "success": true
+    },
+    {
+      "id": "5c4be6a0-2267-4efb-9e9e-f8386f39a56f",
+      "ministerio": "Salud",
+      "indicador": "Cantidad turnos de mamografía otorgados anualmente en los efectores publicos de salud de la red CABA",
+      "success": true
+    },
+    {
+      "id": "cb573714-552e-4693-b3a7-dbd19879e3bf",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Participacion en actividades de concientizacion",
+      "success": true
+    },
+    {
+      "id": "66f3b275-4188-4e41-94ab-d1b3ba7986ce",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de reuniones de planificacion y armado de equipo para el relevamiento",
+      "success": true
+    },
+    {
+      "id": "3339a797-5bad-4fd7-959c-ebc8ca2eaf7a",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de reuniones de organizacion para la maraton",
+      "success": true
+    },
+    {
+      "id": "4c79b9fb-cb13-4bf5-b994-566fd0defe4a",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "contenidos de campaña de genero incorporados en boti",
+      "success": true
+    },
+    {
+      "id": "2f38cd34-1375-45eb-a172-aa57dad5967c",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de encuentros realizados para la elaboracion de diagnostico, planificacion y cronograma de actividades",
+      "success": true
+    },
+    {
+      "id": "4f80545f-1db6-443b-a311-8f07bcf5faac",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de reuniones para la redacción de la Ley Micaela",
+      "success": true
+    },
+    {
+      "id": "ce0cc898-2a32-46ac-a704-e17715196afa",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de ediciones de la especializaciones en perspectiva de género realizadas en 2024",
+      "success": true
+    },
+    {
+      "id": "5e56ac56-f96e-40f6-8a3f-e11f1e44fa97",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "cantidad de capacitaciones para entrenadores/as sobre deporte inclusivo",
+      "success": true
+    },
+    {
+      "id": "38aee10b-cc70-49ed-964e-a0d0849bcdd9",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de convenios/articulciones/acuerdos firmados con clubes para la entrega de materiales y difusion de la linea 144",
+      "success": true
+    },
+    {
+      "id": "74d2c847-3b03-4b26-ab32-55569f5d9787",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de reuniones para la redaccion de un protocolo unificado",
+      "success": true
+    },
+    {
+      "id": "a33c4a9a-a4d0-4574-a83a-d13681028625",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Tasa de paridad en la asignación de becas",
+      "success": true
+    },
+    {
+      "id": "a1019474-2b45-4536-ab1f-49c1f9c93bbf",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Actividades de planificacion",
+      "success": true
+    },
+    {
+      "id": "3a266475-f4f2-443b-b4c7-f61e27f0fa4f",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "aplicaciones de GCBA analizadas",
+      "success": true
+    },
+    {
+      "id": "23e0e39c-664c-487f-83b5-48ab1f47188c",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "cantidad de materiales de sensibilización distribuidos durante el evento",
+      "success": true
+    },
+    {
+      "id": "5bc59c21-d9d8-48aa-8b67-2796802030ac",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de participantes inscriptos por género",
+      "success": true
+    },
+    {
+      "id": "eae73dae-b4ef-43c4-843f-2ba3095291b4",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "fecha de realizacion de la maraton",
+      "success": true
+    },
+    {
+      "id": "d92c5b1b-78ac-4d9b-98ec-d3ab14393f5d",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "fecha de lanzamiento de la inscripcion para participar en la maraton",
+      "success": true
+    },
+    {
+      "id": "82addb42-bafe-4ae4-9ead-1498b65acb81",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de nuevos espacios de deporte inclusivo",
+      "success": true
+    },
+    {
+      "id": "7d0c6097-b247-45b6-89ca-94de26a4e07c",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "cantidad de alianzas con organizaciones para promover el deporte inclusivo",
+      "success": true
+    },
+    {
+      "id": "77ee82cd-6f0c-43a7-b400-1ceb45484df1",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Acciones de concientizacion sobre el deporte inclusivo",
+      "success": true
+    },
+    {
+      "id": "787ed866-e8f7-48b0-bbc8-ab9eb743808f",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de partidos de futbol en los que se difunde la linea 144",
+      "success": true
+    },
+    {
+      "id": "b6923b8c-7e79-4104-86a0-023f55da1bbf",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de clubes deportivos que colocan carteleria de la linea 144 en su infgraestructura visible",
+      "success": true
+    },
+    {
+      "id": "93edd79b-9d36-420a-9f21-e6581b50c17f",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de clubes deportivos que reciben materiales informativos para colocar en su infraestructura",
+      "success": true
+    },
+    {
+      "id": "f479029b-dc03-44a7-9f83-69661d617e2d",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de actividades de Difusión del protocolo",
+      "success": true
+    },
+    {
+      "id": "b5102190-515a-4355-b4ba-ebb1df9c15d2",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Fecha de Publicacion del protocolo",
+      "success": true
+    },
+    {
+      "id": "6afad6d2-0ed3-4de4-a785-8f3f6cec81d9",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Fecha de publicacion del Informe",
+      "success": true
+    },
+    {
+      "id": "3da56c0c-544c-45f1-bd3f-ba73db11e4ec",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Porcentaje de entidades con protocolos de actuación existentes:",
+      "success": true
+    },
+    {
+      "id": "393d8ed8-5488-4c3d-ac0c-d6da590c6fa0",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Número de entidades deportivas relevadas",
+      "success": true
+    },
+    {
+      "id": "59f3fd62-50b3-4a7b-be8a-97d207ad92db",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Elaboracion de cronograma de relevamiento",
+      "success": true
+    },
+    {
+      "id": "606d79e2-cf0b-4f89-9e16-0575e31e9957",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Porcentaje de clubes con comisiones de género establecidas:",
+      "success": true
+    },
+    {
+      "id": "4291dcca-e4f2-4f30-b2c8-c20ba817234c",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de actividades de relevamiento realizadas",
+      "success": true
+    },
+    {
+      "id": "de98f45f-a426-4021-a384-7f8e8f1804e9",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+      "success": true
+    },
+    {
+      "id": "694b94ad-d2f8-42da-a194-924b623c0e95",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de nuevas personas inscriptas a futbol mixto",
+      "success": true
+    },
+    {
+      "id": "09e2aa10-3d4d-4505-86f5-c2976d470132",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "cantidad de nuevos espacios de futbol mixto",
+      "success": true
+    },
+    {
+      "id": "aa4bfe04-c683-4502-86f9-3b5d063daec4",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Número de materiales promocionales producidos",
+      "success": true
+    },
+    {
+      "id": "fe30ff29-b6a1-482b-a414-95bf4b217f2b",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Fecha de publicacion del manual",
+      "success": true
+    },
+    {
+      "id": "55168f8f-549f-4453-901c-870c793879e4",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de personas provenientes de clubes deportivos de la ciudad capacitadas en Ley Micaela",
+      "success": true
+    },
+    {
+      "id": "6e4bfbc8-4cf7-40ef-8990-f9eecf11e955",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Porcentaje de entidades deportivas capacitadas",
+      "success": true
+    },
+    {
+      "id": "fa230a80-8868-4b38-a853-ff23b1b10209",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de mujeres con becas que finalizaron las formaciones",
+      "success": true
+    },
+    {
+      "id": "19b95bff-767b-4a39-ba78-98a17e4129df",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de personas que aprobaron la especializacion/es en perspectiva de género",
+      "success": true
+    },
+    {
+      "id": "249ad463-4858-4730-8fb1-6a675371ddac",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de personas inscriptas en especializacion/es de perspectiva de género",
+      "success": true
+    },
+    {
+      "id": "03b9610c-4d4c-4a48-9245-8490a36abaac",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de capacitaciones brindadas",
+      "success": true
+    },
+    {
+      "id": "8bc1627e-ce22-4677-a529-1d8032fecf11",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de trabajadores que completaron la capacitación",
+      "success": true
+    },
+    {
+      "id": "9394bc3c-b7eb-4274-bad0-9d6a65917bdb",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de trabajadores inscriptos en la capacitacion",
+      "success": true
+    },
+    {
+      "id": "3116d541-b049-4c66-8dd1-f48325556252",
+      "ministerio": "Jefatura de Gabinete",
+      "indicador": "Cantidad de reuniones para realizar los ajustes al manual de diseño en espacios publicos",
+      "success": true
+    },
+    {
+      "id": "97ea7218-0b78-4ef3-ac43-8c4721d59cb8",
+      "ministerio": "Educacion",
+      "indicador": "Cantidad de clubes creados",
+      "success": true
+    },
+    {
+      "id": "8f213e9f-b128-4501-9ece-cdfe9684e834",
+      "ministerio": "Educacion",
+      "indicador": "Cursos cuatrimestral, dictado en 2 Centros de Formación Profesional",
+      "success": true
+    },
+    {
+      "id": "41512665-84d0-4b5d-a920-190437001173",
+      "ministerio": "Educacion",
+      "indicador": "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+      "success": true
+    }
+  ]
+}

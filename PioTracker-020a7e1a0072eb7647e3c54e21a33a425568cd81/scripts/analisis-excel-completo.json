@@ -1,0 +1,686 @@
+{
+  "hojas": {
+    "Justicia": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 17,
+      "headers": [
+        "Ministerio",
+        "Compromisos: 7",
+        "Indicadores",
+        "Avances 2024 (mensuales/anuales en caso decorresponder)"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Avances 2024 (mensuales/anuales en caso decorresponder)",
+          "columna": 3
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre"
+        ],
+        [
+          "Justicia",
+          "A) Promover el asesoramiento y patrocinio jurídico penal gratuito para víctimas de violencia de género, violencia sexual y trata de personas a través de la Secretaría de Justicia.",
+          "Cantidad y tipo de acciones realizadas para promover el asesoramiento y/o patrocinio penal gratuito",
+          null,
+          null,
+          null,
+          null,
+          null,
+          "26/6 Jornada de sensibilización y concientización sobre violencia de género a cargo de familia de Wanda Taddei  (Beatriz Regal y su abogada, Sandra Del Aquilla).",
+          "24/7 1° Jornada de capacitación en derecho procesal penal con perspectiva de víctima dirigida a efectores que tiene contacto con víctimas y a ONGs; \r\n 30/7 Jornada sobre trata de personas: \"De la conciencia a la acción\".",
+          "5/8 Jornada contra la violencia laboral organizada por la Dirección General de Promición de Derechos de la Mujer. Participación desde el Patrocinio Jurídico Penal.\r\n \r\n  Incorporación del patrocinio jurídico penal a BOTI \r\n \r\n Asesoramiento jurídico penal y concientización en CESAC 45 (2 veces por mes)",
+          "23/9 Taller ESI\r\n Perspectiva de género: una barrera contra la violencia, Centro de formación profesional N° 15;\r\n \r\n  25/9 Jornada de intercambio para toda la DGAV con distintas ONGs. Temas: trata de personas, abuso sexual en todas sus modalidades, grooming. \r\n \r\n \r\n Asesoramiento jurídico penal y concientización en CESAC 45 (2 veces por mes)",
+          "9/10 Jornada de capacitación a equipos de apoyo del MInisterio de Educación. Temática: abuso sexual a NNyA; \r\n \r\n 16/10 Actividad en territorio en Barrio 15 (Ciudad Oculta) conjuntamente con \"Red de prestadores\". Atención a consultas de vecinos; \r\n \r\n 24/10 2° encuentro Jornada de capacitación en Derecho procesal penal. Modalidad Workshop. \r\n \r\n \r\n Asesoramiento jurídico penal y concientización en CESAC 45 (2 veces por mes)",
+          "2/11 Participación en el programa de capacitación de Seguridad en el marco de los Foros de Seguridad Pública para vecinos y vecinas de la Ciudad. \r\n \r\n 19/11 Participación en el panel \"Intervención Primaria\" en Jornada organizada por el Observatorio Metropolitano de Seguridad Pública del ISSP con motivo del día munidal para prevención de abuso sexual contra infancias.\r\n \r\n  19/11 Jornada de Formación: \"Detección temprana y abordaje de las violencias contra NNyA\", dirigida a equipos del Ministerio de Salud (emergencias, salud mental y enfermería); \r\n \r\n 27/11 Programa de Capacitación Intensiva: \"Abuso Sexual Online de Niños, Niñas y Adolescentes\".\r\n \r\n \r\n Asesoramiento jurídico penal y concientización en CESAC 45 (2 veces por mes)"
+        ],
+        [
+          null,
+          null,
+          "Cantidad de mujeres/usuarios atendidos anualmente. Total de víctimas de violencia de género, violencia sexual y trata de personas que acceden al servicio jurídico gratuito.",
+          0,
+          3,
+          2,
+          5,
+          1,
+          5,
+          8,
+          10,
+          6,
+          3,
+          1,
+          null
+        ]
+      ]
+    },
+    "Jefatura de Gabinete": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 51,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos:16",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Jefatura de Gabinete",
+          1,
+          "Garantizar el cumplimiento de la capacitación obligatoria en Ley Micaela. ",
+          "Cantidad de trabajadores inscriptos en la capacitacion",
+          4557,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          610,
+          196,
+          553
+        ],
+        [
+          null,
+          null,
+          null,
+          "Cantidad de trabajadores que completaron la capacitación",
+          2440,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          445,
+          84,
+          278
+        ]
+      ]
+    },
+    "Educacion": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 13,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos: 9",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Educación 22/8",
+          1,
+          "Garantizar el cupo de mujeres en los cursos de los Programas Talento Tech +18 (50%) y Talento Tech -18 (40%), o los que en un futuro los reemplacen.",
+          "Garantizar el cupo de mujeres en el curso Talento Tech +18 (50%): % de mujeres sobre el total de cursantes",
+          0.39,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "Garantizar el cupo de mujeres en el curso Talento Tech -18 (40%): % de mujeres sobre el total de cursantes",
+          0.42,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "Ente regulador de servicios púb": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 9,
+      "headers": [
+        "Ministerio 6-11",
+        null,
+        "Compromisos: 3",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Ente regulador de servicios públicos",
+          1,
+          "A) Actualizar los lineamientos para la intervención ante situaciones de violencia por razones de género, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+          "cantidad de reuniones para la actualizacion de los lineamientos",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          null,
+          null,
+          null,
+          "publicacion de nuevos lineamientos para la intervencion ante situaciones de violencia por razones de genero, identidad de género y discriminación en el marco de la Resolución N° 120/ERSP/19.",
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Revision del protocolo en vigencia.",
+          "Revision del protocolo en vigencia.",
+          "Apertura de canales de comunicación con la Direccion General de Promocion de los Der. De las Mujeres para el abordaje de casos.",
+          "Revision del protocolo en vigencia.",
+          "Revision del protocolo en vigencia.",
+          "Revision del protocolo en vigencia."
+        ]
+      ]
+    },
+    "Seguridad": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 6,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos: 4",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Seguridad 16-5",
+          1,
+          "Crear en conjunto con la Subsecretaría de la Mujer una “Mesa Interministerial de Femicidios” de la Ciudad de Buenos Aires, para el análisis y elaboración de informes estadísticos entorno a los femicidios ocurridos en el ámbito de la Ciudad.",
+          "a) Cantidad de reuniones entre el Ministerio de Seguridad y la Subsecretaría de la Mujer para la elaboración de la Resolución conjunta que apruebe la Mesa\r\n",
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "b) Aprobación de la Resolución conjunta"
+        ]
+      ]
+    },
+    "Vicejefatura": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 22,
+      "headers": [
+        "Area",
+        null,
+        "Compromisos: 16",
+        "Indicadores"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [],
+      "datosEjemplo": [
+        [
+          "Vice                       jefatura",
+          null,
+          " A través de la Secretaría de Bienestar Integral"
+        ],
+        [
+          null,
+          1,
+          "1. -Promover el acompañamiento a mujeres mayores.",
+          "Cantidad de mujeres mayores que han participado de los diferentes programas/politicas de la secretaria",
+          "cantidad de mujeres mayores victimas de violencias por motivos de genero que han sido beneficiarias de las politicas de la Secretaria"
+        ],
+        [
+          null,
+          null,
+          "A través de la Subsecretaría de la Mujer:"
+        ]
+      ]
+    },
+    "Espacio Publico": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 6,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos: 3",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Espacio Público e Higien Urbana",
+          1,
+          "A) Promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+          "Cantidad de acciones realizadas para promover la incorporación de las empresas con licitaciones vigentes para conservación del espacio público y la higiene urbana en la Ciudad de Buenos Aires al Programa PARES",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "Cantidad de empresas de estas características incorporadas al Programa PARES",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "Hacienda y finanzas": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 8,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos: 3",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Hacienda y finanzas",
+          1,
+          "A) Coordinar el seguimiento de la ejecución financiera anual de todos los programas con perspectiva de género y diversidad incluidos en el presupuesto. (ley 6107).",
+          "a) cantidad de programas con perspectiva de genero y diversidad incluidos en el presupuesto"
+        ],
+        [
+          null,
+          null,
+          null,
+          "b) porcentaje del presupuesto del GCBA asignado a programas con perspectiva de genero y diversidad"
+        ]
+      ]
+    },
+    "Salud": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 8,
+      "headers": [
+        "Ministerio",
+        "Compromisos: 5",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 3
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV",
+          "DIC"
+        ],
+        [
+          "Salud",
+          "1 Diseñar una planificación para consejerías sobre salud sexual como herramienta para la promoción y prevención de la salud.",
+          "Cantidad de consejerías de salud sexual realizadas en los centros de salud.",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          "Cantidad de turnos de colocacion o consulta sobre MAC realizados anualmente en atención primaria.",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "MDHyH": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 22,
+      "headers": [
+        "Ministerio",
+        null,
+        "Compromisos: 11",
+        "Indicadores",
+        "Meses 2024"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [
+        {
+          "header": "Meses 2024",
+          "columna": 4
+        }
+      ],
+      "datosEjemplo": [
+        [
+          null,
+          null,
+          null,
+          null,
+          "ENE",
+          "FEB",
+          "MAR",
+          "ABR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AGO",
+          "SEPT",
+          "OCT",
+          "NOV"
+        ],
+        [
+          "Desarrollo Humano y Habitat 5/11",
+          1,
+          "A) Sistematizar la información en materia de asistencia a mujeres en situación de violencia.",
+          "Cantidad de reuniones realizadas entre los actores involucrados en la creación de esta herramienta",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          "Creacion/implementacion de una herramienta que permita sistematizar la informacion en materia de asistencia a mujeres en situacion de violencia",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "compromisos ": {
+      "estado": "con_datos",
+      "totalFilas": 999,
+      "filasConDatos": 13,
+      "headers": [
+        "PIO Firmado",
+        "fecha",
+        "Compromisos",
+        "total"
+      ],
+      "patronesMeses": [],
+      "patronesPeriodos": [],
+      "datosEjemplo": [
+        [
+          "Educacion",
+          "22/08/2024",
+          9,
+          77
+        ],
+        [
+          "Jefatura de gabinete",
+          "20/09/2024",
+          16
+        ],
+        [
+          "Ente regulador",
+          45454,
+          3
+        ]
+      ]
+    }
+  },
+  "estructuraGeneral": {},
+  "recomendaciones": [
+    "✅ Se encontraron hojas con datos que pueden ser procesadas",
+    "⚠️ No se encontraron columnas de meses explícitas",
+    "💡 Recomendación: Asignar mes por defecto basado en el período",
+    "✅ Se encontraron columnas de períodos que pueden ser usadas para determinar meses"
+  ]
+}

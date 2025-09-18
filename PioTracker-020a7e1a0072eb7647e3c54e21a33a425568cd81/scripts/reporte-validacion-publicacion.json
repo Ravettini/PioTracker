@@ -1,0 +1,1529 @@
+{
+  "fecha": "2025-09-04T15:36:36.508Z",
+  "totalCargasPendientes": 20,
+  "validadas": 20,
+  "publicadas": 0,
+  "fallidas": 20,
+  "resultados": [
+    {
+      "carga": {
+        "id": "9ec0f2c3-d961-4302-b54e-69c2db0459d6",
+        "ministerioId": "COM",
+        "lineaId": "CST_1756998661201",
+        "indicadorId": "DE_1757000001582",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:35:03.987Z",
+        "actualizadoEn": "2025-09-04T15:35:03.987Z",
+        "ministerio": {
+          "id": "COM",
+          "nombre": "compromisos ",
+          "sigla": "COM",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998661201",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "COM",
+          "activo": true
+        },
+        "indicador": {
+          "id": "DE_1757000001582",
+          "nombre": "Desarrollo Economico",
+          "lineaId": "CST_1756998661201",
+          "unidadDefecto": "proyectos",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "9ec0f2c3-d961-4302-b54e-69c2db0459d6",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:00.467Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "61d75d2f-b62b-4050-a27f-a743dda26724",
+        "ministerioId": "SEG",
+        "lineaId": "GLCDMDVDGYELRPDEA2_1756999977610",
+        "indicadorId": "ABLINPGLCDMDVDGYELRPDEA2_1756999999954",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "Publicado en Junio",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:48.333Z",
+        "actualizadoEn": "2025-09-04T15:34:48.333Z",
+        "ministerio": {
+          "id": "SEG",
+          "nombre": "Seguridad",
+          "sigla": "SEG",
+          "activo": true
+        },
+        "linea": {
+          "id": "GLCDMDVDGYELRPDEA2_1756999977610",
+          "titulo": "Garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+          "ministerioId": "SEG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "ABLINPGLCDMDVDGYELRPDEA2_1756999999954",
+          "nombre": "a) Brindar la informacion necesaria para garantizar la continuidad del Mapa de Violencia de Género y efectuar la respectiva publicación durante el año 2024.",
+          "lineaId": "CST_1756998659081",
+          "unidadDefecto": "mapas",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "61d75d2f-b62b-4050-a27f-a743dda26724",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:03.105Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "c7ebb060-ad6d-4321-ad8e-e1ab37cc2b45",
+        "ministerioId": "SEG",
+        "lineaId": "CST_1756998659081",
+        "indicadorId": "BADLRC_1756999999400",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:47.255Z",
+        "actualizadoEn": "2025-09-04T15:34:47.255Z",
+        "ministerio": {
+          "id": "SEG",
+          "nombre": "Seguridad",
+          "sigla": "SEG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998659081",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "SEG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "BADLRC_1756999999400",
+          "nombre": "b) Aprobación de la Resolución conjunta",
+          "lineaId": "CST_1756998659081",
+          "unidadDefecto": "resoluciones",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "c7ebb060-ad6d-4321-ad8e-e1ab37cc2b45",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:04.753Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "feb8c8b5-e14f-400a-850e-e197ff55880f",
+        "ministerioId": "MDH",
+        "lineaId": "CST_1756998657467",
+        "indicadorId": "CDEDACDPR(P_1756999998319",
+        "periodicidad": "mensual",
+        "periodo": "2025-2027",
+        "valor": "210",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "Cantidad de entrevistas de admisión: 210 (entre enero y noviembre 2024).",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:34.106Z",
+        "actualizadoEn": "2025-09-04T15:34:34.106Z",
+        "ministerio": {
+          "id": "MDH",
+          "nombre": "MDHyH",
+          "sigla": "MDH",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998657467",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "MDH",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDEDACDPR(P_1756999998319",
+          "nombre": "Cantidad de entrevistas de admisión. Cantidad de prestaciones realizadas. (Indicador propuesto)",
+          "lineaId": "CST_1756998657467",
+          "unidadDefecto": "entrevistas",
+          "periodicidad": "mensual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "feb8c8b5-e14f-400a-850e-e197ff55880f",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:07.283Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "35e68df9-0fce-4de1-b1a9-27f64774f99e",
+        "ministerioId": "JDG",
+        "lineaId": "PMDDDEHCVDAARDG_1756999972828",
+        "indicadorId": "CDCDGIEB_1757000011669",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "5",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:20.959Z",
+        "actualizadoEn": "2025-09-04T15:34:20.959Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "PMDDDEHCVDAARDG_1756999972828",
+          "titulo": "Promover mecanismos de difusión de esta herramienta como vía de acceso a recursos del GCBA",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDCDGIEB_1757000011669",
+          "nombre": "contenidos de campaña de genero incorporados en boti",
+          "lineaId": "PMDDDEHCVDAARDG_1756999972828",
+          "unidadDefecto": "contenidos",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "35e68df9-0fce-4de1-b1a9-27f64774f99e",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:09.866Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "0ebf0086-9008-404a-be1c-fe7f0f66c4e9",
+        "ministerioId": "JDG",
+        "lineaId": "CTEADBCCDAPLADYCDMEEG_1756999968549",
+        "indicadorId": "CDCAPGQNDATDB_1757000007303",
+        "periodicidad": "mensual",
+        "periodo": "2025-2027",
+        "valor": "479",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:16.585Z",
+        "actualizadoEn": "2025-09-04T15:34:16.585Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CTEADBCCDAPLADYCDMEEG_1756999968549",
+          "titulo": "Continuar teniendo el apoyo de BOTI como canal de acceso para la atención, derivación y contención  de mujeres en el GCBA.",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDCAPGQNDATDB_1757000007303",
+          "nombre": "Cantidad de consultas atendidas por genero que necesiten derivacion a traves de boti",
+          "lineaId": "CTEADBCCDAPLADYCDMEEG_1756999968549",
+          "unidadDefecto": "consultas",
+          "periodicidad": "mensual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "0ebf0086-9008-404a-be1c-fe7f0f66c4e9",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:11.743Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "c545fee6-be25-40f4-a520-29fe6631d2dd",
+        "ministerioId": "JDG",
+        "lineaId": "CGLADBPPLF",
+        "indicadorId": "TDPELADB_1757000006756",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:16.037Z",
+        "actualizadoEn": "2025-09-04T15:34:16.037Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CGLADBPPLF",
+          "titulo": "Continuar garantizando la asignación de becas paritarias para las formaciones",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "TDPELADB_1757000006756",
+          "nombre": "Tasa de paridad en la asignación de becas",
+          "lineaId": "CGLADBPPLF",
+          "unidadDefecto": "%",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "c545fee6-be25-40f4-a520-29fe6631d2dd",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:13.483Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "7f1635c3-c1b7-4133-b373-a5676b490054",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "ADGA_1756999997221",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "484",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:14.934Z",
+        "actualizadoEn": "2025-09-04T15:34:14.934Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "ADGA_1756999997221",
+          "nombre": "aplicaciones de GCBA analizadas",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "aplicaciones",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "7f1635c3-c1b7-4133-b373-a5676b490054",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:15.196Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "0964d870-58a6-4766-b27d-f4e642ccfd30",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "TPDRIDS_1756999996682",
+        "periodicidad": "mensual",
+        "periodo": "2025-2027",
+        "valor": "1538",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:14.387Z",
+        "actualizadoEn": "2025-09-04T15:34:14.387Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "TPDRIDS_1756999996682",
+          "nombre": "tiempo promedio de respuestaa incidentes de seguridad",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "horas",
+          "periodicidad": "mensual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "0964d870-58a6-4766-b27d-f4e642ccfd30",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:16.899Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "9afd47fa-4a05-4367-b2c0-262fcd8a19db",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "CDMDSDDEE_1756999996133",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:13.846Z",
+        "actualizadoEn": "2025-09-04T15:34:13.846Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDMDSDDEE_1756999996133",
+          "nombre": "cantidad de materiales de sensibilización distribuidos durante el evento",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "materiales",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "9afd47fa-4a05-4367-b2c0-262fcd8a19db",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:18.561Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "8ffd9540-0a5e-4db2-b772-74aae4107e35",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "CDNEDDI_1756999993944",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:11.653Z",
+        "actualizadoEn": "2025-09-04T15:34:11.653Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDNEDDI_1756999993944",
+          "nombre": "Cantidad de nuevos espacios de deporte inclusivo",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "espacios",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "8ffd9540-0a5e-4db2-b772-74aae4107e35",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:20.301Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "ef56f3c1-6bf8-49c8-8cee-e0ccd961973b",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "CDACOPPEDI_1756999993395",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:11.103Z",
+        "actualizadoEn": "2025-09-04T15:34:11.103Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDACOPPEDI_1756999993395",
+          "nombre": "cantidad de alianzas con organizaciones para promover el deporte inclusivo",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "alianzas",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "ef56f3c1-6bf8-49c8-8cee-e0ccd961973b",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:21.968Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "c7501fa4-547d-4793-aeb3-1658252961a8",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "ADCSEDI_1756999992852",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:10.562Z",
+        "actualizadoEn": "2025-09-04T15:34:10.562Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "ADCSEDI_1756999992852",
+          "nombre": "Acciones de concientizacion sobre el deporte inclusivo",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "acciones",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "c7501fa4-547d-4793-aeb3-1658252961a8",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:23.672Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "b7950d7a-ff2d-4153-ac46-6001ef0e2224",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "PDECPDAE_1756999989039",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:06.742Z",
+        "actualizadoEn": "2025-09-04T15:34:06.742Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "PDECPDAE_1756999989039",
+          "nombre": "Porcentaje de entidades con protocolos de actuación existentes:",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "%",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "b7950d7a-ff2d-4153-ac46-6001ef0e2224",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:25.301Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "d98ec59a-3f73-4485-82e4-49ac5cf6f5a5",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "EDCDR_1756999987949",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:05.638Z",
+        "actualizadoEn": "2025-09-04T15:34:05.638Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "EDCDR_1756999987949",
+          "nombre": "Elaboracion de cronograma de relevamiento",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "cronogramas",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "d98ec59a-3f73-4485-82e4-49ac5cf6f5a5",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:27.675Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "5e95554f-eec3-4a95-8646-cc818f4f4685",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "CDADRR_1756999986855",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "1",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:04.529Z",
+        "actualizadoEn": "2025-09-04T15:34:04.529Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDADRR_1756999986855",
+          "nombre": "Cantidad de actividades de relevamiento realizadas",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "actividades",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "5e95554f-eec3-4a95-8646-cc818f4f4685",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:29.348Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "27c778f3-0d4f-47ff-81da-59b42e1afe43",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "PDPDMELADFM_1756999986311",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:03.975Z",
+        "actualizadoEn": "2025-09-04T15:34:03.975Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "PDPDMELADFM_1756999986311",
+          "nombre": "Porcentaje de participación de mujeres en las actividades de fútbol mixto:",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "%",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "27c778f3-0d4f-47ff-81da-59b42e1afe43",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:31.020Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "bfc81956-1f3b-4eb8-8161-f96ed35b10fe",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "FDPDM_1756999984130",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:01.756Z",
+        "actualizadoEn": "2025-09-04T15:34:01.756Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "FDPDM_1756999984130",
+          "nombre": "Fecha de publicacion del manual",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "fecha",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "bfc81956-1f3b-4eb8-8161-f96ed35b10fe",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:32.660Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "79bc09f7-d071-45d8-9554-ae113d740096",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "PDEDC_1756999983041",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:00.652Z",
+        "actualizadoEn": "2025-09-04T15:34:00.652Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "PDEDC_1756999983041",
+          "nombre": "Porcentaje de entidades deportivas capacitadas",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "%",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "79bc09f7-d071-45d8-9554-ae113d740096",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:34.264Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    },
+    {
+      "carga": {
+        "id": "bd534b99-2114-4ba3-aa54-efff6e796c27",
+        "ministerioId": "JDG",
+        "lineaId": "CST_1756998656386",
+        "indicadorId": "CDMCBQFLF_1756999982497",
+        "periodicidad": "anual",
+        "periodo": "2025-2027",
+        "valor": "0",
+        "unidad": "",
+        "meta": null,
+        "fuente": "Excel Original",
+        "responsableNombre": "Sistema Automático",
+        "responsableEmail": "sistema@pio.gob.ar",
+        "observaciones": "nan",
+        "estado": "pendiente",
+        "publicado": false,
+        "creadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "actualizadoPor": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+        "creadoEn": "2025-09-04T15:34:00.094Z",
+        "actualizadoEn": "2025-09-04T15:34:00.094Z",
+        "ministerio": {
+          "id": "JDG",
+          "nombre": "Jefatura de Gabinete",
+          "sigla": "JDG",
+          "activo": true
+        },
+        "linea": {
+          "id": "CST_1756998656386",
+          "titulo": "Compromiso sin título",
+          "ministerioId": "JDG",
+          "activo": true
+        },
+        "indicador": {
+          "id": "CDMCBQFLF_1756999982497",
+          "nombre": "Cantidad de mujeres con becas que finalizaron las formaciones",
+          "lineaId": "CST_1756998656386",
+          "unidadDefecto": "mujeres",
+          "periodicidad": "anual",
+          "activo": true,
+          "valorMin": null,
+          "valorMax": null
+        },
+        "creadoPorUsuario": {
+          "id": "a1086bff-56c2-4b33-b4d8-f863e1cc9c4d",
+          "email": "admin@pio.local",
+          "nombre": "Administrador del Sistema",
+          "hashClave": "$argon2id$v=19$m=65536,t=3,p=4$lOtPKC5SQObBSUOUlYTMvg$1Sj1V+ELGcAuOHbVntErTe86xOUqvZ/rT1JbOttlEx0",
+          "rol": "ADMIN",
+          "ministerioId": null,
+          "activo": true,
+          "claveTemporal": true,
+          "ultimoLogin": "2025-09-04T14:44:40.619Z",
+          "intentosFallidos": 0,
+          "bloqueadoHasta": null,
+          "creadoEn": "2025-09-03T01:18:43.825Z",
+          "actualizadoEn": "2025-09-04T14:44:40.621Z"
+        }
+      },
+      "validacion": {
+        "success": true,
+        "data": {
+          "message": "Carga validado exitosamente",
+          "carga": {
+            "id": "bd534b99-2114-4ba3-aa54-efff6e796c27",
+            "estado": "validado",
+            "observaciones": null,
+            "actualizadoEn": "2025-09-04T15:36:35.966Z"
+          }
+        }
+      },
+      "publicacion": {
+        "success": false,
+        "error": "HTTP 400: property publicado should not exist"
+      }
+    }
+  ]
+}

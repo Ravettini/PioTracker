@@ -1,0 +1,20 @@
+# Render configuration for PIO SIGEPI Backend
+# This file is used by Render to configure the backend service
+
+# Build command
+build: cd server && npm install && npm run build
+
+# Start command
+start: cd server && npm run start:prod
+
+# Environment variables
+env:
+  NODE_ENV: production
+  PORT: 3001
+  DATABASE_URL: $DATABASE_URL
+  JWT_SECRET: $JWT_SECRET
+  JWT_EXPIRES_IN: "24h"
+  CORS_ORIGIN: $CORS_ORIGIN
+
+# Health check
+healthCheckPath: /health
