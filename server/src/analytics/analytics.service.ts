@@ -178,7 +178,7 @@ export class AnalyticsService {
     const agrupado = sheetData.reduce((acc, row) => {
       const periodo = row.periodo;
       if (!acc[periodo]) {
-        acc[periodo] = { valor: 0, meta: row.meta, count: 0 };
+        acc[periodo] = { valor: 0, count: 0 };
       }
       acc[periodo].valor += row.valor;
       acc[periodo].count += 1;
@@ -187,55 +187,71 @@ export class AnalyticsService {
 
     const periodos = Object.keys(agrupado);
     const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
+    // No hay metas en Google Sheets
+    const metas: number[] = [];
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      metas: undefined, // No hay metas en Google Sheets
     };
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
     
-    // Agrupar por mes normalizado y sumar valores
+    // Agrupar por período y mes para crear fechas reales
     const agrupado = sheetData.reduce((acc, row) => {
-      const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
-      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
+      const periodo = row.periodo || '2024';
+      const mes = row.mes || 'enero';
       
-      if (!acc[mesNormalizado]) {
-        acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
+      // Crear una fecha real basada en período y mes
+      const fechaReal = this.crearFechaReal(periodo, mes);
+      const fechaString = fechaReal.toISOString().substring(0, 7); // YYYY-MM
+      
+      this.logger.log(`📅 Procesando fila: Período="${periodo}", Mes="${mes}" -> Fecha="${fechaString}", Valor=${row.valor}`);
+      
+      if (!acc[fechaString]) {
+        acc[fechaString] = { valor: 0, count: 0 };
       }
-      acc[mesNormalizado].valor += row.valor;
-      acc[mesNormalizado].count += 1;
+      acc[fechaString].valor += row.valor;
+      acc[fechaString].count += 1;
       return acc;
     }, {});
 
     this.logger.log(`📊 Datos agrupados:`, Object.keys(agrupado));
 
-    // Ordenar meses cronológicamente
-    const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
-                       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-    
-    const periodos = Object.keys(agrupado).sort((a, b) => {
-      const indexA = ordenMeses.indexOf(a);
-      const indexB = ordenMeses.indexOf(b);
-      if (indexA === -1) return 1;
-      if (indexB === -1) return -1;
-      return indexA - indexB;
-    });
+    // Ordenar fechas cronológicamente
+    const periodos = Object.keys(agrupado).sort();
 
     const valores = periodos.map(p => agrupado[p].valor);
-    const metas = periodos.map(p => agrupado[p].meta);
+    // No hay metas en Google Sheets
+    const metas: number[] = [];
 
     this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
 
     return {
       periodos,
       valores,
-      metas: metas.some(m => m !== null && m !== undefined) ? metas : undefined,
+      metas: undefined, // No hay metas en Google Sheets
     };
+  }
+
+  private crearFechaReal(periodo: string, mes: string): Date {
+    const año = parseInt(periodo) || 2024;
+    
+    // Mapeo de nombres de meses a números
+    const mesesMap: { [key: string]: number } = {
+      'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3, 'mayo': 4, 'junio': 5,
+      'julio': 6, 'agosto': 7, 'septiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11,
+      'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+      'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
+    };
+    
+    const mesLower = mes.toLowerCase().trim();
+    const numeroMes = mesesMap[mesLower] || 0; // Default a enero si no se encuentra
+    
+    return new Date(año, numeroMes, 1);
   }
 
   private normalizarMes(mes: string): string {
@@ -358,7 +374,7 @@ export class AnalyticsService {
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
-          const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : null; // Columna K: Meta (nueva posición)
+          // const meta = row[10] && row[10].trim() !== '' ? parseFloat(row[10]) : null; // Columna K: Meta - NO EXISTE EN SHEETS
           const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
           const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
           const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
@@ -375,7 +391,7 @@ export class AnalyticsService {
             periodo,
             mes,
             valor,
-            meta,
+            // meta, // NO EXISTE EN SHEETS
             unidad,
             fuente,
             responsable: responsableNombre,
@@ -386,7 +402,7 @@ export class AnalyticsService {
           });
           
           // Log para debugging
-          this.logger.log(`📊 Datos leídos: Período=${periodo}, Mes="${mes}", Valor=${valor}, Meta=${meta}`);
+          this.logger.log(`📊 Datos leídos: Período=${periodo}, Mes="${mes}", Valor=${valor}`);
         }
       }
       
