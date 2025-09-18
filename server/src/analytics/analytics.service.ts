@@ -199,29 +199,32 @@ export class AnalyticsService {
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
     
-    // Agrupar por período y mes para crear fechas reales
+    // Agrupar por mes normalizado y sumar valores
     const agrupado = sheetData.reduce((acc, row) => {
-      const periodo = row.periodo || '2024';
-      const mes = row.mes || 'enero';
+      const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
+      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
       
-      // Crear una fecha real basada en período y mes
-      const fechaReal = this.crearFechaReal(periodo, mes);
-      const fechaString = fechaReal.toISOString().substring(0, 7); // YYYY-MM
-      
-      this.logger.log(`📅 Procesando fila: Período="${periodo}", Mes="${mes}" -> Fecha="${fechaString}", Valor=${row.valor}`);
-      
-      if (!acc[fechaString]) {
-        acc[fechaString] = { valor: 0, meta: row.meta, count: 0 };
+      if (!acc[mesNormalizado]) {
+        acc[mesNormalizado] = { valor: 0, meta: row.meta, count: 0 };
       }
-      acc[fechaString].valor += row.valor;
-      acc[fechaString].count += 1;
+      acc[mesNormalizado].valor += row.valor;
+      acc[mesNormalizado].count += 1;
       return acc;
     }, {});
 
     this.logger.log(`📊 Datos agrupados:`, Object.keys(agrupado));
 
-    // Ordenar fechas cronológicamente
-    const periodos = Object.keys(agrupado).sort();
+    // Ordenar meses cronológicamente
+    const ordenMeses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
+                       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    
+    const periodos = Object.keys(agrupado).sort((a, b) => {
+      const indexA = ordenMeses.indexOf(a);
+      const indexB = ordenMeses.indexOf(b);
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+      return indexA - indexB;
+    });
 
     const valores = periodos.map(p => agrupado[p].valor);
     const metas = periodos.map(p => agrupado[p].meta);
