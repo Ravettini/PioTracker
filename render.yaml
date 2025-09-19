@@ -21,16 +21,6 @@ services:
         value: "24h"
       - key: CORS_ORIGIN
         value: https://pio-sigepi-frontend.onrender.com
-      - key: GOOGLE_OAUTH_CLIENT_ID
-        value: 152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com
-      - key: GOOGLE_OAUTH_CLIENT_SECRET
-        value: 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
-      - key: GOOGLE_REFRESH_TOKEN
-        value: 1//0hX8bKR2mjWH6CgYIARAAGBESNwF-L9IrTYNGLFFzV6VoGGvCUg8GS7AjTeVHjvVk2cDEXQ37EXuB_9bc7Y9fxZxO1UIT99vidnM
-      - key: GOOGLE_SHEET_ID
-        value: 1oOsW1ph6eFo0WcK28XdVjOaMZ9VqvB1T48Zje7MN7IA
-      - key: GOOGLE_SHEET_TAB
-        value: fact_indicadores
 
   # Frontend
   - type: web
