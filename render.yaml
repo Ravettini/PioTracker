@@ -26,7 +26,7 @@ services:
       - key: GOOGLE_OAUTH_CLIENT_SECRET
         value: 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
       - key: GOOGLE_REFRESH_TOKEN
-        value: 1//0h2RdiUc45HR5CgYIARAAGBESNWF-L9IrDZ9_43dsEj13DHzDro2smFhHbz6AVOrjXztc_H-otU-jnhmb4_uwpiNVtOovk-ZWdGk
+        value: 1//0hX8bKR2mjWH6CgYIARAAGBESNwF-L9IrTYNGLFFzV6VoGGvCUg8GS7AjTeVHjvVk2cDEXQ37EXuB_9bc7Y9fxZxO1UIT99vidnM
       - key: GOOGLE_SHEET_ID
         value: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
       - key: GOOGLE_SHEET_TAB
