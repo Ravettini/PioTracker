@@ -28,7 +28,7 @@ services:
       - key: GOOGLE_REFRESH_TOKEN
         value: 1//0hX8bKR2mjWH6CgYIARAAGBESNwF-L9IrTYNGLFFzV6VoGGvCUg8GS7AjTeVHjvVk2cDEXQ37EXuB_9bc7Y9fxZxO1UIT99vidnM
       - key: GOOGLE_SHEET_ID
-        value: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+        value: 1oOsW1ph6eFo0WcK28XdVjOaMZ9VqvB1T48Zje7MN7IA
       - key: GOOGLE_SHEET_TAB
         value: fact_indicadores
 
