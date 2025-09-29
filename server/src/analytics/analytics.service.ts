@@ -801,7 +801,9 @@ export class AnalyticsService {
         return [];
       }
 
-      // Leer datos de la hoja principal
+      // Leer datos de la hoja principal (usar la hoja por defecto)
+      this.logger.log(`🏛️ Configuración: sheetId=${config.sheetId}, sheetTab=${config.sheetTab}`);
+      this.logger.log(`🏛️ Leyendo datos de hoja: ${config.sheetTab}`);
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
         range: `${config.sheetTab}!A:S`, // Leer todas las columnas
