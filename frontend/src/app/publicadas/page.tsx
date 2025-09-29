@@ -326,7 +326,7 @@ export default function PublicadasPage() {
                           <div className="flex items-center">
                             <Calendar className="h-4 w-4 text-gray-400 mr-2" />
                             <div className="text-sm text-gray-900">
-                              {carga.periodo} - {carga.mes} (cumplimiento)
+                              {carga.periodo} (cumplimiento)
                             </div>
                           </div>
                         </td>
