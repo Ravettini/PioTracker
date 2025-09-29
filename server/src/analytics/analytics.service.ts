@@ -801,52 +801,61 @@ export class AnalyticsService {
         return [];
       }
 
-      // Leer datos de la hoja principal (usar la hoja por defecto)
-      this.logger.log(`🏛️ Configuración: sheetId=${config.sheetId}, sheetTab=${config.sheetTab}`);
-      this.logger.log(`🏛️ Leyendo datos de hoja: ${config.sheetTab}`);
-      const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: config.sheetId,
-        range: `${config.sheetTab}!A:S`, // Leer todas las columnas
-      });
-
-      const rows = response.data.values;
-      if (!rows || rows.length === 0) {
-        this.logger.warn('⚠️ No se encontraron datos en Google Sheets para vista global');
-        return [];
-      }
-
+      // Obtener todos los ministerios para leer sus hojas
+      const ministerios = await this.ministerioRepository.find();
       const datosGlobales = [];
       
-      // Procesar todas las filas (saltando el header)
-      for (let i = 1; i < rows.length; i++) {
-        const row = rows[i];
-        if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
-        
-        const periodo = row[2]; // Columna C: Período
-        const mes = row[3] || ''; // Columna D: Mes
-        const valor = parseFloat(row[8]) || 0; // Columna I: Valor
-        const unidad = row[9] || 'unidades'; // Columna J: Unidad
-        const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente
-        const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable
-        const estado = row[15] || 'validado'; // Columna P: Estado
-        const publicado = row[16] === 'Sí'; // Columna Q: Publicado
-        
-        // Aplicar filtros de período si se especifican
-        if (periodoDesde && periodo < periodoDesde) continue;
-        if (periodoHasta && periodo > periodoHasta) continue;
-        
-        // Solo incluir datos publicados y validados
-        if (publicado && estado === 'validado') {
-          datosGlobales.push({
-            periodo,
-            mes,
-            valor,
-            unidad,
-            fuente,
-            responsable: responsableNombre,
-            estado,
-            publicado,
+      for (const ministerio of ministerios) {
+        try {
+          const ministerioTab = this.generateMinisterioTabName(ministerio.nombre);
+          this.logger.log(`🏛️ Leyendo datos de hoja: ${ministerioTab}`);
+          
+          const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: config.sheetId,
+            range: `${ministerioTab}!A:S`,
           });
+
+          const rows = response.data.values || [];
+          if (rows.length <= 1) {
+            this.logger.warn(`⚠️ No hay datos en la hoja ${ministerioTab}`);
+            continue;
+          }
+          
+          // Procesar todas las filas (saltando el header)
+          for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
+            
+            const periodo = row[2]; // Columna C: Período
+            const mes = row[3] || ''; // Columna D: Mes
+            const valor = parseFloat(row[8]) || 0; // Columna I: Valor
+            const unidad = row[9] || 'unidades'; // Columna J: Unidad
+            const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente
+            const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable
+            const estado = row[15] || 'validado'; // Columna P: Estado
+            const publicado = row[16] === 'Sí'; // Columna Q: Publicado
+            
+            // Aplicar filtros de período si se especifican
+            if (periodoDesde && periodo < periodoDesde) continue;
+            if (periodoHasta && periodo > periodoHasta) continue;
+            
+            // Solo incluir datos publicados y validados
+            if (publicado && estado === 'validado') {
+              datosGlobales.push({
+                periodo,
+                mes,
+                valor,
+                unidad,
+                fuente,
+                responsable: responsableNombre,
+                estado,
+                publicado,
+              });
+            }
+          }
+        } catch (error) {
+          this.logger.warn(`⚠️ Error leyendo hoja del ministerio ${ministerio.nombre}: ${error.message}`);
+          continue;
         }
       }
       
