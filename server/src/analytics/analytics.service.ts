@@ -736,21 +736,68 @@ export class AnalyticsService {
       }
 
       // Obtener datos agregados de todos los indicadores
-      const sheetData = await this.getDataFromGoogleSheets('all', periodoDesde, periodoHasta);
+      const sheetData = await this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
 
-      // Procesar datos para vista global - mostrar distribución por período
-      const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
-      const valores = periodos.map(periodo => {
-        const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
-        return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
-      });
+      // Procesar datos para vista global - mostrar distribución por ministerio
+      const ministerios = await this.ministerioRepository.find();
+      const datosPorMinisterio = [];
+      
+      for (const ministerio of ministerios) {
+        const datosMinisterio = sheetData.filter(item => {
+          // Filtrar por ministerio usando el campo ministerio agregado
+          return item.ministerio === ministerio.nombre;
+        });
+        
+        if (datosMinisterio.length > 0) {
+          const totalValor = datosMinisterio.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+          datosPorMinisterio.push({
+            ministerio: ministerio.nombre,
+            valor: totalValor,
+            cantidad: datosMinisterio.length
+          });
+          this.logger.log(`📊 ${ministerio.nombre}: ${datosMinisterio.length} registros, valor total: ${totalValor}`);
+        }
+      }
+      
+      // Si no hay datos por ministerio, mostrar distribución por período
+      if (datosPorMinisterio.length === 0) {
+        const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
+        const valores = periodos.map(periodo => {
+          const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
+          return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+        });
 
-      this.logger.log(`📊 Vista global procesada: ${periodos.length} períodos, ${sheetData.length} registros totales`);
+        this.logger.log(`📊 Vista global procesada: ${periodos.length} períodos, ${sheetData.length} registros totales`);
+
+        return {
+          ministerio: 'Vista Global',
+          compromiso: 'Todos los Compromisos',
+          indicador: 'Distribución por Período',
+          tipo: 'cantidad',
+          datos: {
+            periodos,
+            valores,
+            metas: []
+          },
+          configuracion: {
+            tipoGrafico: 'bar',
+            colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
+            opciones: {}
+          },
+          vista: vista
+        };
+      }
+      
+      // Mostrar distribución por ministerio
+      const periodos = datosPorMinisterio.map(item => item.ministerio);
+      const valores = datosPorMinisterio.map(item => item.valor);
+
+      this.logger.log(`📊 Vista global procesada: ${datosPorMinisterio.length} ministerios, ${sheetData.length} registros totales`);
 
       return {
         ministerio: 'Vista Global',
         compromiso: 'Todos los Compromisos',
-        indicador: 'Distribución por Período',
+        indicador: 'Distribución por Ministerio',
         tipo: 'cantidad',
         datos: {
           periodos,
@@ -824,6 +871,7 @@ export class AnalyticsService {
           }
           
           // Procesar todas las filas (saltando el header)
+          let registrosMinisterio = 0;
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
@@ -852,9 +900,12 @@ export class AnalyticsService {
                 responsable: responsableNombre,
                 estado,
                 publicado,
+                ministerio: ministerio.nombre, // Agregar el ministerio
               });
+              registrosMinisterio++;
             }
           }
+          this.logger.log(`📊 ${ministerio.nombre}: ${registrosMinisterio} registros válidos`);
         } catch (error) {
           this.logger.warn(`⚠️ Error leyendo hoja del ministerio ${ministerio.nombre}: ${error.message}`);
           continue;
