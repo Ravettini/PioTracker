@@ -311,8 +311,8 @@ export class AnalyticsService {
       
       // Verificar configuración de Google Sheets
       const config = this.configService.get('google');
-      if (!config.sheetId || !config.refreshToken) {
-        this.logger.warn('⚠️ Configuración de Google Sheets incompleta. Usando base de datos local.');
+      if (!config.sheetId) {
+        this.logger.warn('⚠️ GOOGLE_SHEET_ID no configurado. Usando base de datos local.');
         return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
       }
 
@@ -327,19 +327,32 @@ export class AnalyticsService {
         return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
       }
 
-      // Crear cliente de Google Sheets
-      const { google } = require('googleapis');
-      const oauth2Client = new google.auth.OAuth2(
-        config.oauth.clientId,
-        config.oauth.clientSecret,
-        config.oauth.authUri
-      );
+      // Usar Service Account si está configurado, sino usar OAuth
+      let sheets;
       
-      oauth2Client.setCredentials({
-        refresh_token: config.refreshToken
-      });
-      
-      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      if (config.serviceAccount?.clientEmail) {
+        this.logger.log('🔑 Usando Service Account para analytics');
+        const { GoogleServiceAccountService } = await import('../sync/google-service-account.service');
+        const serviceAccountService = new GoogleServiceAccountService(this.configService);
+        sheets = await serviceAccountService.getSheetsClient();
+      } else if (config.refreshToken) {
+        this.logger.log('🔑 Usando OAuth para analytics');
+        const { google } = require('googleapis');
+        const oauth2Client = new google.auth.OAuth2(
+          config.oauth.clientId,
+          config.oauth.clientSecret,
+          config.oauth.authUri
+        );
+        
+        oauth2Client.setCredentials({
+          refresh_token: config.refreshToken
+        });
+        
+        sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      } else {
+        this.logger.warn('⚠️ No hay credenciales de Google configuradas para analytics');
+        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
       
       // Generar nombre de hoja del ministerio
       const ministerioTab = this.generateMinisterioTabName(indicador.linea.ministerio.nombre);

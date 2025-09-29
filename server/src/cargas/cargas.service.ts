@@ -351,8 +351,8 @@ export class CargasService {
     try {
       // Verificar configuración de Google Sheets
       const config = this.configService.get('google');
-      if (!config.sheetId || !config.refreshToken) {
-        this.logger.warn('⚠️ Configuración de Google Sheets incompleta. Usando base de datos local.');
+      if (!config.sheetId) {
+        this.logger.warn('⚠️ GOOGLE_SHEET_ID no configurado. Usando base de datos local.');
         return this.getDashboardStats(userId, userRol, userMinisterioId);
       }
 
@@ -390,21 +390,33 @@ export class CargasService {
     try {
       this.logger.log(`📊 Leyendo datos de Google Sheets para estadísticas del dashboard`);
       
-      // Crear cliente de Google Sheets
-      const { google } = require('googleapis');
+      // Usar Service Account si está configurado, sino usar OAuth
       const config = this.configService.get('google');
+      let sheets;
       
-      const oauth2Client = new google.auth.OAuth2(
-        config.oauth.clientId,
-        config.oauth.clientSecret,
-        config.oauth.authUri
-      );
-      
-      oauth2Client.setCredentials({
-        refresh_token: config.refreshToken
-      });
-      
-      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      if (config.serviceAccount?.clientEmail) {
+        this.logger.log('🔑 Usando Service Account para estadísticas');
+        const { GoogleServiceAccountService } = await import('../sync/google-service-account.service');
+        const serviceAccountService = new GoogleServiceAccountService(this.configService);
+        sheets = await serviceAccountService.getSheetsClient();
+      } else if (config.refreshToken) {
+        this.logger.log('🔑 Usando OAuth para estadísticas');
+        const { google } = require('googleapis');
+        const oauth2Client = new google.auth.OAuth2(
+          config.oauth.clientId,
+          config.oauth.clientSecret,
+          config.oauth.authUri
+        );
+        
+        oauth2Client.setCredentials({
+          refresh_token: config.refreshToken
+        });
+        
+        sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      } else {
+        this.logger.warn('⚠️ No hay credenciales de Google configuradas para estadísticas');
+        return [];
+      }
       
       // Obtener todas las hojas del spreadsheet
       const spreadsheet = await sheets.spreadsheets.get({
