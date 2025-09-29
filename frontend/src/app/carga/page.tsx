@@ -84,8 +84,8 @@ export default function CargaPage() {
 
   // Función para validar el formato del período
   const validarPeriodo = (periodo: string, periodicidad: string): boolean => {
-    // Validar tanto "2024" como "2025-2027"
-    return periodo === '2024' || periodo === '2025-2027';
+    // Validar períodos disponibles
+    return ['2024', '2025', '2026', '2027'].includes(periodo);
   };
 
   useEffect(() => {
@@ -227,7 +227,7 @@ export default function CargaPage() {
     }
 
     if (!validarPeriodo(periodo, indicador.periodicidad)) {
-              toast.error('El período debe ser "2024" o "2025-2027"');
+              toast.error('El período debe ser 2024, 2025, 2026 o 2027');
       return;
     }
 
@@ -620,7 +620,9 @@ export default function CargaPage() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="2024">2024</SelectItem>
-                      <SelectItem value="2025-2027">2025-2027</SelectItem>
+                      <SelectItem value="2025">2025</SelectItem>
+                      <SelectItem value="2026">2026</SelectItem>
+                      <SelectItem value="2027">2027</SelectItem>
                     </SelectContent>
                   </Select>
                   <p className="text-xs text-gray-500 mt-1">
@@ -631,14 +633,17 @@ export default function CargaPage() {
                 {/* Mes */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Mes *
+                    Mes de Cumplimiento *
                   </label>
+                  <p className="text-xs text-gray-500 mb-2">
+                    Indica el mes en que se cumplió o alcanzó el indicador
+                  </p>
                   <Select
                     value={mes}
                     onValueChange={(value) => setMes(value)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un mes" />
+                      <SelectValue placeholder="Selecciona el mes de cumplimiento" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="enero">Enero</SelectItem>

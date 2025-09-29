@@ -191,7 +191,7 @@ export class AuthService {
     
     await this.usuarioRepository.save(usuario);
 
-    return { message: 'Contraseña cambiada exitosamente' };
+    return { success: true, message: 'Contraseña cambiada exitosamente' };
   }
 
   async logout(userId: string) {

@@ -145,8 +145,11 @@ export default function AnalyticsPage() {
   useEffect(() => {
     if (selectedIndicador) {
       loadAnalyticsData();
+    } else if (!selectedMinisterio && !selectedCompromiso && !selectedIndicador) {
+      // Cargar vista global cuando no hay filtros seleccionados
+      loadVistaGlobal();
     }
-  }, [selectedIndicador, chartViewType]);
+  }, [selectedIndicador, chartViewType, selectedMinisterio, selectedCompromiso]);
 
   const loadMinisterios = async () => {
     try {
@@ -219,6 +222,19 @@ export default function AnalyticsPage() {
       setResumenData(response);
     } catch (error) {
       console.error('Error cargando resumen:', error);
+    }
+  };
+
+  const loadVistaGlobal = async () => {
+    try {
+      setIsLoadingData(true);
+      const response = await apiClient.analytics.getVistaGlobal();
+      setAnalyticsData(response);
+    } catch (error) {
+      console.error('Error cargando vista global:', error);
+      toast.error('Error al cargar la vista global');
+    } finally {
+      setIsLoadingData(false);
     }
   };
 
@@ -855,7 +871,7 @@ export default function AnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Ministerio
@@ -868,6 +884,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un ministerio" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="">Todos los ministerios</SelectItem>
                     {ministerios.map(m => (
                       <SelectItem key={m.id} value={m.id}>
                         {m.nombre}
@@ -890,6 +907,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un compromiso" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="">Todos los compromisos</SelectItem>
                     {compromisos.map(c => (
                       <SelectItem key={c.id} value={c.id}>
                         {c.titulo}
@@ -912,6 +930,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un indicador" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="">Todos los indicadores</SelectItem>
                     {indicadores.map(i => (
                       <SelectItem key={i.id} value={i.id}>
                         {i.nombre}
@@ -920,12 +939,75 @@ export default function AnalyticsPage() {
                   </SelectContent>
                 </Select>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Vista Global
+                </label>
+                <Button
+                  onClick={() => {
+                    setSelectedMinisterio('');
+                    setSelectedCompromiso('');
+                    setSelectedIndicador('');
+                    setAnalyticsData(null);
+                  }}
+                  variant="outline"
+                  className="w-full"
+                >
+                  <BarChart3 className="h-4 w-4 mr-2" />
+                  Ver Todos
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>
 
+        {/* Vista Global */}
+        {!selectedMinisterio && !selectedCompromiso && !selectedIndicador && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg md:text-xl flex items-center gap-2">
+                <BarChart3 className="h-5 w-5" />
+                Vista Global - Todos los Indicadores
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {isLoadingData ? (
+                <div className="flex items-center justify-center h-96">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <span className="ml-2 text-gray-600">Cargando vista global...</span>
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    Vista Global Disponible
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Selecciona un ministerio, compromiso e indicador para ver gráficos detallados
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div className="p-4 bg-blue-50 rounded-lg">
+                      <h4 className="font-medium text-blue-900">Ministerios</h4>
+                      <p className="text-2xl font-bold text-blue-600">{resumenData?.totalMinisterios || 0}</p>
+                    </div>
+                    <div className="p-4 bg-green-50 rounded-lg">
+                      <h4 className="font-medium text-green-900">Compromisos</h4>
+                      <p className="text-2xl font-bold text-green-600">{resumenData?.totalCompromisos || 0}</p>
+                    </div>
+                    <div className="p-4 bg-purple-50 rounded-lg">
+                      <h4 className="font-medium text-purple-900">Indicadores</h4>
+                      <p className="text-2xl font-bold text-purple-600">{resumenData?.totalIndicadores || 0}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
         {/* Gráfico */}
-        {analyticsData && (
+        {analyticsData && selectedIndicador && (
           <Card>
             <CardHeader>
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">

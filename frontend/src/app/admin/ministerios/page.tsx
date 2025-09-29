@@ -263,7 +263,7 @@ export default function MinisteriosPage() {
           },
           {
             id: 'MDHYH',
-            nombre: 'MDHyH',
+            nombre: 'Ministerio de Desarrollo Humano y Hábitat',
             descripcion: 'Ministerio de Desarrollo Humano y Hábitat',
             activo: true,
             createdAt: new Date().toISOString(),
@@ -272,7 +272,7 @@ export default function MinisteriosPage() {
               {
                 id: 'L10',
                 nombre: 'Línea Principal',
-                descripcion: 'Línea principal de MDHyH',
+                descripcion: 'Línea principal de Desarrollo Humano y Hábitat',
                 indicadores: [
                   { id: 'I11', nombre: 'Compromiso 1: Desarrollo social', periodicidad: 'mensual', activo: true }
                 ]
