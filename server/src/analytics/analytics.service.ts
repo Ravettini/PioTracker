@@ -698,7 +698,7 @@ export class AnalyticsService {
     return `Ministerio_${cleanName}`;
   }
 
-  private async getVistaGlobal(user: Usuario, periodoDesde?: string, periodoHasta?: string, vista: string = 'total'): Promise<AnalyticsResponse> {
+  private async getVistaGlobal(user: Usuario, periodoDesde?: string, periodoHasta?: string, vista: 'mensual' | 'total' = 'total'): Promise<AnalyticsResponse> {
     this.logger.log(`Obteniendo vista global para usuario: ${user.email}`);
 
     try {
