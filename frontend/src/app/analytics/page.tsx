@@ -128,7 +128,7 @@ export default function AnalyticsPage() {
   }, [isAuthenticated, router]);
 
   useEffect(() => {
-    if (selectedMinisterio) {
+    if (selectedMinisterio && selectedMinisterio !== 'all') {
       loadCompromisos(selectedMinisterio);
       setSelectedCompromiso('');
       setSelectedIndicador('');
@@ -136,17 +136,18 @@ export default function AnalyticsPage() {
   }, [selectedMinisterio]);
 
   useEffect(() => {
-    if (selectedCompromiso) {
+    if (selectedCompromiso && selectedCompromiso !== 'all') {
       loadIndicadores(selectedCompromiso);
       setSelectedIndicador('');
     }
   }, [selectedCompromiso]);
 
   useEffect(() => {
-    if (selectedIndicador) {
+    if (selectedIndicador && selectedIndicador !== 'all') {
       loadAnalyticsData();
-    } else if (!selectedMinisterio && !selectedCompromiso && !selectedIndicador) {
-      // Cargar vista global cuando no hay filtros seleccionados
+    } else if (selectedMinisterio === 'all' || selectedCompromiso === 'all' || selectedIndicador === 'all' || 
+               (!selectedMinisterio && !selectedCompromiso && !selectedIndicador)) {
+      // Cargar vista global cuando no hay filtros seleccionados o se selecciona "all"
       loadVistaGlobal();
     }
   }, [selectedIndicador, chartViewType, selectedMinisterio, selectedCompromiso]);
@@ -884,7 +885,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un ministerio" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos los ministerios</SelectItem>
+                    <SelectItem value="all">Todos los ministerios</SelectItem>
                     {ministerios.map(m => (
                       <SelectItem key={m.id} value={m.id}>
                         {m.nombre}
@@ -907,7 +908,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un compromiso" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos los compromisos</SelectItem>
+                    <SelectItem value="all">Todos los compromisos</SelectItem>
                     {compromisos.map(c => (
                       <SelectItem key={c.id} value={c.id}>
                         {c.titulo}
@@ -930,7 +931,7 @@ export default function AnalyticsPage() {
                     <SelectValue placeholder="Selecciona un indicador" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Todos los indicadores</SelectItem>
+                    <SelectItem value="all">Todos los indicadores</SelectItem>
                     {indicadores.map(i => (
                       <SelectItem key={i.id} value={i.id}>
                         {i.nombre}
@@ -946,9 +947,9 @@ export default function AnalyticsPage() {
                 </label>
                 <Button
                   onClick={() => {
-                    setSelectedMinisterio('');
-                    setSelectedCompromiso('');
-                    setSelectedIndicador('');
+                    setSelectedMinisterio('all');
+                    setSelectedCompromiso('all');
+                    setSelectedIndicador('all');
                     setAnalyticsData(null);
                   }}
                   variant="outline"
@@ -963,7 +964,8 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Vista Global */}
-        {!selectedMinisterio && !selectedCompromiso && !selectedIndicador && (
+        {(selectedMinisterio === 'all' || selectedCompromiso === 'all' || selectedIndicador === 'all' || 
+          (!selectedMinisterio && !selectedCompromiso && !selectedIndicador)) && (
           <Card>
             <CardHeader>
               <CardTitle className="text-lg md:text-xl flex items-center gap-2">
@@ -1007,7 +1009,7 @@ export default function AnalyticsPage() {
         )}
 
         {/* Gráfico */}
-        {analyticsData && selectedIndicador && (
+        {analyticsData && selectedIndicador && selectedIndicador !== 'all' && (
           <Card>
             <CardHeader>
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
@@ -1100,7 +1102,7 @@ export default function AnalyticsPage() {
         )}
 
         {/* Mensaje cuando no hay datos */}
-        {!analyticsData && selectedIndicador && !isLoadingData && (
+        {!analyticsData && selectedIndicador && selectedIndicador !== 'all' && !isLoadingData && (
           <Card>
             <CardContent className="p-8 text-center">
               <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
