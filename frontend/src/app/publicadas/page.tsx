@@ -97,7 +97,7 @@ export default function PublicadasPage() {
 
   const exportToExcel = () => {
     // TODO: Implementar exportación a Excel
-    toast.info('Función de exportación en desarrollo');
+    toast('Función de exportación en desarrollo');
   };
 
   if (!isAuthenticated || !user) {
