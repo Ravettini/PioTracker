@@ -203,15 +203,23 @@ export default function AnalyticsPage() {
       
       // Debug: Log de datos recibidos
       console.log('📊 Datos recibidos del backend:', response);
-      console.log('📊 Períodos:', response.datos.periodos);
-      console.log('📊 Valores:', response.datos.valores);
-      console.log('📊 Metas:', response.datos.metas);
+      console.log('📊 Períodos:', response.datos?.periodos);
+      console.log('📊 Valores:', response.datos?.valores);
+      console.log('📊 Metas:', response.datos?.metas);
       console.log('📊 Vista:', response.vista);
       
-      setAnalyticsData(response);
+      // Validar que la respuesta tenga la estructura esperada
+      if (response && response.datos && response.datos.periodos && response.datos.valores) {
+        setAnalyticsData(response);
+      } else {
+        console.warn('⚠️ Datos de analytics incompletos:', response);
+        toast.error('Los datos recibidos no tienen el formato esperado');
+        setAnalyticsData(null);
+      }
     } catch (error) {
       console.error('Error cargando datos de analytics:', error);
       toast.error('Error al cargar los datos del indicador');
+      setAnalyticsData(null);
     } finally {
       setIsLoadingData(false);
     }
@@ -230,10 +238,14 @@ export default function AnalyticsPage() {
     try {
       setIsLoadingData(true);
       const response = await apiClient.analytics.getResumen();
-      setAnalyticsData(response);
+      
+      // Para la vista global, no necesitamos datos de gráfico específicos
+      // Solo mostramos el resumen
+      setAnalyticsData(null);
     } catch (error) {
       console.error('Error cargando vista global:', error);
       toast.error('Error al cargar la vista global');
+      setAnalyticsData(null);
     } finally {
       setIsLoadingData(false);
     }
@@ -280,10 +292,14 @@ export default function AnalyticsPage() {
   };
 
   const formatChartData = (data: AnalyticsData) => {
+    if (!data || !data.datos || !data.datos.periodos || !data.datos.valores) {
+      return [];
+    }
+    
     return data.datos.periodos.map((periodo, index) => ({
       periodo,
-      valor: data.datos.valores[index],
-      meta: data.datos.metas?.[index],
+      valor: data.datos.valores[index] || 0,
+      meta: data.datos.metas?.[index] || 0,
     }));
   };
 
@@ -291,6 +307,23 @@ export default function AnalyticsPage() {
     if (!analyticsData) return null;
 
     const chartData = formatChartData(analyticsData);
+    
+    if (chartData.length === 0) {
+      return (
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              No hay datos para mostrar
+            </h3>
+            <p className="text-gray-600">
+              No se encontraron datos válidos para generar el gráfico
+            </p>
+          </div>
+        </div>
+      );
+    }
+    
     const { tipo, configuracion } = analyticsData;
 
     // Determinar el tipo de gráfico a mostrar
