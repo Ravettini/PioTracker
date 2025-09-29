@@ -6,6 +6,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { SyncController } from './sync.controller';
 import { SyncService } from './sync.service';
 import { GoogleAuthService } from './google-auth.service';
+import { GoogleServiceAccountService } from './google-service-account.service';
 import { TokenRenewalCron } from './token-renewal.cron';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
@@ -19,8 +20,8 @@ import { Carga } from '../db/entities/carga.entity';
     ScheduleModule.forRoot(),
   ],
   controllers: [SyncController],
-  providers: [SyncService, GoogleAuthService, TokenRenewalCron],
-  exports: [SyncService, GoogleAuthService],
+  providers: [SyncService, GoogleAuthService, GoogleServiceAccountService, TokenRenewalCron],
+  exports: [SyncService, GoogleAuthService, GoogleServiceAccountService],
 })
 export class SyncModule {}
 
