@@ -59,7 +59,7 @@ export class GoogleServiceAccountService {
    */
   async getSheetsClient() {
     const authClient = await this.getAuthenticatedClient();
-    return google.sheets({ version: 'v4', auth: authClient });
+    return google.sheets({ version: 'v4', auth: authClient as any });
   }
 
   /**
@@ -67,7 +67,7 @@ export class GoogleServiceAccountService {
    */
   async getDriveClient() {
     const authClient = await this.getAuthenticatedClient();
-    return google.drive({ version: 'v3', auth: authClient });
+    return google.drive({ version: 'v3', auth: authClient as any });
   }
 
   /**
