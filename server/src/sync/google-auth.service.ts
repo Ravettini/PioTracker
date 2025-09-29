@@ -71,15 +71,63 @@ export class GoogleAuthService {
     try {
       this.logger.log('🔄 Iniciando renovación automática del token...');
       
-      // Aquí implementarías la lógica de renovación
-      // Por ahora, solo logueamos que necesitamos renovación manual
-      this.logger.warn('⚠️ Renovación automática no implementada. Se requiere renovación manual.');
-      this.logger.warn('💡 Ejecuta: node get-google-token.js');
+      const { google } = require('googleapis');
+      const clientId = this.configService.get('google.oauth.clientId');
+      const clientSecret = this.configService.get('google.oauth.clientSecret');
+      const currentRefreshToken = this.configService.get('google.refreshToken');
       
-      return false;
+      if (!clientId || !clientSecret || !currentRefreshToken) {
+        this.logger.error('❌ Faltan credenciales OAuth para renovación automática');
+        return false;
+      }
+
+      const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
+      oauth2Client.setCredentials({
+        refresh_token: currentRefreshToken
+      });
+
+      // Intentar renovar el access token
+      const { credentials } = await oauth2Client.refreshAccessToken();
+      
+      if (credentials.refresh_token) {
+        // Si Google devuelve un nuevo refresh token, actualizarlo
+        await this.actualizarRefreshToken(credentials.refresh_token);
+        this.logger.log('✅ Refresh token renovado automáticamente');
+        return true;
+      } else {
+        // Si no hay nuevo refresh token, el actual sigue siendo válido
+        this.logger.log('✅ Access token renovado, refresh token sigue válido');
+        return true;
+      }
     } catch (error) {
       this.logger.error(`❌ Error renovando token: ${error.message}`);
+      if (error.message.includes('invalid_grant')) {
+        this.logger.warn('⚠️ Refresh token expirado. Se requiere renovación manual.');
+        this.logger.warn('💡 Ejecuta: node generar-token-simple.js');
+      }
       return false;
+    }
+  }
+
+  /**
+   * Actualiza el refresh token en el archivo .env
+   */
+  private async actualizarRefreshToken(newRefreshToken: string): Promise<void> {
+    try {
+      const envContent = fs.readFileSync(this.envPath, 'utf8');
+      const updatedContent = envContent.replace(
+        /GOOGLE_REFRESH_TOKEN=.*/,
+        `GOOGLE_REFRESH_TOKEN=${newRefreshToken}`
+      );
+      
+      fs.writeFileSync(this.envPath, updatedContent);
+      
+      // Actualizar la fecha de creación
+      await this.guardarFechaCreacionToken();
+      
+      this.logger.log('✅ Refresh token actualizado en .env');
+    } catch (error) {
+      this.logger.error(`❌ Error actualizando refresh token: ${error.message}`);
     }
   }
 

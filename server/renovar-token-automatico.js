@@ -1,89 +1,96 @@
-#!/usr/bin/env node
-
-/**
- * Script para renovar automáticamente el token de Google Sheets
- * Se ejecuta cada 5 meses para renovar el refresh token
- */
-
-const { execSync } = require('child_process');
+const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-const ENV_PATH = path.join(__dirname, '..', '.env');
+// Configuración - Credenciales de Google OAuth para producción
+const CLIENT_ID = '152204850788-as9dl0dmnfrr1ptuu12afvkvp93bs3vs.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
+const REDIRECT_URI = 'http://localhost:8080/api/v1/auth/google/callback';
 
-function log(message) {
-  console.log(`[${new Date().toISOString()}] ${message}`);
-}
+const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
-function verificarTokenExpirado() {
+async function renovarToken() {
   try {
-    const envContent = fs.readFileSync(ENV_PATH, 'utf8');
-    const tokenCreatedMatch = envContent.match(/GOOGLE_TOKEN_CREATED=(\d+)/);
+    console.log('🔄 **RENOVACIÓN AUTOMÁTICA DE TOKEN DE GOOGLE SHEETS**');
+    console.log('================================================');
     
-    if (!tokenCreatedMatch) {
-      log('⚠️ No se encontró fecha de creación del token');
-      return true; // Asumir que está expirado
-    }
-
-    const tokenCreated = parseInt(tokenCreatedMatch[1]);
-    const now = Date.now();
-    const daysSinceCreated = Math.floor((now - tokenCreated) / (1000 * 60 * 60 * 24));
-    
-    log(`📅 Token creado hace ${daysSinceCreated} días`);
-    
-    // Renovar si tiene más de 150 días (5 meses)
-    return daysSinceCreated > 150;
-  } catch (error) {
-    log(`❌ Error verificando token: ${error.message}`);
-    return true;
-  }
-}
-
-function renovarToken() {
-  try {
-    log('🔄 Renovando token de Google Sheets...');
-    
-    // Ejecutar el script de renovación
-    const result = execSync('node get-google-token.js', { 
-      cwd: path.join(__dirname, '..'),
-      encoding: 'utf8',
-      stdio: 'pipe'
+    // Generar URL de autorización
+    const authUrl = oauth2Client.generateAuthUrl({
+      access_type: 'offline',
+      scope: [
+        'https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive.readonly'
+      ],
+      prompt: 'consent' // Forzar consentimiento para obtener refresh token
     });
+
+    console.log('\n🔗 **PASO 1: Autorizar la aplicación**');
+    console.log('1. Abre este enlace en tu navegador:');
+    console.log(authUrl);
+    console.log('\n2. Inicia sesión con tu cuenta de Google');
+    console.log('3. Acepta los permisos solicitados');
+    console.log('4. Copia el código de autorización que aparece en la URL');
+    console.log('\n---');
     
-    log('✅ Token renovado exitosamente');
-    log(result);
+    // Leer código de autorización
+    const readline = require('readline');
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    const authCode = await new Promise((resolve) => {
+      rl.question('📋 Pega aquí el código de autorización: ', resolve);
+    });
+
+    console.log('\n🔄 **PASO 2: Obteniendo tokens...**');
+    const { tokens } = await oauth2Client.getToken(authCode);
     
-    // Actualizar fecha de creación
-    const envContent = fs.readFileSync(ENV_PATH, 'utf8');
-    const timestamp = Date.now().toString();
-    const updatedContent = envContent.replace(
-      /GOOGLE_TOKEN_CREATED=\d+/,
-      `GOOGLE_TOKEN_CREATED=${timestamp}`
-    ) + (envContent.includes('GOOGLE_TOKEN_CREATED') ? '' : `\nGOOGLE_TOKEN_CREATED=${timestamp}`);
+    console.log('\n✅ **TOKENS OBTENIDOS EXITOSAMENTE!**');
+    console.log('\n📝 **Variables para Render.com:**');
+    console.log('---');
+    console.log(`GOOGLE_OAUTH_CLIENT_ID=${CLIENT_ID}`);
+    console.log(`GOOGLE_OAUTH_CLIENT_SECRET=${CLIENT_SECRET}`);
+    console.log(`GOOGLE_REFRESH_TOKEN=${tokens.refresh_token}`);
+    console.log('---');
     
-    fs.writeFileSync(ENV_PATH, updatedContent);
-    log('✅ Fecha de creación actualizada');
+    console.log('\n🔍 **Información adicional:**');
+    console.log(`Access Token: ${tokens.access_token}`);
+    console.log(`Token Type: ${tokens.token_type}`);
+    console.log(`Expiry Date: ${tokens.expiry_date}`);
+    
+    // Guardar en archivo para referencia
+    const tokenInfo = {
+      refresh_token: tokens.refresh_token,
+      access_token: tokens.access_token,
+      token_type: tokens.token_type,
+      expiry_date: tokens.expiry_date,
+      created_at: new Date().toISOString()
+    };
+    
+    fs.writeFileSync('token-info.json', JSON.stringify(tokenInfo, null, 2));
+    console.log('\n💾 Token guardado en token-info.json');
+    
+    console.log('\n🚀 **PRÓXIMOS PASOS:**');
+    console.log('1. Copia las variables de arriba');
+    console.log('2. Ve a tu proyecto en Render.com');
+    console.log('3. Environment → Actualiza las variables');
+    console.log('4. Reinicia el servicio');
+    
+    rl.close();
     
   } catch (error) {
-    log(`❌ Error renovando token: ${error.message}`);
-    log('💡 Ejecuta manualmente: node get-google-token.js');
+    console.error('❌ Error:', error.message);
+    if (error.code === 400) {
+      console.log('\n💡 **Solución:** El código de autorización puede haber expirado.');
+      console.log('Genera uno nuevo siguiendo los pasos.');
+    }
   }
 }
 
-function main() {
-  log('🚀 Verificando estado del token de Google Sheets...');
-  
-  if (verificarTokenExpirado()) {
-    log('⚠️ Token próximo a expirar o expirado. Renovando...');
-    renovarToken();
-  } else {
-    log('✅ Token válido. No se requiere renovación.');
-  }
-}
-
-// Ejecutar solo si se llama directamente
+// Ejecutar si se llama directamente
 if (require.main === module) {
-  main();
+  renovarToken();
 }
 
-module.exports = { verificarTokenExpirado, renovarToken };
+module.exports = { renovarToken };
