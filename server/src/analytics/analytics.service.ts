@@ -132,6 +132,11 @@ export class AnalyticsService {
 
     const { indicadorId, periodoDesde, periodoHasta, vista = 'total' } = query;
 
+    // Manejar vista global
+    if (indicadorId === 'all') {
+      return this.getVistaGlobal(user, periodoDesde, periodoHasta, vista);
+    }
+
     // Obtener el indicador con sus relaciones
     const indicador = await this.indicadorRepository.findOne({
       where: { id: indicadorId },
@@ -314,6 +319,11 @@ export class AnalyticsService {
       if (!config.sheetId) {
         this.logger.warn('⚠️ GOOGLE_SHEET_ID no configurado. Usando base de datos local.');
         return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+      }
+
+      // Manejar vista global
+      if (indicadorId === 'all') {
+        return this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
       }
 
       // Obtener información del indicador para saber qué ministerio buscar
@@ -686,5 +696,164 @@ export class AnalyticsService {
       .substring(0, 30); // Limitar longitud
     
     return `Ministerio_${cleanName}`;
+  }
+
+  private async getVistaGlobal(user: Usuario, periodoDesde?: string, periodoHasta?: string, vista: string = 'total'): Promise<AnalyticsResponse> {
+    this.logger.log(`Obteniendo vista global para usuario: ${user.email}`);
+
+    try {
+      // Obtener todos los indicadores que el usuario puede ver
+      let indicadores;
+      if (user.rol === 'ADMIN') {
+        indicadores = await this.indicadorRepository.find({
+          relations: ['linea', 'linea.ministerio'],
+        });
+      } else {
+        indicadores = await this.indicadorRepository.find({
+          where: { linea: { ministerioId: user.ministerioId } },
+          relations: ['linea', 'linea.ministerio'],
+        });
+      }
+
+      if (indicadores.length === 0) {
+        return {
+          ministerio: 'Vista Global',
+          compromiso: 'Todos los Compromisos',
+          indicador: 'Todos los Indicadores',
+          tipo: 'cantidad',
+          datos: {
+            periodos: [],
+            valores: [],
+            metas: []
+          },
+          configuracion: {
+            tipoGrafico: 'bar',
+            colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
+            opciones: {}
+          },
+          vista: vista
+        };
+      }
+
+      // Obtener datos agregados de todos los indicadores
+      const sheetData = await this.getDataFromGoogleSheets('all', periodoDesde, periodoHasta);
+
+      // Procesar datos para vista global
+      const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
+      const valores = periodos.map(periodo => {
+        const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
+        return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+      });
+
+      return {
+        ministerio: 'Vista Global',
+        compromiso: 'Todos los Compromisos',
+        indicador: 'Todos los Indicadores',
+        tipo: 'cantidad',
+        datos: {
+          periodos,
+          valores,
+          metas: [] // No hay metas para vista global
+        },
+        configuracion: {
+          tipoGrafico: 'bar',
+          colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
+          opciones: {}
+        },
+        vista: vista
+      };
+    } catch (error) {
+      this.logger.error(`Error obteniendo vista global: ${error.message}`);
+      throw new ForbiddenException('Error al obtener la vista global');
+    }
+  }
+
+  private async getDataFromGoogleSheetsGlobal(periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
+    try {
+      this.logger.log(`📊 Leyendo datos globales de Google Sheets`);
+      
+      const config = this.configService.get('google');
+      
+      // Usar Service Account si está configurado, sino usar OAuth
+      let sheets;
+      
+      if (config.serviceAccount?.clientEmail) {
+        this.logger.log('🔑 Usando Service Account para vista global');
+        const { GoogleServiceAccountService } = await import('../sync/google-service-account.service');
+        const serviceAccountService = new GoogleServiceAccountService(this.configService);
+        sheets = await serviceAccountService.getSheetsClient();
+      } else if (config.refreshToken) {
+        this.logger.log('🔑 Usando OAuth para vista global');
+        const { google } = require('googleapis');
+        const oauth2Client = new google.auth.OAuth2(
+          config.oauth.clientId,
+          config.oauth.clientSecret,
+          config.oauth.authUri
+        );
+        
+        oauth2Client.setCredentials({
+          refresh_token: config.refreshToken
+        });
+        
+        sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      } else {
+        this.logger.warn('⚠️ No hay credenciales de Google configuradas para vista global');
+        return [];
+      }
+
+      // Leer datos de la hoja principal
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: config.sheetId,
+        range: `${config.sheetTab}!A:S`, // Leer todas las columnas
+      });
+
+      const rows = response.data.values;
+      if (!rows || rows.length === 0) {
+        this.logger.warn('⚠️ No se encontraron datos en Google Sheets para vista global');
+        return [];
+      }
+
+      const datosGlobales = [];
+      
+      // Procesar todas las filas (saltando el header)
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
+        
+        const periodo = row[2]; // Columna C: Período
+        const mes = row[3] || ''; // Columna D: Mes
+        const valor = parseFloat(row[8]) || 0; // Columna I: Valor
+        const unidad = row[9] || 'unidades'; // Columna J: Unidad
+        const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente
+        const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable
+        const estado = row[15] || 'validado'; // Columna P: Estado
+        const publicado = row[16] === 'Sí'; // Columna Q: Publicado
+        
+        // Aplicar filtros de período si se especifican
+        if (periodoDesde && periodo < periodoDesde) continue;
+        if (periodoHasta && periodo > periodoHasta) continue;
+        
+        // Solo incluir datos publicados y validados
+        if (publicado && estado === 'validado') {
+          datosGlobales.push({
+            periodo,
+            mes,
+            valor,
+            unidad,
+            fuente,
+            responsable: responsableNombre,
+            estado,
+            publicado,
+          });
+        }
+      }
+      
+      this.logger.log(`📊 Vista global: ${datosGlobales.length} registros válidos encontrados`);
+      return datosGlobales;
+      
+    } catch (error) {
+      this.logger.error(`❌ Error leyendo datos globales de Google Sheets: ${error.message}`);
+      return [];
+    }
   }
 }
