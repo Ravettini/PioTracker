@@ -738,22 +738,66 @@ export class AnalyticsService {
       // Obtener datos agregados de todos los indicadores
       const sheetData = await this.getDataFromGoogleSheets('all', periodoDesde, periodoHasta);
 
-      // Procesar datos para vista global
-      const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
-      const valores = periodos.map(periodo => {
-        const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
-        return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
-      });
+      // Procesar datos para vista global - mostrar distribución por ministerio
+      const ministerios = await this.ministerioRepository.find();
+      const datosPorMinisterio = [];
+      
+      for (const ministerio of ministerios) {
+        const datosMinisterio = sheetData.filter(item => {
+          // Filtrar por ministerio basado en el nombre del indicador o fuente
+          return item.fuente && item.fuente.toLowerCase().includes(ministerio.nombre.toLowerCase());
+        });
+        
+        if (datosMinisterio.length > 0) {
+          const totalValor = datosMinisterio.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+          datosPorMinisterio.push({
+            ministerio: ministerio.nombre,
+            valor: totalValor,
+            cantidad: datosMinisterio.length
+          });
+        }
+      }
+      
+      // Si no hay datos por ministerio, mostrar distribución por período
+      if (datosPorMinisterio.length === 0) {
+        const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
+        const valores = periodos.map(periodo => {
+          const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
+          return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+        });
+
+        return {
+          ministerio: 'Vista Global',
+          compromiso: 'Todos los Compromisos',
+          indicador: 'Distribución por Período',
+          tipo: 'cantidad',
+          datos: {
+            periodos,
+            valores,
+            metas: []
+          },
+          configuracion: {
+            tipoGrafico: 'bar',
+            colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
+            opciones: {}
+          },
+          vista: vista
+        };
+      }
+      
+      // Mostrar distribución por ministerio
+      const periodos = datosPorMinisterio.map(item => item.ministerio);
+      const valores = datosPorMinisterio.map(item => item.valor);
 
       return {
         ministerio: 'Vista Global',
         compromiso: 'Todos los Compromisos',
-        indicador: 'Todos los Indicadores',
+        indicador: 'Distribución por Ministerio',
         tipo: 'cantidad',
         datos: {
           periodos,
           valores,
-          metas: [] // No hay metas para vista global
+          metas: []
         },
         configuracion: {
           tipoGrafico: 'bar',
