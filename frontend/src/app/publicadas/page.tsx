@@ -309,7 +309,7 @@ export default function PublicadasPage() {
                                 {carga.indicador?.nombre || 'N/A'}
                               </div>
                               <div className="text-sm text-gray-500">
-                                {carga.indicador?.unidad || 'N/A'}
+                                {carga.indicador?.unidadDefecto || 'N/A'}
                               </div>
                             </div>
                           </div>
