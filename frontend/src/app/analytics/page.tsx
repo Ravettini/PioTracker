@@ -228,7 +228,7 @@ export default function AnalyticsPage() {
   const loadVistaGlobal = async () => {
     try {
       setIsLoadingData(true);
-      const response = await apiClient.analytics.getVistaGlobal();
+      const response = await apiClient.analytics.getResumen();
       setAnalyticsData(response);
     } catch (error) {
       console.error('Error cargando vista global:', error);
