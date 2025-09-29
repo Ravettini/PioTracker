@@ -304,7 +304,7 @@ async function bootstrap() {
         if (ministerio.nombre.includes('Salud')) {
           ministerioMap.set('salud', ministerio.id);
         }
-        if (ministerio.nombre.includes('MDHyH') || ministerio.nombre.includes('MDH')) {
+        if (ministerio.nombre.includes('MDHyH') || ministerio.nombre.includes('MDH') || ministerio.nombre.includes('Desarrollo Humano')) {
           ministerioMap.set('mdhyh', ministerio.id);
         }
       }

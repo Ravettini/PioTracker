@@ -871,7 +871,7 @@ export class SyncService {
       'Hacienda y finanzas': 'Hacienda y finanzas',
       'Jefatura de Gabinete': 'Jefatura de Gabinete',
       'Justicia': 'Justicia',
-      'MDHyH': 'MDHyH',
+      'MDHyH': 'Ministerio de Desarrollo Humano y Hábitat',
       'Salud': 'Salud',
       'Seguridad': 'Seguridad',
       'Vicejefatura': 'Vicejefatura'

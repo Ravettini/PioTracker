@@ -237,11 +237,23 @@ export default function AnalyticsPage() {
   const loadVistaGlobal = async () => {
     try {
       setIsLoadingData(true);
-      const response = await apiClient.analytics.getResumen();
       
-      // Para la vista global, no necesitamos datos de gráfico específicos
-      // Solo mostramos el resumen
-      setAnalyticsData(null);
+      // Cargar datos globales de todos los indicadores
+      const response = await apiClient.analytics.getDatos({
+        indicadorId: 'all', // Usar 'all' para obtener datos globales
+        vista: chartViewType,
+      });
+      
+      console.log('📊 Datos globales recibidos:', response);
+      
+      // Validar que la respuesta tenga la estructura esperada
+      if (response && response.datos && response.datos.periodos && response.datos.valores) {
+        setAnalyticsData(response);
+      } else {
+        console.warn('⚠️ Datos globales incompletos:', response);
+        // Si no hay datos globales, mostrar resumen
+        setAnalyticsData(null);
+      }
     } catch (error) {
       console.error('Error cargando vista global:', error);
       toast.error('Error al cargar la vista global');
@@ -1011,6 +1023,53 @@ export default function AnalyticsPage() {
                 <div className="flex items-center justify-center h-96">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                   <span className="ml-2 text-gray-600">Cargando vista global...</span>
+                </div>
+              ) : analyticsData ? (
+                <div>
+                  <div ref={chartRef}>
+                    {renderChart()}
+                  </div>
+                  <div className="mt-4 space-y-4">
+                    {/* Botones de Vista */}
+                    <div className="flex flex-col sm:flex-row justify-center sm:justify-start space-y-2 sm:space-y-0 sm:space-x-2">
+                      <div className="flex gap-2">
+                        <Button
+                          variant={chartViewType === 'total' ? 'default' : 'outline'}
+                          onClick={() => setChartViewType('total')}
+                          className="w-full sm:w-auto"
+                        >
+                          Vista Total
+                        </Button>
+                        <Button
+                          variant={chartViewType === 'mensual' ? 'default' : 'outline'}
+                          onClick={() => setChartViewType('mensual')}
+                          className="w-full sm:w-auto"
+                        >
+                          Avance por Mes
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Botones de Acción */}
+                    <div className="flex flex-col sm:flex-row justify-center sm:justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowChartGuide(!showChartGuide)}
+                        className="w-full sm:w-auto"
+                      >
+                        {showChartGuide ? 'Ocultar Explicación' : 'Mostrar Explicación'}
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full sm:w-auto"
+                        onClick={exportChart}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Exportar
+                      </Button>
+                    </div>
+                  </div>
+                  {showChartGuide && renderChartGuide()}
                 </div>
               ) : (
                 <div className="text-center py-8">
