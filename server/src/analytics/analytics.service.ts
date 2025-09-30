@@ -679,6 +679,7 @@ export class AnalyticsService {
       'Jefatura de Gabinete': 'Jefatura de Gabinete',
       'Justicia': 'Justicia',
       'MDHyH': 'Ministerio de Desarrollo Humano y Hábitat',
+      'Ministerio de prueba': 'Ministerio_Ministerio_de_prueba',
       'Salud': 'Salud',
       'Seguridad': 'Seguridad',
       'Vicejefatura': 'Vicejefatura'
@@ -690,10 +691,15 @@ export class AnalyticsService {
     }
     
     // Si no existe el mapeo, crear nombre limpio
-    const cleanName = ministerio
+    let cleanName = ministerio
       .replace(/[^a-zA-Z0-9\s]/g, '') // Remover caracteres especiales
       .replace(/\s+/g, '_') // Reemplazar espacios con guiones bajos
       .substring(0, 30); // Limitar longitud
+    
+    // Si el nombre ya contiene "Ministerio", no agregar el prefijo
+    if (cleanName.toLowerCase().includes('ministerio')) {
+      return cleanName;
+    }
     
     return `Ministerio_${cleanName}`;
   }
@@ -738,7 +744,7 @@ export class AnalyticsService {
       // Obtener datos agregados de todos los indicadores
       const sheetData = await this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
 
-      // Procesar datos para vista global - mostrar distribución por ministerio
+      // Vista global SIEMPRE muestra por ministerios (barras), nunca por períodos
       const ministerios = await this.ministerioRepository.find();
       const datosPorMinisterio = [];
       
@@ -749,6 +755,7 @@ export class AnalyticsService {
         });
         
         if (datosMinisterio.length > 0) {
+          // Sumar TODOS los valores de la columna VALOR de cada hoja del ministerio
           const totalValor = datosMinisterio.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
           datosPorMinisterio.push({
             ministerio: ministerio.nombre,
@@ -759,38 +766,9 @@ export class AnalyticsService {
         }
       }
       
-      // Si no hay datos por ministerio, mostrar distribución por período
-      if (datosPorMinisterio.length === 0) {
-        const periodos = [...new Set(sheetData.map(item => item.periodo))].sort();
-        const valores = periodos.map(periodo => {
-          const itemsDelPeriodo = sheetData.filter(item => item.periodo === periodo);
-          return itemsDelPeriodo.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
-        });
-
-        this.logger.log(`📊 Vista global procesada: ${periodos.length} períodos, ${sheetData.length} registros totales`);
-
-        return {
-          ministerio: 'Vista Global',
-          compromiso: 'Todos los Compromisos',
-          indicador: 'Distribución por Período',
-          tipo: 'cantidad',
-          datos: {
-            periodos,
-            valores,
-            metas: []
-          },
-          configuracion: {
-            tipoGrafico: 'bar',
-            colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
-            opciones: {}
-          },
-          vista: vista
-        };
-      }
-      
-      // Mostrar distribución por ministerio
-      const periodos = datosPorMinisterio.map(item => item.ministerio);
-      const valores = datosPorMinisterio.map(item => item.valor);
+      // Mostrar distribución por ministerio (SIEMPRE, sin fallback a períodos)
+      const nombresMinisterios = datosPorMinisterio.map(item => item.ministerio);
+      const valoresTotales = datosPorMinisterio.map(item => item.valor);
 
       this.logger.log(`📊 Vista global procesada: ${datosPorMinisterio.length} ministerios, ${sheetData.length} registros totales`);
 
@@ -800,8 +778,8 @@ export class AnalyticsService {
         indicador: 'Distribución por Ministerio',
         tipo: 'cantidad',
         datos: {
-          periodos,
-          valores,
+          periodos: nombresMinisterios, // Nombres de ministerios como "períodos"
+          valores: valoresTotales,      // Valores totales de cada ministerio
           metas: []
         },
         configuracion: {
@@ -809,7 +787,7 @@ export class AnalyticsService {
           colores: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'],
           opciones: {}
         },
-        vista: vista
+        vista: 'total' // Vista global SIEMPRE es 'total'
       };
     } catch (error) {
       this.logger.error(`Error obteniendo vista global: ${error.message}`);
