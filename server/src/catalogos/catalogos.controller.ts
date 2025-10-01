@@ -11,6 +11,7 @@ import { LineasQueryDto } from './dto/lineas-query.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { MetasMensualesService } from '../metas-mensuales/metas-mensuales.service';
 
 @Controller('catalogos')
 export class CatalogosController {
@@ -21,6 +22,7 @@ export class CatalogosController {
     @InjectRepository(Linea) private readonly lineaRepository: Repository<Linea>,
     @InjectRepository(Ministerio) private readonly ministerioRepository: Repository<Ministerio>,
     @InjectRepository(Indicador) private readonly indicadorRepository: Repository<Indicador>,
+    private readonly metasMensualesService: MetasMensualesService,
   ) {}
 
   @Get('ministerios')
@@ -181,6 +183,31 @@ export class CatalogosController {
       });
 
       const savedIndicador = await this.indicadorRepository.save(indicador);
+
+      // Si se proporcionó una meta, crear la meta mensual
+      if (createIndicadorDto.meta && createIndicadorDto.meta.trim() !== '') {
+        try {
+          const metaValue = parseFloat(createIndicadorDto.meta);
+          if (!isNaN(metaValue)) {
+            // Crear meta para el año actual (enero por defecto)
+            const currentYear = new Date().getFullYear();
+            const mesFormateado = `${currentYear}-01`;
+            
+            await this.metasMensualesService.create({
+              indicadorId: savedIndicador.id,
+              ministerioId: linea.ministerioId,
+              mes: mesFormateado,
+              meta: metaValue,
+              descripcion: `Meta inicial creada con el indicador: ${savedIndicador.nombre}`
+            }, 'system'); // Usuario 'system' para metas creadas automáticamente
+            
+            this.logger.log(`Meta inicial creada: ${metaValue} para indicador ${savedIndicador.nombre}`);
+          }
+        } catch (error) {
+          this.logger.warn(`Error creando meta inicial para indicador ${savedIndicador.nombre}:`, error);
+          // No fallar la creación del indicador si falla la meta
+        }
+      }
 
       this.logger.log(`Nuevo indicador creado: ${savedIndicador.nombre} para línea ${linea.titulo}`);
 

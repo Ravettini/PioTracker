@@ -5,10 +5,12 @@ import { CatalogosService } from './catalogos.service';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
 import { Indicador } from '../db/entities/indicador.entity';
+import { MetasMensualesModule } from '../metas-mensuales/metas-mensuales.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Ministerio, Linea, Indicador])
+    TypeOrmModule.forFeature([Ministerio, Linea, Indicador]),
+    MetasMensualesModule
   ],
   controllers: [CatalogosController],
   providers: [CatalogosService],
