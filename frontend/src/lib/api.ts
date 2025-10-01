@@ -180,8 +180,23 @@ export const apiClient = {
 
   // Metas mensuales
   metas: {
-    getByIndicador: async (indicadorId: string, ministerioId: string, mes: string) => {
-      const response = await api.get(`/metas-mensuales/indicador/${indicadorId}?ministerioId=${ministerioId}&mes=${mes}`);
+    getByIndicador: async (indicadorId: string, ministerioId?: string, mes?: string) => {
+      let url = `/metas-mensuales/indicador/${indicadorId}`;
+      const params = new URLSearchParams();
+      
+      if (ministerioId) {
+        params.append('ministerioId', ministerioId);
+      }
+      
+      if (mes) {
+        params.append('mes', mes);
+      }
+      
+      if (params.toString()) {
+        url += `?${params.toString()}`;
+      }
+      
+      const response = await api.get(url);
       return response.data;
     },
     create: async (data: any) => {
