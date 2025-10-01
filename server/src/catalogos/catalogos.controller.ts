@@ -199,7 +199,7 @@ export class CatalogosController {
               mes: mesFormateado,
               meta: metaValue,
               descripcion: `Meta inicial creada con el indicador: ${savedIndicador.nombre}`
-            }, 'system'); // Usuario 'system' para metas creadas automáticamente
+            }, '5b5a7b98-db07-4919-889e-c0682a506fb6'); // Usuario admin para metas creadas automáticamente
             
             this.logger.log(`Meta inicial creada: ${metaValue} para indicador ${savedIndicador.nombre}`);
           }

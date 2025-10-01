@@ -772,38 +772,34 @@ export default function CargaPage() {
                     Meta *
                   </label>
                   <div className="space-y-2">
-                    {/* Mostrar meta para el mes seleccionado */}
-                    {meta !== '0.00' && meta !== '' ? (
-                      <div className="p-3 bg-green-50 border border-green-200 rounded-md">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-green-800">Meta para {mes}:</span>
-                          <span className="text-lg font-bold text-green-800">{meta}</span>
-                        </div>
-                        <p className="text-xs text-green-600 mt-1">
-                          Meta cargada automáticamente desde el sistema
+                    {/* Selector de meta existente */}
+                    {metasExistentes.length > 0 ? (
+                      <div className="space-y-2">
+                        <select
+                          value={meta}
+                          onChange={(e) => setMeta(e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Selecciona una meta</option>
+                          {metasExistentes.map((metaItem) => (
+                            <option key={metaItem.id} value={metaItem.meta.toString()}>
+                              {metaItem.meta} - {metaItem.mes}
+                            </option>
+                          ))}
+                        </select>
+                        <p className="text-xs text-gray-500">
+                          Metas disponibles para este indicador y ministerio
                         </p>
                       </div>
                     ) : (
                       <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-yellow-800">No hay meta definida para {mes}</span>
+                          <span className="text-sm text-yellow-800">No hay metas definidas</span>
                         </div>
                         <p className="text-xs text-yellow-600 mt-1">
-                          Puedes crear una nueva meta usando el botón de abajo
+                          Crea una meta desde la vista de administración o usando el botón de abajo
                         </p>
                       </div>
-                    )}
-                    
-                    {/* Campo de entrada para meta (solo visible si no hay meta) */}
-                    {meta === '0.00' && (
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={meta}
-                        onChange={(e) => setMeta(e.target.value)}
-                        placeholder="Ingresa el valor de la meta"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
                     )}
                   </div>
                   
