@@ -136,6 +136,15 @@ export default function CargaPage() {
     }
   }, [selectedLinea]);
 
+  // Cargar meta mensual cuando se selecciona indicador y mes
+  useEffect(() => {
+    if (selectedIndicador && selectedMinisterio && mes) {
+      loadMetaMensual(selectedIndicador, selectedMinisterio, mes);
+    } else {
+      setMeta('0.00'); // Reset si no hay selección completa
+    }
+  }, [selectedIndicador, selectedMinisterio, mes]);
+
   const loadMinisterios = async () => {
     try {
       setIsLoading(true);
@@ -208,6 +217,27 @@ export default function CargaPage() {
     } catch (error) {
       console.error('❌ Error cargando indicadores:', error);
       return [];
+    }
+  };
+
+  const loadMetaMensual = async (indicadorId: string, ministerioId: string, mes: string) => {
+    try {
+      console.log(`🎯 Buscando meta mensual para indicador ${indicadorId}, ministerio ${ministerioId}, mes ${mes}`);
+      
+      const response = await apiClient.metas.getByIndicador(indicadorId, ministerioId, mes);
+      console.log('📊 Respuesta de meta mensual:', response);
+      
+      if (response && response.metas && response.metas.length > 0) {
+        const metaMensual = response.metas[0];
+        setMeta(metaMensual.meta.toString());
+        console.log(`✅ Meta mensual encontrada: ${metaMensual.meta}`);
+      } else {
+        setMeta('0.00');
+        console.log('⚠️ No se encontró meta mensual, usando valor por defecto: 0.00');
+      }
+    } catch (error) {
+      console.error('❌ Error cargando meta mensual:', error);
+      setMeta('0.00'); // Fallback a valor por defecto
     }
   };
 

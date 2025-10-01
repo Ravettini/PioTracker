@@ -178,6 +178,26 @@ export const apiClient = {
     },
   },
 
+  // Metas mensuales
+  metas: {
+    getByIndicador: async (indicadorId: string, ministerioId: string, mes: string) => {
+      const response = await api.get(`/metas-mensuales?indicadorId=${indicadorId}&ministerioId=${ministerioId}&mes=${mes}`);
+      return response.data;
+    },
+    create: async (data: any) => {
+      const response = await api.post('/metas-mensuales', data);
+      return response.data;
+    },
+    update: async (id: string, data: any) => {
+      const response = await api.put(`/metas-mensuales/${id}`, data);
+      return response.data;
+    },
+    delete: async (id: string) => {
+      const response = await api.delete(`/metas-mensuales/${id}`);
+      return response.data;
+    },
+  },
+
   // Administración (solo admin)
   admin: {
     getUsuarios: async () => {
