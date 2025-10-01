@@ -62,7 +62,7 @@ export default function CargaPage() {
   const [newIndicador, setNewIndicador] = useState<string>('');
   const [showNewMeta, setShowNewMeta] = useState(false);
   const [newMeta, setNewMeta] = useState<string>('');
-  const [metas, setMetas] = useState<Array<{id: string, nombre: string}>>([]);
+  const [metasExistentes, setMetasExistentes] = useState<Array<{id: string, meta: number, mes: string}>>([]);
 
   // Función para obtener el placeholder del período según el indicador
   const getPeriodoPlaceholder = () => {
@@ -145,6 +145,15 @@ export default function CargaPage() {
       setMeta('0.00'); // Reset si no hay selección completa
     }
   }, [selectedIndicador, selectedMinisterio, mes]);
+
+  // Cargar metas existentes cuando se selecciona indicador y ministerio
+  useEffect(() => {
+    if (selectedIndicador && selectedMinisterio) {
+      loadMetasExistentes(selectedIndicador, selectedMinisterio);
+    } else {
+      setMetasExistentes([]);
+    }
+  }, [selectedIndicador, selectedMinisterio]);
 
   const loadMinisterios = async () => {
     try {
@@ -239,6 +248,30 @@ export default function CargaPage() {
     } catch (error) {
       console.error('❌ Error cargando meta mensual:', error);
       setMeta('0.00'); // Fallback a valor por defecto
+    }
+  };
+
+  const loadMetasExistentes = async (indicadorId: string, ministerioId: string) => {
+    try {
+      console.log(`🔍 Cargando metas existentes para indicador ${indicadorId}, ministerio ${ministerioId}`);
+      
+      const response = await apiClient.metas.getByIndicador(indicadorId, ministerioId);
+      console.log('📊 Metas existentes:', response);
+      
+      if (response && response.metas && response.metas.length > 0) {
+        setMetasExistentes(response.metas.map((m: any) => ({
+          id: m.id,
+          meta: m.meta,
+          mes: m.mes
+        })));
+        console.log(`✅ ${response.metas.length} metas existentes cargadas`);
+      } else {
+        setMetasExistentes([]);
+        console.log('⚠️ No se encontraron metas existentes');
+      }
+    } catch (error) {
+      console.error('❌ Error cargando metas existentes:', error);
+      setMetasExistentes([]);
     }
   };
 
@@ -414,16 +447,27 @@ export default function CargaPage() {
       return;
     }
 
+    if (!selectedIndicador || !selectedMinisterio || !mes) {
+      toast.error('Por favor, selecciona primero el indicador, ministerio y mes.');
+      return;
+    }
+
     setIsLoading(true);
     try {
-      // Crear la nueva meta (por ahora solo localmente)
-      const nuevaMeta = {
-        id: `meta_${Date.now()}`,
-        nombre: newMeta.trim()
+      // Crear la nueva meta en el backend
+      const metaData = {
+        indicadorId: selectedIndicador,
+        ministerioId: selectedMinisterio,
+        mes: mes,
+        meta: parseFloat(newMeta.trim()),
+        descripcion: `Meta creada desde formulario de carga`
       };
       
-      setMetas(prev => [...prev, nuevaMeta]);
-      setMeta(nuevaMeta.id);
+      const response = await apiClient.metas.create(metaData);
+      console.log('✅ Meta creada en backend:', response);
+      
+      // Actualizar el campo meta con el valor creado
+      setMeta(newMeta.trim());
       setNewMeta('');
       setShowNewMeta(false);
       toast.success('Meta creada exitosamente');
@@ -698,21 +742,32 @@ export default function CargaPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Meta *
                   </label>
-                  <Select
-                    value={meta}
-                    onValueChange={(value) => setMeta(value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecciona una meta" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {metas.map(m => (
-                        <SelectItem key={m.id} value={m.id}>
-                          {m.nombre}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <div className="space-y-2">
+                    {/* Mostrar metas existentes */}
+                    {metasExistentes.length > 0 && (
+                      <div className="p-3 bg-green-50 border border-green-200 rounded-md">
+                        <p className="text-sm font-medium text-green-800 mb-2">Metas existentes:</p>
+                        <div className="space-y-1">
+                          {metasExistentes.map(m => (
+                            <div key={m.id} className="flex justify-between items-center text-sm">
+                              <span className="text-green-700">Mes {m.mes}:</span>
+                              <span className="font-medium text-green-800">{m.meta}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Campo de entrada para meta */}
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={meta}
+                      onChange={(e) => setMeta(e.target.value)}
+                      placeholder="Ingresa el valor de la meta"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
                   
                   {/* Opción para crear nueva meta */}
                   <div className="mt-2">
@@ -721,7 +776,7 @@ export default function CargaPage() {
                       onClick={() => setShowNewMeta(!showNewMeta)}
                       className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
                     >
-                      {showNewMeta ? '−' : '+'} Crear nueva meta
+                      {showNewMeta ? '−' : '+'} Crear nueva meta para este mes
                     </button>
                     
                     {showNewMeta && (
@@ -729,16 +784,20 @@ export default function CargaPage() {
                         <div className="space-y-3">
                           <div>
                             <label htmlFor="newMeta" className="block text-sm font-medium text-gray-700 mb-1">
-                              Nueva Meta
+                              Valor de la Meta
                             </label>
                             <input
-                              type="text"
+                              type="number"
+                              step="0.01"
                               id="newMeta"
                               value={newMeta}
                               onChange={(e) => setNewMeta(e.target.value)}
-                              placeholder="Escribe la nueva meta..."
+                              placeholder="Ingresa el valor numérico de la meta..."
                               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
+                            <p className="text-xs text-gray-500 mt-1">
+                              Se creará una meta para el indicador, ministerio y mes seleccionados
+                            </p>
                           </div>
                           <div className="flex gap-2">
                             <button
