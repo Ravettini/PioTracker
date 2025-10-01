@@ -269,18 +269,19 @@ export default function CargaPage() {
       console.log(`🔍 Cargando metas existentes para indicador ${indicadorId}, ministerio ${ministerioId}`);
       
       const response = await apiClient.metas.getByIndicador(indicadorId, ministerioId);
-      console.log('📊 Metas existentes:', response);
+      console.log('📊 Respuesta completa:', response);
+      console.log('📊 Metas en respuesta:', response?.metas);
       
-      if (response && response.metas && response.metas.length > 0) {
+      if (response && response.metas && Array.isArray(response.metas) && response.metas.length > 0) {
         setMetasExistentes(response.metas.map((m: any) => ({
           id: m.id,
           meta: m.meta,
           mes: m.mes
         })));
-        console.log(`✅ ${response.metas.length} metas existentes cargadas`);
+        console.log(`✅ ${response.metas.length} metas existentes cargadas:`, response.metas);
       } else {
         setMetasExistentes([]);
-        console.log('⚠️ No se encontraron metas existentes');
+        console.log('⚠️ No se encontraron metas existentes. Respuesta:', response);
       }
     } catch (error) {
       console.error('❌ Error cargando metas existentes:', error);
