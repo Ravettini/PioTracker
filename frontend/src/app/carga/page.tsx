@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/Input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { ArrowLeft, Upload, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { apiClient } from '@/lib/api';
 
 interface Ministerio {
   id: string;
