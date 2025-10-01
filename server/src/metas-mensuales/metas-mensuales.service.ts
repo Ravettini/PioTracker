@@ -130,7 +130,7 @@ export class MetasMensualesService {
     await this.metaMensualRepository.remove(meta);
   }
 
-  async getMetasByIndicador(indicadorId: string, ministerioId?: string): Promise<MetaMensual[]> {
+  async getMetasByIndicador(indicadorId: string, ministerioId?: string, mes?: string): Promise<MetaMensual[]> {
     const queryBuilder = this.metaMensualRepository
       .createQueryBuilder('meta')
       .leftJoinAndSelect('meta.indicador', 'indicador')
@@ -141,6 +141,10 @@ export class MetasMensualesService {
 
     if (ministerioId) {
       queryBuilder.andWhere('meta.ministerioId = :ministerioId', { ministerioId });
+    }
+
+    if (mes) {
+      queryBuilder.andWhere('meta.mes = :mes', { mes });
     }
 
     return await queryBuilder.getMany();

@@ -20,11 +20,11 @@ import { Usuario, RolUsuario } from '../db/entities/usuario.entity';
 
 @Controller('metas-mensuales')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(RolUsuario.ADMIN)
 export class MetasMensualesController {
   constructor(private readonly metasMensualesService: MetasMensualesService) {}
 
   @Post()
+  @Roles(RolUsuario.ADMIN)
   async create(
     @Body() createMetaMensualDto: CreateMetaMensualDto,
     @CurrentUser() user: Usuario,
@@ -57,6 +57,7 @@ export class MetasMensualesController {
   }
 
   @Patch(':id')
+  @Roles(RolUsuario.ADMIN)
   async update(
     @Param('id') id: string,
     @Body() updateMetaMensualDto: UpdateMetaMensualDto,
@@ -71,6 +72,7 @@ export class MetasMensualesController {
   }
 
   @Delete(':id')
+  @Roles(RolUsuario.ADMIN)
   async remove(@Param('id') id: string) {
     await this.metasMensualesService.remove(id);
     
@@ -83,12 +85,13 @@ export class MetasMensualesController {
   async getMetasByIndicador(
     @Param('indicadorId') indicadorId: string,
     @Query('ministerioId') ministerioId?: string,
+    @Query('mes') mes?: string,
   ) {
-    const metas = await this.metasMensualesService.getMetasByIndicador(indicadorId, ministerioId);
+    const metas = await this.metasMensualesService.getMetasByIndicador(indicadorId, ministerioId, mes);
     
     return {
       message: 'Metas del indicador obtenidas exitosamente',
-      data: metas,
+      metas: metas,
     };
   }
 }

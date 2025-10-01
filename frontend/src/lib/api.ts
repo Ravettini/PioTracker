@@ -181,7 +181,7 @@ export const apiClient = {
   // Metas mensuales
   metas: {
     getByIndicador: async (indicadorId: string, ministerioId: string, mes: string) => {
-      const response = await api.get(`/metas-mensuales?indicadorId=${indicadorId}&ministerioId=${ministerioId}&mes=${mes}`);
+      const response = await api.get(`/metas-mensuales/indicador/${indicadorId}?ministerioId=${ministerioId}&mes=${mes}`);
       return response.data;
     },
     create: async (data: any) => {
