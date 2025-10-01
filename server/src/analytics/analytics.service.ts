@@ -754,16 +754,15 @@ export class AnalyticsService {
           return item.ministerio === ministerio.nombre;
         });
         
-        if (datosMinisterio.length > 0) {
-          // Sumar TODOS los valores de la columna VALOR de cada hoja del ministerio
-          const totalValor = datosMinisterio.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
-          datosPorMinisterio.push({
-            ministerio: ministerio.nombre,
-            valor: totalValor,
-            cantidad: datosMinisterio.length
-          });
-          this.logger.log(`📊 ${ministerio.nombre}: ${datosMinisterio.length} registros, valor total: ${totalValor}`);
-        }
+        // MOSTRAR TODOS LOS MINISTERIOS, incluso con valor 0
+        // Si un ministerio tiene al menos una fila, ya es válido para mostrarlo
+        const totalValor = datosMinisterio.reduce((sum, item) => sum + (parseFloat(item.valor) || 0), 0);
+        datosPorMinisterio.push({
+          ministerio: ministerio.nombre,
+          valor: totalValor,
+          cantidad: datosMinisterio.length
+        });
+        this.logger.log(`📊 ${ministerio.nombre}: ${datosMinisterio.length} registros, valor total: ${totalValor}`);
       }
       
       // Mostrar distribución por ministerio (SIEMPRE, sin fallback a períodos)
@@ -850,6 +849,12 @@ export class AnalyticsService {
           
           // Procesar todas las filas (saltando el header)
           let registrosMinisterio = 0;
+          let totalFilas = rows.length - 1; // Excluir header
+          let filasConDatos = 0;
+          let filasFiltradasPorPeriodo = 0;
+          
+          this.logger.log(`🔍 Procesando ${totalFilas} filas para ${ministerio.nombre} (filtros: desde=${periodoDesde}, hasta=${periodoHasta})`);
+          
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             if (row.length < 10) continue; // Asegurar que la fila tenga suficientes columnas
@@ -863,12 +868,26 @@ export class AnalyticsService {
             const estado = row[15] || 'validado'; // Columna P: Estado
             const publicado = row[16] === 'Sí'; // Columna Q: Publicado
             
-            // Aplicar filtros de período si se especifican
-            if (periodoDesde && periodo < periodoDesde) continue;
-            if (periodoHasta && periodo > periodoHasta) continue;
+            // Debug: Log de primeras 3 filas
+            if (i <= 3) {
+              this.logger.log(`📋 Fila ${i}: Periodo="${periodo}", Valor=${valor}, Estado="${estado}", Publicado="${publicado}"`);
+            }
             
-            // Solo incluir datos publicados y validados
-            if (publicado && estado === 'validado') {
+            // Verificar si tiene datos básicos
+            if (periodo && valor !== undefined) {
+              filasConDatos++;
+              
+              // Aplicar filtros de período si se especifican
+              if (periodoDesde && periodo < periodoDesde) {
+                filasFiltradasPorPeriodo++;
+                continue;
+              }
+              if (periodoHasta && periodo > periodoHasta) {
+                filasFiltradasPorPeriodo++;
+                continue;
+              }
+              
+              // INCLUIR TODOS LOS REGISTROS - si un ministerio tiene una fila, ya es válido
               datosGlobales.push({
                 periodo,
                 mes,
@@ -883,14 +902,16 @@ export class AnalyticsService {
               registrosMinisterio++;
             }
           }
-          this.logger.log(`📊 ${ministerio.nombre}: ${registrosMinisterio} registros válidos`);
+          
+          this.logger.log(`📊 ${ministerio.nombre}: ${totalFilas} filas totales, ${filasConDatos} con datos, ${filasFiltradasPorPeriodo} filtradas por período, ${registrosMinisterio} incluidas`);
+          this.logger.log(`📊 ${ministerio.nombre}: ${registrosMinisterio} registros encontrados`);
         } catch (error) {
           this.logger.warn(`⚠️ Error leyendo hoja del ministerio ${ministerio.nombre}: ${error.message}`);
           continue;
         }
       }
       
-      this.logger.log(`📊 Vista global: ${datosGlobales.length} registros válidos encontrados`);
+      this.logger.log(`📊 Vista global: ${datosGlobales.length} registros encontrados`);
       return datosGlobales;
       
     } catch (error) {
