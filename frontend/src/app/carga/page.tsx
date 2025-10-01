@@ -234,16 +234,29 @@ export default function CargaPage() {
     try {
       console.log(`🎯 Buscando meta mensual para indicador ${indicadorId}, ministerio ${ministerioId}, mes ${mes}`);
       
-      const response = await apiClient.metas.getByIndicador(indicadorId, ministerioId, mes);
+      // Convertir el mes seleccionado al formato YYYY-MM
+      const mesFormateado = `${periodo}-${mes === 'enero' ? '01' : 
+        mes === 'febrero' ? '02' : 
+        mes === 'marzo' ? '03' : 
+        mes === 'abril' ? '04' : 
+        mes === 'mayo' ? '05' : 
+        mes === 'junio' ? '06' : 
+        mes === 'julio' ? '07' : 
+        mes === 'agosto' ? '08' : 
+        mes === 'septiembre' ? '09' : 
+        mes === 'octubre' ? '10' : 
+        mes === 'noviembre' ? '11' : '12'}`;
+      
+      const response = await apiClient.metas.getByIndicador(indicadorId, ministerioId, mesFormateado);
       console.log('📊 Respuesta de meta mensual:', response);
       
       if (response && response.metas && response.metas.length > 0) {
         const metaMensual = response.metas[0];
         setMeta(metaMensual.meta.toString());
-        console.log(`✅ Meta mensual encontrada: ${metaMensual.meta}`);
+        console.log(`✅ Meta mensual encontrada: ${metaMensual.meta} para ${mesFormateado}`);
       } else {
         setMeta('0.00');
-        console.log('⚠️ No se encontró meta mensual, usando valor por defecto: 0.00');
+        console.log(`⚠️ No se encontró meta mensual para ${mesFormateado}, usando valor por defecto: 0.00`);
       }
     } catch (error) {
       console.error('❌ Error cargando meta mensual:', error);
@@ -454,11 +467,24 @@ export default function CargaPage() {
 
     setIsLoading(true);
     try {
+      // Convertir el mes seleccionado al formato YYYY-MM
+      const mesFormateado = `${periodo}-${mes === 'enero' ? '01' : 
+        mes === 'febrero' ? '02' : 
+        mes === 'marzo' ? '03' : 
+        mes === 'abril' ? '04' : 
+        mes === 'mayo' ? '05' : 
+        mes === 'junio' ? '06' : 
+        mes === 'julio' ? '07' : 
+        mes === 'agosto' ? '08' : 
+        mes === 'septiembre' ? '09' : 
+        mes === 'octubre' ? '10' : 
+        mes === 'noviembre' ? '11' : '12'}`;
+      
       // Crear la nueva meta en el backend
       const metaData = {
         indicadorId: selectedIndicador,
         ministerioId: selectedMinisterio,
-        mes: mes,
+        mes: mesFormateado,
         meta: parseFloat(newMeta.trim()),
         descripcion: `Meta creada desde formulario de carga`
       };
@@ -471,6 +497,9 @@ export default function CargaPage() {
       setNewMeta('');
       setShowNewMeta(false);
       toast.success('Meta creada exitosamente');
+      
+      // Recargar las metas existentes para mostrar la nueva
+      await loadMetasExistentes(selectedIndicador, selectedMinisterio);
     } catch (error) {
       console.error('Error creando nueva meta:', error);
       toast.error('Error al crear la nueva meta.');
@@ -743,30 +772,39 @@ export default function CargaPage() {
                     Meta *
                   </label>
                   <div className="space-y-2">
-                    {/* Mostrar metas existentes */}
-                    {metasExistentes.length > 0 && (
+                    {/* Mostrar meta para el mes seleccionado */}
+                    {meta !== '0.00' && meta !== '' ? (
                       <div className="p-3 bg-green-50 border border-green-200 rounded-md">
-                        <p className="text-sm font-medium text-green-800 mb-2">Metas existentes:</p>
-                        <div className="space-y-1">
-                          {metasExistentes.map(m => (
-                            <div key={m.id} className="flex justify-between items-center text-sm">
-                              <span className="text-green-700">Mes {m.mes}:</span>
-                              <span className="font-medium text-green-800">{m.meta}</span>
-                            </div>
-                          ))}
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-green-800">Meta para {mes}:</span>
+                          <span className="text-lg font-bold text-green-800">{meta}</span>
                         </div>
+                        <p className="text-xs text-green-600 mt-1">
+                          Meta cargada automáticamente desde el sistema
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-yellow-800">No hay meta definida para {mes}</span>
+                        </div>
+                        <p className="text-xs text-yellow-600 mt-1">
+                          Puedes crear una nueva meta usando el botón de abajo
+                        </p>
                       </div>
                     )}
                     
-                    {/* Campo de entrada para meta */}
-                    <input
-                      type="number"
-                      step="0.01"
-                      value={meta}
-                      onChange={(e) => setMeta(e.target.value)}
-                      placeholder="Ingresa el valor de la meta"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
+                    {/* Campo de entrada para meta (solo visible si no hay meta) */}
+                    {meta === '0.00' && (
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={meta}
+                        onChange={(e) => setMeta(e.target.value)}
+                        placeholder="Ingresa el valor de la meta"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    )}
                   </div>
                   
                   {/* Opción para crear nueva meta */}
