@@ -128,7 +128,8 @@ async function bootstrap() {
         'http://localhost:3000',
         'https://pio-tracker-frontend.vercel.app',
         'https://pio-tracker-frontend-n599d446t-nachos-projects-e0e5a719.vercel.app',
-        'https://pio-tracker-frontend-jgncbqqhy-nachos-projects-e0e5a719.vercel.app'
+        'https://pio-tracker-frontend-jgncbqqhy-nachos-projects-e0e5a719.vercel.app',
+        'https://pio-tracker-frontend-h6ofoa41d-nachos-projects-e0e5a719.vercel.app'
       ];
       
       // Permitir cualquier subdominio de vercel.app que contenga pio-tracker-frontend
