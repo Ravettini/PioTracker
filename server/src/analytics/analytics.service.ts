@@ -866,11 +866,11 @@ export class AnalyticsService {
             const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente
             const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable
             const estado = row[15] || 'validado'; // Columna P: Estado
-            const publicado = row[16] === 'Sí'; // Columna Q: Publicado
+            const publicado = row[16] === 'Sí' || row[16] === 'Si' || row[16] === 'sí' || row[16] === 'si' || row[16] === 'TRUE' || row[16] === 'true'; // Columna Q: Publicado
             
             // Debug: Log de primeras 3 filas
             if (i <= 3) {
-              this.logger.log(`📋 Fila ${i}: Periodo="${periodo}", Valor=${valor}, Estado="${estado}", Publicado="${publicado}"`);
+              this.logger.log(`📋 Fila ${i}: Periodo="${periodo}", Valor=${valor}, Estado="${estado}", Publicado="${publicado}", ColQ_raw="${row[16]}"`);
             }
             
             // Verificar si tiene datos básicos
