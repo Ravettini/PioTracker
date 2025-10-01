@@ -745,7 +745,10 @@ export class AnalyticsService {
       const sheetData = await this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
 
       // Vista global SIEMPRE muestra por ministerios (barras), nunca por períodos
-      const ministerios = await this.ministerioRepository.find();
+      // Solo mostrar ministerios activos (no los eliminados con soft delete)
+      const ministerios = await this.ministerioRepository.find({
+        where: { activo: true }
+      });
       const datosPorMinisterio = [];
       
       for (const ministerio of ministerios) {
@@ -827,8 +830,10 @@ export class AnalyticsService {
         return [];
       }
 
-      // Obtener todos los ministerios para leer sus hojas
-      const ministerios = await this.ministerioRepository.find();
+      // Obtener todos los ministerios activos para leer sus hojas
+      const ministerios = await this.ministerioRepository.find({
+        where: { activo: true }
+      });
       const datosGlobales = [];
       
       for (const ministerio of ministerios) {
