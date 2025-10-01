@@ -134,6 +134,28 @@ CREATE INDEX IF NOT EXISTS IDX_auditoria_actor_cuando ON auditoria (actor_id, cu
 CREATE INDEX IF NOT EXISTS IDX_auditoria_objeto_objeto_id ON auditoria (objeto, objeto_id);
 CREATE INDEX IF NOT EXISTS IDX_auditoria_cuando ON auditoria (cuando);
 
+-- Crear tabla metas_mensuales
+CREATE TABLE IF NOT EXISTS metas_mensuales (
+    id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    indicador_id text NOT NULL,
+    ministerio_id text NOT NULL,
+    linea_id text NOT NULL,
+    mes text NOT NULL,
+    meta numeric NOT NULL,
+    descripcion text,
+    creado_por uuid,
+    actualizado_por uuid,
+    creado_en TIMESTAMP NOT NULL DEFAULT now(),
+    actualizado_en TIMESTAMP NOT NULL DEFAULT now(),
+    CONSTRAINT PK_metas_mensuales PRIMARY KEY (id)
+);
+
+-- Crear índices para metas_mensuales
+CREATE UNIQUE INDEX IF NOT EXISTS IDX_metas_mensuales_unique ON metas_mensuales (indicador_id, mes, ministerio_id);
+CREATE INDEX IF NOT EXISTS IDX_metas_mensuales_indicador ON metas_mensuales (indicador_id);
+CREATE INDEX IF NOT EXISTS IDX_metas_mensuales_ministerio ON metas_mensuales (ministerio_id);
+CREATE INDEX IF NOT EXISTS IDX_metas_mensuales_mes ON metas_mensuales (mes);
+
 -- Crear foreign keys
 ALTER TABLE lineas DROP CONSTRAINT IF EXISTS FK_lineas_ministerio;
 ALTER TABLE lineas ADD CONSTRAINT FK_lineas_ministerio 
@@ -170,6 +192,27 @@ FOREIGN KEY (actualizado_por) REFERENCES usuarios(id) ON DELETE NO ACTION ON UPD
 ALTER TABLE auditoria DROP CONSTRAINT IF EXISTS FK_auditoria_actor;
 ALTER TABLE auditoria ADD CONSTRAINT FK_auditoria_actor 
 FOREIGN KEY (actor_id) REFERENCES usuarios(id) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Foreign keys para metas_mensuales
+ALTER TABLE metas_mensuales DROP CONSTRAINT IF EXISTS FK_metas_mensuales_indicador;
+ALTER TABLE metas_mensuales ADD CONSTRAINT FK_metas_mensuales_indicador 
+FOREIGN KEY (indicador_id) REFERENCES indicadores(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE metas_mensuales DROP CONSTRAINT IF EXISTS FK_metas_mensuales_ministerio;
+ALTER TABLE metas_mensuales ADD CONSTRAINT FK_metas_mensuales_ministerio 
+FOREIGN KEY (ministerio_id) REFERENCES ministerios(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE metas_mensuales DROP CONSTRAINT IF EXISTS FK_metas_mensuales_linea;
+ALTER TABLE metas_mensuales ADD CONSTRAINT FK_metas_mensuales_linea 
+FOREIGN KEY (linea_id) REFERENCES lineas(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE metas_mensuales DROP CONSTRAINT IF EXISTS FK_metas_mensuales_creado_por;
+ALTER TABLE metas_mensuales ADD CONSTRAINT FK_metas_mensuales_creado_por 
+FOREIGN KEY (creado_por) REFERENCES usuarios(id) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+ALTER TABLE metas_mensuales DROP CONSTRAINT IF EXISTS FK_metas_mensuales_actualizado_por;
+ALTER TABLE metas_mensuales ADD CONSTRAINT FK_metas_mensuales_actualizado_por 
+FOREIGN KEY (actualizado_por) REFERENCES usuarios(id) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 -- Insertar datos iniciales
 INSERT INTO ministerios (id, nombre, sigla) VALUES
