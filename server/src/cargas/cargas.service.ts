@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { Carga, EstadoCarga } from '../db/entities/carga.entity';
 import { Usuario } from '../db/entities/usuario.entity';
 import { Indicador } from '../db/entities/indicador.entity';
+import { MetaMensual } from '../db/entities/meta-mensual.entity';
 import { CreateCargaDto } from './dto/create-carga.dto';
 import { UpdateCargaDto } from './dto/update-carga.dto';
 import { RevisionDto } from './dto/revision.dto';
@@ -22,6 +23,8 @@ export class CargasService {
     private usuarioRepository: Repository<Usuario>,
     @InjectRepository(Indicador)
     private indicadorRepository: Repository<Indicador>,
+    @InjectRepository(MetaMensual)
+    private metaMensualRepository: Repository<MetaMensual>,
     private syncService: SyncService,
     private configService: ConfigService,
   ) {}
@@ -64,12 +67,32 @@ export class CargasService {
       throw new BadRequestException('Ya existe una carga pendiente para este indicador, período y ministerio');
     }
 
-
+    // Buscar meta mensual correspondiente para este indicador, ministerio y mes
+    let metaAsociada = createCargaDto.meta; // Usar meta del DTO como fallback
+    
+    try {
+      const metaMensual = await this.metaMensualRepository.findOne({
+        where: {
+          indicadorId: createCargaDto.indicadorId,
+          ministerioId: createCargaDto.ministerioId,
+          mes: createCargaDto.mes,
+        },
+      });
+      
+      if (metaMensual) {
+        metaAsociada = metaMensual.meta;
+        this.logger.log(`🎯 Meta mensual encontrada: ${metaMensual.meta} para indicador ${indicador.nombre}, mes ${createCargaDto.mes}`);
+      } else {
+        this.logger.log(`⚠️ No se encontró meta mensual para indicador ${indicador.nombre}, mes ${createCargaDto.mes}. Usando meta del DTO: ${createCargaDto.meta || 'null'}`);
+      }
+    } catch (error) {
+      this.logger.warn(`⚠️ Error buscando meta mensual: ${error.message}. Usando meta del DTO: ${createCargaDto.meta || 'null'}`);
+    }
 
     // Crear la carga - va directo a PENDIENTE para revisión
     const carga = this.cargaRepository.create({
       ...createCargaDto,
-      meta: createCargaDto.meta || null, // Asegurar que meta sea null si es undefined
+      meta: metaAsociada || null, // Usar meta mensual encontrada o fallback a meta del DTO
       periodicidad: indicador.periodicidad,
       estado: EstadoCarga.PENDIENTE, // Cambio: va directo a PENDIENTE
       creadoPor: userId,
