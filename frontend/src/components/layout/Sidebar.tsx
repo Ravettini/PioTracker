@@ -17,6 +17,7 @@ import {
   Plus,
   HelpCircle,
   CheckCircle,
+  Target,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { useAuthStore } from '@/store/auth-store';
@@ -104,6 +105,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
             href: '/creacion',
             icon: Plus,
             current: pathname === '/creacion',
+          },
+          {
+            name: 'Metas',
+            href: '/admin/metas',
+            icon: Target,
+            current: pathname === '/admin/metas',
           },
           {
             name: 'Sincronización',
