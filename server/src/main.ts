@@ -600,7 +600,7 @@ async function bootstrap() {
   // Prefijo global de API
   app.setGlobalPrefix('api/v1');
 
-  const port = configService.get('port');
+  const port = process.env.PORT || configService.get('port') || 8080;
   await app.listen(port);
   
   console.log(`🚀 SIPIO API ejecutándose en puerto ${port}`);
