@@ -108,6 +108,7 @@ export default function AnalyticsPage() {
   const [selectedMinisterio, setSelectedMinisterio] = useState<string>('');
   const [selectedCompromiso, setSelectedCompromiso] = useState<string>('');
   const [selectedIndicador, setSelectedIndicador] = useState<string>('');
+  const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString());
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
   const [resumenData, setResumenData] = useState<ResumenData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -150,7 +151,7 @@ export default function AnalyticsPage() {
       // Cargar vista global cuando no hay filtros seleccionados o se selecciona "all"
       loadVistaGlobal();
     }
-  }, [selectedIndicador, chartViewType, selectedMinisterio, selectedCompromiso]);
+  }, [selectedIndicador, chartViewType, selectedMinisterio, selectedCompromiso, selectedYear]);
 
   const loadMinisterios = async () => {
     try {
@@ -199,6 +200,7 @@ export default function AnalyticsPage() {
       const response = await apiClient.analytics.getDatos({
         indicadorId: selectedIndicador,
         vista: chartViewType,
+        año: selectedYear,
       });
       
       // Debug: Log de datos recibidos
@@ -242,6 +244,7 @@ export default function AnalyticsPage() {
       const response = await apiClient.analytics.getDatos({
         indicadorId: 'all', // Usar 'all' para obtener datos globales
         vista: chartViewType,
+        año: selectedYear,
       });
       
       console.log('📊 Datos globales recibidos:', response);
@@ -917,7 +920,27 @@ export default function AnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Año
+                </label>
+                <Select
+                  value={selectedYear}
+                  onValueChange={(value) => setSelectedYear(value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona un año" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="2024">2024</SelectItem>
+                    <SelectItem value="2025">2025</SelectItem>
+                    <SelectItem value="2026">2026</SelectItem>
+                    <SelectItem value="2027">2027</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Ministerio

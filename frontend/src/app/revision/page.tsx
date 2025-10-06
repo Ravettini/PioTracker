@@ -219,20 +219,38 @@ export default function RevisionPage() {
 
 
   const getPeriodoDisplay = (periodo: string, periodicidad: string) => {
+    if (!periodo) return 'Sin período';
+    
     switch (periodicidad) {
       case 'mensual':
         try {
-          const date = new Date(periodo + '-01');
-          return format(date, 'MMMM yyyy', { locale: es });
-        } catch {
+          // Si el periodo ya está en formato YYYY-MM, usarlo directamente
+          if (periodo.includes('-')) {
+            const [year, month] = periodo.split('-');
+            const date = new Date(parseInt(year), parseInt(month) - 1, 1);
+            return format(date, 'MMMM yyyy', { locale: es });
+          }
+          // Si es solo un año, mostrar como año
+          if (periodo.length === 4) {
+            return `Año ${periodo}`;
+          }
+          return periodo;
+        } catch (error) {
+          console.error('Error formateando periodo:', error, periodo);
           return periodo;
         }
       case 'trimestral':
-        return `Q${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+        if (periodo.includes('Q')) {
+          return `Q${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+        }
+        return `Trimestre ${periodo}`;
       case 'semestral':
-        return `S${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+        if (periodo.includes('S')) {
+          return `S${periodo.slice(-1)} ${periodo.slice(0, 4)}`;
+        }
+        return `Semestre ${periodo}`;
       case 'anual':
-        return periodo;
+        return `Año ${periodo}`;
       default:
         return periodo;
     }

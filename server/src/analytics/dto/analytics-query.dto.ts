@@ -33,4 +33,8 @@ export class AnalyticsQueryDto {
   @IsOptional()
   @IsString()
   vista?: 'total' | 'mensual'; // Nueva opción para tipo de vista
+
+  @IsOptional()
+  @IsString()
+  año?: string; // Filtro por año
 }

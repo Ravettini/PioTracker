@@ -130,11 +130,11 @@ export class AnalyticsService {
   async getDatos(query: AnalyticsQueryDto, user: Usuario): Promise<AnalyticsResponse> {
     this.logger.log(`Obteniendo datos de analytics:`, query);
 
-    const { indicadorId, periodoDesde, periodoHasta, vista = 'total' } = query;
+    const { indicadorId, periodoDesde, periodoHasta, vista = 'total', año } = query;
 
     // Manejar vista global
     if (indicadorId === 'all') {
-      return this.getVistaGlobal(user, periodoDesde, periodoHasta, vista);
+      return this.getVistaGlobal(user, periodoDesde, periodoHasta, vista, año);
     }
 
     // Obtener el indicador con sus relaciones
@@ -153,7 +153,7 @@ export class AnalyticsService {
     }
 
     // Obtener datos del Google Sheets
-    const sheetData = await this.getDataFromGoogleSheets(indicadorId, periodoDesde, periodoHasta);
+    const sheetData = await this.getDataFromGoogleSheets(indicadorId, periodoDesde, periodoHasta, año);
 
     // Determinar tipo de indicador
     const tipo = this.determinarTipoIndicador(indicador.nombre);
@@ -307,7 +307,7 @@ export class AnalyticsService {
     return mesLower;
   }
 
-  private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
+  private async getDataFromGoogleSheets(indicadorId: string, periodoDesde?: string, periodoHasta?: string, año?: string): Promise<any[]> {
     try {
       this.logger.log(`📊 Leyendo datos de Google Sheets para indicador: ${indicadorId}`);
       
@@ -323,7 +323,7 @@ export class AnalyticsService {
 
       // Manejar vista global
       if (indicadorId === 'all') {
-        return this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
+        return this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta, año);
       }
 
       // Obtener información del indicador para saber qué ministerio buscar
@@ -428,6 +428,12 @@ export class AnalyticsService {
           const publicado = row[16] === 'Sí'; // Columna Q: Publicado (nueva posición)
           const creadoEn = row[17] ? new Date(row[17]) : new Date(); // Columna R: Creado En (nueva posición)
           const actualizadoEn = row[18] ? new Date(row[18]) : new Date(); // Columna S: Actualizado En (nueva posición)
+          
+          // Aplicar filtro por año si se especifica
+          if (año) {
+            const añoDelPeriodo = periodo.toString().substring(0, 4);
+            if (añoDelPeriodo !== año) continue;
+          }
           
           // Aplicar filtros de período si se especifican
           if (periodoDesde && periodo < periodoDesde) continue;
@@ -704,7 +710,7 @@ export class AnalyticsService {
     return `Ministerio_${cleanName}`;
   }
 
-  private async getVistaGlobal(user: Usuario, periodoDesde?: string, periodoHasta?: string, vista: 'mensual' | 'total' = 'total'): Promise<AnalyticsResponse> {
+  private async getVistaGlobal(user: Usuario, periodoDesde?: string, periodoHasta?: string, vista: 'mensual' | 'total' = 'total', año?: string): Promise<AnalyticsResponse> {
     this.logger.log(`Obteniendo vista global para usuario: ${user.email}`);
 
     try {
@@ -742,7 +748,7 @@ export class AnalyticsService {
       }
 
       // Obtener datos agregados de todos los indicadores
-      const sheetData = await this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta);
+      const sheetData = await this.getDataFromGoogleSheetsGlobal(periodoDesde, periodoHasta, año);
 
       // Vista global SIEMPRE muestra por ministerios (barras), nunca por períodos
       // Solo mostrar ministerios activos (no los eliminados con soft delete)
@@ -797,7 +803,7 @@ export class AnalyticsService {
     }
   }
 
-  private async getDataFromGoogleSheetsGlobal(periodoDesde?: string, periodoHasta?: string): Promise<any[]> {
+  private async getDataFromGoogleSheetsGlobal(periodoDesde?: string, periodoHasta?: string, año?: string): Promise<any[]> {
     try {
       this.logger.log(`📊 Leyendo datos globales de Google Sheets`);
       
@@ -858,7 +864,7 @@ export class AnalyticsService {
           let filasConDatos = 0;
           let filasFiltradasPorPeriodo = 0;
           
-          this.logger.log(`🔍 Procesando ${totalFilas} filas para ${ministerio.nombre} (filtros: desde=${periodoDesde}, hasta=${periodoHasta})`);
+          this.logger.log(`🔍 Procesando ${totalFilas} filas para ${ministerio.nombre} (filtros: desde=${periodoDesde}, hasta=${periodoHasta}, año=${año})`);
           
           for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
@@ -881,6 +887,15 @@ export class AnalyticsService {
             // Verificar si tiene datos básicos
             if (periodo && valor !== undefined) {
               filasConDatos++;
+              
+              // Aplicar filtro por año si se especifica
+              if (año) {
+                const añoDelPeriodo = periodo.toString().substring(0, 4);
+                if (añoDelPeriodo !== año) {
+                  filasFiltradasPorPeriodo++;
+                  continue;
+                }
+              }
               
               // Aplicar filtros de período si se especifican
               if (periodoDesde && periodo < periodoDesde) {

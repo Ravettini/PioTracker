@@ -586,7 +586,8 @@ export default function CargaPage() {
                     </SelectContent>
                   </Select>
                   
-                  {/* Opción para crear nuevo compromiso */}
+                  {/* Opción para crear nuevo compromiso - OCULTO */}
+                  {/* 
                   <div className="mt-2">
                     <button
                       type="button"
@@ -636,6 +637,7 @@ export default function CargaPage() {
                       </div>
                     )}
                   </div>
+                  */}
                 </div>
 
                                  {/* Indicador */}
@@ -659,7 +661,8 @@ export default function CargaPage() {
                      </SelectContent>
                    </Select>
                    
-                   {/* Opción para crear nuevo indicador */}
+                   {/* Opción para crear nuevo indicador - OCULTO */}
+                   {/* 
                    <div className="mt-2">
                      <button
                        type="button"
@@ -709,6 +712,7 @@ export default function CargaPage() {
                        </div>
                      )}
                    </div>
+                   */}
                  </div>
 
                 {/* Período */}

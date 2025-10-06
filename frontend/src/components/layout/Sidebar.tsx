@@ -44,6 +44,12 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
 
   const navigationItems = [
     {
+      name: 'Inicio',
+      href: '/home',
+      icon: Menu,
+      current: pathname === '/home',
+    },
+    {
       name: 'Dashboard',
       href: '/dashboard',
       icon: BarChart3,
