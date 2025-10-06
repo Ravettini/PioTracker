@@ -955,21 +955,32 @@ export class SyncService {
           }
         });
         
-        // Agregar headers a la nueva hoja
+        // Agregar headers a la nueva hoja con estructura correcta
         await sheets.spreadsheets.values.update({
           spreadsheetId: sheetId,
-          range: `${tabName}!A1:H1`,
+          range: `${tabName}!A1:S1`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [[
-              'Línea de Acción',
-              'Indicador',
-              'Valor',
-              'Unidad',
-              'Período',
-              'Fuente',
-              'Fecha de Sincronización',
-              'Estado'
+              'Indicador ID',        // A
+              'Indicador Nom',       // B
+              'Período',             // C
+              'Mes',                 // D
+              'Ministerio ID',       // E
+              'Ministerio Nom',      // F
+              'Línea ID',            // G
+              'Línea Título',        // H
+              'Valor',               // I
+              'Unidad',              // J
+              'Meta',                // K
+              'Fuente',              // L
+              'Responsable N',       // M
+              'Responsable Er',      // N
+              'Observaciones',       // O
+              'Estado',              // P
+              'Publicado',           // Q
+              'Creado En',           // R
+              'Actualizado En'       // S
             ]]
           }
         });
@@ -977,10 +988,129 @@ export class SyncService {
         this.logger.log(`✅ Hoja ${tabName} creada exitosamente con headers`);
       } else {
         this.logger.log(`✅ Hoja ${tabName} ya existe`);
+        
+        // Verificar y actualizar headers si es necesario
+        await this.verificarYActualizarHeaders(sheets, sheetId, tabName);
       }
       
     } catch (error) {
       this.logger.error(`❌ Error creando hoja ${tabName}: ${error.message}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Verifica y actualiza los headers de una hoja existente si es necesario
+   */
+  private async verificarYActualizarHeaders(sheets: any, sheetId: string, tabName: string): Promise<void> {
+    try {
+      // Obtener los headers actuales
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: sheetId,
+        range: `${tabName}!A1:S1`,
+      });
+      
+      const currentHeaders = response.data.values?.[0] || [];
+      const expectedHeaders = [
+        'Indicador ID', 'Indicador Nom', 'Período', 'Mes', 'Ministerio ID', 'Ministerio Nom',
+        'Línea ID', 'Línea Título', 'Valor', 'Unidad', 'Meta', 'Fuente', 'Responsable N',
+        'Responsable Er', 'Observaciones', 'Estado', 'Publicado', 'Creado En', 'Actualizado En'
+      ];
+      
+      // Verificar si los headers coinciden
+      const headersMatch = currentHeaders.length === expectedHeaders.length && 
+        currentHeaders.every((header, index) => header === expectedHeaders[index]);
+      
+      if (!headersMatch) {
+        this.logger.log(`🔄 Actualizando headers de la hoja ${tabName}...`);
+        
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: sheetId,
+          range: `${tabName}!A1:S1`,
+          valueInputOption: 'RAW',
+          requestBody: {
+            values: [expectedHeaders]
+          }
+        });
+        
+        this.logger.log(`✅ Headers de la hoja ${tabName} actualizados correctamente`);
+      } else {
+        this.logger.log(`✅ Headers de la hoja ${tabName} ya están correctos`);
+      }
+      
+    } catch (error) {
+      this.logger.error(`❌ Error verificando headers de la hoja ${tabName}: ${error.message}`);
+      // No lanzar error para no interrumpir la sincronización
+    }
+  }
+
+  /**
+   * Actualiza los headers de todas las hojas existentes
+   */
+  async actualizarHeadersTodasLasHojas(): Promise<any> {
+    try {
+      this.logger.log('🔄 Actualizando headers de todas las hojas...');
+      
+      const config = this.configService.get('google');
+      if (!config.sheetId) {
+        throw new Error('GOOGLE_SHEET_ID no configurado');
+      }
+
+      // Obtener cliente de Google Sheets
+      let sheets;
+      if (config.serviceAccount?.clientEmail) {
+        const { GoogleServiceAccountService } = await import('./google-service-account.service');
+        const serviceAccountService = new GoogleServiceAccountService(this.configService);
+        sheets = await serviceAccountService.getSheetsClient();
+      } else if (config.refreshToken) {
+        const { google } = require('googleapis');
+        const oauth2Client = new google.auth.OAuth2(
+          config.oauth.clientId,
+          config.oauth.clientSecret
+        );
+        oauth2Client.setCredentials({
+          refresh_token: config.refreshToken
+        });
+        sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      } else {
+        throw new Error('No hay credenciales de Google configuradas');
+      }
+
+      // Obtener información del spreadsheet
+      const spreadsheet = await sheets.spreadsheets.get({
+        spreadsheetId: config.sheetId
+      });
+
+      const sheetsToUpdate = [];
+      const expectedHeaders = [
+        'Indicador ID', 'Indicador Nom', 'Período', 'Mes', 'Ministerio ID', 'Ministerio Nom',
+        'Línea ID', 'Línea Título', 'Valor', 'Unidad', 'Meta', 'Fuente', 'Responsable N',
+        'Responsable Er', 'Observaciones', 'Estado', 'Publicado', 'Creado En', 'Actualizado En'
+      ];
+
+      // Verificar cada hoja
+      for (const sheet of spreadsheet.data.sheets || []) {
+        const sheetTitle = sheet.properties?.title;
+        if (sheetTitle && !sheetTitle.includes('Sheet')) { // Excluir hojas por defecto
+          try {
+            await this.verificarYActualizarHeaders(sheets, config.sheetId, sheetTitle);
+            sheetsToUpdate.push(sheetTitle);
+          } catch (error) {
+            this.logger.error(`❌ Error actualizando hoja ${sheetTitle}: ${error.message}`);
+          }
+        }
+      }
+
+      this.logger.log(`✅ Headers actualizados en ${sheetsToUpdate.length} hojas`);
+      
+      return {
+        sheetsUpdated: sheetsToUpdate.length,
+        sheetsList: sheetsToUpdate,
+        expectedHeaders
+      };
+
+    } catch (error) {
+      this.logger.error(`❌ Error actualizando headers: ${error.message}`);
       throw error;
     }
   }

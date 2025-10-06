@@ -93,6 +93,27 @@ export class SyncController {
     }
   }
 
+  @Post('fix-headers')
+  @Public()
+  async fixHeaders() {
+    try {
+      const result = await this.syncService.actualizarHeadersTodasLasHojas();
+      return {
+        status: 'OK',
+        message: 'Headers actualizados correctamente',
+        data: result,
+        timestamp: new Date().toISOString(),
+      };
+    } catch (error) {
+      console.error('Error actualizando headers:', error);
+      return {
+        status: 'ERROR',
+        message: error.message || 'Error actualizando headers',
+        timestamp: new Date().toISOString(),
+      };
+    }
+  }
+
   @Get('health-check')
   @Public()
   async healthCheck() {
