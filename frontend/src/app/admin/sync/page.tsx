@@ -59,7 +59,7 @@ export default function SyncPage() {
     }
 
     if (!isAdmin) {
-      router.push('/dashboard');
+      router.push('/home');
       return;
     }
 

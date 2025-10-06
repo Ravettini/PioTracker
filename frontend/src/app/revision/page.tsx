@@ -85,7 +85,7 @@ export default function RevisionPage() {
     }
 
     if (!isAdmin) {
-      router.push('/dashboard');
+      router.push('/home');
       return;
     }
 

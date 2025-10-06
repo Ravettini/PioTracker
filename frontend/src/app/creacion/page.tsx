@@ -91,7 +91,7 @@ export default function CreacionPage() {
     }
     
     if (!isAdmin) {
-      router.push('/dashboard');
+      router.push('/home');
       return;
     }
     

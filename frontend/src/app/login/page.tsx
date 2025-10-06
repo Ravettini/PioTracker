@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/dashboard');
+      router.push('/home');
     }
   }, [isAuthenticated, router]);
 
@@ -55,8 +55,8 @@ export default function LoginPage() {
         console.log('✅ Login exitoso, guardando datos...');
         login(response.data.user, response.data.accessToken);
         toast.success('Inicio de sesión exitoso');
-        console.log('🚀 Redirigiendo a dashboard...');
-        router.push('/dashboard');
+        console.log('🚀 Redirigiendo a inicio...');
+        router.push('/home');
       } else {
         console.log('❌ Login falló:', response.message);
         toast.error(response.message || 'Error en el inicio de sesión');

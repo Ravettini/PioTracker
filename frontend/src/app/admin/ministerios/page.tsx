@@ -61,7 +61,7 @@ export default function MinisteriosPage() {
     }
 
     if (!isAdmin) {
-      router.push('/dashboard');
+      router.push('/home');
       return;
     }
 

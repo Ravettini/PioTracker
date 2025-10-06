@@ -74,7 +74,7 @@ export default function AdminUsuariosPage() {
     }
 
     if (!isAdmin) {
-      router.push('/dashboard');
+      router.push('/home');
       return;
     }
 
