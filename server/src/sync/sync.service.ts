@@ -645,6 +645,12 @@ export class SyncService {
     try {
       this.logger.log('🔄 Sincronización con Google Sheets iniciada');
       
+      // Verificar salud de la conexión antes de proceder
+      const connectionHealthy = await this.verificarConexionGoogleSheets();
+      if (!connectionHealthy) {
+        throw new Error('No se pudo establecer conexión con Google Sheets');
+      }
+      
       // Obtener todos los datos de la base de datos
       const ministerios = await this.ministerioRepository.find({ 
         where: { activo: true },
@@ -744,10 +750,14 @@ export class SyncService {
     responsableEmail: string;
     observaciones?: string;
   }): Promise<void> {
-    try {
-      this.logger.log(`📝 Upsert en Google Sheets: ${data.ministerio} - ${data.linea} - ${data.indicador} = ${data.valor} ${data.unidad}`);
-      
-      // Verificar configuración de Google Sheets
+    const maxRetries = 3;
+    let attempt = 0;
+    
+    while (attempt < maxRetries) {
+      try {
+        this.logger.log(`📝 Upsert en Google Sheets (intento ${attempt + 1}/${maxRetries}): ${data.ministerio} - ${data.linea} - ${data.indicador} = ${data.valor} ${data.unidad}`);
+        
+        // Verificar configuración de Google Sheets
       const config = this.configService.get('google');
       if (!config.sheetId) {
         this.logger.warn('⚠️ GOOGLE_SHEET_ID no configurado. Saltando sincronización.');
@@ -855,9 +865,36 @@ export class SyncService {
         this.logger.log(`✅ Nueva fila insertada en Google Sheets (hoja: ${ministerioTab})`);
       }
       
-    } catch (error) {
-      this.logger.error(`❌ Error en upsertFactRow: ${error.message}`);
-      // No lanzar error para no interrumpir la sincronización completa
+      // Si llegamos aquí, la operación fue exitosa
+      return;
+      
+      } catch (error) {
+        attempt++;
+        this.logger.error(`❌ Error en upsertFactRow (intento ${attempt}/${maxRetries}): ${error.message}`);
+        
+        // Si es un error de autenticación, intentar renovar el token
+        if (error.message.includes('invalid_grant') || error.message.includes('unauthorized')) {
+          this.logger.warn('🔄 Token posiblemente expirado, intentando renovación...');
+          try {
+            const { GoogleAuthService } = await import('./google-auth.service');
+            const authService = new GoogleAuthService(this.configService);
+            await authService.renovarTokenSiEsNecesario();
+          } catch (renovationError) {
+            this.logger.error(`❌ Error renovando token: ${renovationError.message}`);
+          }
+        }
+        
+        // Si es el último intento, no reintentar
+        if (attempt >= maxRetries) {
+          this.logger.error(`❌ Falló después de ${maxRetries} intentos. Saltando esta fila.`);
+          return;
+        }
+        
+        // Esperar antes del siguiente intento (backoff exponencial)
+        const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+        this.logger.log(`⏳ Esperando ${delay}ms antes del siguiente intento...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
     }
   }
 
@@ -945,6 +982,62 @@ export class SyncService {
     } catch (error) {
       this.logger.error(`❌ Error creando hoja ${tabName}: ${error.message}`);
       throw error;
+    }
+  }
+
+  /**
+   * Verifica la salud de la conexión con Google Sheets
+   */
+  private async verificarConexionGoogleSheets(): Promise<boolean> {
+    try {
+      this.logger.log('🔍 Verificando salud de conexión con Google Sheets...');
+      
+      const config = this.configService.get('google');
+      if (!config?.oauth?.clientId || !config?.oauth?.clientSecret || !config?.refreshToken) {
+        this.logger.error('❌ Configuración de Google OAuth incompleta');
+        return false;
+      }
+
+      const { google } = await import('googleapis');
+      const oauth2Client = new google.auth.OAuth2(
+        config.oauth.clientId,
+        config.oauth.clientSecret
+      );
+      
+      oauth2Client.setCredentials({
+        refresh_token: config.refreshToken
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+      
+      // Intentar una operación simple para verificar la conexión
+      await sheets.spreadsheets.get({
+        spreadsheetId: config.sheetId
+      });
+      
+      this.logger.log('✅ Conexión con Google Sheets verificada exitosamente');
+      return true;
+      
+    } catch (error) {
+      this.logger.error(`❌ Error verificando conexión con Google Sheets: ${error.message}`);
+      
+      // Si es un error de autenticación, intentar renovar el token
+      if (error.message.includes('invalid_grant') || error.message.includes('unauthorized')) {
+        this.logger.warn('🔄 Token posiblemente expirado, intentando renovación...');
+        try {
+          const { GoogleAuthService } = await import('./google-auth.service');
+          const authService = new GoogleAuthService(this.configService);
+          const renovado = await authService.renovarTokenSiEsNecesario();
+          if (renovado) {
+            this.logger.log('✅ Token renovado, reintentando conexión...');
+            return await this.verificarConexionGoogleSheets();
+          }
+        } catch (renovationError) {
+          this.logger.error(`❌ Error renovando token: ${renovationError.message}`);
+        }
+      }
+      
+      return false;
     }
   }
 

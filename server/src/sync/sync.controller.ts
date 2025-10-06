@@ -92,6 +92,53 @@ export class SyncController {
       };
     }
   }
+
+  @Get('health-check')
+  @Public()
+  async healthCheck() {
+    try {
+      // Verificar configuración básica
+      const config = {
+        hasSheetId: !!process.env.GOOGLE_SHEET_ID,
+        hasRefreshToken: !!process.env.GOOGLE_REFRESH_TOKEN,
+        hasClientId: !!process.env.GOOGLE_OAUTH_CLIENT_ID,
+        hasClientSecret: !!process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+        hasServiceAccount: !!process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+      };
+
+      const isConfigured = config.hasSheetId && (
+        (config.hasRefreshToken && config.hasClientId && config.hasClientSecret) ||
+        config.hasServiceAccount
+      );
+
+      if (!isConfigured) {
+        return {
+          status: 'ERROR',
+          message: 'Configuración de Google Sheets incompleta',
+          config,
+          timestamp: new Date().toISOString(),
+        };
+      }
+
+      // Intentar conexión real
+      const connectionResult = await this.syncService.testGoogleSheetsConnection();
+      
+      return {
+        status: 'OK',
+        message: 'Google Sheets está funcionando correctamente',
+        config,
+        connection: connectionResult,
+        timestamp: new Date().toISOString(),
+      };
+    } catch (error) {
+      console.error('Error en health check de Google Sheets:', error);
+      return {
+        status: 'ERROR',
+        message: error.message || 'Error en health check de Google Sheets',
+        timestamp: new Date().toISOString(),
+      };
+    }
+  }
 }
 
 
