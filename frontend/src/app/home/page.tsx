@@ -19,7 +19,8 @@ import {
   Calendar,
   Target,
   Building,
-  Activity
+  Activity,
+  CheckCircle
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -41,11 +42,19 @@ export default function HomePage() {
 
   const menuOptions = [
     {
+      title: 'Dashboard',
+      description: 'Vista general del sistema y estadísticas',
+      icon: <BarChart3 className="h-8 w-8" />,
+      href: '/dashboard',
+      color: 'bg-blue-500',
+      available: true
+    },
+    {
       title: 'Carga de Indicadores',
       description: 'Registra nuevos datos de indicadores',
-      icon: <Plus className="h-8 w-8" />,
+      icon: <FileText className="h-8 w-8" />,
       href: '/carga',
-      color: 'bg-blue-500',
+      color: 'bg-green-500',
       available: true
     },
     {
@@ -53,48 +62,72 @@ export default function HomePage() {
       description: 'Consulta el estado de tus cargas enviadas',
       icon: <FileText className="h-8 w-8" />,
       href: '/mis-envios',
-      color: 'bg-green-500',
+      color: 'bg-yellow-500',
       available: true
     },
     {
-      title: 'Analytics y Gráficos',
-      description: 'Visualiza y analiza los indicadores',
-      icon: <BarChart3 className="h-8 w-8" />,
+      title: 'Publicadas',
+      description: 'Ver cargas ya publicadas y validadas',
+      icon: <CheckCircle className="h-8 w-8" />,
+      href: '/publicadas',
+      color: 'bg-emerald-500',
+      available: true
+    },
+    {
+      title: 'Analytics',
+      description: 'Visualiza y analiza los indicadores con gráficos',
+      icon: <TrendingUp className="h-8 w-8" />,
       href: '/analytics',
       color: 'bg-purple-500',
       available: true
     },
     {
-      title: 'Dashboard',
-      description: 'Vista general del sistema',
-      icon: <TrendingUp className="h-8 w-8" />,
-      href: '/dashboard',
-      color: 'bg-orange-500',
+      title: 'Manual',
+      description: 'Guía de uso y documentación del sistema',
+      icon: <Activity className="h-8 w-8" />,
+      href: '/manual',
+      color: 'bg-indigo-500',
       available: true
     },
     ...(isAdmin ? [
       {
-        title: 'Revisión de Cargas',
+        title: 'Revisión',
         description: 'Revisa y valida cargas pendientes',
-        icon: <Eye className="h-8 w-8" />,
+        icon: <FileText className="h-8 w-8" />,
         href: '/revision',
         color: 'bg-red-500',
         available: true
       },
       {
-        title: 'Administración',
-        description: 'Gestiona usuarios, ministerios y configuración',
+        title: 'Usuarios',
+        description: 'Gestiona usuarios del sistema',
+        icon: <Users className="h-8 w-8" />,
+        href: '/admin/usuarios',
+        color: 'bg-pink-500',
+        available: true
+      },
+      {
+        title: 'Gestión',
+        description: 'Administra ministerios, líneas e indicadores',
         icon: <Settings className="h-8 w-8" />,
-        href: '/admin',
+        href: '/gestion',
         color: 'bg-gray-500',
+        available: true
+      },
+      {
+        title: 'Creación',
+        description: 'Crea nuevos ministerios, compromisos e indicadores',
+        icon: <Plus className="h-8 w-8" />,
+        href: '/creacion',
+        color: 'bg-orange-500',
         available: true
       },
       {
         title: 'Sincronización',
         description: 'Sincroniza datos con Google Sheets',
-        icon: <Upload className="h-8 w-8" />,
+        icon: <Settings className="h-8 w-8" />,
         href: '/admin/sync',
-        color: 'bg-indigo-500',
+        color: 'bg-teal-500',
         available: true
       }
     ] : [])
@@ -230,19 +263,24 @@ export default function HomePage() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Primeros pasos</h4>
+                <h4 className="font-medium text-gray-900 mb-2">Flujo de trabajo básico</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Selecciona "Carga de Indicadores" para registrar datos</li>
-                  <li>• Usa "Analytics" para ver gráficos y tendencias</li>
-                  <li>• Consulta "Mis Envíos" para ver el estado de tus cargas</li>
+                  <li>• <strong>Dashboard:</strong> Vista general del sistema</li>
+                  <li>• <strong>Carga de Indicadores:</strong> Registra nuevos datos</li>
+                  <li>• <strong>Mis Envíos:</strong> Consulta el estado de tus cargas</li>
+                  <li>• <strong>Publicadas:</strong> Ver cargas ya validadas</li>
+                  <li>• <strong>Analytics:</strong> Gráficos y análisis de datos</li>
+                  <li>• <strong>Manual:</strong> Documentación y guías</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Para administradores</h4>
+                <h4 className="font-medium text-gray-900 mb-2">Funciones administrativas</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Revisa cargas pendientes en "Revisión"</li>
-                  <li>• Gestiona usuarios en "Administración"</li>
-                  <li>• Sincroniza datos en "Sincronización"</li>
+                  <li>• <strong>Revisión:</strong> Valida cargas pendientes</li>
+                  <li>• <strong>Usuarios:</strong> Gestiona acceso al sistema</li>
+                  <li>• <strong>Gestión:</strong> Administra catálogos</li>
+                  <li>• <strong>Creación:</strong> Crea nuevos elementos</li>
+                  <li>• <strong>Sincronización:</strong> Conecta con Google Sheets</li>
                 </ul>
               </div>
             </div>
