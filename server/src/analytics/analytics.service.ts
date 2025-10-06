@@ -432,7 +432,13 @@ export class AnalyticsService {
           // Aplicar filtro por año si se especifica
           if (año) {
             const añoDelPeriodo = periodo.toString().substring(0, 4);
-            if (añoDelPeriodo !== año) continue;
+            this.logger.log(`🔍 Filtro año individual: solicitado=${año}, periodo=${periodo}, añoDelPeriodo=${añoDelPeriodo}`);
+            if (añoDelPeriodo !== año) {
+              this.logger.log(`❌ Filtrando periodo individual ${periodo} porque año ${añoDelPeriodo} !== ${año}`);
+              continue;
+            } else {
+              this.logger.log(`✅ Incluyendo periodo individual ${periodo} porque año ${añoDelPeriodo} === ${año}`);
+            }
           }
           
           // Aplicar filtros de período si se especifican
@@ -891,9 +897,13 @@ export class AnalyticsService {
               // Aplicar filtro por año si se especifica
               if (año) {
                 const añoDelPeriodo = periodo.toString().substring(0, 4);
+                this.logger.log(`🔍 Filtro año: solicitado=${año}, periodo=${periodo}, añoDelPeriodo=${añoDelPeriodo}`);
                 if (añoDelPeriodo !== año) {
+                  this.logger.log(`❌ Filtrando periodo ${periodo} porque año ${añoDelPeriodo} !== ${año}`);
                   filasFiltradasPorPeriodo++;
                   continue;
+                } else {
+                  this.logger.log(`✅ Incluyendo periodo ${periodo} porque año ${añoDelPeriodo} === ${año}`);
                 }
               }
               
