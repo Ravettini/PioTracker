@@ -623,6 +623,25 @@ export class SyncService {
     return words.map(word => word.charAt(0)).join('').toUpperCase();
   }
 
+  private convertirMesNumericoANombre(mesNumerico: string): string {
+    const mesMap: { [key: string]: string } = {
+      '01': 'enero',
+      '02': 'febrero',
+      '03': 'marzo',
+      '04': 'abril',
+      '05': 'mayo',
+      '06': 'junio',
+      '07': 'julio',
+      '08': 'agosto',
+      '09': 'septiembre',
+      '10': 'octubre',
+      '11': 'noviembre',
+      '12': 'diciembre'
+    };
+    
+    return mesMap[mesNumerico] || mesNumerico; // Si no encuentra el mapeo, devolver el original
+  }
+
   private getMonthNumber(month: string): string {
     const monthMap: { [key: string]: string } = {
       'enero': '01',
@@ -807,12 +826,15 @@ export class SyncService {
       this.logger.log(`   - linea: "${data.linea}"`);
       this.logger.log(`   - valor: ${data.valor}`);
       
+      // Convertir mes numérico a nombre del mes para Google Sheets
+      const mesNombre = this.convertirMesNumericoANombre(data.mes);
+      
       // Preparar datos para la fila con estructura correcta
       const rowData = [
         data.indicadorId || '',           // A - Indicador ID
         data.indicador,                   // B - Indicador Nombre
         data.periodo,                     // C - Período
-        data.mes,                         // D - Mes
+        mesNombre,                        // D - Mes (nombre)
         data.ministerioId || '',          // E - Ministerio ID
         data.ministerio,                  // F - Ministerio Nombre
         data.lineaId || '',               // G - Línea ID
@@ -840,7 +862,7 @@ export class SyncService {
       const rows = response.data.values || [];
       let rowIndex = -1;
       
-      this.logger.log(`🔍 Buscando fila existente para indicador: ${data.indicadorId}, período: ${data.periodo}, mes: ${data.mes}`);
+      this.logger.log(`🔍 Buscando fila existente para indicador: ${data.indicadorId}, período: ${data.periodo}, mes: ${data.mes} (${mesNombre})`);
       this.logger.log(`📊 Total de filas en la hoja: ${rows.length}`);
       
       // Buscar fila existente por Indicador ID, Período y Mes
@@ -856,9 +878,10 @@ export class SyncService {
         }
         
         // Comparar indicador, período y mes para identificación única
+        // Nota: data.mes es numérico, pero rowMes es nombre del mes
         if (rowIndicadorId === data.indicadorId && 
             rowPeriodo === data.periodo &&
-            rowMes === data.mes) {
+            rowMes === mesNombre) {
           rowIndex = i + 1; // +1 porque Google Sheets es 1-indexed
           this.logger.log(`✅ Fila existente encontrada en índice: ${rowIndex}`);
           break;

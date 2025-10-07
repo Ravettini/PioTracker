@@ -315,13 +315,27 @@ export default function CargaPage() {
 
     setIsLoading(true);
     try {
+      // Convertir el mes seleccionado al formato numérico
+      const mesNumerico = mes === 'enero' ? '01' : 
+        mes === 'febrero' ? '02' : 
+        mes === 'marzo' ? '03' : 
+        mes === 'abril' ? '04' : 
+        mes === 'mayo' ? '05' : 
+        mes === 'junio' ? '06' : 
+        mes === 'julio' ? '07' : 
+        mes === 'agosto' ? '08' : 
+        mes === 'septiembre' ? '09' : 
+        mes === 'octubre' ? '10' :
+        mes === 'noviembre' ? '11' :
+        mes === 'diciembre' ? '12' : mes;
+
       // Crear la carga
       const cargaData = {
         ministerioId: selectedMinisterio,
         lineaId: selectedLinea,
         indicadorId: selectedIndicador,
         periodo,
-        mes,
+        mes: mesNumerico, // Enviar mes numérico
         valor: parseFloat(valor),
         unidad,
         meta: parseFloat(meta) || undefined,
