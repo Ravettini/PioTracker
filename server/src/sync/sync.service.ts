@@ -952,7 +952,7 @@ export class SyncService {
 
   // Generar nombre de hoja basado en el ministerio
   private generateMinisterioTabName(ministerio: string): string {
-    // Mapeo de nombres de ministerios a nombres de hojas existentes
+    // Mapeo de nombres de ministerios a nombres de hojas existentes (solo para ministerios ya creados)
     const ministerioMap: { [key: string]: string } = {
       'Educación': 'Educacion',
       'Ente regulador de servicios públicos': 'Ente regulador de servicios púb',
@@ -963,9 +963,7 @@ export class SyncService {
       'MDHyH': 'Ministerio de Desarrollo Humano y Hábitat',
       'Salud': 'Salud',
       'Seguridad': 'Seguridad',
-      'Vicejefatura': 'Vicejefatura',
-      'ministerio de defensa': 'Ministerio_ministerio_de_defensa_',
-      'Ministerio de defensa': 'Ministerio_ministerio_de_defensa_'
+      'Vicejefatura': 'Vicejefatura'
     };
     
     // Si existe el mapeo, usar el nombre de la hoja existente
@@ -973,13 +971,14 @@ export class SyncService {
       return ministerioMap[ministerio];
     }
     
-    // Si no existe el mapeo, crear nombre limpio
+    // Para ministerios nuevos: crear nombre limpio sin prefijo "Ministerio_"
+    // Esto asegura que el nombre en la hoja sea exactamente el nombre del ministerio normalizado
     const cleanName = ministerio
-      .replace(/[^a-zA-Z0-9\s]/g, '') // Remover caracteres especiales
+      .replace(/[^a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]/g, '') // Remover caracteres especiales pero mantener tildes y ñ
       .replace(/\s+/g, '_') // Reemplazar espacios con guiones bajos
-      .substring(0, 30); // Limitar longitud
+      .substring(0, 30); // Limitar longitud a 30 caracteres (límite de Google Sheets)
     
-    return `Ministerio_${cleanName}`;
+    return cleanName;
   }
 
   // Asegurar que la hoja del ministerio existe
