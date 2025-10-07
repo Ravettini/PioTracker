@@ -58,7 +58,9 @@ export class AnalyticsService {
   async getMinisterios(user: Usuario) {
     this.logger.log(`Obteniendo ministerios para usuario: ${user.id}`);
 
-    const whereConditions: any = {};
+    const whereConditions: any = {
+      activo: true, // Solo mostrar ministerios activos
+    };
     
     // Si no es admin, filtrar por ministerio del usuario
     if (user.rol !== 'ADMIN') {
