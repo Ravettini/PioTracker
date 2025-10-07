@@ -89,6 +89,40 @@ export default function CargaPage() {
     return ['2024', '2025', '2026', '2027'].includes(periodo);
   };
 
+  // Declarar loadMinisterios con useCallback antes de usarlo en useEffect
+  const loadMinisterios = useCallback(async () => {
+    try {
+      setIsLoading(true);
+
+      console.log('🔄 Cargando ministerios desde la API...');
+      
+      // Llamada a la API para obtener ministerios
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('✅ Datos recibidos de la API:', data);
+        // Filtrar solo ministerios activos como medida adicional de seguridad
+        const ministeriosActivos = (data.data || data || []).filter((ministerio: Ministerio) => ministerio.activo === true);
+        console.log('🔍 Ministerios activos filtrados:', ministeriosActivos);
+        setMinisterios(ministeriosActivos);
+        setFilteredMinisterios(ministeriosActivos);
+      } else {
+        console.error('❌ Error obteniendo ministerios de la API:', response.status);
+        toast.error('Error al cargar los ministerios desde la API');
+      }
+    } catch (error) {
+      console.error('❌ Error cargando ministerios:', error);
+      toast.error('Error al cargar los ministerios');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [token]);
+
   useEffect(() => {
     if (!isAuthenticated) {
       router.push('/login');
@@ -96,7 +130,7 @@ export default function CargaPage() {
     }
 
     loadMinisterios();
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router, loadMinisterios]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -154,39 +188,6 @@ export default function CargaPage() {
       setMetasExistentes([]);
     }
   }, [selectedIndicador, selectedMinisterio]);
-
-  const loadMinisterios = useCallback(async () => {
-    try {
-      setIsLoading(true);
-
-      console.log('🔄 Cargando ministerios desde la API...');
-      
-      // Llamada a la API para obtener ministerios
-      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅ Datos recibidos de la API:', data);
-        // Filtrar solo ministerios activos como medida adicional de seguridad
-        const ministeriosActivos = (data.data || data || []).filter((ministerio: Ministerio) => ministerio.activo === true);
-        console.log('🔍 Ministerios activos filtrados:', ministeriosActivos);
-        setMinisterios(ministeriosActivos);
-        setFilteredMinisterios(ministeriosActivos);
-      } else {
-        console.error('❌ Error obteniendo ministerios de la API:', response.status);
-        toast.error('Error al cargar los ministerios desde la API');
-      }
-    } catch (error) {
-      console.error('❌ Error cargando ministerios:', error);
-      toast.error('Error al cargar los ministerios');
-    } finally {
-      setIsLoading(false);
-    }
-  }, [token]);
 
   const loadLineas = async (ministerioId: string) => {
     console.log(`🔍 Frontend enviando ministerioId: "${ministerioId}"`);
