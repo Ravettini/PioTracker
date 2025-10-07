@@ -688,6 +688,8 @@ export class AnalyticsService {
       'Justicia': 'Justicia',
       'MDHyH': 'Ministerio de Desarrollo Humano y Hábitat',
       'Ministerio de prueba': 'Ministerio_Ministerio_de_prueba',
+      'ministerio de defensa': 'Ministerio_ministerio_de_defensa_',
+      'Ministerio de defensa': 'Ministerio_ministerio_de_defensa_',
       'Salud': 'Salud',
       'Seguridad': 'Seguridad',
       'Vicejefatura': 'Vicejefatura'

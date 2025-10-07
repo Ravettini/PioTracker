@@ -963,7 +963,9 @@ export class SyncService {
       'MDHyH': 'Ministerio de Desarrollo Humano y Hábitat',
       'Salud': 'Salud',
       'Seguridad': 'Seguridad',
-      'Vicejefatura': 'Vicejefatura'
+      'Vicejefatura': 'Vicejefatura',
+      'ministerio de defensa': 'Ministerio_ministerio_de_defensa_',
+      'Ministerio de defensa': 'Ministerio_ministerio_de_defensa_'
     };
     
     // Si existe el mapeo, usar el nombre de la hoja existente
