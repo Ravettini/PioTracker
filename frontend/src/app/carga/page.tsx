@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useIsAuthenticated, useAuthStore } from '@/store/auth-store';
 import Layout from '@/components/layout/Layout';
@@ -102,20 +102,7 @@ export default function CargaPage() {
     if (isAuthenticated) {
       loadMinisterios();
     }
-  }, [isAuthenticated]);
-
-  // Refrescar datos cuando la página se vuelve visible (para evitar cache)
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (!document.hidden && isAuthenticated) {
-        console.log('🔄 Página visible, refrescando ministerios...');
-        loadMinisterios();
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loadMinisterios]);
 
   useEffect(() => {
     if (selectedMinisterio) {
@@ -168,7 +155,7 @@ export default function CargaPage() {
     }
   }, [selectedIndicador, selectedMinisterio]);
 
-  const loadMinisterios = async () => {
+  const loadMinisterios = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -199,7 +186,7 @@ export default function CargaPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [token]);
 
   const loadLineas = async (ministerioId: string) => {
     console.log(`🔍 Frontend enviando ministerioId: "${ministerioId}"`);
