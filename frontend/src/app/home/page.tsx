@@ -99,36 +99,43 @@ export default function HomePage() {
         available: true
       },
       {
-        title: 'Usuarios',
-        description: 'Gestiona usuarios del sistema',
-        icon: <Users className="h-8 w-8" />,
-        href: '/admin/usuarios',
-        color: 'bg-pink-500',
-        available: true
-      },
-      {
-        title: 'Gestión',
-        description: 'Administra ministerios, líneas e indicadores',
+        title: 'Configuración',
+        description: 'Configuración del sistema',
         icon: <Settings className="h-8 w-8" />,
-        href: '/gestion',
-        color: 'bg-gray-500',
-        available: true
-      },
-      {
-        title: 'Creación',
-        description: 'Crea nuevos ministerios, compromisos e indicadores',
-        icon: <Plus className="h-8 w-8" />,
-        href: '/creacion',
-        color: 'bg-orange-500',
-        available: true
-      },
-      {
-        title: 'Sincronización',
-        description: 'Sincroniza datos con Google Sheets',
-        icon: <Settings className="h-8 w-8" />,
-        href: '/admin/sync',
-        color: 'bg-teal-500',
-        available: true
+        href: '/configuracion',
+        color: 'bg-slate-600',
+        available: true,
+        isSubMenu: true,
+        subMenuItems: [
+          {
+            title: 'Usuarios',
+            description: 'Gestiona usuarios del sistema',
+            icon: <Users className="h-6 w-6" />,
+            href: '/admin/usuarios',
+            color: 'bg-pink-500'
+          },
+          {
+            title: 'Gestión',
+            description: 'Administra ministerios, líneas e indicadores',
+            icon: <Settings className="h-6 w-6" />,
+            href: '/gestion',
+            color: 'bg-gray-500'
+          },
+          {
+            title: 'Creación',
+            description: 'Crea nuevos ministerios, compromisos e indicadores',
+            icon: <Plus className="h-6 w-6" />,
+            href: '/creacion',
+            color: 'bg-orange-500'
+          },
+          {
+            title: 'Sincronización',
+            description: 'Sincroniza datos con Google Sheets',
+            icon: <Settings className="h-6 w-6" />,
+            href: '/admin/sync',
+            color: 'bg-teal-500'
+          }
+        ]
       }
     ] : [])
   ];
@@ -155,41 +162,65 @@ export default function HomePage() {
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuOptions.map((option, index) => (
-            <Card 
-              key={index} 
-              className={`hover:shadow-lg transition-all duration-200 cursor-pointer transform hover:scale-105 ${
-                !option.available ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              onClick={() => option.available && router.push(option.href)}
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-center space-x-4">
-                  <div className={`p-3 rounded-lg text-white ${option.color}`}>
-                    {option.icon}
+            <div key={index}>
+              <Card 
+                className={`hover:shadow-lg transition-all duration-200 cursor-pointer transform hover:scale-105 ${
+                  !option.available ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={() => option.available && !option.isSubMenu && router.push(option.href)}
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-center space-x-4">
+                    <div className={`p-3 rounded-lg text-white ${option.color}`}>
+                      {option.icon}
+                    </div>
+                    <div className="flex-1">
+                      <CardTitle className="text-lg">{option.title}</CardTitle>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg">{option.title}</CardTitle>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-gray-600 text-sm">
-                  {option.description}
-                </p>
-                {option.available && (
-                  <Button 
-                    className="w-full mt-4" 
-                    variant="outline"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      router.push(option.href);
-                    }}
-                  >
-                    Acceder
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600 text-sm">
+                    {option.description}
+                  </p>
+                  {option.available && !option.isSubMenu && (
+                    <Button 
+                      className="w-full mt-4" 
+                      variant="outline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(option.href);
+                      }}
+                    >
+                      Acceder
+                    </Button>
+                  )}
+                  {option.isSubMenu && (
+                    <div className="mt-4 space-y-2">
+                      {option.subMenuItems.map((subItem, subIndex) => (
+                        <Button 
+                          key={subIndex}
+                          className="w-full" 
+                          variant="outline"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(subItem.href);
+                          }}
+                        >
+                          <div className="flex items-center space-x-2">
+                            <div className={`p-1 rounded text-white ${subItem.color}`}>
+                              {subItem.icon}
+                            </div>
+                            <span>{subItem.title}</span>
+                          </div>
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 

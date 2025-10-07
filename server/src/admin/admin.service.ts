@@ -27,13 +27,34 @@ export class AdminService {
       ministerioIdLength: createUsuarioDto.ministerioId?.length
     });
 
-    // Verificar que el email no exista
+    // Verificar si existe un usuario con ese email (activo o inactivo)
     const existingUsuario = await this.usuarioRepository.findOne({
       where: { email: createUsuarioDto.email.toLowerCase() },
     });
 
     if (existingUsuario) {
-      throw new BadRequestException('El email ya está registrado');
+      if (existingUsuario.activo) {
+        throw new BadRequestException('El email ya está registrado');
+      } else {
+        // Si el usuario existe pero está inactivo, reactivarlo
+        existingUsuario.activo = true;
+        existingUsuario.nombre = createUsuarioDto.nombre;
+        existingUsuario.rol = createUsuarioDto.rol;
+        existingUsuario.ministerioId = createUsuarioDto.ministerioId || null;
+        existingUsuario.actualizadoEn = new Date();
+        
+        // Generar nueva contraseña temporal
+        const passwordTemporal = this.generateTemporaryPassword();
+        existingUsuario.hashClave = await argon2.hash(passwordTemporal);
+        existingUsuario.claveTemporal = true;
+        
+        const savedUsuario = await this.usuarioRepository.save(existingUsuario);
+        
+        return {
+          ...savedUsuario,
+          passwordTemporal,
+        } as any;
+      }
     }
 
     // Verificar que el ministerio existe si se especifica
