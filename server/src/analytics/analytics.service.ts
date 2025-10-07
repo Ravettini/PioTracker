@@ -181,39 +181,46 @@ export class AnalyticsService {
   }
 
   private procesarDatosTotales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
-    // Agrupar por período y sumar valores
+    // Agrupar por período y sumar valores y metas
     const agrupado = sheetData.reduce((acc, row) => {
       const periodo = row.periodo;
       if (!acc[periodo]) {
-        acc[periodo] = { valor: 0, count: 0 };
+        acc[periodo] = { valor: 0, meta: 0, count: 0 };
       }
       acc[periodo].valor += row.valor;
+      if (row.meta !== null && row.meta !== undefined) {
+        acc[periodo].meta += row.meta;
+      }
       acc[periodo].count += 1;
       return acc;
     }, {});
 
     const periodos = Object.keys(agrupado);
     const valores = periodos.map(p => agrupado[p].valor);
+    const metas = periodos.map(p => agrupado[p].meta || null);
 
     return {
       periodos,
       valores,
-      metas: undefined, // NO HAY METAS EN GOOGLE SHEETS
+      metas,
     };
   }
 
   private procesarDatosMensuales(sheetData: any[]): { periodos: string[]; valores: number[]; metas?: number[] } {
     this.logger.log(`📊 Procesando ${sheetData.length} filas para vista mensual`);
     
-    // Agrupar por mes normalizado y sumar valores
+    // Agrupar por mes normalizado y sumar valores y metas
     const agrupado = sheetData.reduce((acc, row) => {
       const mesNormalizado = this.normalizarMes(row.mes || 'Sin mes');
-      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}`);
+      this.logger.log(`📅 Procesando fila: Mes="${row.mes}" -> Normalizado="${mesNormalizado}", Valor=${row.valor}, Meta=${row.meta}`);
       
       if (!acc[mesNormalizado]) {
-        acc[mesNormalizado] = { valor: 0, count: 0 };
+        acc[mesNormalizado] = { valor: 0, meta: 0, count: 0 };
       }
       acc[mesNormalizado].valor += row.valor;
+      if (row.meta !== null && row.meta !== undefined) {
+        acc[mesNormalizado].meta += row.meta;
+      }
       acc[mesNormalizado].count += 1;
       return acc;
     }, {});
@@ -233,13 +240,14 @@ export class AnalyticsService {
     });
 
     const valores = periodos.map(p => agrupado[p].valor);
+    const metas = periodos.map(p => agrupado[p].meta || null);
 
-    this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}`);
+    this.logger.log(`📊 Resultado final: Periodos=${periodos.join(', ')}, Valores=${valores.join(', ')}, Metas=${metas.join(', ')}`);
 
     return {
       periodos,
       valores,
-      metas: undefined, // NO HAY METAS EN GOOGLE SHEETS
+      metas,
     };
   }
 
@@ -419,8 +427,7 @@ export class AnalyticsService {
           const periodo = row[2]; // Columna C: Período
           const mes = row[3] || ''; // Columna D: Mes
           const valor = parseFloat(row[8]) || 0; // Columna I: Valor (nueva posición)
-          // NO LEER METAS - están vacías en Google Sheets
-          // const meta = row[10] && row[10].toString().trim() !== '' ? parseFloat(row[10].toString()) : null;
+          const meta = row[10] && row[10].toString().trim() !== '' ? parseFloat(row[10].toString()) : null; // Columna K: Meta
           const unidad = row[9] || 'unidades'; // Columna J: Unidad (nueva posición)
           const fuente = row[11] || 'Google Sheets'; // Columna L: Fuente (nueva posición)
           const responsableNombre = row[12] || 'Sistema'; // Columna M: Responsable (nueva posición)
@@ -445,7 +452,7 @@ export class AnalyticsService {
             periodo,
             mes,
             valor,
-            // meta, // NO HAY METAS EN GOOGLE SHEETS
+            meta,
             unidad,
             fuente,
             responsable: responsableNombre,
@@ -456,7 +463,7 @@ export class AnalyticsService {
           });
           
           // Log para debugging
-          this.logger.log(`📊 Datos leídos (por Nombre): Período=${periodo}, Mes="${mes}", Valor=${valor}`);
+          this.logger.log(`📊 Datos leídos (por Nombre): Período=${periodo}, Mes="${mes}", Valor=${valor}, Meta=${meta}`);
         }
       }
       
