@@ -797,6 +797,16 @@ export class SyncService {
       // Verificar si la hoja existe, si no, crearla
       await this.ensureMinisterioSheetExists(sheets, config.sheetId, ministerioTab);
       
+      // Log de datos recibidos para debug
+      this.logger.log(`📥 Datos recibidos en upsertFactRow:`);
+      this.logger.log(`   - indicadorId: "${data.indicadorId}"`);
+      this.logger.log(`   - indicador: "${data.indicador}"`);
+      this.logger.log(`   - periodo: "${data.periodo}"`);
+      this.logger.log(`   - mes: "${data.mes}"`);
+      this.logger.log(`   - ministerio: "${data.ministerio}"`);
+      this.logger.log(`   - linea: "${data.linea}"`);
+      this.logger.log(`   - valor: ${data.valor}`);
+      
       // Preparar datos para la fila con estructura correcta
       const rowData = [
         data.indicadorId || '',           // A - Indicador ID
