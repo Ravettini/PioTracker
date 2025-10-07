@@ -820,7 +820,7 @@ export class SyncService {
         new Date().toISOString()          // S - Actualizado En
       ];
       
-      // Buscar si ya existe una fila con el mismo indicador/periodo en la hoja del ministerio
+      // Buscar si ya existe una fila con el mismo indicador/periodo/mes en la hoja del ministerio
       const range = `${ministerioTab}!A:S`;
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: config.sheetId,
@@ -830,14 +830,33 @@ export class SyncService {
       const rows = response.data.values || [];
       let rowIndex = -1;
       
-      // Buscar fila existente por Indicador ID y Período
-      for (let i = 1; i < rows.length; i++) { // Saltar header
+      this.logger.log(`🔍 Buscando fila existente para indicador: ${data.indicadorId}, período: ${data.periodo}, mes: ${data.mes}`);
+      this.logger.log(`📊 Total de filas en la hoja: ${rows.length}`);
+      
+      // Buscar fila existente por Indicador ID, Período y Mes
+      for (let i = 1; i < rows.length; i++) { // Saltar header (fila 0)
         const row = rows[i];
-        if (row[0] === (data.indicadorId || '') && 
-            row[2] === data.periodo) {
+        const rowIndicadorId = row[0] || '';
+        const rowPeriodo = row[2] || '';
+        const rowMes = row[3] || '';
+        
+        // Debug de las primeras 5 filas
+        if (i <= 5) {
+          this.logger.log(`📋 Fila ${i + 1}: indicadorId="${rowIndicadorId}", periodo="${rowPeriodo}", mes="${rowMes}"`);
+        }
+        
+        // Comparar indicador, período y mes para identificación única
+        if (rowIndicadorId === data.indicadorId && 
+            rowPeriodo === data.periodo &&
+            rowMes === data.mes) {
           rowIndex = i + 1; // +1 porque Google Sheets es 1-indexed
+          this.logger.log(`✅ Fila existente encontrada en índice: ${rowIndex}`);
           break;
         }
+      }
+      
+      if (rowIndex === -1) {
+        this.logger.log(`➕ No se encontró fila existente, se insertará nueva fila`);
       }
       
       if (rowIndex > 0) {
