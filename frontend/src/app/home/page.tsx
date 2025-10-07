@@ -160,32 +160,32 @@ export default function HomePage() {
         </div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {menuOptions.map((option, index) => (
-            <div key={index}>
+            <div key={index} className="w-full">
               <Card 
-                className={`hover:shadow-lg transition-all duration-200 cursor-pointer transform hover:scale-105 ${
+                className={`hover:shadow-lg transition-all duration-200 cursor-pointer transform hover:scale-105 w-full h-full ${
                   !option.available ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
                 onClick={() => option.available && !option.isSubMenu && router.push(option.href)}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-lg text-white ${option.color}`}>
+                    <div className={`p-3 rounded-lg text-white ${option.color} flex-shrink-0`}>
                       {option.icon}
                     </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-lg">{option.title}</CardTitle>
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-lg truncate">{option.title}</CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 text-sm mb-4">
                     {option.description}
                   </p>
                   {option.available && !option.isSubMenu && (
                     <Button 
-                      className="w-full mt-4" 
+                      className="w-full" 
                       variant="outline"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -196,23 +196,25 @@ export default function HomePage() {
                     </Button>
                   )}
                   {option.isSubMenu && (
-                    <div className="mt-4 space-y-2">
+                    <div className="space-y-3">
                       {option.subMenuItems.map((subItem, subIndex) => (
                         <Button 
                           key={subIndex}
-                          className="w-full" 
+                          className="w-full justify-start h-auto py-3 px-4" 
                           variant="outline"
-                          size="sm"
                           onClick={(e) => {
                             e.stopPropagation();
                             router.push(subItem.href);
                           }}
                         >
-                          <div className="flex items-center space-x-2">
-                            <div className={`p-1 rounded text-white ${subItem.color}`}>
+                          <div className="flex items-center space-x-3 w-full">
+                            <div className={`p-2 rounded text-white ${subItem.color} flex-shrink-0`}>
                               {subItem.icon}
                             </div>
-                            <span>{subItem.title}</span>
+                            <div className="flex-1 text-left">
+                              <div className="font-medium">{subItem.title}</div>
+                              <div className="text-xs text-gray-500">{subItem.description}</div>
+                            </div>
                           </div>
                         </Button>
                       ))}
