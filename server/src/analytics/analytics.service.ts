@@ -377,8 +377,8 @@ export class AnalyticsService {
       
       const rows = response.data.values || [];
       if (rows.length <= 1) {
-        this.logger.warn(`⚠️ No hay datos en la hoja ${ministerioTab}. Usando base de datos local.`);
-        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+        this.logger.warn(`⚠️ No hay datos en la hoja ${ministerioTab} con filtro de año ${año}. Retornando datos vacíos.`);
+        return [];
       }
       
       // Procesar filas y filtrar por indicador
@@ -432,12 +432,8 @@ export class AnalyticsService {
           // Aplicar filtro por año si se especifica
           if (año) {
             const añoDelPeriodo = periodo.toString().substring(0, 4);
-            this.logger.log(`🔍 Filtro año individual: solicitado=${año}, periodo=${periodo}, añoDelPeriodo=${añoDelPeriodo}`);
             if (añoDelPeriodo !== año) {
-              this.logger.log(`❌ Filtrando periodo individual ${periodo} porque año ${añoDelPeriodo} !== ${año}`);
               continue;
-            } else {
-              this.logger.log(`✅ Incluyendo periodo individual ${periodo} porque año ${añoDelPeriodo} === ${año}`);
             }
           }
           
@@ -473,10 +469,10 @@ export class AnalyticsService {
         this.logger.log(`📊 Primeros registros encontrados:`, datosIndicador.slice(0, 3).map(d => `Mes=${d.mes}, Valor=${d.valor}`));
       }
       
-      // Si no hay datos en Sheets, usar base de datos local como fallback
+      // Si no hay datos en Sheets, retornar vacío (no usar base de datos local)
       if (datosIndicador.length === 0) {
-        this.logger.warn(`⚠️ No se encontraron datos en Google Sheets para indicador ${indicadorId}. Usando base de datos local.`);
-        return this.getDataFromLocalDatabase(indicadorId, periodoDesde, periodoHasta);
+        this.logger.warn(`⚠️ No se encontraron datos en Google Sheets para indicador ${indicadorId} con filtro de año ${año}. Retornando datos vacíos.`);
+        return [];
       }
       
       return datosIndicador;
@@ -897,13 +893,9 @@ export class AnalyticsService {
               // Aplicar filtro por año si se especifica
               if (año) {
                 const añoDelPeriodo = periodo.toString().substring(0, 4);
-                this.logger.log(`🔍 Filtro año: solicitado=${año}, periodo=${periodo}, añoDelPeriodo=${añoDelPeriodo}`);
                 if (añoDelPeriodo !== año) {
-                  this.logger.log(`❌ Filtrando periodo ${periodo} porque año ${añoDelPeriodo} !== ${año}`);
                   filasFiltradasPorPeriodo++;
                   continue;
-                } else {
-                  this.logger.log(`✅ Incluyendo periodo ${periodo} porque año ${añoDelPeriodo} === ${año}`);
                 }
               }
               
