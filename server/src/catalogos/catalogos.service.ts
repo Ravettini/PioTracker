@@ -25,6 +25,7 @@ export class CatalogosService {
         relations: ['lineas'],
         order: { nombre: 'ASC' },
       });
+      console.log(`✅ Encontrados ${ministerios.length} ministerios activos:`, ministerios.map(m => `${m.nombre} (${m.activo ? 'activo' : 'inactivo'})`));
       console.log(`✅ ${ministerios.length} ministerios encontrados`);
       return ministerios;
     } catch (error) {

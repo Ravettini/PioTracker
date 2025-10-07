@@ -104,6 +104,19 @@ export default function CargaPage() {
     }
   }, [isAuthenticated]);
 
+  // Refrescar datos cuando la página se vuelve visible (para evitar cache)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && isAuthenticated) {
+        console.log('🔄 Página visible, refrescando ministerios...');
+        loadMinisterios();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [isAuthenticated]);
+
   useEffect(() => {
     if (selectedMinisterio) {
       loadLineas(selectedMinisterio).then(lineasData => {
@@ -171,8 +184,11 @@ export default function CargaPage() {
       if (response.ok) {
         const data = await response.json();
         console.log('✅ Datos recibidos de la API:', data);
-        setMinisterios(data.data || data || []);
-        setFilteredMinisterios(data.data || data || []);
+        // Filtrar solo ministerios activos como medida adicional de seguridad
+        const ministeriosActivos = (data.data || data || []).filter((ministerio: Ministerio) => ministerio.activo === true);
+        console.log('🔍 Ministerios activos filtrados:', ministeriosActivos);
+        setMinisterios(ministeriosActivos);
+        setFilteredMinisterios(ministeriosActivos);
       } else {
         console.error('❌ Error obteniendo ministerios de la API:', response.status);
         toast.error('Error al cargar los ministerios desde la API');
