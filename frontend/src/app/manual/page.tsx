@@ -43,7 +43,7 @@ export default function ManualPage() {
   const sections = [
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: 'Panel',
       icon: BarChart3,
       description: 'Vista principal con estadísticas generales',
       content: [

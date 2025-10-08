@@ -92,7 +92,7 @@ export default function HomePage() {
       isSubMenu: true,
       subMenuItems: [
         {
-          title: 'Dashboard',
+          title: 'Panel',
           description: 'Vista general del sistema',
           icon: <BarChart3 className="h-6 w-6" />,
           href: '/dashboard',
@@ -342,7 +342,7 @@ export default function HomePage() {
                   <span>Análisis y Reportes</span>
                 </h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• <strong>Dashboard:</strong> Vista general del sistema</li>
+                  <li>• <strong>Panel:</strong> Vista general del sistema</li>
                   <li>• <strong>Analytics:</strong> Gráficos y análisis detallados</li>
                 </ul>
               </div>

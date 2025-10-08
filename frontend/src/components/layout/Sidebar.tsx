@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
       current: pathname === '/home',
     },
     {
-      name: 'Dashboard',
+      name: 'Panel',
       href: '/dashboard',
       icon: BarChart3,
       current: pathname === '/dashboard',
