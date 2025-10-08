@@ -161,8 +161,11 @@ export default function AnalyticsPage() {
         setMinisterios(response.data);
       }
     } catch (error) {
-      console.error('Error cargando ministerios:', error);
-      toast.error('Error al cargar los ministerios');
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
     } finally {
       setIsLoading(false);
     }
@@ -175,8 +178,11 @@ export default function AnalyticsPage() {
         setCompromisos(response.data);
       }
     } catch (error) {
-      console.error('Error cargando compromisos:', error);
-      toast.error('Error al cargar los compromisos');
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
     }
   };
 
@@ -187,8 +193,11 @@ export default function AnalyticsPage() {
         setIndicadores(response.data);
       }
     } catch (error) {
-      console.error('Error cargando indicadores:', error);
-      toast.error('Error al cargar los indicadores');
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
     }
   };
 
@@ -215,12 +224,18 @@ export default function AnalyticsPage() {
         setAnalyticsData(response);
       } else {
         console.warn('⚠️ Datos de analytics incompletos:', response);
-        toast.error('Los datos recibidos no tienen el formato esperado');
+        toast.error(
+          'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+          { duration: 8000 }
+        );
         setAnalyticsData(null);
       }
     } catch (error) {
-      console.error('Error cargando datos de analytics:', error);
-      toast.error('Error al cargar los datos del indicador');
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
       setAnalyticsData(null);
     } finally {
       setIsLoadingData(false);
@@ -254,12 +269,18 @@ export default function AnalyticsPage() {
         setAnalyticsData(response);
       } else {
         console.warn('⚠️ Datos globales incompletos:', response);
-        // Si no hay datos globales, mostrar resumen
+        toast.error(
+          'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+          { duration: 8000 }
+        );
         setAnalyticsData(null);
       }
     } catch (error) {
-      console.error('Error cargando vista global:', error);
-      toast.error('Error al cargar la vista global');
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
       setAnalyticsData(null);
     } finally {
       setIsLoadingData(false);

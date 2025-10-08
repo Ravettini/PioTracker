@@ -42,41 +42,23 @@ export default function DashboardPage() {
       console.log('🔄 Cargando datos del dashboard desde Google Sheets...');
       setIsLoading(true);
       
-      // Intentar primero obtener datos de Google Sheets
-      try {
-        const response = await apiClient.cargas.getStatsFromSheets();
-        console.log('📊 Respuesta de stats desde Google Sheets:', response);
-        
-        if (response.source === 'google-sheets') {
-          setStats(response);
-          console.log('✅ Estadísticas actualizadas desde Google Sheets:', response);
-          return;
-        }
-      } catch (sheetsError) {
-        console.warn('⚠️ Error obteniendo datos de Google Sheets, usando fallback:', sheetsError);
+      const response = await apiClient.cargas.getStatsFromSheets();
+      console.log('📊 Respuesta de stats desde Google Sheets:', response);
+      
+      if (response.source === 'google-sheets') {
+        setStats(response);
+        console.log('✅ Estadísticas actualizadas desde Google Sheets:', response);
+      } else {
+        throw new Error('No se pudo conectar con Google Sheets');
       }
       
-      // Fallback a base de datos local
-      console.log('🔄 Usando datos de base de datos local como fallback...');
-      const response = await apiClient.cargas.getStats();
-      console.log('📊 Respuesta de stats desde BD local:', response);
-      
-      setStats(response);
-      console.log('✅ Estadísticas actualizadas desde BD local:', response);
-      
     } catch (error) {
-      console.error('❌ Error cargando stats:', error);
-      toast.error('Error al cargar las estadísticas del dashboard');
-      
-      // Fallback con datos hardcodeados en caso de error
-      setStats({
-        totalCargas: 116,
-        cargasPendientes: 0,
-        cargasValidadas: 116,
-        cargasObservadas: 0,
-        cargasRechazadas: 0,
-        cargasPublicadas: 110,
-      });
+      console.error('❌ Error conectando con Google Sheets:', error);
+      toast.error(
+        'Error de conexión. Por favor, reinicie la página. Si el error persiste, contacte a un administrador.',
+        { duration: 8000 }
+      );
+      setStats(null);
     } finally {
       setIsLoading(false);
     }
