@@ -42,6 +42,9 @@ export default function DashboardPage() {
       console.log('🔄 Cargando datos del dashboard desde Google Sheets...');
       setIsLoading(true);
       
+      // ⚠️ ERROR TEMPORAL PARA TESTING - ELIMINAR DESPUÉS
+      throw new Error('Error simulado para testing de la alerta');
+      
       const response = await apiClient.cargas.getStatsFromSheets();
       console.log('📊 Respuesta de stats desde Google Sheets:', response);
       
