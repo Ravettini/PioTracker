@@ -97,32 +97,13 @@ export default function DashboardPage() {
     <Layout>
       <div className="space-y-4 md:space-y-6 px-4 md:px-6 max-w-7xl mx-auto">
         {/* Header del dashboard */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="text-center md:text-left">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Bienvenido, {user?.nombre}
-            </h1>
-            <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
-              Panel de control del sistema SIPIO
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-            <Button 
-              onClick={() => router.push('/carga')}
-              className="w-full sm:w-auto"
-            >
-              Nueva Carga
-            </Button>
-            {isAdmin && (
-              <Button 
-                variant="outline" 
-                onClick={() => router.push('/admin/usuarios')}
-                className="w-full sm:w-auto"
-              >
-                Administración
-              </Button>
-            )}
-          </div>
+        <div className="text-center md:text-left">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            Bienvenido, {user?.nombre}
+          </h1>
+          <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
+            Panel de control del sistema SIPIO
+          </p>
         </div>
 
         {/* Estadísticas principales */}
@@ -188,88 +169,39 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Acciones rápidas */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl">Acciones Rápidas</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 md:space-y-4">
+        {/* Estado del Sistema */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg md:text-xl">Estado del Sistema</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 md:space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">Base de Datos</span>
+              <Badge variant="success">Conectado</Badge>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">API Backend</span>
+              <Badge variant="success">Operativo</Badge>
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-gray-600">Sincronización</span>
+              <Badge variant="warning">Pendiente</Badge>
+            </div>
+            
+            {isAdmin && (
               <Button
-                onClick={() => router.push('/carga')}
-                className="w-full justify-start h-12 md:h-10"
+                onClick={() => router.push('/admin/sync')}
                 variant="outline"
+                size="sm"
+                className="w-full h-10"
               >
-                <FileText className="mr-3 h-5 w-5" />
-                <span className="text-sm md:text-base">Crear Nueva Carga</span>
+                Ver Estado de Sync
               </Button>
-              
-              <Button
-                onClick={() => router.push('/mis-envios')}
-                className="w-full justify-start h-12 md:h-10"
-                variant="outline"
-              >
-                <BarChart3 className="mr-3 h-5 w-5" />
-                <span className="text-sm md:text-base">Ver Mis Envíos</span>
-              </Button>
-
-              {isAdmin && (
-                <>
-                  <Button
-                    onClick={() => router.push('/revision')}
-                    className="w-full justify-start h-12 md:h-10"
-                    variant="outline"
-                  >
-                    <CheckCircle className="mr-3 h-5 w-5" />
-                    <span className="text-sm md:text-base">Revisar Cargas</span>
-                  </Button>
-                  
-                  <Button
-                    onClick={() => router.push('/admin/usuarios')}
-                    className="w-full justify-start h-12 md:h-10"
-                    variant="outline"
-                  >
-                    <Users className="mr-3 h-5 w-5" />
-                    <span className="text-sm md:text-base">Gestionar Usuarios</span>
-                  </Button>
-                </>
-              )}
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg md:text-xl">Estado del Sistema</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 md:space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Base de Datos</span>
-                <Badge variant="success">Conectado</Badge>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">API Backend</span>
-                <Badge variant="success">Operativo</Badge>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Sincronización</span>
-                <Badge variant="warning">Pendiente</Badge>
-              </div>
-              
-              {isAdmin && (
-                <Button
-                  onClick={() => router.push('/admin/sync')}
-                  variant="outline"
-                  size="sm"
-                  className="w-full h-10"
-                >
-                  Ver Estado de Sync
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Información del usuario */}
         <Card>
