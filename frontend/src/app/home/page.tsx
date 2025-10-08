@@ -20,7 +20,9 @@ import {
   Target,
   Building,
   Activity,
-  CheckCircle
+  CheckCircle,
+  BookOpen,
+  Cog
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -42,65 +44,73 @@ export default function HomePage() {
 
   const menuOptions = [
     {
-      title: 'Dashboard',
-      description: 'Vista general del sistema y estadísticas',
+      title: 'Gestión Operativa',
+      description: 'Tareas diarias de carga y revisión',
+      icon: <FileText className="h-8 w-8" />,
+      href: '/gestion-operativa',
+      color: 'bg-green-600',
+      available: true,
+      isSubMenu: true,
+      subMenuItems: [
+        {
+          title: 'Carga de Indicadores',
+          description: 'Registra nuevos datos de indicadores',
+          icon: <Upload className="h-6 w-6" />,
+          href: '/carga',
+          color: 'bg-green-500'
+        },
+        {
+          title: 'Mis Envíos',
+          description: 'Consulta el estado de tus cargas',
+          icon: <Eye className="h-6 w-6" />,
+          href: '/mis-envios',
+          color: 'bg-yellow-500'
+        },
+        {
+          title: 'Publicadas',
+          description: 'Ver cargas ya validadas',
+          icon: <CheckCircle className="h-6 w-6" />,
+          href: '/publicadas',
+          color: 'bg-emerald-500'
+        },
+        ...(isAdmin ? [{
+          title: 'Revisión',
+          description: 'Valida cargas pendientes',
+          icon: <CheckCircle className="h-6 w-6" />,
+          href: '/revision',
+          color: 'bg-red-500'
+        }] : [])
+      ]
+    },
+    {
+      title: 'Análisis y Reportes',
+      description: 'Visualización de datos y gráficos',
       icon: <BarChart3 className="h-8 w-8" />,
-      href: '/dashboard',
-      color: 'bg-blue-500',
-      available: true
-    },
-    {
-      title: 'Carga de Indicadores',
-      description: 'Registra nuevos datos de indicadores',
-      icon: <FileText className="h-8 w-8" />,
-      href: '/carga',
-      color: 'bg-green-500',
-      available: true
-    },
-    {
-      title: 'Mis Envíos',
-      description: 'Consulta el estado de tus cargas enviadas',
-      icon: <FileText className="h-8 w-8" />,
-      href: '/mis-envios',
-      color: 'bg-yellow-500',
-      available: true
-    },
-    {
-      title: 'Publicadas',
-      description: 'Ver cargas ya publicadas y validadas',
-      icon: <CheckCircle className="h-8 w-8" />,
-      href: '/publicadas',
-      color: 'bg-emerald-500',
-      available: true
-    },
-    {
-      title: 'Analytics',
-      description: 'Visualiza y analiza los indicadores con gráficos',
-      icon: <TrendingUp className="h-8 w-8" />,
-      href: '/analytics',
-      color: 'bg-purple-500',
-      available: true
-    },
-    {
-      title: 'Manual',
-      description: 'Guía de uso y documentación del sistema',
-      icon: <Activity className="h-8 w-8" />,
-      href: '/manual',
-      color: 'bg-indigo-500',
-      available: true
+      href: '/analisis',
+      color: 'bg-blue-600',
+      available: true,
+      isSubMenu: true,
+      subMenuItems: [
+        {
+          title: 'Dashboard',
+          description: 'Vista general del sistema',
+          icon: <BarChart3 className="h-6 w-6" />,
+          href: '/dashboard',
+          color: 'bg-blue-500'
+        },
+        {
+          title: 'Analytics',
+          description: 'Gráficos y análisis detallados',
+          icon: <TrendingUp className="h-6 w-6" />,
+          href: '/analytics',
+          color: 'bg-purple-500'
+        }
+      ]
     },
     ...(isAdmin ? [
       {
-        title: 'Revisión',
-        description: 'Revisa y valida cargas pendientes',
-        icon: <FileText className="h-8 w-8" />,
-        href: '/revision',
-        color: 'bg-red-500',
-        available: true
-      },
-      {
-        title: 'Configuración',
-        description: 'Configuración del sistema',
+        title: 'Configuración del Sistema',
+        description: 'Administración y ayuda',
         icon: <Settings className="h-8 w-8" />,
         href: '/configuracion',
         color: 'bg-slate-600',
@@ -116,28 +126,47 @@ export default function HomePage() {
           },
           {
             title: 'Gestión',
-            description: 'Administra ministerios, líneas e indicadores',
-            icon: <Settings className="h-6 w-6" />,
+            description: 'Administra ministerios e indicadores',
+            icon: <Cog className="h-6 w-6" />,
             href: '/gestion',
             color: 'bg-gray-500'
           },
           {
-            title: 'Creación',
-            description: 'Crea nuevos ministerios, compromisos e indicadores',
-            icon: <Plus className="h-6 w-6" />,
-            href: '/creacion',
-            color: 'bg-orange-500'
-          },
-          {
             title: 'Sincronización',
-            description: 'Sincroniza datos con Google Sheets',
-            icon: <Settings className="h-6 w-6" />,
+            description: 'Conecta con Google Sheets',
+            icon: <Download className="h-6 w-6" />,
             href: '/admin/sync',
             color: 'bg-teal-500'
+          },
+          {
+            title: 'Manual',
+            description: 'Guía de uso del sistema',
+            icon: <BookOpen className="h-6 w-6" />,
+            href: '/manual',
+            color: 'bg-indigo-500'
           }
         ]
       }
-    ] : [])
+    ] : [
+      {
+        title: 'Ayuda',
+        description: 'Manual y documentación',
+        icon: <BookOpen className="h-8 w-8" />,
+        href: '/ayuda',
+        color: 'bg-indigo-600',
+        available: true,
+        isSubMenu: true,
+        subMenuItems: [
+          {
+            title: 'Manual',
+            description: 'Guía de uso del sistema',
+            icon: <BookOpen className="h-6 w-6" />,
+            href: '/manual',
+            color: 'bg-indigo-500'
+          }
+        ]
+      }
+    ])
   ];
 
   return (
@@ -294,26 +323,43 @@ export default function HomePage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Flujo de trabajo básico</h4>
+                <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-2">
+                  <FileText className="h-4 w-4 text-green-600" />
+                  <span>Gestión Operativa</span>
+                </h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• <strong>Dashboard:</strong> Vista general del sistema</li>
-                  <li>• <strong>Carga de Indicadores:</strong> Registra nuevos datos</li>
-                  <li>• <strong>Mis Envíos:</strong> Consulta el estado de tus cargas</li>
-                  <li>• <strong>Publicadas:</strong> Ver cargas ya validadas</li>
-                  <li>• <strong>Analytics:</strong> Gráficos y análisis de datos</li>
-                  <li>• <strong>Manual:</strong> Documentación y guías</li>
+                  <li>• <strong>Carga:</strong> Registra datos de indicadores</li>
+                  <li>• <strong>Mis Envíos:</strong> Revisa tus cargas</li>
+                  <li>• <strong>Publicadas:</strong> Ver cargas validadas</li>
+                  {isAdmin && <li>• <strong>Revisión:</strong> Valida cargas pendientes</li>}
                 </ul>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-2">Funciones administrativas</h4>
+                <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-2">
+                  <BarChart3 className="h-4 w-4 text-blue-600" />
+                  <span>Análisis y Reportes</span>
+                </h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• <strong>Revisión:</strong> Valida cargas pendientes</li>
-                  <li>• <strong>Usuarios:</strong> Gestiona acceso al sistema</li>
-                  <li>• <strong>Gestión:</strong> Administra catálogos</li>
-                  <li>• <strong>Creación:</strong> Crea nuevos elementos</li>
-                  <li>• <strong>Sincronización:</strong> Conecta con Google Sheets</li>
+                  <li>• <strong>Dashboard:</strong> Vista general del sistema</li>
+                  <li>• <strong>Analytics:</strong> Gráficos y análisis detallados</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-gray-900 mb-2 flex items-center space-x-2">
+                  <Settings className="h-4 w-4 text-slate-600" />
+                  <span>Configuración</span>
+                </h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  {isAdmin && (
+                    <>
+                      <li>• <strong>Usuarios:</strong> Gestiona acceso</li>
+                      <li>• <strong>Gestión:</strong> Administra catálogos</li>
+                      <li>• <strong>Sincronización:</strong> Google Sheets</li>
+                    </>
+                  )}
+                  <li>• <strong>Manual:</strong> Guía de uso completa</li>
                 </ul>
               </div>
             </div>
