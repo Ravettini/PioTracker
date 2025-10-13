@@ -6,9 +6,9 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'SIPIO - Sistema de Seguimiento de Indicadores',
-  description: 'Sistema de seguimiento de indicadores PIO con sincronización a Google Sheets',
-  keywords: 'PIO, indicadores, políticas públicas, GCBA, seguimiento',
+  title: 'SIPIO - Sistema de Indicadores Para la Igualdad de Oportunidades',
+  description: 'Sistema de indicadores para la igualdad de oportunidades - Ley 474/00 con sincronización a Google Sheets',
+  keywords: 'igualdad de oportunidades, indicadores, políticas públicas, GCBA, Ley 474/00',
   authors: [{ name: 'GCBA' }],
   viewport: 'width=device-width, initial-scale=1',
 };

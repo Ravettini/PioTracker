@@ -178,7 +178,10 @@ export default function HomePage() {
             Bienvenido a SIPIO
           </h1>
           <p className="text-lg text-gray-600">
-            Sistema de Indicadores de Plan de Inversión y Obras
+            Sistema de Indicadores Para la Igualdad de Oportunidades
+          </p>
+          <p className="text-xs text-gray-500 mt-1">
+            Ley 474/00 "Plan de Igualdad Real de Oportunidades y de Trato entre Mujeres y Varones"
           </p>
           {user && (
             <p className="text-sm text-gray-500 mt-2">

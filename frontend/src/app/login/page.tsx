@@ -89,7 +89,7 @@ export default function LoginPage() {
             SIPIO
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Sistema de Seguimiento de Indicadores
+            Sistema de Indicadores Para la Igualdad de Oportunidades
           </p>
         </div>
 
@@ -150,7 +150,10 @@ export default function LoginPage() {
             {/* Información adicional */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                Sistema de Seguimiento de Indicadores PIO
+                Sistema de Indicadores Para la Igualdad de Oportunidades
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Ley 474/00 "Plan de Igualdad Real de Oportunidades y de Trato entre Mujeres y Varones"
               </p>
             </div>
           </CardContent>
