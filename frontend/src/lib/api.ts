@@ -289,6 +289,38 @@ export const apiClient = {
     },
   },
 
+  // Auditoría (solo admin)
+  audit: {
+    getLogs: async (filters?: any) => {
+      const response = await api.get('/audit/logs', { params: filters });
+      return response.data;
+    },
+    getActividadUsuario: async (usuarioId: string, limite?: number) => {
+      const response = await api.get(`/audit/usuarios/${usuarioId}/actividad`, {
+        params: { usuarioId, limite },
+      });
+      return response.data;
+    },
+    getEstadisticasUsuario: async (usuarioId: string) => {
+      const response = await api.get(`/audit/usuarios/${usuarioId}/estadisticas`, {
+        params: { usuarioId },
+      });
+      return response.data;
+    },
+    getResumenGeneral: async (desde?: string, hasta?: string) => {
+      const response = await api.get('/audit/resumen', {
+        params: { desde, hasta },
+      });
+      return response.data;
+    },
+    getSesionesUsuarios: async (activos?: boolean) => {
+      const response = await api.get('/audit/usuarios/sesiones', {
+        params: { activos },
+      });
+      return response.data;
+    },
+  },
+
   // Health check
   health: async () => {
     const response = await api.get('/health');

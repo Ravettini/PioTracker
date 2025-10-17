@@ -22,7 +22,8 @@ import {
   Activity,
   CheckCircle,
   BookOpen,
-  Cog
+  Cog,
+  Shield
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -137,6 +138,13 @@ export default function HomePage() {
             icon: <Download className="h-6 w-6" />,
             href: '/admin/sync',
             color: 'bg-teal-500'
+          },
+          {
+            title: 'Auditoría',
+            description: 'Control de acciones de usuarios',
+            icon: <Shield className="h-6 w-6" />,
+            href: '/admin/auditoria',
+            color: 'bg-red-500'
           },
           {
             title: 'Manual',

@@ -8,6 +8,7 @@ import { Usuario, RolUsuario } from '../db/entities/usuario.entity';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { AuditService } from '../audit/audit.service';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,7 @@ export class AuthService {
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
     private jwtService: JwtService,
+    private auditService: AuditService,
   ) {}
 
   async validateUser(email: string, password: string): Promise<Usuario> {
@@ -112,7 +114,7 @@ export class AuthService {
     this.logger.log(`🎫 Tokens generados en ${Date.now() - startTime}ms total`);
 
     // Registrar auditoría de login
-    // TODO: Implementar auditoría
+    await this.auditService.logLogin(usuario.id, ip, userAgent);
 
     return {
       usuario: {
@@ -194,7 +196,10 @@ export class AuthService {
     return { success: true, message: 'Contraseña cambiada exitosamente' };
   }
 
-  async logout(userId: string) {
+  async logout(userId: string, ip?: string, userAgent?: string) {
+    // Registrar auditoría de logout
+    await this.auditService.logLogout(userId, ip, userAgent);
+    
     // TODO: Implementar blacklist de tokens si es necesario
     return { message: 'Logout exitoso' };
   }
