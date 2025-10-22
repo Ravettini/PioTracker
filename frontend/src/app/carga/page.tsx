@@ -596,10 +596,9 @@ export default function CargaPage() {
                   <Select
                     value={selectedMinisterio}
                     onValueChange={(value) => setSelectedMinisterio(value)}
-                    disabled={user?.rol !== 'ADMIN'}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={user?.rol === 'ADMIN' ? "Selecciona un ministerio" : "Tu ministerio asignado"} />
+                      <SelectValue placeholder="Selecciona un ministerio" />
                     </SelectTrigger>
                     <SelectContent>
                       {ministerios.map(m => (
