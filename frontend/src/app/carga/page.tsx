@@ -38,7 +38,7 @@ interface Indicador {
 export default function CargaPage() {
   const router = useRouter();
   const isAuthenticated = useIsAuthenticated();
-  const { token } = useAuthStore();
+  const { token, user } = useAuthStore();
   const [ministerios, setMinisterios] = useState<Ministerio[]>([]);
   const [filteredMinisterios, setFilteredMinisterios] = useState<Ministerio[]>([]);
   const [lineas, setLineas] = useState<Linea[]>([]);
@@ -120,8 +120,18 @@ export default function CargaPage() {
         // Filtrar solo ministerios activos como medida adicional de seguridad
         const ministeriosActivos = (data.data || data || []).filter((ministerio: Ministerio) => ministerio.activo === true);
         console.log('🔍 Ministerios activos filtrados:', ministeriosActivos);
-        setMinisterios(ministeriosActivos);
-        setFilteredMinisterios(ministeriosActivos);
+        
+        // Si el usuario NO es ADMIN, filtrar solo su ministerio asignado
+        let ministeriosFiltrados = ministeriosActivos;
+        if (user?.rol !== 'ADMIN' && user?.ministerioId) {
+          ministeriosFiltrados = ministeriosActivos.filter((m: Ministerio) => m.id === user.ministerioId);
+          console.log('🔒 Usuario no-admin: mostrando solo su ministerio:', user.ministerioId);
+          // Pre-seleccionar automáticamente el ministerio del usuario
+          setSelectedMinisterio(user.ministerioId);
+        }
+        
+        setMinisterios(ministeriosFiltrados);
+        setFilteredMinisterios(ministeriosFiltrados);
       } else {
         console.error('❌ Error obteniendo ministerios de la API:', response.status);
         toast.error('Error al cargar los ministerios desde la API');
@@ -132,7 +142,7 @@ export default function CargaPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [token]);
+  }, [token, user]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -583,9 +593,10 @@ export default function CargaPage() {
                   <Select
                     value={selectedMinisterio}
                     onValueChange={(value) => setSelectedMinisterio(value)}
+                    disabled={user?.rol !== 'ADMIN'}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un ministerio" />
+                      <SelectValue placeholder={user?.rol === 'ADMIN' ? "Selecciona un ministerio" : "Tu ministerio asignado"} />
                     </SelectTrigger>
                     <SelectContent>
                       {ministerios.map(m => (
@@ -595,6 +606,11 @@ export default function CargaPage() {
                       ))}
                     </SelectContent>
                   </Select>
+                  {user?.rol !== 'ADMIN' && (
+                    <p className="text-xs text-gray-500 mt-1">
+                      Solo puedes crear cargas para tu ministerio asignado
+                    </p>
+                  )}
                 </div>
 
                 {/* Compromisos */}
