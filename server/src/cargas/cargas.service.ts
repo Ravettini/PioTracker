@@ -535,7 +535,7 @@ export class CargasService {
 
   private validarPeriodoPeriodicidad(periodo: string, periodicidad: string): void {
     // Casos especiales: períodos fijos siempre son válidos
-    if (periodo === '2025-2027' || periodo === '2024') {
+    if (periodo === '2025-2027' || periodo === '2024' || periodo === '2025') {
       return;
     }
 

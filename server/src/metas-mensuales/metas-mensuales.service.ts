@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException, BadRequestException, Logger } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, Logger, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MetaMensual } from '../db/entities/meta-mensual.entity';
 import { Indicador } from '../db/entities/indicador.entity';
 import { Ministerio } from '../db/entities/ministerio.entity';
 import { Linea } from '../db/entities/linea.entity';
+import { Usuario } from '../db/entities/usuario.entity';
 import { CreateMetaMensualDto } from './dto/create-meta-mensual.dto';
 import { UpdateMetaMensualDto } from './dto/update-meta-mensual.dto';
 
@@ -23,7 +24,7 @@ export class MetasMensualesService {
     private lineaRepository: Repository<Linea>,
   ) {}
 
-  async create(createMetaMensualDto: CreateMetaMensualDto, userId: string): Promise<MetaMensual> {
+  async create(createMetaMensualDto: CreateMetaMensualDto, user: Usuario): Promise<MetaMensual> {
     // Verificar que el indicador existe
     const indicador = await this.indicadorRepository.findOne({
       where: { id: createMetaMensualDto.indicadorId, activo: true },
@@ -43,6 +44,11 @@ export class MetasMensualesService {
       throw new NotFoundException('Ministerio no encontrado');
     }
 
+    // Validar permisos: usuarios no-admin solo pueden crear metas para su ministerio
+    if (user.rol !== 'ADMIN' && user.ministerioId !== createMetaMensualDto.ministerioId) {
+      throw new ForbiddenException('No tienes permisos para crear metas en este ministerio');
+    }
+
     // Verificar que no existe una meta para el mismo indicador, ministerio y mes
     const existingMeta = await this.metaMensualRepository.findOne({
       where: {
@@ -60,8 +66,8 @@ export class MetasMensualesService {
     const metaMensual = this.metaMensualRepository.create({
       ...createMetaMensualDto,
       lineaId: indicador.lineaId,
-      creadoPor: userId,
-      actualizadoPor: userId,
+      creadoPor: user.id,
+      actualizadoPor: user.id,
     });
 
     const metaGuardada = await this.metaMensualRepository.save(metaMensual);

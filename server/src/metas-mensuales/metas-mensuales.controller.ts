@@ -24,12 +24,12 @@ export class MetasMensualesController {
   constructor(private readonly metasMensualesService: MetasMensualesService) {}
 
   @Post()
-  @Roles(RolUsuario.ADMIN)
+  @Roles(RolUsuario.ADMIN, RolUsuario.USUARIO)
   async create(
     @Body() createMetaMensualDto: CreateMetaMensualDto,
     @CurrentUser() user: Usuario,
   ) {
-    const meta = await this.metasMensualesService.create(createMetaMensualDto, user.id);
+    const meta = await this.metasMensualesService.create(createMetaMensualDto, user);
     
     return {
       message: 'Meta mensual creada exitosamente',
