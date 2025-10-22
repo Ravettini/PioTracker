@@ -158,17 +158,12 @@ export default function CargaPage() {
       return;
     }
 
-    // Verificar conexión a Google Sheets PRIMERO
-    checkGoogleSheetsConnection();
-    loadMinisterios();
-  }, [isAuthenticated, router, loadMinisterios, checkGoogleSheetsConnection]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
+    // Solo cargar ministerios si tenemos el usuario
+    if (user) {
       checkGoogleSheetsConnection();
       loadMinisterios();
     }
-  }, [isAuthenticated, loadMinisterios, checkGoogleSheetsConnection]);
+  }, [isAuthenticated, router, loadMinisterios, checkGoogleSheetsConnection, user]);
 
   useEffect(() => {
     if (selectedMinisterio) {
