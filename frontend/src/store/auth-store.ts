@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import { Usuario } from '@/types';
 
 interface AuthState {
@@ -18,50 +17,39 @@ interface AuthActions {
 
 type AuthStore = AuthState & AuthActions;
 
-export const useAuthStore = create<AuthStore>()(
-  persist(
-    (set, get) => ({
-      // Estado inicial
+// ⚠️ IMPORTANTE: Sin persistencia - la sesión se pierde al cerrar/actualizar la página
+export const useAuthStore = create<AuthStore>()((set, get) => ({
+  // Estado inicial
+  user: null,
+  token: null,
+  isAuthenticated: false,
+  isLoading: false,
+
+  // Acciones
+  login: (user: Usuario, token: string) =>
+    set({
+      user,
+      token,
+      isAuthenticated: true,
+      isLoading: false,
+    }),
+
+  logout: () =>
+    set({
       user: null,
       token: null,
       isAuthenticated: false,
       isLoading: false,
-
-      // Acciones
-      login: (user: Usuario, token: string) =>
-        set({
-          user,
-          token,
-          isAuthenticated: true,
-          isLoading: false,
-        }),
-
-      logout: () =>
-        set({
-          user: null,
-          token: null,
-          isAuthenticated: false,
-          isLoading: false,
-        }),
-
-      setLoading: (loading: boolean) =>
-        set({ isLoading: loading }),
-
-      updateUser: (userData: Partial<Usuario>) =>
-        set((state) => ({
-          user: state.user ? { ...state.user, ...userData } : null,
-        })),
     }),
-    {
-      name: 'auth-storage',
-      partialize: (state) => ({
-        user: state.user,
-        token: state.token,
-        isAuthenticated: state.isAuthenticated,
-      }),
-    }
-  )
-);
+
+  setLoading: (loading: boolean) =>
+    set({ isLoading: loading }),
+
+  updateUser: (userData: Partial<Usuario>) =>
+    set((state) => ({
+      user: state.user ? { ...state.user, ...userData } : null,
+    })),
+}));
 
 // Selectores útiles
 export const useUser = () => useAuthStore((state) => state.user);

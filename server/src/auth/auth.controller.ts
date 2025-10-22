@@ -45,19 +45,19 @@ export class AuthController {
     
     const result = await this.authService.login(loginDto, ip, userAgent);
     
-    // Configurar cookies httpOnly
+    // Configurar cookies httpOnly DE SESIÓN (se borran al cerrar navegador)
     res.cookie('access_token', result.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 12 * 60 * 60 * 1000, // 12 horas
+      // SIN maxAge = cookie de sesión que se borra al cerrar el navegador
     });
     
     res.cookie('refresh_token', result.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+      // SIN maxAge = cookie de sesión que se borra al cerrar el navegador
     });
 
     return {
@@ -104,19 +104,19 @@ export class AuthController {
     
     const result = await this.authService.refreshToken(refreshToken);
     
-    // Actualizar cookies
+    // Actualizar cookies DE SESIÓN (se borran al cerrar navegador)
     res.cookie('access_token', result.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 12 * 60 * 60 * 1000, // 12 horas
+      // SIN maxAge = cookie de sesión que se borra al cerrar el navegador
     });
     
     res.cookie('refresh_token', result.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 días
+      // SIN maxAge = cookie de sesión que se borra al cerrar el navegador
     });
 
     return { message: 'Token refrescado exitosamente' };

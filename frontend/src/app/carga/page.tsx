@@ -63,6 +63,8 @@ export default function CargaPage() {
   const [showNewMeta, setShowNewMeta] = useState(false);
   const [newMeta, setNewMeta] = useState<string>('');
   const [metasExistentes, setMetasExistentes] = useState<Array<{id: string, meta: number, mes: string}>>([]);
+  const [googleSheetsConnected, setGoogleSheetsConnected] = useState<boolean | null>(null);
+  const [googleSheetsError, setGoogleSheetsError] = useState<string>('');
 
   // Función para obtener el placeholder del período según el indicador
   const getPeriodoPlaceholder = () => {
@@ -88,6 +90,45 @@ export default function CargaPage() {
     // Validar períodos disponibles
     return ['2024', '2025', '2026', '2027'].includes(periodo);
   };
+
+  // Verificar conexión a Google Sheets
+  const checkGoogleSheetsConnection = useCallback(async () => {
+    try {
+      console.log('🔍 Verificando conexión con Google Sheets...');
+      
+      const response = await fetch('https://sigepi-backend.onrender.com/api/v1/sync/health-check', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('📊 Estado de Google Sheets:', data);
+        
+        if (data.status === 'OK') {
+          setGoogleSheetsConnected(true);
+          setGoogleSheetsError('');
+          console.log('✅ Google Sheets conectado correctamente');
+        } else {
+          setGoogleSheetsConnected(false);
+          setGoogleSheetsError(data.message || 'Error en la conexión con Google Sheets');
+          console.error('❌ Google Sheets no conectado:', data.message);
+          toast.error('⚠️ No se puede conectar con Google Sheets. El formulario está deshabilitado.');
+        }
+      } else {
+        setGoogleSheetsConnected(false);
+        setGoogleSheetsError('No se pudo verificar la conexión con Google Sheets');
+        console.error('❌ Error verificando Google Sheets:', response.status);
+        toast.error('⚠️ No se puede verificar la conexión con Google Sheets. El formulario está deshabilitado.');
+      }
+    } catch (error) {
+      console.error('❌ Error verificando conexión Google Sheets:', error);
+      setGoogleSheetsConnected(false);
+      setGoogleSheetsError('Error al verificar la conexión con Google Sheets');
+      toast.error('⚠️ Error al verificar la conexión con Google Sheets. El formulario está deshabilitado.');
+    }
+  }, [token]);
 
   // Declarar loadMinisterios con useCallback antes de usarlo en useEffect
   const loadMinisterios = useCallback(async () => {
@@ -129,14 +170,17 @@ export default function CargaPage() {
       return;
     }
 
+    // Verificar conexión a Google Sheets PRIMERO
+    checkGoogleSheetsConnection();
     loadMinisterios();
-  }, [isAuthenticated, router, loadMinisterios]);
+  }, [isAuthenticated, router, loadMinisterios, checkGoogleSheetsConnection]);
 
   useEffect(() => {
     if (isAuthenticated) {
+      checkGoogleSheetsConnection();
       loadMinisterios();
     }
-  }, [isAuthenticated, loadMinisterios]);
+  }, [isAuthenticated, loadMinisterios, checkGoogleSheetsConnection]);
 
   useEffect(() => {
     if (selectedMinisterio) {
@@ -553,6 +597,55 @@ export default function CargaPage() {
           </div>
         </div>
 
+        {/* Mensaje de error de Google Sheets */}
+        {googleSheetsConnected === false && (
+          <div className="mb-6 p-4 bg-red-50 border-2 border-red-500 rounded-lg">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-red-900 mb-2">
+                  ⚠️ Formulario deshabilitado - Google Sheets no conectado
+                </h3>
+                <p className="text-red-800 mb-3">
+                  {googleSheetsError || 'No se pudo establecer conexión con Google Sheets. Las cargas no podrán sincronizarse.'}
+                </p>
+                <p className="text-red-700 text-sm">
+                  Por favor, contacta al administrador del sistema para resolver el problema de conexión antes de crear nuevas cargas.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mensaje de cargando verificación */}
+        {googleSheetsConnected === null && (
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-300 rounded-lg">
+            <div className="flex items-center gap-3">
+              <svg className="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <p className="text-blue-800">Verificando conexión con Google Sheets...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Mensaje de éxito */}
+        {googleSheetsConnected === true && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-300 rounded-lg">
+            <div className="flex items-center gap-3">
+              <svg className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-green-800">✅ Google Sheets conectado correctamente</p>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Información del Indicador */}
@@ -569,9 +662,10 @@ export default function CargaPage() {
                   <Select
                     value={selectedMinisterio}
                     onValueChange={(value) => setSelectedMinisterio(value)}
+                    disabled={googleSheetsConnected !== true}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un ministerio" />
+                      <SelectValue placeholder={googleSheetsConnected !== true ? "Formulario deshabilitado - Google Sheets no conectado" : "Selecciona un ministerio"} />
                     </SelectTrigger>
                     <SelectContent>
                       {ministerios.map(m => (
@@ -591,9 +685,10 @@ export default function CargaPage() {
                   <Select
                     value={selectedLinea}
                     onValueChange={handleLineaChange}
+                    disabled={googleSheetsConnected !== true}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un compromiso" />
+                      <SelectValue placeholder={googleSheetsConnected !== true ? "Deshabilitado" : "Selecciona un compromiso"} />
                     </SelectTrigger>
                     <SelectContent>
                       {lineas.map(l => (
@@ -666,9 +761,10 @@ export default function CargaPage() {
                    <Select
                      value={selectedIndicador}
                      onValueChange={(value) => setSelectedIndicador(value)}
+                     disabled={googleSheetsConnected !== true}
                    >
                      <SelectTrigger>
-                       <SelectValue placeholder="Selecciona un indicador" />
+                       <SelectValue placeholder={googleSheetsConnected !== true ? "Deshabilitado" : "Selecciona un indicador"} />
                      </SelectTrigger>
                      <SelectContent>
                        {indicadores.map(i => (
@@ -741,9 +837,10 @@ export default function CargaPage() {
                   <Select
                     value={periodo}
                     onValueChange={(value) => setPeriodo(value)}
+                    disabled={googleSheetsConnected !== true}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona un período" />
+                      <SelectValue placeholder={googleSheetsConnected !== true ? "Deshabilitado" : "Selecciona un período"} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="2024">2024</SelectItem>
@@ -768,9 +865,10 @@ export default function CargaPage() {
                   <Select
                     value={mes}
                     onValueChange={(value) => setMes(value)}
+                    disabled={googleSheetsConnected !== true}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Selecciona el mes de cumplimiento" />
+                      <SelectValue placeholder={googleSheetsConnected !== true ? "Deshabilitado" : "Selecciona el mes de cumplimiento"} />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="enero">Enero</SelectItem>
@@ -901,6 +999,7 @@ export default function CargaPage() {
                     placeholder="0.00"
                     value={valor}
                     onChange={(e) => setValor(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
 
@@ -914,6 +1013,7 @@ export default function CargaPage() {
                     placeholder="Ej: Porcentaje, Cantidad, etc."
                     value={unidad}
                     onChange={(e) => setUnidad(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
 
@@ -927,6 +1027,7 @@ export default function CargaPage() {
                     placeholder="Ej: Encuesta, Censo, etc."
                     value={fuente}
                     onChange={(e) => setFuente(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
 
@@ -940,6 +1041,7 @@ export default function CargaPage() {
                     placeholder="Nombre completo del responsable"
                     value={responsableNombre}
                     onChange={(e) => setResponsableNombre(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
 
@@ -953,6 +1055,7 @@ export default function CargaPage() {
                     placeholder="email@ejemplo.com"
                     value={responsableEmail}
                     onChange={(e) => setResponsableEmail(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
 
@@ -966,6 +1069,7 @@ export default function CargaPage() {
                     placeholder="Observaciones adicionales"
                     value={observaciones}
                     onChange={(e) => setObservaciones(e.target.value)}
+                    disabled={googleSheetsConnected !== true}
                   />
                 </div>
               </CardContent>
@@ -984,11 +1088,15 @@ export default function CargaPage() {
             <Button
               type="submit"
               loading={isLoading}
-              disabled={isLoading}
+              disabled={isLoading || googleSheetsConnected !== true}
               className="flex items-center gap-2"
             >
               <Save className="h-4 w-4" />
-              {isLoading ? 'Enviando...' : 'Enviar Carga'}
+              {googleSheetsConnected !== true 
+                ? 'Formulario Deshabilitado' 
+                : isLoading 
+                  ? 'Enviando...' 
+                  : 'Enviar Carga'}
             </Button>
           </div>
         </form>
