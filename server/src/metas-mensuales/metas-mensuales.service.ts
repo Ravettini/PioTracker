@@ -24,7 +24,10 @@ export class MetasMensualesService {
     private lineaRepository: Repository<Linea>,
   ) {}
 
-  async create(createMetaMensualDto: CreateMetaMensualDto, user: Usuario): Promise<MetaMensual> {
+  async create(createMetaMensualDto: CreateMetaMensualDto, userOrId: Usuario | string): Promise<MetaMensual> {
+    // Determinar si es un objeto Usuario o un ID string
+    const userId = typeof userOrId === 'string' ? userOrId : userOrId.id;
+    const user = typeof userOrId === 'string' ? null : userOrId;
     // Verificar que el indicador existe
     const indicador = await this.indicadorRepository.findOne({
       where: { id: createMetaMensualDto.indicadorId, activo: true },
@@ -45,7 +48,8 @@ export class MetasMensualesService {
     }
 
     // Validar permisos: usuarios no-admin solo pueden crear metas para su ministerio
-    if (user.rol !== 'ADMIN' && user.ministerioId !== createMetaMensualDto.ministerioId) {
+    // Si user es null (creación automática), se permite (asumimos que es admin)
+    if (user && user.rol !== 'ADMIN' && user.ministerioId !== createMetaMensualDto.ministerioId) {
       throw new ForbiddenException('No tienes permisos para crear metas en este ministerio');
     }
 
@@ -66,8 +70,8 @@ export class MetasMensualesService {
     const metaMensual = this.metaMensualRepository.create({
       ...createMetaMensualDto,
       lineaId: indicador.lineaId,
-      creadoPor: user.id,
-      actualizadoPor: user.id,
+      creadoPor: userId,
+      actualizadoPor: userId,
     });
 
     const metaGuardada = await this.metaMensualRepository.save(metaMensual);
