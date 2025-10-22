@@ -106,6 +106,9 @@ export default function CargaPage() {
       setIsLoading(true);
 
       console.log('🔄 Cargando ministerios desde la API...');
+      console.log('👤 Usuario actual:', user);
+      console.log('👤 Rol del usuario:', user?.rol);
+      console.log('👤 MinisterioId del usuario:', user?.ministerioId);
       
       // Llamada a la API para obtener ministerios
       const response = await fetch('https://sigepi-backend.onrender.com/api/v1/catalogos/ministerios', {
@@ -123,11 +126,16 @@ export default function CargaPage() {
         
         // Si el usuario NO es ADMIN, filtrar solo su ministerio asignado
         let ministeriosFiltrados = ministeriosActivos;
+        console.log('🔍 Verificando rol:', user?.rol, '¿Es ADMIN?', user?.rol === 'ADMIN');
+        
         if (user?.rol !== 'ADMIN' && user?.ministerioId) {
           ministeriosFiltrados = ministeriosActivos.filter((m: Ministerio) => m.id === user.ministerioId);
           console.log('🔒 Usuario no-admin: mostrando solo su ministerio:', user.ministerioId);
+          console.log('🔒 Ministerios filtrados:', ministeriosFiltrados);
           // Pre-seleccionar automáticamente el ministerio del usuario
           setSelectedMinisterio(user.ministerioId);
+        } else {
+          console.log('👨‍💼 Usuario es ADMIN o no tiene ministerioId, mostrando todos');
         }
         
         setMinisterios(ministeriosFiltrados);
