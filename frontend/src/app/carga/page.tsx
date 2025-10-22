@@ -860,15 +860,17 @@ export default function CargaPage() {
                   
                   {/* Opción para crear nueva meta */}
                   <div className="mt-2">
-                    <button
-                      type="button"
-                      onClick={() => setShowNewMeta(!showNewMeta)}
-                      className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
-                    >
-                      {showNewMeta ? '−' : '+'} Crear nueva meta para este mes
-                    </button>
+                    {user?.rol === 'ADMIN' && (
+                      <button
+                        type="button"
+                        onClick={() => setShowNewMeta(!showNewMeta)}
+                        className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                      >
+                        {showNewMeta ? '−' : '+'} Crear nueva meta para este mes
+                      </button>
+                    )}
                     
-                    {showNewMeta && (
+                    {showNewMeta && user?.rol === 'ADMIN' && (
                       <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
                         <div className="space-y-3">
                           <div>

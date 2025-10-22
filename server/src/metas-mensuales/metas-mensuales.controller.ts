@@ -24,7 +24,7 @@ export class MetasMensualesController {
   constructor(private readonly metasMensualesService: MetasMensualesService) {}
 
   @Post()
-  @Roles(RolUsuario.ADMIN, RolUsuario.USUARIO)
+  @Roles(RolUsuario.ADMIN)
   async create(
     @Body() createMetaMensualDto: CreateMetaMensualDto,
     @CurrentUser() user: Usuario,
